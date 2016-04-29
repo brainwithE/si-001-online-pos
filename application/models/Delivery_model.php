@@ -17,7 +17,21 @@ class Delivery_model extends CI_model{
 	    return false;
 	}
 
-	function add_delivery_transaction($data){
+	//function add_delivery_transaction($data){
+	function add_delivery_transaction(){
+		$current_date = date('Y-m-d');	
+		
+		$dt_data = array(
+			'dt_id' => '',
+			'dt_supplier' => '201605000000002',			
+			'dt_total_quantity' => '0',
+			'dt_date' => $current_date,
+			'dt_approve_date' => $current_date,			
+			'dt_status' => '0'
+
+			
+		);
+		$this->db->insert('pos_delivery_transaction', $dt_data);
 		
 	}
 

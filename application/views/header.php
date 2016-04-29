@@ -255,11 +255,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 </div>
             </div>
+            <div style="position: fixed; border:1px solid black; right: 29%"class="" data-toggle="modal" 
+				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="delivery-transaction">ADD DELIVERY</a></div>
+			</div>
 
 
-            <div style="position: fixed; border:1px solid black; right: 29%"class="" data-toggle="modal" data-target="#InputDelivery"
-				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD DELIVERY</a></div>
-			</div>			
 
 			<div class="modal fade" id="InputDelivery" role="dialog">
                 <div class="modal-dialog">

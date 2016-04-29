@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['default_controller'] = 'signup';
-/*$route['default_controller'] = 'example';*/
+/*$route['default_controller'] = 'example'; --for aauth sample*/
 $route['(:any)'] = 'signed_in/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
@@ -87,4 +87,5 @@ $route['report-pullout'] = 'pullout';
 $route['add-items'] = 'items/add_items';
 $route['add-sales'] = 'sales/add_sales_transaction';
 $route['pullout-item'] = 'pullout/input_pullout_item';
-$route['add-item-delivery'] = 'delivery/input_delivery_item';
+$route['delivery-transaction'] = 'delivery/add_delivery_transaction';
+$route['add-delivery-items'] = 'delivery/add_delivery_items';

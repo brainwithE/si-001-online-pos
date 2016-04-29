@@ -15,7 +15,7 @@ class Delivery extends CI_Controller{
 	}
 
 	
-    public function input_delivery_item(){
+    /*public function input_delivery_item(){
         $item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
         $item_supplier = $this->get_item_supplier($item_code);
@@ -28,6 +28,17 @@ class Delivery extends CI_Controller{
 
         $this->load->model('Delivery_model');
         $this->Delivery_model->add_delivery_transaction($data);  
+ 
+        redirect('report-delivery');
+    }*/
+
+    public function add_delivery_transaction(){
+
+        //insert tons of condition here
+
+        $this->load->model('Delivery_model');
+        $this->Delivery_model->add_delivery_transaction();  
+        /*$this->Delivery_model->add_delivery_transaction($data);  */
  
         redirect('report-delivery');
     }

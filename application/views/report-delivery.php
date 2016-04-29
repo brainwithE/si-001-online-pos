@@ -47,18 +47,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									$dt_status = $row['dt_status'];
 									$dt_date_approved = $row['dt_approve_date'];
 							?>
-								
+								<a href='<?php echo base_url() ?>Delivery/view_dt_details/<?php echo $dt_code ?>'>	
 								<div class="row table-entries table-entries-income">
-									<!-- <div class="col-xs-3"><?php $new_income_date_acquired //= //date("M j, Y", strtotime($income_date_acquired));  echo $new_income_date_acquired; ?></div>
-									<div class="col-xs-5 col-sm-6"><?php //echo $income_name; ?></div>
-									<div class="col-xs-3"><?php //echo $income_amount; ?></div> -->
-
 									<div class="col-xs-2"><?php echo $dt_code;?></div>
 									<div class="col-xs-2"><?php echo $dt_supplier;?></div>
 									<div class="col-xs-4"><?php echo $dt_quantity;?></div>
 									<div class="col-xs-2"><?php echo $dt_status;?></div>
 									<div class="col-xs-2"><?php echo $dt_date_approved;?></div>	
 								</div>
+								</a>
 
 							<?php } ?>
 							

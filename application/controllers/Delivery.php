@@ -42,5 +42,33 @@ class Delivery extends CI_Controller{
  
         redirect('report-delivery');
     }
+
+    public function add_delivery_items(){
+        $item_code = $this->input->post('item_code');
+        $item_quantity = $this->input->post('item_quantity');
+        $dt_id = $this->uri->segment(3);
+
+        /*$data = array (
+            'del_item_code' => $item_code,
+            'del_item_quantity' => $item_quantity,
+            'dt_id' => $dt_id          
+        );
+
+        $this->load->model('Delivery_model');
+        $this->Delivery_model->add_delivery_items($data);  
+ 
+        redirect('delivery-item-view');*/
+
+
+    }
+
+    public function view_dt_details(){
+        $dt_id = $this->uri->segment(3);
+        $data['dt_id'] = $dt_id;
+        
+        $this->load->view('header');
+        $this->load->view('delivery-item-view',$data);
+        $this->load->view('footer');
+    }
 }
 ?>

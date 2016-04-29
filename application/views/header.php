@@ -45,17 +45,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 				    <ul>
 				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>OVERWATCH SYSTEM</a></li>
-				        <li><a href="income-view">INCOME</a></li>
-				        <li><a href="expense-view">EXPENSES</a></li>
-				        <li><a href="withdrawal-view">WITHDRAWALS</a></li>
-				        <li><a href="reporting-view">REPORTING</a></li>
-				        <li><a href="project-view">PROJECTS</a></li>
+				        <li><a href="<?php echo base_url() ?>income-view">INCOME</a></li>
+				        <li><a href="<?php echo base_url() ?>expense-view">EXPENSES</a></li>
+				        <li><a href="<?php echo base_url() ?>withdrawal-view">WITHDRAWALS</a></li>
+				        <li><a href="<?php echo base_url() ?>reporting-view">REPORTING</a></li>
+				        <li><a href="<?php echo base_url() ?>project-view">PROJECTS</a></li>
 
 				        <!---POS-->
-						<li><a href="report-item">ITEMS</a></li>
-						<li><a href="report-sales">SALES</a></li>
-						<li><a href="report-delivery">DELIVERY</a></li>
-						<li><a href="report-pullout">PULLOUT</a></li>
+						<li><a href="<?php echo base_url() ?>report-item">ITEMS</a></li>
+						<li><a href="<?php echo base_url() ?>report-sales">SALES</a></li>
+						<li><a href="<?php echo base_url() ?>report-delivery">DELIVERY</a></li>
+						<li><a href="<?php echo base_url() ?>report-pullout">PULLOUT</a></li>
 
 				    </ul>
 				</nav>

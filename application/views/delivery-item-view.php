@@ -15,33 +15,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<?php
 									echo form_open('add-delivery-items');							
 								?>
+								<input type="field" placeholder="Item Code" name="item_code"/>
 								<input type="field" placeholder="Item Quantity" name="item_quantity"/>
-	                        	<input type="submit" class="submit-button" value="Submit" />
+	                        	<input type="submit" class="submit-button" value="Add Item" />
 								<?php									
 									echo form_close();
 								?>
 							</div>
+
 							<div class="row table-title table-title-general table-title-income">
-								<div class="col-xs-3">Date</div>
-								<div class="col-xs-5 col-sm-6">Name</div>
-								<div class="col-xs-3">Amount</div>
+								<div class="col-xs-12">Delivery Transaction ID: <?php echo $dt_id; ?></div>
+								<div class="col-xs-3">Quantity</div>
+								<div class="col-xs-3">Item Code</div>
+								<div class="col-xs-6">Item Names</div>
 							</div>
 							<?php
-								$total_earnings = 0;
-								foreach($income->result_array() as $row){ 
-								$income_name = $row['income_name'];
-								$income_amount = $row['income_amount'];
-								$income_date_acquired = $row['income_date_acquired'];
-								$total_earnings = $total_earnings + $income_amount;
+								
+								//foreach($income->result_array() as $row){ 
+								
 							?>
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-3"><?php $new_income_date_acquired = date("M j, Y", strtotime($income_date_acquired));  echo $new_income_date_acquired; ?></div>
-									<div class="col-xs-5 col-sm-6"><?php echo $income_name; ?></div>
-									<div class="col-xs-3"><?php echo $income_amount; ?></div>
+									<div class="col-xs-3"></div>
+									<div class="col-xs-5 col-sm-6"></div>
+									<div class="col-xs-3"></div>
 								</div>
 
-							<?php } ?>
+							<?php //} ?>
 							
 						</div>
 

@@ -18,6 +18,7 @@ class Delivery_model extends CI_model{
 	}
 
 	//function add_delivery_transaction($data){
+	/*NOTE: STATIC ADD DELIVERY TRANSACTION BELOW*/
 	function add_delivery_transaction(){
 		$current_date = date('Y-m-d');	
 		
@@ -33,6 +34,17 @@ class Delivery_model extends CI_model{
 		);
 		$this->db->insert('pos_delivery_transaction', $dt_data);
 		
+	}
+
+	function add_delivery_items($data){
+		$data = array(
+			'delivery_id' => '',
+			'delivery_item' => $data['del_item_code'],
+			'delivery_quantity' => $data['del_item_quantity'],
+			'delivery_dt' => $data['dt_id']
+			
+		);
+		$this->db->insert('pos_delivery', $data);		
 	}
 
 	/*

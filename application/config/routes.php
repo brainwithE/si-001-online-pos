@@ -75,3 +75,16 @@ $route['filter-income'] = 'income/filter_income_date';
 $route['filter-expense'] = 'expense/filter_expense_date';
 $route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';
 
+/*POS*/
+
+//view reports
+$route['report-item'] = 'items';
+$route['report-sales'] = 'sales';
+$route['report-delivery'] = 'delivery';
+$route['report-pullout'] = 'pullout';
+
+//forms
+$route['add-items'] = 'items/add_items';
+$route['add-sales'] = 'sales/add_sales_transaction';
+$route['pullout-item'] = 'pullout/input_pullout_item';
+$route['add-item-delivery'] = 'delivery/input_delivery_item';

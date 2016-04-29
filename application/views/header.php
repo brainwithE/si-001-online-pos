@@ -50,6 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				        <li><a href="withdrawal-view">WITHDRAWALS</a></li>
 				        <li><a href="reporting-view">REPORTING</a></li>
 				        <li><a href="project-view">PROJECTS</a></li>
+
+				        <!---POS-->
+						<li><a href="report-item">ITEMS</a></li>
+						<li><a href="report-sales">SALES</a></li>
+						<li><a href="report-delivery">DELIVERY</a></li>
+						<li><a href="report-pullout">PULLOUT</a></li>
+
 				    </ul>
 				</nav>
 
@@ -158,6 +165,143 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                        	<input type="field" placeholder="Personnel (separated by ,)" name="project_personnel"/>
 	                        	<input type="field" placeholder="Budget" name="project_budget"/>
 	                        	<input type="submit" class="submit-button" value="START" />
+	                      <?php echo form_close();?>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+			<!-- POS PARTS -->
+
+            <div style="position: fixed; border:1px solid black; right: 17%"class="" data-toggle="modal" data-target="#InputItems">
+				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD ITEMS</a></div>
+			</div>			
+
+			<div class="modal fade" id="InputItems" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                      <div class="col-md-12">
+
+                        <div class="modal-body modal-project">
+                          <i class="fa fa-coffee"></i>INPUT NEW ITEM
+                          <?php echo form_open('add-items') ?>
+	                        	<input type="field" placeholder="Item Name" name="item_name" />
+	                        	<input type="field" placeholder="Price" name="item_price"/>
+	                        	<input type="field" placeholder="Category" name="item_category"/>
+	                        	<!-- <select name="item_category">
+	                        		<option>Blouse</option>
+	                        		<option>Crop Top</option>
+	                        		<option>Dress</option>
+	                        		<option>Pants</option>
+	                        		<option>Shorts</option>
+	                        		<option>Sleeveless Top</option>
+	                        		<option>Tee</option>
+
+	                        	</select> -->
+	                        	<input type="hidden" name="item_id"/>
+	                        	<input type="hidden" name="item_supplier"/>
+	                        	<input type="submit" class="submit-button" value="Submit" />
+	                      <?php echo form_close();?>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div style="position: fixed; border:1px solid black; right: 23%"class="" data-toggle="modal" data-target="#InputSaleTransact">
+				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD SALES</a></div>
+			</div>			
+
+			<div class="modal fade" id="InputSaleTransact" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                      <div class="col-md-12">
+
+                        <div class="modal-body modal-project">
+                          <i class="fa fa-coffee"></i>INPUT SALES ITEM
+                          <?php echo form_open('add-sales') ?>
+	                        	<input type="field" placeholder="Item Code" name="item_code" />
+	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
+	                        	<!-- <select name="item_category">
+	                        		<option>Blouse</option>
+	                        		<option>Crop Top</option>
+	                        		<option>Dress</option>
+	                        		<option>Pants</option>
+	                        		<option>Shorts</option>
+	                        		<option>Sleeveless Top</option>
+	                        		<option>Tee</option>
+
+	                        	</select> -->	                        	
+	                        	<input type="submit" class="submit-button" value="Submit" />
+	                      <?php echo form_close();?>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div style="position: fixed; border:1px solid black; right: 29%"class="" data-toggle="modal" data-target="#InputDelivery"
+				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD DELIVERY</a></div>
+			</div>			
+
+			<div class="modal fade" id="InputDelivery" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                      <div class="col-md-12">
+
+                        <div class="modal-body modal-project">
+                          <i class="fa fa-coffee"></i>DELIVERY ITEM REQUEST
+                          <?php echo form_open('add-item-delivery') ?>
+	                        	<input type="field" placeholder="Delivery Item Code" name="item_code" />
+	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
+	                        	<input type="submit" class="submit-button" value="Submit" />
+	                      <?php echo form_close();?>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div style="position: fixed; border:1px solid black; right: 29%"class="" data-toggle="modal" data-target="#InputPullout">
+				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD PULLOUT</a></div>
+			</div>			
+
+			<div class="modal fade" id="InputPullout" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                      <div class="col-md-12">
+
+                        <div class="modal-body modal-project">
+                          <i class="fa fa-coffee"></i>INPUT PULLOUT
+                          <?php echo form_open('pullout-item') ?>
+	                        	<input type="field" placeholder="Pullout Item Code" name="item_code" />
+	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
+	                        	<input type="submit" class="submit-button" value="Submit" />
 	                      <?php echo form_close();?>
                         </div>
 

@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									//echo form_close();
 								?>
 							</div> -->
-							<p>VIEW SALES REPORT PER DAY</p>
+							<p>Hi, today is: <?php echo $today = date('F j, Y');?></p>
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2">Quantity</div>
 								<div class="col-xs-2">Item Name</div>
@@ -40,12 +40,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								$income_date_acquired = $row['income_date_acquired'];
 								$total_earnings = $total_earnings + $income_amount;*/
 
+								$total_earnings = 0;
 								foreach($sales->result_array() as $row){ 
 									$sales_quantity = $row['sales_quantity'];
 									$sales_item_name = $row['sales_item'];
 									$sales_amount = $row['sales_total'];
 									$sales_deduction = $sales_amount*0.12;
 									$sales_net = $sales_amount-$sales_deduction;
+									$total_earnings = $total_earnings + $sales_net;
 							?>
 								
 								<div class="row table-entries table-entries-income">
@@ -66,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 						<div class="table-title table-end table-end-general table-end-income">
 								<div class="col-xs-6 col-sm-9 total-label">TOTAL EARNINGS</div>
-								<div class="col-xs-3 total-amount"><?php echo $total_earnings; ?></div>
+								<div class="col-xs-3 total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></div>
 						</div>
 					</div><!-- MEC end -->
 

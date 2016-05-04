@@ -8,6 +8,14 @@ class Sales_model extends CI_model{
 		return $query;
 	}
 
+	function get_daily_sales(){
+		$today = date('Y-m-d');
+		$sql = "SELECT * FROM pos_sales WHERE sales_date='".$today."'" ;
+		$query = $this->db->query($sql);		
+		
+	    return $query;
+	}
+
 	function add_sales_transaction($data){
 		$current_date = date('Y-m-d');	
 		
@@ -26,7 +34,10 @@ class Sales_model extends CI_model{
 		$this->db->insert('pos_sales', $st_data);
 	}
 
-	
+
+	function  deduct_inv_stock($item_code, $item_quantity){
+
+	}
 
 	/*
 	function add_income($data){

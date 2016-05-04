@@ -50,7 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['default_controller'] = 'signup';
+$route['default_controller'] = 'login';
+/*$route['default_controller'] = 'signup';*/
 /*$route['default_controller'] = 'example'; --for aauth sample*//*
 $route['(:any)'] = 'signed_in/$1';
 $route['404_override'] = '';
@@ -77,8 +78,15 @@ $route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
 /*POS*/
 
-//cashier views
-$route['cashier-report-sales'] = 'sales';
+
+//redirect controllers per account type
+
+$route['admin'] = 'admin';
+$route['tenant'] = 'tenant';
+$route['cashier'] = 'cashier';
+
+/*//cashier views
+$route['cashier-report-sales'] = 'sales';*/
 
 //view reports
 $route['report-item'] = 'items';
@@ -88,7 +96,7 @@ $route['report-pullout'] = 'pullout';
 
 //forms
 $route['add-items'] = 'items/add_items';
-$route['add-sales'] = 'sales/add_sales_transaction';
+$route['add-sales'] = 'cashier/add_sales_transaction';
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'delivery/add_delivery_transaction';
 $route['add-delivery-items'] = 'delivery/add_delivery_items';

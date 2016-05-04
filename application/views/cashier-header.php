@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    <ul>
 				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM: SALES ACCOUNT</a></li>				        
 				        <!---POS-->						
-						<li><a href="<?php echo base_url() ?>cashier-report-sales">SALES REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>cashier">SALES REPORT</a></li>
 						
 				    </ul>
 				</nav>

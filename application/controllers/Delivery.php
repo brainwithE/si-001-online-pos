@@ -86,6 +86,11 @@ class Delivery extends CI_Controller{
     public function view_dt_details(){
         $dt_id = $this->uri->segment(3);
         $data['dt_id'] = $dt_id;
+
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_specific_delivery($data['dt_id']);  
+        $data['delivery_transaction'] = $delivery_report;
         
         $this->load->view('header');
         $this->load->view('delivery-item-view',$data);

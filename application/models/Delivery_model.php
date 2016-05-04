@@ -7,6 +7,12 @@ class Delivery_model extends CI_model{
 		return $query;
 	}
 
+	function get_specific_delivery($transaction_id){
+		$sql = "SELECT * FROM pos_delivery WHERE delivery_dt='".$transaction_id."'";
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 	function get_supplier_name($supplier_id){
 		$sql = "SELECT supplier_name FROM pos_supplier WHERE supplier_id='".$supplier_id."'" ;
 		$query = $this->db->query($sql);		

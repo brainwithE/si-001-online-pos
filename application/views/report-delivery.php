@@ -24,8 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2">Delivery Code</div>
 								<div class="col-xs-2">Supplier Name</div>
-								<div class="col-xs-4">Quantity</div>
-								<div class="col-xs-2">Status</div>
+								<div class="col-xs-1">Quantity</div>
+								<div class="col-xs-2">Date Requested</div>
+								<div class="col-xs-3">Status</div>
 								<div class="col-xs-2">Date Approved</div>	
 							</div>
 							<?php
@@ -40,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									$dt_code = $row['dt_id'];
 									$dt_supplier = $row['dt_supplier'];
 									$dt_quantity = $row['dt_total_quantity'];
+									$dt_date = $row['dt_date'];
 									$dt_status = $row['dt_status'];
 									$dt_date_approved = $row['dt_approve_date'];
 							?>
@@ -47,9 +49,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="row table-entries table-entries-income">
 									<div class="col-xs-2"><?php echo $dt_code;?></div>
 									<div class="col-xs-2"><?php echo $dt_supplier;?></div>
-									<div class="col-xs-4"><?php echo $dt_quantity;?></div>
-									<div class="col-xs-2"><?php echo $dt_status;?></div>
-									<div class="col-xs-2"><?php echo $dt_date_approved;?></div>	
+									<div class="col-xs-1"><?php echo 'x'.$dt_quantity;?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
+									<div class="col-xs-3"><?php if($dt_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
+									<div class="col-xs-2"><?php if($dt_date_approved!='0000-00-00'){echo date("M j, Y", strtotime($dt_date_approved));}else{echo '--';} ?></div>	
 								</div>
 								</a>
 
@@ -57,10 +60,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							
 						</div>
 
-						<div class="table-title table-end table-end-general table-end-income">
+						<!-- <div class="table-title table-end table-end-general table-end-income">
 								<div class="col-xs-6 col-sm-9 total-label">TOTAL EARNINGS</div>
 								<div class="col-xs-3 total-amount"><?php echo $total_earnings; ?></div>
-						</div>
+						</div> -->
 					</div><!-- MEC end -->
 
 				</div>

@@ -122,6 +122,13 @@ class Admin extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function get_item_name($item_code){
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_name($item_code);
+
+        return $result->item_name;
+    }
+
     /*public function get_item_supplier($item_code) {
         $this->load->model('Items_model');
         $result = $this->Items_model->get_item_supplier($item_code);

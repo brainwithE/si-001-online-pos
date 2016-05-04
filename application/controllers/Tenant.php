@@ -3,11 +3,13 @@
 class Tenant extends CI_Controller{
 	
 	public function index(){
+        $this->view_sales_report();
+	}
 
-
+     public function view_sales_report() {
         $supplier_id = $this->get_supplier_id();       
         
-	    $this->load->model('Sales_model');
+        $this->load->model('Sales_model');
                 
         $sale_report = $this->Sales_model->get_supplier_sales($supplier_id);  
         $packet['sales'] = $sale_report;        
@@ -15,7 +17,7 @@ class Tenant extends CI_Controller{
         $this->load->view('tenant-header');
         $this->load->view('report-sales', $packet);
         $this->load->view('footer');
-	}
+    }
 
 
     

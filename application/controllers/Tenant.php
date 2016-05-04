@@ -55,7 +55,7 @@ class Tenant extends CI_Controller{
         $this->load->view('footer');
     }
 
-    public function add_delivery_items(){
+    public function add_delivery(){
         /*$item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
         $dt_id = $this->uri->segment(3);*/

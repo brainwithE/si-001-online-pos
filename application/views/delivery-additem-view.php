@@ -51,39 +51,6 @@
 
 			}
 
-			function checkItem(param) {
-					ItemArray.push({
-						ItemCode : '201602000000001', 
-						ItemName : $('.add-delivery-form #name').val(),
-						ItemQuantity : $('.add-delivery-form #qty').val()
-					});
-						 
-					$('.records-section').html('');
-
-					var eachctr = 0;
-					totalQuantity = 0;
-
-					$('.add-delivery-form #name').val('');
-					$('.add-delivery-form #qty').val('');
-
-					return $.ajax({
-					   type: 'POST',
-					   url: '<?php echo site_url('verify-item'); ?>',
-					   data: param,
-					   success: function( data ) {
-					   			$.each(ItemArray, function(key, value) { 
-									$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
-									eachctr++;
-									totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
-								});
-					   },
-					   error: function(xhr, status, error) {
-					      // check status && error
-					      alert(error);
-					   }
-					});
-			}
-
 			$(document).ready(function() {
 
 				var totalQuantity = 0;
@@ -98,19 +65,49 @@
 
 				$("#add").click(function() {
 
-					checkItem($('.add-delivery-form #name').val()).done(function(value) {
-			            alert(value); //waits until ajax is completed
-			        });
+					ItemArray.push({
+						ItemCode : '201602000000001', 
+						ItemName : $('.add-delivery-form #name').val(),
+						ItemQuantity : $('.add-delivery-form #qty').val()
+					});
+						 
+					$('.records-section').html('');
+
+					var eachctr = 0;
+					totalQuantity = 0;
+
+					$.ajax({
+					   type: 'POST',
+					   url: 'verify-item',
+					   data: $('.add-delivery-form #name').val(),
+					   success: function( data ) {
+					   		$.each(ItemArray, function(key, value) { 
+								$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
+								eachctr++;
+								totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+								alert(totalQuantity);
+							});
+					   },
+					   error: function(xhr, status, error) {
+					      // check status && error
+					      alert(error);
+					   }
+					});
+
+					$('.add-delivery-form #name').val('');
+					$('.add-delivery-form #qty').val('');
+						          	
+					return false;
 						          
 				});
 
 				$("#submit").click(function (){
 
-					$.post('tenant/delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
+					$.post('add-delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
 						alert('requested delivery successful!');
 					});
 
-					window.location.href = "<?php echo site_url('tenant/report-delivery'); ?>";
+					window.location.href = "<?php echo site_url('tenant'); ?>";
 					return false;
 
 				});

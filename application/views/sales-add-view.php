@@ -30,7 +30,7 @@
 				<div class="col-xs-4"><input type="text" name="qty" id="qty" /></div>
 			</div>
 
-			<a id="submit" href="#">FINISH TRANSACTION!</a>	
+			<a id="sub" href="#">FINISH TRANSACTION!</a>	
 		
 		</div>
 
@@ -93,11 +93,6 @@
 					   }
 					});
 
-					$.post('delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
-						alert('requested delivery successful!');
-
-					});
-
 					$('.add-delivery-form #name').val('');
 					$('.add-delivery-form #qty').val('');
 						          	
@@ -105,13 +100,13 @@
 
 				});
 
-				$("#submit").click(function (){
+				$("#sub").click(function (){
 
-					$.post('delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
+					$.post('add-sales-transaction',{data:ItemArray,qty:totalQuantity},function(html){
 						alert('requested delivery successful!');
 					});
 
-					window.location.href = "<?php echo site_url('report-delivery'); ?>";
+					window.location.href = "<?php echo site_url('cashier'); ?>";
 					return false;
 
 				});

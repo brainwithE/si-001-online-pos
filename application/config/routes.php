@@ -51,6 +51,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['default_controller'] = 'login';
+/*POS*/
+
+//redirect controllers per account type
+$route['admin'] = 'admin';
+$route['tenant'] = 'tenant';
+$route['cashier'] = 'cashier';
+
+//admin actions
+$route['admin/report-inventory'] = 'admin/view_inventory';
+$route['admin/report-sales'] = 'admin/view_sales_report';
+$route['admin/report-delivery'] = 'admin/view_delivery';
+$route['admin/report-pullout'] = 'admin/view_pullout';
+$route['admin/delivery-notification'] = 'admin/delivery_notification';
+
+
+//tenant actions
+$route['tenant/add-items'] = 'tenant/add_items';
+$route['tenant/report-inventory'] = 'tenant/view_inventory';
+$route['admin/report-sales'] = 'tenant/view_sales_report';
+$route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
+$route['tenant/report-delivery'] = 'tenant/view_delivery';
+$route['tenant/report-pullout'] = 'tenant/view_pullout';
+$route['tenant/delivery-transaction'] = 'tenant/add_delivery_transaction';
+
+//cashier actions
+$route['add-sales'] = 'cashier/add_sales';
+$route['add-sales-transaction'] = 'cashier/add_sales_transaction'; 
+
+//filter function
+$route['filter-sales'] = 'tenant/filter_sales_date';
+
+$route['pullout-item'] = 'pullout/input_pullout_item';
+$route['delivery-transaction'] = 'delivery/add_delivery_transaction';
+
+$route['report-delivery'] = 'delivery';
+$route['verify-item'] = 'items/verify_item';
+
 /*$route['default_controller'] = 'signup';*/
 /*$route['default_controller'] = 'example'; --for aauth sample*//*
 $route['(:any)'] = 'signed_in/$1';
@@ -76,38 +113,6 @@ $route['filter-income'] = 'income/filter_income_date';
 $route['filter-expense'] = 'expense/filter_expense_date';
 $route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
-/*POS*/
-
-
-//redirect controllers per account type
-$route['admin'] = 'admin';
-$route['tenant'] = 'tenant';
-$route['cashier'] = 'cashier';
-
-//admin actions
-$route['admin/report-inventory'] = 'admin/view_inventory';
-$route['admin/report-sales'] = 'admin/view_sales_report';
-$route['admin/report-delivery'] = 'admin/view_delivery';
-$route['admin/report-pullout'] = 'admin/view_pullout';
-$route['admin/delivery-notification'] = 'admin/delivery_notification';
-
-
-//tenant actions
-$route['tenant/add-items'] = 'tenant/add_items';
-$route['tenant/report-inventory'] = 'tenant/view_inventory';
-$route['admin/report-sales'] = 'tenant/view_sales_report';
-$route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
-$route['tenant/report-delivery'] = 'tenant/view_delivery';
-$route['tenant/report-pullout'] = 'tenant/view_pullout';
-$route['tenant/delivery-transaction'] = 'tenant/add_delivery_transaction';
-
-//cashier actions
-$route['add-sales'] = 'cashier/add_sales_transaction';
-$route['add-sales-transaction'] = 'sales/add_sales_transaction'; 
-
-//filter function
-$route['filter-sales'] = 'tenant/filter_sales_date';
-
 //view reports
 /*$route['report-item'] = 'items';
 $route['report-sales'] = 'sales';
@@ -116,9 +121,4 @@ $route['report-pullout'] = 'pullout';*/
 //forms
 //$route['add-items'] = 'items/add_items';
 //$route['add-sales'] = 'cashier/add_sales_transaction';
-$route['pullout-item'] = 'pullout/input_pullout_item';
-$route['delivery-transaction'] = 'delivery/add_delivery_transaction';
-
-$route['report-delivery'] = 'delivery';
-$route['verify-item'] = 'items/verify_item';
 //$route['add-delivery-items'] = 'delivery/add_delivery_items';

@@ -47,38 +47,18 @@ class Sales_model extends CI_model{
 
 		return $query;
 	}
-
-
-	/* INSERT ACTION */
-	/*function add_sales_transaction($data){
-		$current_date = date('Y-m-d');	
-		
-		$st_data = array(
-			'sales_id' => '',
-			'sales_item' => $data['sales_item_code'],			
-			'sales_quantity' => $data['sales_item_quantity'],
-			'sales_total' => $data['sales_total_price'],
-			'sales_discount' => '0',
-			'sales_date' => $current_date,
-			'sales_supplier' => $data['sales_supplier'],
-			'sales_st' => '0'
-
-			
-		);
-		$this->db->insert('pos_sales', $st_data);
-	}*/
-
+	
 	function add_sales_transaction($supplier,$qty){
 		$current_date = date('Y-m-d');	
 		
-		$dt_data = array(
-			'dt_id' => '',
-			'dt_supplier' => '100',	
-			'dt_date' => $current_date,		
-			'dt_total_quantity' => '2010019576',
+		$st_data = array(
+			'st_id' => '',
+			'st_total' => '100',	
+			'st_date' => $current_date,		
+			'st_cashier' => '2010019576'
 		);
 
-		$this->db->insert('pos_sales_transaction', $dt_data);
+		$this->db->insert('pos_sales_transaction', $st_data);
 		$last_id = $this->db->insert_id();
 
 		return $last_id;
@@ -88,7 +68,7 @@ class Sales_model extends CI_model{
 		$sql = array(); 
 		$ctr = 0;
 		foreach( $data as $row ) {
-			$this->db->insert('pos_delivery', $data[$ctr]);
+			$this->db->insert('pos_sales', $data[$ctr]);
 		    $ctr++;
 		}
 	}

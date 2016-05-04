@@ -13,11 +13,6 @@ class Items_model extends CI_model{
 	}
 
 	function get_supplier_inventory($supplier_id){
-		/*$this->db->order_by("item_id", "desc");
-		$this->db->where('item_supplier =', $supplier_id);
-		$query = $this->db->get('pos_item');
-		return $query;*/
-
 		$this->db->order_by("item_id", "desc");
 		$this->db->select('item_id, item_name, item_category,item_price, item_stock, pos_supplier.supplier_name');
 		$this->db->from('pos_item');
@@ -73,8 +68,6 @@ class Items_model extends CI_model{
 	    }
 	    return false;
 	}
-
-
 
 	/* INSERT ACTION */
 	function add_items($data) {

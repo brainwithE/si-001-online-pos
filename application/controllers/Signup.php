@@ -5,12 +5,12 @@ class Signup extends CI_Controller{
 	public function __construct(){
         parent::__construct();
         $this->load->library(array('session', 'lib_login'));
-        $this->load->model('product_model');
-        $this->load->model('upload_model');
+        /*$this->load->model('product_model');
+        $this->load->model('upload_model');*/
     }
 	
 	function index(){
-
+/*
 		$this->load->model('Income_model');
 		$this->load->model('Expense_model');
 		$this->load->model('Withdrawal_model');
@@ -20,10 +20,10 @@ class Signup extends CI_Controller{
     	$withdrawal = $this->Withdrawal_model->get_withdrawal_month();
     	$packet['income'] = $income;
     	$packet['expense'] = $expense;
-    	$packet['withdrawal'] = $withdrawal;
+    	$packet['withdrawal'] = $withdrawal;*/
 		
 		$this->load->view('header');
-		$this->load->view('home', $packet);
+		$this->load->view('home');
 		$this->load->view('footer');
 
 	}

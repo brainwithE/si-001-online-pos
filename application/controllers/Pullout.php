@@ -8,7 +8,7 @@ class Pullout extends CI_Controller{
         
         $pullout_list = $this->Pullout_model->get_pullout();  
         $packet['pullout'] = $pullout_list;
-        $packet['supplier_name'] = $this->get_supplier_name($pullout_list);
+        //$packet['supplier_name'] = $this->get_supplier_name($pullout_list);
         
         $this->load->view('header');
         $this->load->view('report-pullout', $packet);

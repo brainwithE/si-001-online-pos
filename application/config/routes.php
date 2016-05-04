@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $route['default_controller'] = 'signup';
-/*$route['default_controller'] = 'example'; --for aauth sample*/
+/*$route['default_controller'] = 'example'; --for aauth sample*//*
 $route['(:any)'] = 'signed_in/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
@@ -73,7 +73,7 @@ $route['add-project'] = 'project/add_project';
 
 $route['filter-income'] = 'income/filter_income_date';
 $route['filter-expense'] = 'expense/filter_expense_date';
-$route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';
+$route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
 /*POS*/
 

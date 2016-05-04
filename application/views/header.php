@@ -44,136 +44,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- menu list --> 
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 				    <ul>
-				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>OVERWATCH SYSTEM</a></li>
-				        <li><a href="<?php echo base_url() ?>income-view">INCOME</a></li>
-				        <li><a href="<?php echo base_url() ?>expense-view">EXPENSES</a></li>
-				        <li><a href="<?php echo base_url() ?>withdrawal-view">WITHDRAWALS</a></li>
-				        <li><a href="<?php echo base_url() ?>reporting-view">REPORTING</a></li>
-				        <li><a href="<?php echo base_url() ?>project-view">PROJECTS</a></li>
-
+				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM</a></li>				        
 				        <!---POS-->
-						<li><a href="<?php echo base_url() ?>report-item">ITEMS</a></li>
-						<li><a href="<?php echo base_url() ?>report-sales">SALES</a></li>
-						<li><a href="<?php echo base_url() ?>report-delivery">DELIVERY</a></li>
-						<li><a href="<?php echo base_url() ?>report-pullout">PULLOUT</a></li>
+						<li><a href="<?php echo base_url() ?>report-item">INVENTORY REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>report-sales">SALES REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>report-delivery">DELIVERY REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>report-pullout">PULLOUT REPORT</a></li>
 
 				    </ul>
 				</nav>
 
-				<div class="add-withdrawal" data-toggle="modal" data-target="#InputWithdrawal">
-				    <div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#"><i class="fa fa-money"></i></a></div>
-				</div>
-
-				<div class="modal fade" id="InputWithdrawal" role="dialog">
-                  <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-withdrawal">
-                          <i class="fa fa-money"></i>INPUT NEW WITHDRAWAL
-                          <?php echo form_open('add-withdrawal') ?>
-	                        	<input type="field" placeholder="Amount" name="withdrawal_amount"/>
-	                        	<input type="field" placeholder="Name" name="withdrawal_name" />
-	                        	<input type="text" id="datepickerwithdrawal" class="datepicker" placeholder="Date" name="withdrawal_date_acquired">
-	                        	<input type="submit" class="submit-button" value="WITHDRAW" />
-	                      <?php echo form_close();?>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-                <div class="add-expenses" data-toggle="modal" data-target="#InputExpense">
-				    <div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#"><i class="fa fa-shopping-cart"></i></a></div>
-				</div>
-
-				<div class="modal fade" id="InputExpense" role="dialog">
-                  <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-expense">
-                          <i class="fa fa-shopping-cart"></i>INPUT NEW EXPENSE
-                          	<?php echo form_open('add-expense') ?>
-	                        	<input type="field" placeholder="Amount" name="expense_amount"/>
-	                        	<input type="field" placeholder="Name" name="expense_name" />
-	                        	<input type="field" placeholder="Category" name="expense_category" />
-	                        	<input type="text" id="datepickerexpense" class="datepicker" placeholder="Date" name="expense_date_acquired">
-	                        	<input type="submit" class="submit-button" value="PAY" />
-	                      	<?php echo form_close();?>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-				<div class="add-income" data-toggle="modal" data-target="#InputIncome">
-				    <div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#"><i class="fa fa-angle-double-up"></i></a></div>
-				</div>
-
-				<div class="modal fade" id="InputIncome" role="dialog">
-                  <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-income">
-                          <i class="fa fa-angle-double-up"></i>INPUT NEW INCOME
-                          <?php echo form_open('add-income') ?>
-	                        	<input type="field" placeholder="Amount" name="income_amount"/>
-	                        	<input type="field" placeholder="Name" name="income_name" />
-	                        	<input type="text" id="datepickerincome" class="datepicker" placeholder="Date" name="income_date_acquired">
-	                        	<input type="submit" class="submit-button" value="EARN" />
-	                      <?php echo form_close();?>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-
-
-            <div class="add-project" data-toggle="modal" data-target="#InputProject">
-				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#"><i class="fa fa-coffee"></i></a></div>
-			</div>
-
-			<div class="modal fade" id="InputProject" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-project">
-                          <i class="fa fa-coffee"></i>INPUT NEW PROJECT
-                          <?php echo form_open('add-project') ?>
-	                        	<input type="field" placeholder="Project Name" name="project_name" />
-	                        	<input type="text" id="datepickerproject" class="datepicker" placeholder="Deadline" name="project_deadline">
-	                        	<input type="field" placeholder="Personnel (separated by ,)" name="project_personnel"/>
-	                        	<input type="field" placeholder="Budget" name="project_budget"/>
-	                        	<input type="submit" class="submit-button" value="START" />
-	                      <?php echo form_close();?>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                </div>
-            </div>
 
 
 			<!-- POS PARTS -->

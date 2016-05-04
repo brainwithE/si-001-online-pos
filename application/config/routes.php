@@ -95,6 +95,7 @@ $route['admin/delivery-notification'] = 'admin/delivery_notification';
 //tenant actions
 $route['tenant/add-items'] = 'tenant/add_items';
 $route['tenant/report-inventory'] = 'tenant/view_inventory';
+$route['admin/report-sales'] = 'tenant/view_sales_report';
 $route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
 $route['tenant/report-delivery'] = 'tenant/view_delivery';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';

@@ -2,26 +2,39 @@
 class Sales_model extends CI_model{
 
 	/* SELECT ACTION */
-	function get_sales(){
+	function get_sales(){		
 		$this->db->order_by("sales_id", "desc");
-		$query = $this->db->get('pos_sales');
+		$this->db->select('sales_id, pos_item.item_name, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st');
+		$this->db->from('pos_sales');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+
+		$query = $this->db->get();
+
 		return $query;
 	}
 
 	function get_daily_sales(){
 		$today = date('Y-m-d');	
 
-		$this->db->order_by("sales_id", "desc");
-		$this->db->where('sales_date =', $today);		
-		$query = $this->db->get('pos_sales');	
-		
-	    return $query;
+	    $this->db->order_by("sales_id", "desc");
+		$this->db->select('sales_id, pos_item.item_name, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st');
+		$this->db->from('pos_sales');
+		$this->db->where('sales_date =', $today);
+		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+
+		$query = $this->db->get();
+
+		return $query;
 	}
 
 	function get_supplier_sales($supplier_id){			
 		$this->db->order_by("sales_id", "desc");
+		$this->db->select('sales_id, pos_item.item_name, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st');
+		$this->db->from('pos_sales');		
 		$this->db->where('sales_supplier =', $supplier_id);		
-		$query = $this->db->get('pos_sales');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+
+		$query = $this->db->get();
 
 	    return $query;
 	}

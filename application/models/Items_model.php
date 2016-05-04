@@ -2,16 +2,29 @@
 class Items_model extends CI_model{
 
 	/* SELECT ACTION*/
-	function get_items(){
+	function get_items(){		
 		$this->db->order_by("item_id", "desc");
-		$query = $this->db->get('pos_item');
+		$this->db->select('item_id, item_name, item_category,item_price, item_stock, pos_supplier.supplier_name');
+		$this->db->from('pos_item');
+		$this->db->join('pos_supplier', 'pos_supplier.supplier_id = pos_item.item_supplier');
+		$query = $this->db->get();
+
 		return $query;
 	}
 
 	function get_supplier_inventory($supplier_id){
-		$this->db->order_by("item_id", "desc");
+		/*$this->db->order_by("item_id", "desc");
 		$this->db->where('item_supplier =', $supplier_id);
 		$query = $this->db->get('pos_item');
+		return $query;*/
+
+		$this->db->order_by("item_id", "desc");
+		$this->db->select('item_id, item_name, item_category,item_price, item_stock, pos_supplier.supplier_name');
+		$this->db->from('pos_item');
+		$this->db->where('item_supplier =', $supplier_id);
+		$this->db->join('pos_supplier', 'pos_supplier.supplier_id = pos_item.item_supplier');
+		$query = $this->db->get();
+
 		return $query;
 	}
 
@@ -50,6 +63,15 @@ class Items_model extends CI_model{
 	    } else {
 	    	return false;
 	    }
+	}
+
+	function get_item_name($item_code) {
+		$sql = "SELECT item_name FROM pos_item WHERE item_id='".$item_code."'" ;
+		$query = $this->db->query($sql);		
+		if($query->num_rows() == 1) {
+	        return $query->row();	        
+	    }
+	    return false;
 	}
 
 

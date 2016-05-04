@@ -3,6 +3,7 @@ class Delivery_model extends CI_model{
 
 	/* SELECT ACTIONS */
 	function get_delivery_report(){
+		$this->db->order_by("dt_id", "desc"); 
 		$query = $this->db->get('pos_delivery_transaction');
 		return $query;
 	}

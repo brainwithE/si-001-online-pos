@@ -89,6 +89,28 @@ class Tenant extends CI_Controller{
         }
     }
 
+    public function view_delivery(){
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_delivery_report();  
+        $packet['delivery_transaction'] = $delivery_report;
+        
+        $this->load->view('tenant-header');
+        $this->load->view('report-delivery', $packet);
+        $this->load->view('footer');
+    }
+
+    public function view_pullout(){
+        $this->load->model('Pullout_model');
+        
+        $pullout_list = $this->Pullout_model->get_pullout();  
+        $packet['pullout'] = $pullout_list;
+        //$packet['supplier_name'] = $this->get_supplier_name($pullout_list);
+        
+        $this->load->view('tenant-header');
+        $this->load->view('report-pullout', $packet);
+        $this->load->view('footer');
+    }
 
     /*public function get_item_supplier($item_code) {
         $this->load->model('Items_model');

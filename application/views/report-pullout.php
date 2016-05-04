@@ -27,9 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2">Pullout Code</div>
-								<div class="col-xs-2">Supplier Name</div>
-								<div class="col-xs-4">Quantity</div>
-								<div class="col-xs-2">Status</div>
+								<div class="col-xs-3">Item Name</div>
+								<div class="col-xs-3">Supplier Name</div>
+								<div class="col-xs-1">Quantity</div>
+								<div class="col-xs-1">Status</div>
 								<div class="col-xs-2">Date Approved</div>	
 							</div>
 							<?php
@@ -42,7 +43,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								foreach($pullout->result_array() as $row){ 
 									$pullout_code = $row['pullout_id'];
-									$pullout_supplier = $row['pullout_supplier'];
+									$pullout_item = $row['item_name'];
+									$pullout_supplier = $row['supplier_name'];
 									$pullout_quantity = $row['pullout_quantity'];
 									$pullout_status = $row['pullout_status'];
 									$pullout_date_approved = $row['pullout_date'];
@@ -54,9 +56,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="col-xs-3"><?php //echo $income_amount; ?></div> -->
 
 									<div class="col-xs-2"><?php echo $pullout_code;?></div>
-									<div class="col-xs-2"><?php echo $pullout_supplier;?></div>
-									<div class="col-xs-4"><?php echo $pullout_quantity;?></div>
-									<div class="col-xs-2"><?php echo $pullout_status;?></div>
+									<div class="col-xs-3"><?php echo $pullout_item;?></div>
+									<div class="col-xs-3"><?php echo $pullout_supplier;?></div>
+									<div class="col-xs-1"><?php echo $pullout_quantity;?></div>
+									<div class="col-xs-1"><?php echo $pullout_status;?></div>
 									<div class="col-xs-2"><?php echo $pullout_date_approved;?></div>	
 								</div>
 

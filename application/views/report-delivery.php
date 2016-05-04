@@ -23,10 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2">Delivery Code</div>
-								<div class="col-xs-2">Supplier Name</div>
+								<div class="col-xs-3">Supplier Name</div>
 								<div class="col-xs-1">Quantity</div>
 								<div class="col-xs-2">Date Requested</div>
-								<div class="col-xs-3">Status</div>
+								<div class="col-xs-2">Status</div>
 								<div class="col-xs-2">Date Approved</div>	
 							</div>
 							<?php
@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								foreach($delivery_transaction->result_array() as $row){ 
 									$dt_code = $row['dt_id'];
-									$dt_supplier = $row['dt_supplier'];
+									$dt_supplier = $row['supplier_name'];
 									$dt_quantity = $row['dt_total_quantity'];
 									$dt_date = $row['dt_date'];
 									$dt_status = $row['dt_status'];
@@ -48,10 +48,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<a href='<?php echo base_url() ?>Delivery/view_dt_details/<?php echo $dt_code ?>'>	
 								<div class="row table-entries table-entries-income">
 									<div class="col-xs-2"><?php echo $dt_code;?></div>
-									<div class="col-xs-2"><?php echo $dt_supplier;?></div>
+									<div class="col-xs-3"><?php echo $dt_supplier;?></div>
 									<div class="col-xs-1"><?php echo 'x'.$dt_quantity;?></div>
 									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
-									<div class="col-xs-3"><?php if($dt_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
+									<div class="col-xs-2"><?php if($dt_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
 									<div class="col-xs-2"><?php if($dt_date_approved!='0000-00-00'){echo date("M j, Y", strtotime($dt_date_approved));}else{echo '--';} ?></div>	
 								</div>
 								</a>

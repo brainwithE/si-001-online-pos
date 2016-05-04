@@ -101,6 +101,7 @@ $route['tenant/report-pullout'] = 'tenant/view_pullout';
 
 //cashier actions
 $route['add-sales'] = 'cashier/add_sales_transaction';
+$route['add-sales-transaction'] = 'sales/add_sales_transaction'; 
 
 //filter function
 $route['filter-sales'] = 'tenant/filter_sales_date';
@@ -116,4 +117,7 @@ $route['report-pullout'] = 'pullout';*/
 //$route['add-sales'] = 'cashier/add_sales_transaction';
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'delivery/add_delivery_transaction';
+
+$route['report-delivery'] = 'delivery';
+$route['verify-item'] = 'items/verify_item';
 //$route['add-delivery-items'] = 'delivery/add_delivery_items';

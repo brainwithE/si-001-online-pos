@@ -55,8 +55,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<!-- POS PARTS -->
 
-            <div style="position: fixed; border:1px solid black; right: 23%"class="" data-toggle="modal" data-target="#InputSaleTransact">
-				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD SALES</a></div>
+            <div style="position: fixed; border:1px solid black; right: 23%" class="">
+				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="add-sales">ADD SALES</a></div>
 			</div>			
 
 			<div class="modal fade" id="InputSaleTransact" role="dialog">

@@ -41,6 +41,7 @@ class Items_model extends CI_model{
 	    }
 	    return false;
 	}
+	
 	function item_validation($item_code){
 		$sql = "SELECT * FROM pos_item WHERE item_id='".$item_code."'" ;
 		$query = $this->db->query($sql);		

@@ -78,7 +78,7 @@ class Items extends CI_Controller{
     public function verify_item(){
         $this->load->model('Items_model');
         $item_code = $this->input->post('data');
-        $this->Delivery_model->item_validation($item_code);  
+        return $this->Items_model->item_validation($item_code);  
     }
 }
 ?>

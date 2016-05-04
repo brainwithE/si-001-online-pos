@@ -26,7 +26,42 @@ class Sales extends CI_Controller{
 	}
 
     public function add_sales_transaction(){
-        $item_code = $this->input->post('item_code');
+
+        $supplier = '201605000000003'; //enter supplier type here 
+        $current_date = date('Y-m-d');
+
+        $items = $this->input->post('data');
+        $quant = $this->input->post('qty');
+
+        $this->load->model('Sales_model');
+        $last_id = $this->Sales_model->add_sales_transaction($supplier, $quant); 
+
+        foreach( $data as $row ) {
+            $this->db->insert('pos_sales_transaction', $data[$ctr]);
+            $ctr++;
+        }
+
+        $data=array();  
+
+        foreach($items as $key => $csm)
+        {
+            $data[$key]['sales_id'] = '';
+            $data[$key]['sales_item'] = $items[$key]['ItemName'];
+            $data[$key]['sales_quantity'] = $items[$key]['ItemQuantity'];
+            $data[$key]['sales_total'] = '1000';
+            $data[$key]['sales_discount'] = '10';
+            $data[$key]['sales_date'] = $current_date;
+            $data[$key]['sales_supplier'] = '2010019576';
+            $data[$key]['sales_st'] = $last_id;
+        }
+
+        /*$this->Delivery_model->add_delivery_transaction($data);  */
+        $this->Sales_model->add_sales_items($data);
+        redirect('admin/report-sales');
+
+        /*line*/
+
+        /*$item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');        
         $sales_total_price = $this->get_total_price($item_code, $item_quantity);
         
@@ -40,7 +75,18 @@ class Sales extends CI_Controller{
         $this->load->model('Sales_model');
         $sales_id = $this->Sales_model->add_sales_transaction($data);  
  
-        redirect('report-sales');
+        redirect('admin/report-sales');*/
+    }
+
+    public function add_delivery_items(){
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_delivery_report();  
+        $packet['delivery_transaction'] = $delivery_report;
+        
+        $this->load->view('header');
+        $this->load->view('delivery-additem-view', $packet);
+        $this->load->view('footer');
     }
 
     
@@ -58,9 +104,6 @@ class Sales extends CI_Controller{
         
         return $total_price;
     }
-
-
-
 
 	public function add_income()
     {

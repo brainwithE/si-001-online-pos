@@ -37,7 +37,7 @@ class Sales_model extends CI_model{
 
 
 	/* INSERT ACTION */
-	function add_sales_transaction($data){
+	/*function add_sales_transaction($data){
 		$current_date = date('Y-m-d');	
 		
 		$st_data = array(
@@ -53,31 +53,32 @@ class Sales_model extends CI_model{
 			
 		);
 		$this->db->insert('pos_sales', $st_data);
-	}
-
-
-	
-
-	/*
-	function add_income($data){
-		$current_date = date('Y-m-d');
-		$income_data = array(
-			'income_id' => '',
-			'income_amount' => $data['income_amount'],
-			'income_name' => $data['income_name'],
-			'income_date_acquired' => $data['income_date_acquired'],
-			'income_date_input' => $current_date
-		);
-		$this->db->insert('overwatch_income', $income_data);
-	}
-
-	function get_income(){
-		$this->db->order_by("income_date_acquired", "asc");
-		$query = $this->db->get('overwatch_income');
-
-		return $query;
 	}*/
-	
+
+	function add_sales_transaction($supplier,$qty){
+		$current_date = date('Y-m-d');	
+		
+		$dt_data = array(
+			'dt_id' => '',
+			'dt_supplier' => '100',	
+			'dt_date' => $current_date,		
+			'dt_total_quantity' => '2010019576',
+		);
+
+		$this->db->insert('pos_sales_transaction', $dt_data);
+		$last_id = $this->db->insert_id();
+
+		return $last_id;
+	}
+
+	function add_sales_items($data){
+		$sql = array(); 
+		$ctr = 0;
+		foreach( $data as $row ) {
+			$this->db->insert('pos_delivery', $data[$ctr]);
+		    $ctr++;
+		}
+	}
 	
 }
 ?>

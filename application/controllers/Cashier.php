@@ -17,7 +17,7 @@ class Cashier extends CI_Controller{
 	}
 
     public function add_sales_transaction(){
-        $item_code = $this->input->post('item_code');
+        /*$item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');        
         $sales_total_price = $this->get_total_price($item_code, $item_quantity);
         
@@ -37,7 +37,16 @@ class Cashier extends CI_Controller{
         $new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
         $this->update_stock($item_code, $new_stock);
  
-        redirect('cashier');
+        redirect('cashier');*/
+
+        $this->load->model('Sales_model');
+        
+        $sales_report = $this->Sales_model->get_sales();  
+        $packet['sales_transaction'] = $sales_report;
+        
+        $this->load->view('header');
+        $this->load->view('sales-add-view', $packet);
+        $this->load->view('footer');
     }
 
     

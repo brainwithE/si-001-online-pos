@@ -30,7 +30,7 @@
 				<div class="col-xs-4"><input type="text" name="qty" id="qty" /></div>
 			</div>
 
-			<a id="submit" href="#">REQUEST DELIVERY!</a>	
+			<a id="submit" href="#">FINISH TRANSACTION!</a>	
 		
 		</div>
 
@@ -51,7 +51,20 @@
 
 			}
 
-			function checkItem(param) {
+			$(document).ready(function() {
+
+				var totalQuantity = 0;
+
+				$('#remove').click(function(){
+
+					ItemArray.splice(0,1);
+					removeItem();
+					return false;
+
+				});
+
+				$("#add").click(function() {
+
 					ItemArray.push({
 						ItemCode : '201602000000001', 
 						ItemName : $('.add-delivery-form #name').val(),
@@ -63,45 +76,33 @@
 					var eachctr = 0;
 					totalQuantity = 0;
 
-					$('.add-delivery-form #name').val('');
-					$('.add-delivery-form #qty').val('');
-
-					return $.ajax({
+					$.ajax({
 					   type: 'POST',
-					   url: '<?php echo site_url('verify-item'); ?>',
-					   data: param,
+					   url: 'verify-item',
+					   data: $('.add-delivery-form #name').val(),
 					   success: function( data ) {
-					   			$.each(ItemArray, function(key, value) { 
-									$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
-									eachctr++;
-									totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
-								});
+					   		$.each(ItemArray, function(key, value) { 
+								$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
+								eachctr++;
+								totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+							});
 					   },
 					   error: function(xhr, status, error) {
 					      // check status && error
-					      alert(error);
+					      alert("There is no such item in our database, add the item first in our database!");
 					   }
 					});
-			}
 
-			$(document).ready(function() {
+					$.post('delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
+						alert('requested delivery successful!');
 
-				var totalQuantity = 0;
+					});
 
-				$('#remove').click(function(){
-
-					ItemArray.splice(0,1);
-					removeItem();
-
+					$('.add-delivery-form #name').val('');
+					$('.add-delivery-form #qty').val('');
+						          	
 					return false;
-				});
 
-				$("#add").click(function() {
-
-					checkItem($('.add-delivery-form #name').val()).done(function(value) {
-			            alert(value); //waits until ajax is completed
-			        });
-						          
 				});
 
 				$("#submit").click(function (){

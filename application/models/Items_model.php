@@ -49,7 +49,6 @@ class Items_model extends CI_model{
 	    } else {
 	    	return false;
 	    }
-	
 	}
 
 

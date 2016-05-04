@@ -76,10 +76,26 @@
 					var eachctr = 0;
 					totalQuantity = 0;
 
-					$.each(ItemArray, function(key, value) { 
-						$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
-						eachctr++;
-						totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+					$.ajax({
+					   type: 'POST',
+					   url: 'verify-item',
+					   data: $('.add-delivery-form #name').val(),
+					   success: function( data ) {
+					   		$.each(ItemArray, function(key, value) { 
+								$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
+								eachctr++;
+								totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+							});
+					   },
+					   error: function(xhr, status, error) {
+					      // check status && error
+					      alert("There is no such item in our database, add the item first in our database!");
+					   }
+					});
+
+					$.post('delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
+						alert('requested delivery successful!');
+
 					});
 
 					$('.add-delivery-form #name').val('');

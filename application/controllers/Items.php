@@ -74,5 +74,11 @@ class Items extends CI_Controller{
         $this->load->view('income-view', $packet);
         $this->load->view('footer');
     }
+
+    public function verify_item(){
+        $this->load->model('Items_model');
+        $item_code = $this->input->post('data');
+        $this->Delivery_model->item_validation($item_code);  
+    }
 }
 ?>

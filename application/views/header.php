@@ -123,7 +123,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                        		<option>Shorts</option>
 	                        		<option>Sleeveless Top</option>
 	                        		<option>Tee</option>
-
 	                        	</select> -->	                        	
 	                        	<input type="submit" class="submit-button" value="Submit" />
 	                      <?php echo form_close();?>

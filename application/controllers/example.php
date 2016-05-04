@@ -17,10 +17,7 @@ class Example extends CI_Controller {
         $this->load->library("Aauth");
     }
 
-     public function index() {       
-        
-        
-
+     public function index() {  
         $this->landing_page();
 
     }
@@ -40,6 +37,7 @@ class Example extends CI_Controller {
         $user_id = $this->aauth->get_user_id();
         $group_id = $this->get_user_groups($user_id);
 
+
         if($group_id == 1) {
             redirect('admin');
         } elseif($group_id == 2) {
@@ -48,6 +46,7 @@ class Example extends CI_Controller {
             redirect('cashier');
         } else {
             $this->aauth->print_errors();
+            $this->landing_page();
         }
 
 

@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM: TENANT ACCOUNT</a></li>				        
 				        <!---POS-->
 						<li><a href="<?php echo base_url() ?>report-inventory">INVENTORY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>report-sales">SALES REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>tenant">SALES REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>report-delivery">DELIVERY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>report-pullout">PULLOUT REPORT</a></li>
 

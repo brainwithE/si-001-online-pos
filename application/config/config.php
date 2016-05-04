@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/ip/ip-15008-overwatch';
+$config['base_url'] = 'http://localhost/si/si-001-online-pos';
 
 /*
 |--------------------------------------------------------------------------

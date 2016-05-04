@@ -1,11 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-
-
 <!-- insert ponpon about content -->
-			
-
 				<div class="container">
 
 					<!--The overwatch Main element Container or MEC-->

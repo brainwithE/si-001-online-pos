@@ -1,9 +1,7 @@
 <?php 
-
 class Delivery extends CI_Controller{
 	
 	public function index(){
-
 		$this->load->model('Delivery_model');
         
         $delivery_report = $this->Delivery_model->get_delivery_report();  
@@ -14,7 +12,6 @@ class Delivery extends CI_Controller{
         $this->load->view('footer');
 	}
 
-	
     /*public function input_delivery_item(){
         $item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
@@ -33,33 +30,57 @@ class Delivery extends CI_Controller{
     }*/
 
     public function add_delivery_transaction(){
-
         //insert tons of condition here
 
+        $supplier = '201605000000003'; //enter supplier type here 
+
+        $items = $this->input->post('data');
+        $quant = $this->input->post('qty');
+
         $this->load->model('Delivery_model');
-        $this->Delivery_model->add_delivery_transaction();  
+        $last_id = $this->Delivery_model->add_delivery_transaction($supplier, $quant); 
+
+        foreach( $data as $row ) {
+            $this->db->insert('pos_delivery', $data[$ctr]);
+            $ctr++;
+        }
+
+        $data=array();  
+
+        foreach($items as $key => $csm)
+        {
+            $data[$key]['delivery_id'] = '';
+            $data[$key]['delivery_item'] = $items[$key]['ItemName'];
+            $data[$key]['delivery_quantity'] = $items[$key]['ItemQuantity'];
+            $data[$key]['delivery_dt'] = $last_id;
+        }
+
         /*$this->Delivery_model->add_delivery_transaction($data);  */
- 
+        $this->Delivery_model->add_delivery_items($data);
         redirect('report-delivery');
     }
 
     public function add_delivery_items(){
-        $item_code = $this->input->post('item_code');
+        /*$item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
-        $dt_id = $this->uri->segment(3);
-
+        $dt_id = $this->uri->segment(3);*/
         /*$data = array (
             'del_item_code' => $item_code,
             'del_item_quantity' => $item_quantity,
             'dt_id' => $dt_id          
         );
-
         $this->load->model('Delivery_model');
         $this->Delivery_model->add_delivery_items($data);  
- 
         redirect('delivery-item-view');*/
 
-
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_delivery_report();  
+        $packet['delivery_transaction'] = $delivery_report;
+        
+        $this->load->view('header');
+        $this->load->view('delivery-additem-view', $packet);
+        $this->load->view('footer');
     }
 
     public function view_dt_details(){

@@ -99,6 +99,7 @@ $route['admin/report-sales'] = 'tenant/view_sales_report';
 $route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
 $route['tenant/report-delivery'] = 'tenant/view_delivery';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';
+$route['tenant/delivery-transaction'] = 'tenant/add_delivery_transaction';
 
 //cashier actions
 $route['add-sales'] = 'cashier/add_sales_transaction';
@@ -112,7 +113,6 @@ $route['filter-sales'] = 'tenant/filter_sales_date';
 $route['report-sales'] = 'sales';
 $route['report-delivery'] = 'delivery';
 $route['report-pullout'] = 'pullout';*/
-
 //forms
 //$route['add-items'] = 'items/add_items';
 //$route['add-sales'] = 'cashier/add_sales_transaction';

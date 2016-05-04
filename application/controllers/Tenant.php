@@ -78,6 +78,37 @@ class Tenant extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function add_delivery_transaction(){
+        //insert tons of condition here
+
+        $supplier = '201605000000003'; //enter supplier type here 
+
+        $items = $this->input->post('data');
+        $quant = $this->input->post('qty');
+
+        $this->load->model('Delivery_model');
+        $last_id = $this->Delivery_model->add_delivery_transaction($supplier, $quant); 
+
+        foreach( $data as $row ) {
+            $this->db->insert('pos_delivery', $data[$ctr]);
+            $ctr++;
+        }
+
+        $data=array();  
+
+        foreach($items as $key => $csm)
+        {
+            $data[$key]['delivery_id'] = '';
+            $data[$key]['delivery_item'] = $items[$key]['ItemName'];
+            $data[$key]['delivery_quantity'] = $items[$key]['ItemQuantity'];
+            $data[$key]['delivery_dt'] = $last_id;
+        }
+
+        /*$this->Delivery_model->add_delivery_transaction($data);  */
+        $this->Delivery_model->add_delivery_items($data);
+        redirect('report-delivery');
+    }
+
     public function item_validation() {
         $item_code = '201602000000005'; 
 
@@ -122,9 +153,19 @@ class Tenant extends CI_Controller{
     }*/
 
 
+    public function view_dt_details(){
+        $dt_id = $this->uri->segment(3);
+        $data['dt_id'] = $dt_id;
 
-
-
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_specific_delivery($data['dt_id']);  
+        $data['delivery_transaction'] = $delivery_report;
+        
+        $this->load->view('header');
+        $this->load->view('delivery-item-view',$data);
+        $this->load->view('footer');
+    }
 
     /** DISREGARD ? **/
 

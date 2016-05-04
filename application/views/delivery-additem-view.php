@@ -106,11 +106,11 @@
 
 				$("#submit").click(function (){
 
-					$.post('delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
+					$.post('tenant/delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
 						alert('requested delivery successful!');
 					});
 
-					window.location.href = "<?php echo site_url('report-delivery'); ?>";
+					window.location.href = "<?php echo site_url('tenant/report-delivery'); ?>";
 					return false;
 
 				});

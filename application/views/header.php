@@ -46,10 +46,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    <ul>
 				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM</a></li>				        
 				        <!---POS-->
-						<li><a href="<?php echo base_url() ?>report-item">INVENTORY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>report-sales">SALES REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>report-delivery">DELIVERY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>report-pullout">PULLOUT REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>admin/report-inventory">INVENTORY REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>admin/report-sales">SALES REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>admin/report-delivery">DELIVERY REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>admin/report-pullout">PULLOUT REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>admin/delivery-notification">DELIVERY NOTIFICATION</a></li>
 
 				    </ul>
 				</nav>
@@ -57,112 +58,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 			<!-- POS PARTS -->
-
-            <div style="position: fixed; border:1px solid black; right: 17%"class="" data-toggle="modal" data-target="#InputItems">
-				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD ITEMS</a></div>
-			</div>			
-
-			<div class="modal fade" id="InputItems" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-project">
-                          <i class="fa fa-coffee"></i>INPUT NEW ITEM
-                          <?php echo form_open('add-items') ?>
-	                        	<input type="field" placeholder="Item Name" name="item_name" />
-	                        	<input type="field" placeholder="Price" name="item_price"/>
-	                        	<input type="field" placeholder="Category" name="item_category"/>
-	                        	<!-- <select name="item_category">
-	                        		<option>Blouse</option>
-	                        		<option>Crop Top</option>
-	                        		<option>Dress</option>
-	                        		<option>Pants</option>
-	                        		<option>Shorts</option>
-	                        		<option>Sleeveless Top</option>
-	                        		<option>Tee</option>
-
-	                        	</select> -->
-	                        	<input type="hidden" name="item_id"/>
-	                        	<input type="hidden" name="item_supplier"/>
-	                        	<input type="submit" class="submit-button" value="Submit" />
-	                      <?php echo form_close();?>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div style="position: fixed; border:1px solid black; right: 23%"class="" data-toggle="modal" data-target="#InputSaleTransact">
-				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD SALES</a></div>
-			</div>			
-
-			<div class="modal fade" id="InputSaleTransact" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-project">
-                          <i class="fa fa-coffee"></i>INPUT SALES ITEM
-                          <?php echo form_open('add-sales') ?>
-	                        	<input type="field" placeholder="Item Code" name="item_code" />
-	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
-	                        	<!-- <select name="item_category">
-	                        		<option>Blouse</option>
-	                        		<option>Crop Top</option>
-	                        		<option>Dress</option>
-	                        		<option>Pants</option>
-	                        		<option>Shorts</option>
-	                        		<option>Sleeveless Top</option>
-	                        		<option>Tee</option>
-	                        	</select> -->	                        	
-	                        	<input type="submit" class="submit-button" value="Submit" />
-	                      <?php echo form_close();?>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <div style="position: fixed; border:1px solid black; right: 29%"class="" data-toggle="modal" 
-				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="add-delivery-items">ADD DELIVERY</a></div>
-			</div>
-
-
-
-			<div class="modal fade" id="InputDelivery" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-project">
-                          <i class="fa fa-coffee"></i>DELIVERY ITEM REQUEST
-                          <?php echo form_open('add-item-delivery') ?>
-	                        	<input type="field" placeholder="Delivery Item Code" name="item_code" />
-	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
-	                        	<input type="submit" class="submit-button" value="Submit" />
-	                      <?php echo form_close();?>
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                </div>
-            </div>
-
 
             <div style="position: fixed; border:1px solid black; right: 29%"class="" data-toggle="modal" data-target="#InputPullout">
 				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD PULLOUT</a></div>

@@ -19,8 +19,8 @@ class Sales extends CI_Controller{
             $this->load->view('footer');
         }
         elseif ($account==2) {
-            $this->load->view('cashier-header');
-            $this->load->view('cashier-report-sales', $packet);
+            $this->load->view('header');
+            $this->load->view('report-sales', $packet);
             $this->load->view('footer');
         }
 	}

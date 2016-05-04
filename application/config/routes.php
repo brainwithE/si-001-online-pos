@@ -50,10 +50,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['default_controller'] = 'login';
+//$route['default_controller'] = 'login';
 /*$route['default_controller'] = 'signup';*/
-/*$route['default_controller'] = 'example'; --for aauth sample*//*
-$route['(:any)'] = 'signed_in/$1';
+$route['default_controller'] = 'example'; //for aauth sample
+/*$route['(:any)'] = 'signed_in/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -80,6 +80,7 @@ $route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
 
 //redirect controllers per account type
+$route['account-login'] = 'example/user_login';
 $route['admin'] = 'admin';
 $route['tenant'] = 'tenant';
 $route['cashier'] = 'cashier';

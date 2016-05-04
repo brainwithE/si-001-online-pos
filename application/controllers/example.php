@@ -17,6 +17,52 @@ class Example extends CI_Controller {
         $this->load->library("Aauth");
     }
 
+     public function index() {       
+        
+        
+
+        $this->landing_page();
+
+    }
+
+    public function landing_page(){
+        $this->load->view('header-landing');
+        $this->load->view('login-view');
+        $this->load->view('footer');
+    }
+
+    public function user_login(){
+        $user_name = $this->input->post('user_name');
+        $user_password = $this->input->post('user_password');
+
+        $this->aauth->login($user_name, $user_password);
+
+        $user_id = $this->aauth->get_user_id();
+        $group_id = $this->get_user_groups($user_id);
+
+        if($group_id == 1) {
+            redirect('admin');
+        } elseif($group_id == 2) {
+            redirect('tenant');
+        } elseif($group_id == 3) {
+            redirect('cashier');
+        } else {
+            $this->aauth->print_errors();
+        }
+
+
+        
+        
+        
+    }
+
+
+
+
+
+
+
+
     /*public function index() {
         $this->aauth->create_user('admin@qwerty.com','admin','admin');
         $this->aauth->create_user('tenant@querty.com','tenant','tenant');
@@ -28,14 +74,13 @@ class Example extends CI_Controller {
 
 
         $this->aauth->print_errors();
-        
-        
 
-    }*/
 
-    public function index() {
-        
-        $this->aauth->create_user('bench1@querty.com','bench1','bench1');
+
+
+
+
+        //$this->aauth->create_user('bench1@querty.com','bench1','bench1');
 
         //$this->aauth->login('bigboss@dots.com', 'bigboss');
         /*$this->is_loggedin('bigboss@dots.com', 'bigboss');
@@ -51,13 +96,15 @@ class Example extends CI_Controller {
 
         else
             echo 'hyr';
-        //echo date("Y-m-d H:i:s");*/
+        //echo date("Y-m-d H:i:s");
 
         $this->aauth->print_errors();
         
         
 
-    }
+    }*/
+
+   
 
     function debug(){
 
@@ -159,11 +206,17 @@ class Example extends CI_Controller {
     }
 
     function get_user_groups($x){
+
         //print_r( $this->aauth->get_user_groups($x));
+
+        /*foreach($this->aauth->get_user_groups($x) as $a){
+
+            echo $a->id . " " . $a->name . "<br>";
+        }*/
 
         foreach($this->aauth->get_user_groups($x) as $a){
 
-            echo $a->id . " " . $a->name . "<br>";
+            return $a->id;
         }
     }
 
@@ -283,7 +336,7 @@ class Example extends CI_Controller {
 
     function fire_member() {
 
-        $a = $this->aauth->fire_member(8, "deneme");
+        $a = $this->aauth->fire_member(3, "remove");
     }
 
 

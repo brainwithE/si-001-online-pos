@@ -80,20 +80,20 @@ $route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
 
 //redirect controllers per account type
-
 $route['admin'] = 'admin';
 $route['tenant'] = 'tenant';
 $route['cashier'] = 'cashier';
 
 //tenant actions
-$route['add-items'] = 'tenant/add_items';
-$route['report-inventory'] = 'tenant/view_inventory';
-$route['add-delivery-items'] = 'tenant/add_delivery_items';
-$route['report-delivery'] = 'tenant/view_delivery';
-$route['report-pullout'] = 'tenant/view_pullout';
+$route['tenant/add-items'] = 'tenant/add_items';
+$route['tenant/report-inventory'] = 'tenant/view_inventory';
+$route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
+$route['tenant/report-delivery'] = 'tenant/view_delivery';
+$route['tenant/report-pullout'] = 'tenant/view_pullout';
 
-/*//cashier views
-$route['cashier-report-sales'] = 'sales';*/
+//cashier actions
+$route['add-sales'] = 'cashier/add_sales_transaction';
+
 
 //filter function
 $route['filter-sales'] = 'tenant/filter_sales_date';
@@ -106,7 +106,7 @@ $route['report-pullout'] = 'pullout';*/
 
 //forms
 //$route['add-items'] = 'items/add_items';
-$route['add-sales'] = 'cashier/add_sales_transaction';
+//$route['add-sales'] = 'cashier/add_sales_transaction';
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'delivery/add_delivery_transaction';
 //$route['add-delivery-items'] = 'delivery/add_delivery_items';

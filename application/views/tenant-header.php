@@ -46,10 +46,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    <ul>
 				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM: TENANT ACCOUNT</a></li>				        
 				        <!---POS-->
-						<li><a href="<?php echo base_url() ?>report-inventory">INVENTORY REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>tenant/report-inventory">INVENTORY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>tenant">SALES REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>report-delivery">DELIVERY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>report-pullout">PULLOUT REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>tenant/report-delivery">DELIVERY REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>tenant/report-pullout">PULLOUT REPORT</a></li>
 
 				    </ul>
 				</nav>
@@ -71,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="modal-body modal-project">
                           <i class="fa fa-coffee"></i>INPUT NEW ITEM
-                          <?php echo form_open('add-items') ?>
+                          <?php echo form_open('tenant/add-items') ?>
 	                        	<input type="field" placeholder="Item Name" name="item_name" />
 	                        	<input type="field" placeholder="Price" name="item_price"/>
 	                        	<input type="field" placeholder="Category" name="item_category"/>

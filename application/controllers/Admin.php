@@ -1,22 +1,24 @@
 <?php 
 
-class Tenant extends CI_Controller{
+class Admin extends CI_Controller{
 	
 	public function index(){
 
 
-        $supplier_id = $this->get_supplier_id();       
-        
-	    $this->load->model('Sales_model');
-                
-        $sale_report = $this->Sales_model->get_supplier_sales($supplier_id);  
-        $packet['sales'] = $sale_report;        
-    
-        $this->load->view('tenant-header');
-        $this->load->view('report-sales', $packet);
-        $this->load->view('footer');
+        $this->view_sales_report();
+	   
 	}
 
+    public function view_sales_report() {
+        $this->load->model('Sales_model');
+                
+        $sale_report = $this->Sales_model->get_sales();  
+        $packet['sales'] = $sale_report;        
+    
+        $this->load->view('header');
+        $this->load->view('report-sales', $packet);
+        $this->load->view('footer');
+    }
 
     
     public function get_supplier_id(){  // add action to get the supplier id of the user
@@ -38,7 +40,7 @@ class Tenant extends CI_Controller{
         $this->load->model('Items_model');
         $item_id = $this->Items_model->add_items($data);  
  
-        redirect('tenant/report-inventory');
+        redirect('report-inventory');
     }
 
     public function view_inventory(){

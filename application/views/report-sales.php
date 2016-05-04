@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<div class="row">
 								<?php
-									echo form_open('filter-income');							
+									echo form_open('filter-sales');							
 								?>
 								<input type="text" id="datepickerstart" class="datepicker" placeholder="Start Date" name="filter_start_date">
 								<input type="text" id="datepickerend" class="datepicker" placeholder="End Date" name="filter_end_date">

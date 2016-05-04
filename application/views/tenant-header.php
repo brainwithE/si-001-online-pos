@@ -46,7 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    <ul>
 				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM: TENANT ACCOUNT</a></li>				        
 				        <!---POS-->
-						<li><a href="<?php echo base_url() ?>report-item">INVENTORY REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>report-inventory">INVENTORY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>report-sales">SALES REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>report-delivery">DELIVERY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>report-pullout">PULLOUT REPORT</a></li>
@@ -85,8 +85,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                        		<option>Tee</option>
 
 	                        	</select> -->
-	                        	<input type="hidden" name="item_id"/>
-	                        	<input type="hidden" name="item_supplier"/>
 	                        	<input type="submit" class="submit-button" value="Submit" />
 	                      <?php echo form_close();?>
                         </div>

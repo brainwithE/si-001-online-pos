@@ -3,7 +3,14 @@ class Items_model extends CI_model{
 
 	/* SELECT ACTION*/
 	function get_items(){
-		
+		$this->db->order_by("item_id", "desc");
+		$query = $this->db->get('pos_item');
+		return $query;
+	}
+
+	function get_supplier_inventory($supplier_id){
+		$this->db->order_by("item_id", "desc");
+		$this->db->where('item_supplier =', $supplier_id);
 		$query = $this->db->get('pos_item');
 		return $query;
 	}
@@ -45,7 +52,7 @@ class Items_model extends CI_model{
 			'item_category' => $data['item_category'],
 			'item_price' => $data['item_price'],
 			'item_stock' => '0',
-			'item_supplier' => '201605000000002' //$data['item_supplier']
+			'item_supplier' => $data['item_supplier']
 		);
 		$this->db->insert('pos_item', $item_data);
 	}

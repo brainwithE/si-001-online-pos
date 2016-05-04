@@ -5,16 +5,16 @@ class Tenant extends CI_Controller{
 	public function index(){
 
 
-        $supplier_id = $this->get_supplier_id();
+        $supplier_id = $this->get_supplier_id();       
         
-		$this->load->model('Sales_model');
+	    $this->load->model('Sales_model');
                 
         $sale_report = $this->Sales_model->get_supplier_sales($supplier_id);  
         $packet['sales'] = $sale_report;        
     
         $this->load->view('tenant-header');
         $this->load->view('report-sales', $packet);
-        $this->load->view('footer');    
+        $this->load->view('footer');
 	}
 
 
@@ -74,6 +74,19 @@ class Tenant extends CI_Controller{
         $this->load->view('tenant-header');
         $this->load->view('delivery-additem-view', $packet);
         $this->load->view('footer');
+    }
+
+    public function item_validation() {
+        $item_code = '201602000000005'; 
+
+        $this->load->model('Items_model');
+        $result = $this->Items_model->item_validation($item_code);
+
+        if($result) {
+            echo "i have";
+        } else {
+            echo "item not existing in the inventory";
+        }
     }
 
 

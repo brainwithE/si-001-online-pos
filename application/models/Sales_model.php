@@ -3,24 +3,26 @@ class Sales_model extends CI_model{
 
 	/* SELECT ACTION */
 	function get_sales(){
-		$this->db->order_by("sales_date", "desc");
+		$this->db->order_by("sales_id", "desc");
 		$query = $this->db->get('pos_sales');
 		return $query;
 	}
 
 	function get_daily_sales(){
-		$today = date('Y-m-d');
-		$sql = "SELECT * FROM pos_sales WHERE sales_date='".$today."' ORDER BY sales_date DESC" ;
-		$query = $this->db->query($sql);		
+		$today = date('Y-m-d');	
+
+		$this->db->order_by("sales_id", "desc");
+		$this->db->where('sales_date =', $today);		
+		$query = $this->db->get('pos_sales');	
 		
 	    return $query;
 	}
 
-	function get_supplier_sales($supplier_id){
-			
-		$sql = "SELECT * FROM pos_sales WHERE sales_supplier='".$supplier_id."'  ORDER BY sales_date DESC" ;
-		$query = $this->db->query($sql);		
-		
+	function get_supplier_sales($supplier_id){			
+		$this->db->order_by("sales_id", "desc");
+		$this->db->where('sales_supplier =', $supplier_id);		
+		$query = $this->db->get('pos_sales');
+
 	    return $query;
 	}
 

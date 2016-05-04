@@ -1,7 +1,7 @@
 <?php 
 class Delivery_model extends CI_model{
 
-
+	/* SELECT ACTIONS */
 	function get_delivery_report(){
 		
 		$query = $this->db->get('pos_delivery_transaction');
@@ -16,6 +16,10 @@ class Delivery_model extends CI_model{
 	    }
 	    return false;
 	}
+
+
+
+	/* INSERT ACTIONS */
 
 	//function add_delivery_transaction($data){
 	/*NOTE: STATIC ADD DELIVERY TRANSACTION BELOW*/
@@ -65,24 +69,8 @@ class Delivery_model extends CI_model{
 		);
 		$this->db->insert('pos_delivery', $data);	*/	
 	}
-	/*
-	function add_income($data){
-		$current_date = date('Y-m-d');
-		$income_data = array(
-			'income_id' => '',
-			'income_amount' => $data['income_amount'],
-			'income_name' => $data['income_name'],
-			'income_date_acquired' => $data['income_date_acquired'],
-			'income_date_input' => $current_date
-		);
-		$this->db->insert('overwatch_income', $income_data);
-	}
 
-	function get_income(){
-		$this->db->order_by("income_date_acquired", "asc");
-		$query = $this->db->get('overwatch_income');
 
-		return $query;
-	}*/
+	/* UPDATE ACTIONS */
 }
 ?>

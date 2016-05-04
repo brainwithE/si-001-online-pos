@@ -88,6 +88,7 @@ $route['cashier'] = 'cashier';
 //tenant actions
 $route['add-items'] = 'tenant/add_items';
 $route['report-inventory'] = 'tenant/view_inventory';
+$route['add-delivery-items'] = 'tenant/add_delivery_items';
 
 
 /*//cashier views
@@ -107,4 +108,4 @@ $route['report-pullout'] = 'pullout';
 $route['add-sales'] = 'cashier/add_sales_transaction';
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'delivery/add_delivery_transaction';
-$route['add-delivery-items'] = 'delivery/add_delivery_items';
+//$route['add-delivery-items'] = 'delivery/add_delivery_items';

@@ -53,6 +53,30 @@ class Tenant extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function add_delivery_items(){
+        /*$item_code = $this->input->post('item_code');
+        $item_quantity = $this->input->post('item_quantity');
+        $dt_id = $this->uri->segment(3);*/
+        /*$data = array (
+            'del_item_code' => $item_code,
+            'del_item_quantity' => $item_quantity,
+            'dt_id' => $dt_id          
+        );
+        $this->load->model('Delivery_model');
+        $this->Delivery_model->add_delivery_items($data);  
+        redirect('delivery-item-view');*/
+
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_delivery_report();  
+        $packet['delivery_transaction'] = $delivery_report;
+        
+        $this->load->view('tenant-header');
+        $this->load->view('delivery-additem-view', $packet);
+        $this->load->view('footer');
+    }
+
+
     /*public function get_item_supplier($item_code) {
         $this->load->model('Items_model');
         $result = $this->Items_model->get_item_supplier($item_code);

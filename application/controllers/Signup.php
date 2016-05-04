@@ -22,7 +22,7 @@ class Signup extends CI_Controller{
     	$packet['expense'] = $expense;
     	$packet['withdrawal'] = $withdrawal;*/
 		
-		$this->load->view('header');
+		$this->load->view('cashier-header');
 		$this->load->view('home');
 		$this->load->view('footer');
 

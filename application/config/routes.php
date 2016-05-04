@@ -77,6 +77,9 @@ $route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
 /*POS*/
 
+//cashier views
+$route['cashier-report-sales'] = 'sales';
+
 //view reports
 $route['report-item'] = 'items';
 $route['report-sales'] = 'sales';

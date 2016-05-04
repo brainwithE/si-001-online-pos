@@ -4,14 +4,25 @@ class Sales extends CI_Controller{
 	
 	public function index(){
 
+        $account=2; //place account type here
+
 		$this->load->model('Sales_model');
         
         $sale_report = $this->Sales_model->get_sales();  
         $packet['sales'] = $sale_report;
         
-        $this->load->view('header');
-        $this->load->view('report-sales', $packet);
-        $this->load->view('footer');
+
+        //create an if else statement to redirect to the correct view as per account type
+        if($account==1){
+            $this->load->view('header');
+            $this->load->view('report-sales', $packet);
+            $this->load->view('footer');
+        }
+        elseif ($account==2) {
+            $this->load->view('cashier-header');
+            $this->load->view('cashier-report-sales', $packet);
+            $this->load->view('footer');
+        }
 	}
 
     public function add_sales_transaction(){

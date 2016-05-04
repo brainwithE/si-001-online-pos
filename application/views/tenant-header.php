@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 
 	<head>
-		<title>Overwatch Systems Protocol</title>
+		<title>Villalifestyle Boutique</title>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 
@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<!-- POS PARTS -->
 
-            <div style="position: fixed; border:1px solid black; right: 17%"class="" data-toggle="modal" data-target="#InputItems">
+            <div style="position: fixed; border:1px solid black; right: 17%" class="navicon" data-toggle="modal" data-target="#InputItems">
 				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD ITEMS</a></div>
 			</div>			
 
@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
             
-            <div style="position: fixed; border:1px solid black; right: 29%"class="" data-toggle="modal" 
+            <div style="position: fixed; border:1px solid black; right: 29%" class="navicon" data-toggle="modal" 
 				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="add-delivery">ADD DELIVERY</a></div>
 			</div>
 

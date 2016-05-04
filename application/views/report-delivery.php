@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									$dt_status = $row['dt_status'];
 									$dt_date_approved = $row['dt_approve_date'];
 							?>
-								<a href='<?php echo base_url() ?>Delivery/view_dt_details/<?php echo $dt_code ?>'>	
+								<a class="delivery-links" href='<?php echo base_url() ?>Delivery/view_dt_details/<?php echo $dt_code ?>'>	
 								<div class="row table-entries table-entries-income">
 									<div class="col-xs-2"><?php echo $dt_code;?></div>
 									<div class="col-xs-3"><?php echo $dt_supplier;?></div>

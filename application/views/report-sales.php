@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="col-xs-12">
 							<!-- FILTER FUNCTION -->
 
-							<div class="row">
+							<div class="row table-filter">
 								<?php
 									echo form_open('filter-sales');							
 								?>
@@ -26,8 +26,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 
 							<div class="row table-title table-title-general table-title-income">
-								<div class="col-xs-1">Quantity</div>
-								<div class="col-xs-5">Item Name</div>
+								<div class="col-xs-2">Quantity</div>
+								<div class="col-xs-4">Item Name</div>
 								<div class="col-xs-2">Amount</div>
 								<div class="col-xs-2">Deduction</div>
 								<div class="col-xs-2">Net Sales</div>	
@@ -55,8 +55,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="col-xs-5 col-sm-6"><?php //echo $income_name; ?></div>
 									<div class="col-xs-3"><?php //echo $income_amount; ?></div> -->
 
-									<div class="col-xs-1"><?php echo $sales_quantity;?></div>
-									<div class="col-xs-5"><?php echo $sales_item_name;?></div>
+									<div class="col-xs-2"><?php echo $sales_quantity;?></div>
+									<div class="col-xs-4"><?php echo $sales_item_name;?></div>
 									<div class="col-xs-2"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 									<div class="col-xs-2"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
 									<div class="col-xs-2"><?php echo number_format($sales_net, 2, '.',','); ?></div>	

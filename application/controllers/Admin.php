@@ -47,10 +47,10 @@ class Admin extends CI_Controller{
         $this->load->model('Items_model');
         $supplier_id = $this->get_supplier_id();
         
-        $item_list = $this->Items_model->get_supplier_inventory($supplier_id);  
+        $item_list = $this->Items_model->get_items();  
         $packet['item'] = $item_list;
         
-        $this->load->view('tenant-header');
+        $this->load->view('header');
         $this->load->view('report-item', $packet);
         $this->load->view('footer');
     }
@@ -59,7 +59,7 @@ class Admin extends CI_Controller{
         /*$item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
         $dt_id = $this->uri->segment(3);*/
-        /*$data = array (
+        /*$data = array (   
             'del_item_code' => $item_code,
             'del_item_quantity' => $item_quantity,
             'dt_id' => $dt_id          
@@ -73,7 +73,7 @@ class Admin extends CI_Controller{
         $delivery_report = $this->Delivery_model->get_delivery_report();  
         $packet['delivery_transaction'] = $delivery_report;
         
-        $this->load->view('tenant-header');
+        $this->load->view('header');
         $this->load->view('delivery-additem-view', $packet);
         $this->load->view('footer');
     }
@@ -97,7 +97,7 @@ class Admin extends CI_Controller{
         $delivery_report = $this->Delivery_model->get_delivery_report();  
         $packet['delivery_transaction'] = $delivery_report;
         
-        $this->load->view('tenant-header');
+        $this->load->view('header');
         $this->load->view('report-delivery', $packet);
         $this->load->view('footer');
     }
@@ -109,8 +109,16 @@ class Admin extends CI_Controller{
         $packet['pullout'] = $pullout_list;
         //$packet['supplier_name'] = $this->get_supplier_name($pullout_list);
         
-        $this->load->view('tenant-header');
+        $this->load->view('header');
         $this->load->view('report-pullout', $packet);
+        $this->load->view('footer');
+    }
+
+    public function delivery_notification() {
+        //insert model and functions here
+
+        $this->load->view('header');
+        $this->load->view('delivery-notification');
         $this->load->view('footer');
     }
 

@@ -7,13 +7,12 @@ class Cashier extends CI_Controller{
         $account=2; //place account type here
 
 		$this->load->model('Sales_model');
-        $today = date('Y-m-d');
-        
+                
         $sale_report = $this->Sales_model->get_daily_sales();  
-        $packet['sales'] = $sale_report;
+        $packet['sales'] = $sale_report;        
     
         $this->load->view('cashier-header');
-        $this->load->view('cashier-report-sales', $packet);
+        $this->load->view('report-sales', $packet);
         $this->load->view('footer');    
 	}
 
@@ -22,12 +21,15 @@ class Cashier extends CI_Controller{
         $item_quantity = $this->input->post('item_quantity');        
         $sales_total_price = $this->get_total_price($item_code, $item_quantity);
         
-        
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_supplier($item_code);
+        $item_supplier = $result->item_supplier;
         
         $data = array (
             'sales_item_code' => $item_code,
             'sales_item_quantity' => $item_quantity,
-            'sales_total_price' => $sales_total_price
+            'sales_total_price' => $sales_total_price,
+            'sales_supplier' => $item_supplier
         );
 
         $this->load->model('Sales_model');

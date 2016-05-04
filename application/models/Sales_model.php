@@ -26,7 +26,7 @@ class Sales_model extends CI_model{
 			'sales_total' => $data['sales_total_price'],
 			'sales_discount' => '0',
 			'sales_date' => $current_date,
-			'sales_supplier' => '201605000000002',
+			'sales_supplier' => $data['sales_supplier'],
 			'sales_st' => '0'
 
 			

@@ -1,7 +1,7 @@
 <?php 
 class Sales_model extends CI_model{
 
-
+	/* SELECT ACTION */
 	function get_sales(){
 		
 		$query = $this->db->get('pos_sales');
@@ -16,6 +16,25 @@ class Sales_model extends CI_model{
 	    return $query;
 	}
 
+	function get_supplier_sales($supplier_id){
+			
+		$sql = "SELECT * FROM pos_sales WHERE sales_supplier='".$supplier_id."'" ;
+		$query = $this->db->query($sql);		
+		
+	    return $query;
+	}
+
+	function get_sales_certmonth($date_start,$date_end){
+		$this->db->order_by("sales_date", "desc");
+		$this->db->where('sales_date >=', $date_start);
+		$this->db->where('sales_date <=', $date_end);
+		$query = $this->db->get('pos_sales');
+
+		return $query;
+	}
+
+
+	/* INSERT ACTION */
 	function add_sales_transaction($data){
 		$current_date = date('Y-m-d');	
 		
@@ -35,9 +54,7 @@ class Sales_model extends CI_model{
 	}
 
 
-	function  deduct_inv_stock($item_code, $item_quantity){
-
-	}
+	
 
 	/*
 	function add_income($data){

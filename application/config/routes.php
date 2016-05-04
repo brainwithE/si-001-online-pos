@@ -88,6 +88,9 @@ $route['cashier'] = 'cashier';
 /*//cashier views
 $route['cashier-report-sales'] = 'sales';*/
 
+//filter function
+$route['filter-sales'] = 'tenant/filter_sales_date';
+
 //view reports
 $route['report-item'] = 'items';
 $route['report-sales'] = 'sales';

@@ -1,17 +1,17 @@
 <?php 
 
-class Cashier extends CI_Controller{
+class Tenant extends CI_Controller{
 	
 	public function index(){
 
-        $account=2; //place account type here
+        $supplier_id='201605000000001'; 
 
 		$this->load->model('Sales_model');
                 
-        $sale_report = $this->Sales_model->get_daily_sales();  
+        $sale_report = $this->Sales_model->get_supplier_sales($supplier_id);  
         $packet['sales'] = $sale_report;        
     
-        $this->load->view('cashier-header');
+        $this->load->view('tenant-header');
         $this->load->view('report-sales', $packet);
         $this->load->view('footer');    
 	}
@@ -81,25 +81,20 @@ class Cashier extends CI_Controller{
 
 
 	
-/*
-    public function filter_income_date(){
-        $this->load->model('Income_model');
-        $this->load->model('Expense_model');
-        $this->load->model('Withdrawal_model');
+
+    public function filter_sales_date(){
+        $this->load->model('Sales_model');       
 
         $date_start = $this->input->post('filter_start_date');
         $date_end = $this->input->post('filter_end_date');
 
-        $income = $this->Income_model->get_income_certmonth($date_start,$date_end);  
-        $expense = $this->Expense_model->get_expense_certmonth($date_start,$date_end);
-        $withdrawal = $this->Withdrawal_model->get_withdrawal_certmonth($date_start,$date_end);
+        $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);  
+        
         $packet['income'] = $income;
-        $packet['expense'] = $expense;
-        $packet['withdrawal'] = $withdrawal;
         
         $this->load->view('header');
-        $this->load->view('income-view', $packet);
+        $this->load->view('report-sales', $packet);
         $this->load->view('footer');
-    }*/
+    }
 }
 ?>

@@ -4,11 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 
 	<head>
-<<<<<<< HEAD
 		<title>Villalifestyle Boutique</title>
-=======
-		<title>Online POS</title>
->>>>>>> authenticate
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 

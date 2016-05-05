@@ -65,7 +65,6 @@ class Sales_model extends CI_model{
 		$this->db->insert('pos_sales_transaction', $st_data);
 		$last_id = $this->db->insert_id();
 
-<<<<<<< HEAD
 		return $last_id;
 	}
 
@@ -77,9 +76,6 @@ class Sales_model extends CI_model{
 		    $ctr++;
 		}
 	}
-=======
-	
->>>>>>> authenticate
 	
 }
 ?>

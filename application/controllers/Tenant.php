@@ -142,8 +142,7 @@ class Tenant extends CI_Controller{
         $this->load->view('report-pullout', $packet);
         $this->load->view('footer');
     }
-
-<<<<<<< HEAD
+    
     /*public function get_item_supplier($item_code) {
         $this->load->model('Items_model');
         $result = $this->Items_model->get_item_supplier($item_code);
@@ -179,13 +178,7 @@ class Tenant extends CI_Controller{
             'sales_item_code' => $item_code,
             'sales_item_quantity' => $item_quantity,
             'sales_total_price' => $sales_total_price
-        );
-=======
-   
->>>>>>> authenticate
-
-
-
+        ); */
 
 }
 ?>

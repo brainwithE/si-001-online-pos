@@ -39,8 +39,6 @@ class Cashier extends CI_Controller{
         $sales_id = $this->Sales_model->add_sales_transaction($data);
         $new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
         $this->update_stock($item_code, $new_stock);
- 
-<<<<<<< HEAD
         redirect('cashier');*/
 
         $this->load->model('Sales_model');
@@ -107,12 +105,9 @@ class Cashier extends CI_Controller{
         );
 
         $this->load->model('Sales_model');
-        $sales_id = $this->Sales_model->add_sales_transaction($data);  
+        $sales_id = $this->Sales_model->add_sales_transaction($data);*/  
  
-        redirect('admin/report-sales');*/
-=======
         redirect('cashier/report-sales');
->>>>>>> authenticate
     }
 
     

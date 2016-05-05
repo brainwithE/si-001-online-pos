@@ -4,11 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 
 	<head>
-<<<<<<< HEAD
 		<title>Villalifestyle Boutique</title>
-=======
-		<title>Online POS</title>
->>>>>>> authenticate
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 
@@ -60,7 +56,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                <div class="modal-dialog">
 	                    <div class="modal-content">
 
-<<<<<<< HEAD
 	                      <div class="col-md-12">
 
 	                        <div class="modal-body modal-project">
@@ -77,31 +72,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                    </div>
 	                </div>
 	            </div> -->
-=======
-			<!-- POS PARTS -->
-
-            <div style="position: fixed; border:1px solid black; right: 23%"class="" data-toggle="modal" data-target="#InputSaleTransact">
-				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD SALES</a></div>
-			</div>			
-
-			<div class="modal fade" id="InputSaleTransact" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-project">
-                          <i class="fa fa-coffee"></i>INPUT SALES ITEM
-                          <?php echo form_open('cashier/add-sales') ?>
-                        	<input type="field" placeholder="Item Code" name="item_code" />
-                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>        	
-                        	<input type="submit" class="submit-button" value="Submit" />
-	                      <?php echo form_close();?>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-            </div>
->>>>>>> authenticate
-            

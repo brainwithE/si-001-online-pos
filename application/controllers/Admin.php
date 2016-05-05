@@ -3,11 +3,7 @@
 class Admin extends CI_Controller{
 	
 	public function index(){
-<<<<<<< HEAD
-        $this->view_sales_report();
-=======
-        $this->view_sales_report();	   
->>>>>>> authenticate
+        $this->view_sales_report(); 
 	}
 
     public function view_sales_report() {
@@ -112,9 +108,5 @@ class Admin extends CI_Controller{
         
         return $result->item_supplier;        
     }
-
-
-
-
 }
 ?>

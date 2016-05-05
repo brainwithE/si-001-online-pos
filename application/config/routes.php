@@ -80,13 +80,13 @@ $route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
 
 //redirect controllers per account type
-$route['account-login'] = 'example/user_login';
+$route['account-login'] = 'authenticate/user_login';
 $route['admin'] = 'admin';
 $route['tenant'] = 'tenant';
 $route['cashier'] = 'cashier';
 
 //auth
-$route['logout'] = 'example/logout';
+$route['logout'] = 'authenticate/logout';
 
 
 //admin actions
@@ -95,8 +95,9 @@ $route['admin/report-sales'] = 'admin/view_sales_report';
 $route['admin/report-delivery'] = 'admin/view_delivery';
 $route['admin/report-pullout'] = 'admin/view_pullout';
 $route['admin/delivery-notification'] = 'admin/delivery_notification';
-$route['admin/create-account'] = 'example/create_account'; //view
-$route['admin/create-user'] = 'example/create_user'; //action
+$route['admin/create-account'] = 'authenticate/create_account'; //view
+$route['admin/create-user'] = 'authenticate/create_user'; //action
+$route['admin/report-user'] = 'authenticate/view_user_list'; //action
 
 //tenant actions
 $route['tenant/add-items'] = 'tenant/add_items';

@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li><a href="<?php echo base_url() ?>admin/report-delivery">DELIVERY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-pullout">PULLOUT REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/delivery-notification">DELIVERY NOTIFICATION</a></li>					
+						<li><a href="<?php echo base_url() ?>admin/report-user">USER LISTS</a></li>					
 
 				    </ul>
 				    <a href="<?php echo base_url() ?>admin/create-account">CREATE USERS <i class="fa fa-user"></i></a>

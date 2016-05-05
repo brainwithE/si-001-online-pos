@@ -32,3 +32,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<body class="cbp-spmenu-push">
 		<div id="wrapper">
 			<div id="content">
+			

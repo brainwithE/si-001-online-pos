@@ -19,6 +19,8 @@ class Authenticate extends CI_Controller {
 
      public function index() {  
         $this->landing_page(" ");
+     
+
     }
 
     public function landing_page($error_msg){

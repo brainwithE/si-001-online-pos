@@ -18,8 +18,6 @@ class Tenant extends CI_Controller{
         $this->load->view('report-sales', $packet);
         $this->load->view('footer');
     }
-
-
     
     public function get_supplier_id(){  // add action to get the supplier id of the user
         $supplier_id='201605000000001'; //static supplier id

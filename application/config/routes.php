@@ -69,7 +69,7 @@ $route['admin/delivery-notification'] = 'admin/delivery_notification';
 //tenant actions
 $route['tenant/add-items'] = 'tenant/add_items';
 $route['tenant/report-inventory'] = 'tenant/view_inventory';
-$route['admin/report-sales'] = 'tenant/view_sales_report';
+$route['tenant/report-sales'] = 'tenant/view_sales_report';
 $route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
 $route['tenant/report-delivery'] = 'tenant/view_delivery';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';
@@ -82,13 +82,16 @@ $route['add-sales'] = 'cashier/add_sales';
 $route['add-sales-transaction'] = 'cashier/add_sales_transaction'; 
 
 //filter function
-$route['filter-sales'] = 'tenant/filter_sales_date';
+$route['filter-sales'] = 'Sales/filter_sales_date';
+$route['filter-month'] = 'Sales/filter_month';
 
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'delivery/add_delivery_transaction';
 
 $route['report-delivery'] = 'delivery';
 $route['verify-item'] = 'items/verify_item';
+
+//ajax functions
 $route['ajax-demo'] = 'ajax_demo';
 $route['give-more-data'] = 'ajax_demo/give_more_data';
 $route['suggest-more-data'] = 'ajax_demo/suggest_more_data';

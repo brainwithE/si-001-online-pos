@@ -3,7 +3,6 @@
 class Sales extends CI_Controller{
 	
 	public function index(){
-
         $account=2; //place account type here
 
 		$this->load->model('Sales_model');
@@ -26,7 +25,6 @@ class Sales extends CI_Controller{
 	}
 
     public function add_sales_transaction(){
-
         $supplier = '201605000000003'; //enter supplier type here 
         $current_date = date('Y-m-d');
 
@@ -54,28 +52,8 @@ class Sales extends CI_Controller{
             $data[$key]['sales_supplier'] = '2010019576';
             $data[$key]['sales_st'] = $last_id;
         }
-
-        /*$this->Delivery_model->add_delivery_transaction($data);  */
         $this->Sales_model->add_sales_items($data);
         redirect('admin/report-sales');
-
-        /*line*/
-
-        /*$item_code = $this->input->post('item_code');
-        $item_quantity = $this->input->post('item_quantity');        
-        $sales_total_price = $this->get_total_price($item_code, $item_quantity);
-        
-        
-        $data = array (
-            'sales_item_code' => $item_code,
-            'sales_item_quantity' => $item_quantity,
-            'sales_total_price' => $sales_total_price
-        );
-
-        $this->load->model('Sales_model');
-        $sales_id = $this->Sales_model->add_sales_transaction($data);  
- 
-        redirect('admin/report-sales');*/
     }
 
     public function add_delivery_items(){
@@ -88,7 +66,6 @@ class Sales extends CI_Controller{
         $this->load->view('delivery-additem-view', $packet);
         $this->load->view('footer');
     }
-
     
     public function get_item_price($item_code) {
         $this->load->model('Items_model');
@@ -117,6 +94,20 @@ class Sales extends CI_Controller{
         $shop_id = $this->Income_model->add_income($data);  
  
         redirect('income-view');
+    }
+
+    public function filter_month(){
+            $this->load->model('Sales_model');       
+
+            $date_start = $this->input->post('filter_start_date');
+            $date_end = $this->input->post('filter_end_date');
+
+            $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
+            $packet['sales'] = $income;
+            
+            $this->load->view('header');
+            $this->load->view('report-sales', $packet);
+            $this->load->view('footer');
     }
 
     public function filter_income_date(){

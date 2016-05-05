@@ -3,10 +3,7 @@
 class Admin extends CI_Controller{
 	
 	public function index(){
-
-
         $this->view_sales_report();
-	   
 	}
 
     public function view_sales_report() {

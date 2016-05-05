@@ -49,6 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li><a href="<?php echo base_url() ?>cashier">SALES REPORT</a></li>
 						
 				    </ul>
+				    <a href="logout" class="logout">LOGOUT</a>
 				</nav>
 
 

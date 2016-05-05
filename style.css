@@ -135,6 +135,12 @@ button{
 	transition: all ease 0.5s;
 }
 
+.logout {	
+	background-color: #333;
+	color:#fff !important;
+	text-decoration:none;
+}
+
 /* BANNER */
 
 .banner{

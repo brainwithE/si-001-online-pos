@@ -18,13 +18,14 @@ class Example extends CI_Controller {
     }
 
      public function index() {  
-        $this->landing_page();
+        $this->landing_page(" ");
 
     }
 
-    public function landing_page(){
+    public function landing_page($error_msg){
+        $packet['message'] = $error_msg;
         $this->load->view('header-landing');
-        $this->load->view('login-view');
+        $this->load->view('login-view', $packet);
         $this->load->view('footer');
     }
 
@@ -34,25 +35,32 @@ class Example extends CI_Controller {
 
         $this->aauth->login($user_name, $user_password);
 
-        $user_id = $this->aauth->get_user_id();
-        $group_id = $this->get_user_groups($user_id);
 
+        if($this->aauth->is_loggedin($user_name, $user_password)){
 
-        if($group_id == 1) {
-            redirect('admin');
-        } elseif($group_id == 2) {
-            redirect('tenant');
-        } elseif($group_id == 3) {
-            redirect('cashier');
+            $user_id = $this->aauth->get_user_id();
+            $group_id = $this->get_user_groups($user_id);
+
+            if($group_id == 1) {
+                redirect('admin');
+            } elseif($group_id == 2) {
+                redirect('tenant');
+            } elseif($group_id == 3) {
+                redirect('cashier');
+            } else {
+                
+                $this->landing_page();
+            }
         } else {
-            $this->aauth->print_errors();
-            $this->landing_page();
-        }
+            $error_msg = $this->aauth->print_errors();
+            $this->landing_page($error_msg);
+        }       
+    }
 
-
-        
-        
-        
+    public function create_account(){
+        $this->load->view('header');
+        $this->load->view('create-account');
+        $this->load->view('footer');
     }
 
 
@@ -179,17 +187,15 @@ class Example extends CI_Controller {
     }
     
     public function is_loggedin() {
-
-        if ($this->aauth->is_loggedin())
-            echo 'girdin<br>';
-
-        print_r( $this->aauth->get_user() );
+        $this->aauth->is_loggedin();
+        /*if ($this->aauth->is_loggedin())
+            echo 'logged';        */
     }
 
     public function logout() {
 
         $this->aauth->logout();
-        echo "you have logged out";
+        $this->landing_page('');
     }
 
     public function is_member() {
@@ -257,7 +263,7 @@ class Example extends CI_Controller {
 
     function create_user() {
 
-        $a = $this->aauth->create_user("admin@admin.com", "12345", "Admin");
+        /*$a = $this->aauth->create_user("admin@admin.com", "12345", "Admin");
 
         if ($a)
             echo "tmm   ";
@@ -267,7 +273,21 @@ class Example extends CI_Controller {
 
         print_r($this->aauth->get_user($a));
 
+        $this->aauth->print_errors();*/
+
+        $user_name = $this->input->post('new_user');
+        $user_password = $this->input->post('new_password'); 
+        $user_email = $this->input->post('new_email'); 
+        $user_type = $this->input->post('new_account_type'); 
+
+        
+
+        $this->aauth->create_user($user_email, $user_password, $user_name);
+        $user_id = $this->aauth->get_user_id($user_email);
+
+        $this->aauth->add_member($user_id, $user_type);
         $this->aauth->print_errors();
+
     }
 
     public function is_banned() {

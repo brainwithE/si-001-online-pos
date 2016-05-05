@@ -40,14 +40,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- menu list --> 
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 				    <ul>
-				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM</a></li>				        
+				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ADMIN</a></li>				        
 				        <!---POS-->
 						<li><a href="<?php echo base_url() ?>admin/report-inventory">INVENTORY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-sales">SALES REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-delivery">DELIVERY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-pullout">PULLOUT REPORT</a></li>
+<<<<<<< HEAD
 						<li><a href="<?php echo base_url() ?>admin/delivery-notification">DELIVERY NOTIFICATION</a></li>
+=======
+						<li><a href="<?php echo base_url() ?>admin/delivery-notification">DELIVERY NOTIFICATION</a></li>					
+						<li><a href="<?php echo base_url() ?>admin/report-user">USER LISTS</a></li>					
+
+>>>>>>> authenticate
 				    </ul>
+				    <a href="<?php echo base_url() ?>admin/create-account">CREATE USERS <i class="fa fa-user"></i></a>
+				    <a href="<?php echo base_url() ?>logout" class="logout">LOGOUT <i class="fa fa-sign-out"></i></a>
+				    
 				</nav>
 
 			<!-- POS PARTS -->
@@ -62,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="modal-body modal-project">
                           <i class="fa fa-coffee"></i>INPUT PULLOUT
-                          <?php echo form_open('pullout-item') ?>
+                          <?php echo form_open('admin/pullout-item') ?>
 	                        	<input type="field" placeholder="Pullout Item Code" name="item_code" />
 	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
 	                        	<input type="submit" class="submit-button" value="Submit" />

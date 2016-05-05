@@ -171,6 +171,11 @@ button{
 }
 .action-addsales{
 	top: 0px;
+
+.logout {	
+	background-color: #333;
+	color:#fff !important;
+	text-decoration:none;
 }
 
 /* BANNER */

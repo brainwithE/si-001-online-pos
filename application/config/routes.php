@@ -50,9 +50,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
+<<<<<<< HEAD
 $route['default_controller'] = 'login';
 /*POS*/
 
+=======
+
+$route['default_controller'] = 'authenticate'; //aauth sample
+
+/*$route['(:any)'] = 'signed_in/$1';
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;*/
+
+
+/*POS*/
+
+//auth
+$route['account-login'] = 'authenticate/user_login';
+$route['logout'] = 'authenticate/logout';
+
+>>>>>>> authenticate
 //redirect controllers per account type
 $route['admin'] = 'admin';
 $route['tenant'] = 'tenant';
@@ -64,7 +81,10 @@ $route['admin/report-sales'] = 'admin/view_sales_report';
 $route['admin/report-delivery'] = 'admin/view_delivery';
 $route['admin/report-pullout'] = 'admin/view_pullout';
 $route['admin/delivery-notification'] = 'admin/delivery_notification';
-
+$route['admin/create-account'] = 'authenticate/create_account'; //view
+$route['admin/create-user'] = 'authenticate/create_user'; //action
+$route['admin/report-user'] = 'authenticate/view_user_list'; //action
+$route['admin/pullout-item'] = 'admin/input_pullout_item';
 
 //tenant actions
 $route['tenant/add-items'] = 'tenant/add_items';
@@ -78,8 +98,13 @@ $route['add-delivery'] = 'tenant/add_delivery';
 $route['add-delivery-transaction'] = 'tenant/add_delivery_transaction';
 
 //cashier actions
+<<<<<<< HEAD
 $route['add-sales'] = 'cashier/add_sales';
 $route['add-sales-transaction'] = 'cashier/add_sales_transaction'; 
+=======
+$route['cashier/report-sales'] = 'cashier/view_sales_report';
+$route['cashier/add-sales'] = 'cashier/add_sales_transaction';
+>>>>>>> authenticate
 
 //filter function
 $route['filter-sales'] = 'Sales/filter_sales_date';
@@ -121,6 +146,7 @@ $route['filter-income'] = 'income/filter_income_date';
 $route['filter-expense'] = 'expense/filter_expense_date';
 $route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
+<<<<<<< HEAD
 //view reports
 /*$route['report-item'] = 'items';
 $route['report-sales'] = 'sales';
@@ -130,3 +156,7 @@ $route['report-pullout'] = 'pullout';*/
 //$route['add-items'] = 'items/add_items';
 //$route['add-sales'] = 'cashier/add_sales_transaction';
 //$route['add-delivery-items'] = 'delivery/add_delivery_items';
+=======
+
+
+>>>>>>> authenticate

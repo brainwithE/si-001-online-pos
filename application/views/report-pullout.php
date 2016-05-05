@@ -67,10 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							
 						</div>
 
-						<div class="table-title table-end table-end-general table-end-income">
-								<div class="col-xs-6 col-sm-9 total-label">TOTAL EARNINGS</div>
-								<div class="col-xs-3 total-amount"><?php echo $total_earnings; ?></div>
-						</div>
+						
 					</div><!-- MEC end -->
 
 				</div>

@@ -86,36 +86,8 @@ class Items_model extends CI_model{
 	/* UPDATE ACTION */
 
 	function update_stock($item_code, $stock) {
-		/*$this->db->update('pos_item', "item_stock=".$stock, "item_id =".$item_code);*/
 		$sql = "UPDATE pos_item SET item_stock='".$stock."' WHERE item_id='".$item_code."'" ;
 		$this->db->query($sql);	
-	}
-
-
-
-
-
-
-	/*
-	function add_income($data){
-		$current_date = date('Y-m-d');
-		$income_data = array(
-			'income_id' => '',
-			'income_amount' => $data['income_amount'],
-			'income_name' => $data['income_name'],
-			'income_date_acquired' => $data['income_date_acquired'],
-			'income_date_input' => $current_date
-		);
-		$this->db->insert('overwatch_income', $income_data);
-	}
-
-	function get_income(){
-		$this->db->order_by("income_date_acquired", "asc");
-		$query = $this->db->get('overwatch_income');
-
-		return $query;
-	}*/
-	
-	
+	}	
 }
 ?>

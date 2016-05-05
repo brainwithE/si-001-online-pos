@@ -4,11 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 
 	<head>
-<<<<<<< HEAD
-		<title>Villalifestyle Boutique</title>
-=======
 		<title>Online POS</title>
->>>>>>> authenticate
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 
@@ -36,31 +32,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<body class="cbp-spmenu-push">
 		<div id="wrapper">
 			<div id="content">
-
-	
-				<!--<img class="img-responsive" src="images/banner.png" />-->
-
-				<!-- button activator -->
-				<div class="header">
-				    <div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#"><i class="fa fa-bars"></i></a></div>
-				</div>
-
-				<!-- menu list --> 
-				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-				    <ul>
-				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>TENANT</a></li>				        
-				        <!---POS-->
-						<li><a href="<?php echo base_url() ?>tenant/report-inventory">INVENTORY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>tenant/report-sales">SALES REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>tenant/report-delivery">DELIVERY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>tenant/report-pullout">PULLOUT REPORT</a></li>
-
-				    </ul>
-				    <a href="<?php echo base_url() ?>logout" class="logout">LOGOUT <i class="fa fa-sign-out"></i></a>
-				</nav>
-
-
-
-			<!-- POS PARTS -->
-			<a id="showLeftPush" class="action-buttons action-additem" href="#">+ ITEMS</a>
-			<a id="showLeftPush" class="action-buttons action-adddel" href="add-delivery">+ DELIVERY</a>
+			

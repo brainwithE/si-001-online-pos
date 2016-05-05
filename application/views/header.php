@@ -76,7 +76,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="modal-body modal-project">
                           <i class="fa fa-coffee"></i>INPUT PULLOUT
-                          <?php echo form_open('pullout-item') ?>
+                          <?php echo form_open('admin/pullout-item') ?>
 	                        	<input type="field" placeholder="Pullout Item Code" name="item_code" />
 	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
 	                        	<input type="submit" class="submit-button" value="Submit" />

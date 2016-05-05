@@ -3,10 +3,6 @@ class Pullout_model extends CI_model{
 
 	/* SELECT ACTIONS */
 	function get_pullout(){
-		/*$this->db->order_by("pullout_approved_date", "desc");
-		$query = $this->db->get('pos_pullout');
-		return $query;*/
-
 		$this->db->order_by("pullout_approved_date", "desc");
 		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, pos_supplier.supplier_name, pos_item.item_name');
 		$this->db->from('pos_pullout');

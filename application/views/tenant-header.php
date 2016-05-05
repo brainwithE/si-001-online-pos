@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 
 	<head>
-		<title>Overwatch Systems Protocol</title>
+		<title>Online POS</title>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 
@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li><a href="<?php echo base_url() ?>tenant/report-pullout">PULLOUT REPORT</a></li>
 
 				    </ul>
-				    <a href="logout" class="logout">LOGOUT</a>
+				    <a href="<?php echo base_url() ?>logout" class="logout">LOGOUT <i class="fa fa-sign-out"></i></a>
 				</nav>
 
 

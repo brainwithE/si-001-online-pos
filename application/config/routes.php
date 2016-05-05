@@ -51,12 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 
-$route['default_controller'] = 'authenticate'; //for aauth sample
+$route['default_controller'] = 'authenticate'; //aauth sample
 
 /*$route['(:any)'] = 'signed_in/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;*/
-
 
 
 /*POS*/
@@ -79,30 +78,22 @@ $route['admin/delivery-notification'] = 'admin/delivery_notification';
 $route['admin/create-account'] = 'authenticate/create_account'; //view
 $route['admin/create-user'] = 'authenticate/create_user'; //action
 $route['admin/report-user'] = 'authenticate/view_user_list'; //action
+$route['admin/pullout-item'] = 'admin/input_pullout_item';
 
 //tenant actions
 $route['tenant/add-items'] = 'tenant/add_items';
 $route['tenant/report-inventory'] = 'tenant/view_inventory';
-$route['admin/report-sales'] = 'tenant/view_sales_report';
+$route['tenant/report-sales'] = 'tenant/view_sales_report';
 $route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
 $route['tenant/report-delivery'] = 'tenant/view_delivery';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';
 
 //cashier actions
-$route['add-sales'] = 'cashier/add_sales_transaction';
+$route['cashier/report-sales'] = 'cashier/view_sales_report';
+$route['cashier/add-sales'] = 'cashier/add_sales_transaction';
 
 //filter function
 $route['filter-sales'] = 'tenant/filter_sales_date';
 
-//view reports
-/*$route['report-item'] = 'items';
-$route['report-sales'] = 'sales';
-$route['report-delivery'] = 'delivery';
-$route['report-pullout'] = 'pullout';*/
 
-//forms
-//$route['add-items'] = 'items/add_items';
-//$route['add-sales'] = 'cashier/add_sales_transaction';
-$route['pullout-item'] = 'pullout/input_pullout_item';
-$route['delivery-transaction'] = 'delivery/add_delivery_transaction';
-//$route['add-delivery-items'] = 'delivery/add_delivery_items';
+

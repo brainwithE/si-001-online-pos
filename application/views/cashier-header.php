@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 
 	<head>
-		<title>Overwatch Systems Protocol</title>
+		<title>Online POS</title>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 
@@ -33,9 +33,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div id="wrapper">
 			<div id="content">
 
-	
-				<!--<img class="img-responsive" src="images/banner.png" />-->
-
 				<!-- button activator -->
 				<div class="header">
 				    <div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#"><i class="fa fa-bars"></i></a></div>
@@ -46,10 +43,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    <ul>
 				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM: SALES ACCOUNT</a></li>				        
 				        <!---POS-->						
-						<li><a href="<?php echo base_url() ?>cashier">SALES REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>cashier/report-sales">SALES REPORT</a></li>
 						
 				    </ul>
-				    <a href="logout" class="logout">LOGOUT</a>
+				   <a href="<?php echo base_url() ?>logout" class="logout">LOGOUT <i class="fa fa-sign-out"></i></a>
 				</nav>
 
 
@@ -69,27 +66,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div class="modal-body modal-project">
                           <i class="fa fa-coffee"></i>INPUT SALES ITEM
-                          <?php echo form_open('add-sales') ?>
-	                        	<input type="field" placeholder="Item Code" name="item_code" />
-	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
-	                        	<!-- <select name="item_category">
-	                        		<option>Blouse</option>
-	                        		<option>Crop Top</option>
-	                        		<option>Dress</option>
-	                        		<option>Pants</option>
-	                        		<option>Shorts</option>
-	                        		<option>Sleeveless Top</option>
-	                        		<option>Tee</option>
-
-	                        	</select> -->	                        	
-	                        	<input type="submit" class="submit-button" value="Submit" />
+                          <?php echo form_open('cashier/add-sales') ?>
+                        	<input type="field" placeholder="Item Code" name="item_code" />
+                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>        	
+                        	<input type="submit" class="submit-button" value="Submit" />
 	                      <?php echo form_close();?>
                         </div>
-
                       </div>
-
                     </div>
-
                 </div>
             </div>
             

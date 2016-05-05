@@ -3,10 +3,13 @@
 class Cashier extends CI_Controller{
 	
 	public function index(){
+        $this->view_sales_report();        
+	}
 
+    public function view_sales_report() {
         $account=2; //place account type here
 
-		$this->load->model('Sales_model');
+        $this->load->model('Sales_model');
                 
         $sale_report = $this->Sales_model->get_daily_sales();  
         $packet['sales'] = $sale_report;        
@@ -14,7 +17,7 @@ class Cashier extends CI_Controller{
         $this->load->view('cashier-header');
         $this->load->view('report-sales', $packet);
         $this->load->view('footer');    
-	}
+    }
 
     public function add_sales_transaction(){
         $item_code = $this->input->post('item_code');
@@ -37,7 +40,7 @@ class Cashier extends CI_Controller{
         $new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
         $this->update_stock($item_code, $new_stock);
  
-        redirect('cashier');
+        redirect('cashier/report-sales');
     }
 
     
@@ -82,27 +85,5 @@ class Cashier extends CI_Controller{
 
 
 
-
-	
-/*
-    public function filter_income_date(){
-        $this->load->model('Income_model');
-        $this->load->model('Expense_model');
-        $this->load->model('Withdrawal_model');
-
-        $date_start = $this->input->post('filter_start_date');
-        $date_end = $this->input->post('filter_end_date');
-
-        $income = $this->Income_model->get_income_certmonth($date_start,$date_end);  
-        $expense = $this->Expense_model->get_expense_certmonth($date_start,$date_end);
-        $withdrawal = $this->Withdrawal_model->get_withdrawal_certmonth($date_start,$date_end);
-        $packet['income'] = $income;
-        $packet['expense'] = $expense;
-        $packet['withdrawal'] = $withdrawal;
-        
-        $this->load->view('header');
-        $this->load->view('income-view', $packet);
-        $this->load->view('footer');
-    }*/
 }
 ?>

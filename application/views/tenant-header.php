@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- menu list --> 
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 				    <ul>
-				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM: TENANT ACCOUNT</a></li>				        
+				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>TENANT</a></li>				        
 				        <!---POS-->
 						<li><a href="<?php echo base_url() ?>tenant/report-inventory">INVENTORY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>tenant/report-sales">SALES REPORT</a></li>

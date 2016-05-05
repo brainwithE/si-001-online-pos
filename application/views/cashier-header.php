@@ -41,7 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- menu list --> 
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 				    <ul>
-				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ONLINE POS SYSTEM: SALES ACCOUNT</a></li>				        
+				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>SALES ACCOUNT</a></li>				        
 				        <!---POS-->						
 						<li><a href="<?php echo base_url() ?>cashier/report-sales">SALES REPORT</a></li>
 						

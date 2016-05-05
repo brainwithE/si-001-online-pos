@@ -19,6 +19,7 @@ class Authenticate extends CI_Controller {
 
      public function index() {  
         $this->landing_page(" ");
+     
 
     }
 
@@ -40,6 +41,19 @@ class Authenticate extends CI_Controller {
 
             $user_id = $this->aauth->get_user_id();
             $group_id = $this->get_user_groups($user_id);
+
+            /*if($this->aauth->is_group_allowed($group_id,1)) {
+                redirect('admin');
+            } elseif($this->aauth->is_group_allowed($group_id,2)) {
+                redirect('tenant');
+            } elseif($this->aauth->is_group_allowed($group_id,3)) {
+                redirect('cashier');
+            } else {
+                
+                $this->landing_page();
+            }*/
+
+
 
             if($group_id == 1) {
                 redirect('admin');

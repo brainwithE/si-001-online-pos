@@ -50,44 +50,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-//$route['default_controller'] = 'login';
-/*$route['default_controller'] = 'signup';*/
-$route['default_controller'] = 'example'; //for aauth sample
+
+$route['default_controller'] = 'authenticate'; //for aauth sample
+
 /*$route['(:any)'] = 'signed_in/$1';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = FALSE;*/
 
-$route['main'] = 'signup';
 
-$route['income-view'] = 'income';
-$route['expense-view'] = 'expense';
-$route['withdrawal-view'] = 'withdrawal';
-$route['reporting-view'] = 'reporting';
-$route['project-view'] = 'project';
-
-$route['filter-report'] = 'reporting/filter_report_date';
-
-$route['add-income'] = 'income/add_income';
-$route['add-expense'] = 'expense/add_expense';
-$route['add-withdrawal'] = 'withdrawal/add_withdrawal';
-$route['add-project'] = 'project/add_project';
-
-$route['filter-income'] = 'income/filter_income_date';
-$route['filter-expense'] = 'expense/filter_expense_date';
-$route['filter-withdrawal'] = 'withdrawal/filter_withdrawal_date';*/
 
 /*POS*/
 
+//auth
+$route['account-login'] = 'authenticate/user_login';
+$route['logout'] = 'authenticate/logout';
 
 //redirect controllers per account type
-$route['account-login'] = 'authenticate/user_login';
 $route['admin'] = 'admin';
 $route['tenant'] = 'tenant';
 $route['cashier'] = 'cashier';
-
-//auth
-$route['logout'] = 'authenticate/logout';
-
 
 //admin actions
 $route['admin/report-inventory'] = 'admin/view_inventory';

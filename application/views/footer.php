@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
      </div> <!-- end of #content -->
     </div> <!-- end of #wrapper -->
 
-    <div class="footer"><h6>Overwatch System Protocols is a Property of <a target="_blank" class="lnk" href="http://potatocodes.com">Potatocodes Inc.</a> Copyright 2015</h6></div>
+    <div class="footer"><h6>Online POS is a product of <a target="_blank" class="lnk" href="http://potatocodes.com">Potatocodes Inc.</a> Copyright 2016</h6></div>
 
     <!-- add all script below this fold -->
     <script type="javascript" src="<?php echo base_url(); ?>js/script.js">

@@ -139,6 +139,40 @@ button{
 	transition: all ease 0.5s;
 }
 
+.action-buttons{
+	border: 2px solid #0008ba;
+	background-color: #0008ba;
+	color: white !important;
+	padding: 15px;
+	z-index: 999;
+	width: 130px;
+	right: 0px;
+	position: fixed;
+	transition: ease all 0.25s;
+}
+.action-buttons:hover, .action-buttons:active{
+	cursor: pointer;
+	text-decoration: none;
+	right: 5px;
+	transition: ease all 0.25s;
+}
+.action-buttons:focus, .action-buttons:visited{
+	text-decoration: none;
+}
+
+.action-additem{
+	top: 0px;
+}
+.action-adddel{
+	top: 60px;
+}
+.action-pullout{
+	top: 0px;
+}
+.action-addsales{
+	top: 0px;
+}
+
 /* BANNER */
 
 .banner{

@@ -33,14 +33,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div id="wrapper">
 			<div id="content">
 
-	
-				<!--<img class="img-responsive" src="images/banner.png" />-->
-
 				<!-- button activator -->
 				<div class="header">
 				    <div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#"><i class="fa fa-bars"></i></a></div>
 				</div>
-
 				<!-- menu list --> 
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 				    <ul>
@@ -51,21 +47,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<li><a href="<?php echo base_url() ?>admin/report-delivery">DELIVERY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-pullout">PULLOUT REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/delivery-notification">DELIVERY NOTIFICATION</a></li>
-
 				    </ul>
 				</nav>
 
-
-
 			<!-- POS PARTS -->
+			<a id="showLeftPush" class="action-buttons action-pullout" href="#">+ PULLOUT</a>
 
-            <div style="position: fixed; border:1px solid black; right: 29%"class="" data-toggle="modal" data-target="#InputPullout">
-				<div class="navicon"><a id="showLeftPush" class="showLeftPush" href="#">ADD PULLOUT</a></div>
-			</div>			
 
-			<div class="modal fade" id="InputPullout" role="dialog">
+			<!-- <div class="modal fade" id="InputPullout" role="dialog">
                 <div class="modal-dialog">
-                    <!-- Modal content-->
                     <div class="modal-content">
 
                       <div class="col-md-12">
@@ -84,4 +74,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
 
                 </div>
-            </div>
+            </div> -->

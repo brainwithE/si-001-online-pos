@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="col-xs-3"><?php echo $pullout_item;?></div>
 									<div class="col-xs-3"><?php echo $pullout_supplier;?></div>
 									<div class="col-xs-1"><?php echo $pullout_quantity;?></div>
-									<div class="col-xs-1"><?php echo $pullout_status;?></div>
+									<div class="col-xs-1"><?php if($pullout_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
 									<div class="col-xs-2"><?php echo $pullout_date_approved;?></div>	
 								</div>
 

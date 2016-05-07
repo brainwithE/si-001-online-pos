@@ -48,17 +48,28 @@
 
 							?>
 								
-								<div class="row table-entries table-entries-income">
-									<!-- <div class="col-xs-3"><?php $new_income_date_acquired //= //date("M j, Y", strtotime($income_date_acquired));  echo $new_income_date_acquired; ?></div>
-									<div class="col-xs-5 col-sm-6"><?php //echo $income_name; ?></div>
-									<div class="col-xs-3"><?php //echo $income_amount; ?></div> -->
-
+								<div class="row table-entries table-entries-income" data-toggle="modal" data-target="#ItemDetails">
 									<div class="col-xs-2"><?php echo $item_code;?></div>
 									<div class="col-xs-2"><?php echo $item_supplier;?></div>
 									<div class="col-xs-4"><?php echo $item_name;?></div>
 									<div class="col-xs-2"><?php echo $item_price;?></div>
 									<div class="col-xs-2"><?php echo $item_stock;?></div>	
 								</div>
+
+								<div class="modal fade" id="ItemDetails" role="dialog">
+					                <div class="modal-dialog">
+					                    <!-- Modal content-->
+					                     <div class="modal-content">
+					                      <div class="col-md-12">
+					                        <div class="modal-body modal-project">
+					                          <i class="fa fa-shopping-cart" aria-hidden="true"></i><?php echo $item_name;?>
+					                          <?php echo $item_supplier;?>
+
+					                        </div>
+					                      </div>
+					                    </div> -->
+					                </div>
+					            </div>
 
 							<?php } ?>
 							

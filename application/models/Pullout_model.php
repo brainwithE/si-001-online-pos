@@ -50,7 +50,8 @@ class Pullout_model extends CI_model{
 	/* UPDATE ACTIONS*/
 
 	function approve_pullout($pullout_id){
-		$sql = "UPDATE pos_pullout SET pullout_status='1' WHERE pullout_id='".$pullout_id."'" ;
+		$current_date = date('Y-m-d');	
+		$sql = "UPDATE pos_pullout SET pullout_status='1',pullout_approved_date='".$current_date."' WHERE pullout_id='".$pullout_id."'" ;
 		$query = $this->db->query($sql);
 		return $query;
 	}	

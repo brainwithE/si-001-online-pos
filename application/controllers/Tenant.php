@@ -150,11 +150,38 @@ class Tenant extends CI_Controller{
 
         $this->load->model('Pullout_model');
         
-        $pullout = $this->Pullout_model->approve_pullout($data['pullout_id']);  
+        $pullout = $this->Pullout_model->approve_pullout($data['pullout_id']); 
+        
+        /*$new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
+        $this->update_stock($item_code, $new_stock); */
         
 
         redirect('tenant/view_pullout');
 
+    }
+
+    public function deduct_inv_stock($item_code, $item_quantity){
+        $current_stock = $this->get_item_stock($item_code);
+
+        if($current_stock != 0) {
+            $stock = $current_stock - $item_quantity;
+        } else {
+            echo "no more stock available";
+        }
+
+       return $stock;
+    }
+
+    public function get_item_stock($item_code){
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_stock($item_code);
+
+        return $result->item_stock;
+    }
+
+    public function update_stock($item_code, $stock){
+        $this->load->model('Items_model');
+        $current_stock = $this->Items_model->update_stock($item_code, $stock);
     }
 
 

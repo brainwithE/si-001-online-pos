@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<!-- POS PARTS -->
 			<a id="showLeftPush" class="action-buttons action-additem" href="#" data-toggle="modal" data-target="#InputItems">+ ITEMS</a>
-			<a id="showLeftPush" class="action-buttons action-adddel" href="add-delivery">+ DELIVERY</a>
+			<a id="showLeftPush" class="action-buttons action-adddel" href="<?php echo base_url() ?>add-delivery">+ DELIVERY</a>
 
 			<div class="modal fade" id="InputItems" role="dialog">
                 <div class="modal-dialog">

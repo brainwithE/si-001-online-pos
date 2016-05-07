@@ -127,7 +127,7 @@ class Tenant extends CI_Controller{
         $packet['delivery_transaction'] = $delivery_report;
         
         $this->load->view('tenant-header');
-        $this->load->view('report-delivery', $packet);
+        $this->load->view('tenant-report-delivery', $packet);
         $this->load->view('footer');
     }
 
@@ -202,7 +202,7 @@ class Tenant extends CI_Controller{
         $delivery_report = $this->Delivery_model->get_specific_delivery($data['dt_id']);  
         $data['delivery_transaction'] = $delivery_report;
         
-        $this->load->view('header');
+        $this->load->view('tenant-header');
         $this->load->view('delivery-item-view',$data);
         $this->load->view('footer');
     }

@@ -43,8 +43,7 @@
 						<li><a href="<?php echo base_url() ?>admin/report-inventory">INVENTORY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-sales">SALES REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-delivery">DELIVERY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>admin/report-pullout">PULLOUT REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>admin/delivery-notification">DELIVERY NOTIFICATION</a></li>					
+						<li><a href="<?php echo base_url() ?>admin/report-pullout">PULLOUT REPORT</a></li>										
 						<li><a href="<?php echo base_url() ?>admin/report-user">USER LISTS</a></li>					
 				    </ul>
 				    <a href="<?php echo base_url() ?>admin/create-account">CREATE USERS <i class="fa fa-user"></i></a>
@@ -58,12 +57,13 @@
 
 			<div class="modal fade" id="InputPullout" role="dialog">
                 <div class="modal-dialog">
-                    <div class="modal-content">
-
-                      <div class="col-md-12">
+                    <div class="modal-content">                      
+	                    <div class="head-contain">
+							<h4><i class="fa fa-coffee"></i>INPUT PULLOUT</h4>
+						</div>
 
                         <div class="modal-body modal-project">
-                          <i class="fa fa-coffee"></i>INPUT PULLOUT
+                          
                           <?php echo form_open('admin/pullout-item') ?>
 	                        	<input type="field" placeholder="Pullout Item Code" name="item_code" />
 	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
@@ -73,7 +73,7 @@
 
                       </div>
 
-                    </div>
+                    
 
                 </div>
             </div>

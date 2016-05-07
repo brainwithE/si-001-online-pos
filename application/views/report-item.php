@@ -19,12 +19,14 @@ $(document).ready(function(){
 	<div class="container">
 
 		<!--The overwatch Main element Container or MEC-->
-		<div class="overwatch-mec mec-income">
-
 				<div class="container">
 
 					<!--The overwatch Main element Container or MEC-->
 					<div class="overwatch-mec mec-income">
+						<div class="head-contain">
+							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>
+							INVENTORY REPORT</h4>
+						</div>
 						<div class="col-xs-12">
 							<!-- FILTER FUNCTION
 
@@ -79,20 +81,28 @@ $(document).ready(function(){
 							<div class="modal fade" <?php echo "id='Item".$item_code."'"?> role="dialog">
 					                <div class="modal-dialog">
 					                    <!-- Modal content-->
-					                     <div class="modal-content">
-					                      <div class="col-md-12">	
-					                      	<div class="modal-body modal-project">				                        
-					                        	<div class="item-details">
-						                          <label><i class="fa fa-shopping-cart" aria-hidden="true"></i><?php echo $item_name;?></label>
-						                          <p>Category: <?php echo $item_category;?></p>
-						                          <p>Supplier: <?php echo $item_supplier;?></p>
-						                          <p>Price: P<?php echo $item_price;?></p>
-						                          <p>Stocks available: <?php echo $item_stock;?></p>
-						                          <div class="btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>
+					                    <div class="modal-content item-modal">					                    
+					                      	<div class="item-details">
+					                      		<div class="head-contain">
+													<h4><i class="fa fa-shopping-cart" aria-hidden="true"></i>Item Details</h4>
+												</div>
+					                      		<div class="modal-body modal-project">
+						                          <p><span>Item Name:</span><?php echo $item_name;?></p>
+						                          <p><span>Item Code:</span><?php echo $item_code;?></p>
+						                          <p><span>Category:</span> <?php echo $item_category;?></p>
+						                          <p><span>Supplier:</span> <?php echo $item_supplier;?></p>
+						                          <p><span>Price:</span> P<?php echo $item_price;?></p>
+						                          <p><span>Stocks available:</span> <?php echo $item_stock;?></p>
+						                          <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>
 						                        </div>
+						                    </div>
 
-						                        <div class="edit-item" style="display: none;">
-						                        	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item
+						                    <div class="edit-item" style="display: none;">
+						                    	<div class="head-contain">
+													<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</h4>
+												</div>
+						                    	<div class="modal-body modal-project">
+						                        	
 						                       	  <?php echo form_open('admin/edit-item') ?>
 						                       	  		<input type="hidden" name="item_code" value="<?php echo $item_code?>">
 						                       	  		<label>Item Name: </label>
@@ -102,15 +112,12 @@ $(document).ready(function(){
 							                        	<label>Item Category: </label>
 							                        	<input type="field" name="item_category" value="<?php echo $item_category?>">
 
-							                        	<a class="btn-back">Back</a>
-							                        	<input type="submit" class="submit-button" value="Submit" />
+							                        	<a class="btn btn-back">Back</a>
+							                        	<input type="submit" class="btn submit-button" value="Submit" />
 							                      <?php echo form_close();?>
 						                        </div>
 					                        </div>
-					                        </div>
-
-
-					                      </div>
+					                    </div>
 					                    
 					                </div>
 					            </div>
@@ -124,7 +131,7 @@ $(document).ready(function(){
 						</div>
 					</div><!-- MEC end -->
 
-				</div>
+				
 
 
 				

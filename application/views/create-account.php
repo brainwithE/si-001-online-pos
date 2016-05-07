@@ -9,12 +9,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="container">
 
 					<!--The overwatch Main element Container or MEC-->
-					<div class="overwatch-mec mec-income">
+					<div class="overwatch-mec">
+						<div class="head-contain">
+							<h4><i class="fa fa-user"></i>CREATE USER ACCOUNT</h4>
+						</div>
 					
 						<div class="modal-body modal-project">
-					      <i class="fa fa-user"></i>CREATE USER ACCOUNT
-
-
 					      <?php echo form_open('admin/create-user') ?>				      	
 					      	<label>User Type</label>
 					      	<select name="new_account_type">
@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				        	<input type="field" placeholder="Enter Password" name="new_password"/>
 				        	<input type="email" placeholder="Enter Email" name="new_email"/>
 				        	
-				        	<input type="submit" class="submit-button" value="Submit" />
+				        	<input type="submit" class="btn submit-button" value="Submit" />
 					      <?php echo form_close();?>
 					    </div>
 					</div><!-- MEC end -->

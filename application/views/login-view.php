@@ -9,11 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="container">
 
 					<!--The overwatch Main element Container or MEC-->
-					<div class="overwatch-mec mec-income">
-					
+					<div class="overwatch-mec log-form">
+					<div class="head-contain">
+						<h4><i class="fa fa-sign-in"></i>
+						VILLALIFESTYLE BOTIQUE ONLINE POS LOGIN</h4>
+					</div>
+
 					<div class="modal-body modal-project">
-				      <i class="fa fa-sign-in"></i>ONLINE POS LOGIN
-				      <?php echo form_open('account-login') ?>
+				      	<?php echo form_open('account-login') ?>				      
 				        	<input type="field" placeholder="Username" name="user_name" />
 				        	<input type="password" placeholder="Password" name="user_password"/>
 				        	<?php
@@ -22,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				        		}
 				        	?>
 				        	<input type="submit" class="submit-button" value="Submit" />
-				      <?php echo form_close();?>
+				      	<?php echo form_close();?>
 				    </div>
 					
 

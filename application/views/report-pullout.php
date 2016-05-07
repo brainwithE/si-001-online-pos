@@ -10,6 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 					<!--The overwatch Main element Container or MEC-->
 					<div class="overwatch-mec mec-income">
+						<div class="head-contain">
+							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>
+							DELIVERY REPORT</h4>
+						</div>
 						<div class="col-xs-12">
 							<!-- FILTER FUNCTION
 

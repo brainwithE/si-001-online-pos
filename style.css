@@ -473,6 +473,12 @@ button{
 	height: auto;
 } 
 
+.table-entries:hover,
+.table-entries:active,
+.table-entries:focus{
+	background-color: #D2FFC1;
+}
+
 .entry-type {
 	width: 12px;
 	height: 12px;
@@ -699,9 +705,9 @@ button{
 .modal-content{
 	border-radius: 0px !important;
 	background-color: white !important;
-	padding: 30px 30px;
+	/*padding: 30px 30px;*/
 	overflow: hidden;
-	min-height: 350px;
+	min-height: 230px;
 }
 
 .modal-img-cont {
@@ -718,9 +724,10 @@ button{
 }
 .modal-body, .modal-body p{
 	color: #2e2e2e;
-	font-family: 'Verdana';
-	font-weight: 700;
-	font-size: 18px;
+    font-family: 'Verdana';
+    font-size: 18px;
+    text-align: left;
+    line-height: 18px;
 }
 
 .modal-header{
@@ -753,7 +760,7 @@ button{
 	font-size: 14px;
 	font-family: 'Helvetica';
 	font-weight: 400;
-	margin-top: 10px;
+	margin-bottom: 10px;
 	color: #2e2e2e;
 }
 
@@ -839,6 +846,52 @@ button{
 #smoothup .fa-angle-up{
 	font-size: 2em; color: white;
 }
+
+/* CUST ADDED STYLES */
+
+.log-form {
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.head-contain{	
+    padding: 15px;
+    background: #0008ba;
+    color: white;    
+}
+
+.head-contain h4	{
+	margin: 0 auto;
+	text-align: left;
+}
+
+.head-contain .fa{
+	margin-right: 15px;
+}
+
+.modal-body p span{
+	display: inline-block;
+    min-width: 160px;
+}
+
+.item-modal{
+	padding: 0;
+}
+
+.btn {
+	display: inline-block;
+	background: #0008ba;
+	color: white;
+}
+
+.btn .fa{
+	font-size: 10px;
+	margin:0;
+	margin-right: 15px;
+	color: #151967;
+}
+
 
 /* MOBILE FRIENDLINESS */
 

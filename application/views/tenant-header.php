@@ -65,11 +65,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
-
-                      <div class="col-md-12">
-
-                        <div class="modal-body modal-project">
-                          <i class="fa fa-coffee"></i>INPUT NEW ITEM
+                    	<div class="head-contain">
+							<h4><i class="fa fa-coffee"></i>INPUT NEW ITEM</h4>
+						</div>
+                        <div class="modal-body modal-project">                          
                           <?php echo form_open('add-items') ?>
 	                        	<input type="field" placeholder="Item Name" name="item_name" />
 	                        	<input type="field" placeholder="Price" name="item_price"/>
@@ -87,9 +86,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                        	<input type="submit" class="submit-button" value="Submit" />
 	                      <?php echo form_close();?>
                         </div>
-
-                      </div>
-
                     </div>
 
                 </div>

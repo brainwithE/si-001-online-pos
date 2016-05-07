@@ -11,8 +11,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<!--The overwatch Main element Container or MEC-->					
 					
 					<div class="overwatch-mec mec-income">
-						<div class="col-xs-12">
-							<h2>PENDING</h2>
+						<div class="head-contain">
+							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>PENDING PULLOUT REQUEST</h4>
+						</div>
+						<div class="col-xs-12">							
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2">Pullout Code</div>
 								<div class="col-xs-3">Item Name</div>

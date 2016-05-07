@@ -17,10 +17,10 @@
 
 			<div class="table-bank-row">
 						<div class="col-xs-9 table-end-general table-end table-bank">
-								<div class="col-md-6 total-label total-label-bank">MONEY IN THE BANK --</div><div class="col-md-6 total-amount"> <?php echo number_format($total, 2, '.',','); ?></div>
+								<div class="col-md-3 total-label total-label-bank">TOTAL SALES --</div><div class="col-md-3 total-amount"> <?php echo number_format($total, 2, '.',','); ?></div>
 						</div>
 						<div class="col-xs-4"></div>
-					</div>
+			</div>
 			
 			<div class="row">
 				<!-- FILTER FUNCTION -->
@@ -37,11 +37,11 @@
 			</div>
 
 			<div class="row table-title table-title-general table-title-income">
-				<div class="col-xs-2">Quantity</div>
+				<div class="col-xs-1">Qty</div>
 				<div class="col-xs-4">Item Name</div>
 				<div class="col-xs-2">Amount</div>
 				<div class="col-xs-2">Deduction</div>
-				<div class="col-xs-2">Net Sales</div>	
+				<div class="col-xs-3">Net Sales</div>	
 			</div>
 			
 			<?php
@@ -57,11 +57,11 @@
 			?>
 								
 				<div class="row table-entries table-entries-income">
-					<div class="col-xs-2"><?php echo $sales_quantity;?></div>
+					<div class="col-xs-1"><?php echo $sales_quantity;?></div>
 					<div class="col-xs-4"><?php echo $sales_item_name;?></div>
 					<div class="col-xs-2"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 					<div class="col-xs-2"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
-					<div class="col-xs-2"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
+					<div class="col-xs-3"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
 				</div>
 			<?php } ?>
 

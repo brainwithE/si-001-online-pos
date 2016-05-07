@@ -150,6 +150,18 @@ button{
 	position: fixed;
 	transition: ease all 0.25s;
 }
+.call-links{
+	background-color: #0008ba;
+	color: white !important;
+	padding: 5px;
+	border: 0px;
+}
+.call-links:hover{
+	background-color: white;
+	color: #0008ba !important;
+	padding: 5px;
+	border: 1px solid #0008ba;
+}
 .action-buttons:hover, .action-buttons:active{
 	cursor: pointer;
 	text-decoration: none;
@@ -163,6 +175,7 @@ button{
 .action-additem{
 	top: 0px;
 }
+
 .action-adddel{
 	top: 60px;
 }
@@ -448,7 +461,7 @@ button{
 	min-height: 200px;
 	overflow: hidden;
 	height: auto;
-	margin-top: 75px;
+	margin-top: 30px;
 	margin-bottom: 30px;
 	border: 1px solid #0008ba;
 	position: relative;
@@ -462,6 +475,14 @@ button{
 	color: white;
 	padding: 10px;
 }
+.table-filter {
+	padding: 10px 50px !important;
+}
+.table-filter input{
+	height: 30px;
+	padding-left: 5px;
+}
+
 .table-title-general {
 	background-color: #0008ba;
 }
@@ -472,6 +493,12 @@ button{
 	overflow: hidden;
 	height: auto;
 } 
+.table-entries:nth-of-type(odd){
+	background-color: #CBFFCF;
+}
+.table-entries-income-int:nth-of-type(odd){
+	background-color: #CBFFCF;
+}
 
 .entry-type {
 	width: 12px;
@@ -502,11 +529,11 @@ button{
 }
 
 .table-bank {
-	border: 2px solid;
+	border: 0px;
 	padding: 10px;
 }
 .table-bank-row{
-	margin-top: 75px;
+	margin-top: 0px;
 	overflow: hidden;
 	height: auto;
 }
@@ -540,6 +567,9 @@ button{
 }
 .table-entries-income {
 	border-bottom: 1px solid #52ed18;
+} 
+.table-entries-income-int{
+	cursor: pointer;
 } 
 .table-end-income {
 	color: #52ed18;
@@ -721,6 +751,21 @@ button{
 	font-family: 'Verdana';
 	font-weight: 700;
 	font-size: 18px;
+}
+
+.item-details label{
+	margin-bottom: 30px;
+}
+.item-details p{
+	margin-bottom: 0px;
+	text-align: left;
+	font-weight: 400;
+}
+.item-details .btn-edit{
+	margin-top: 30px;
+}
+.item-details .btn-edit:hover{
+	cursor: pointer;
 }
 
 .modal-header{

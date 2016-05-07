@@ -21,7 +21,7 @@
 			
 			<div class="records-section"></div>
 
-			<div class="row table-entries add-delivery-form">
+			<div class="row add-delivery-form">
 				<div class="col-xs-2">
 					<div id="add" style="padding: 1px solid white; cursor:pointer; background-color: green; width: 100px; text-align: center;">ADD ITEM</div>
 					<!-- <div id="remove" style="padding: 1px solid white; cursor:pointer; background-color: red; width: 100px; text-align: center;">REMOVE</div> -->
@@ -85,7 +85,6 @@
 								$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
 								eachctr++;
 								totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
-								alert(totalQuantity);
 							});
 					   },
 					   error: function(xhr, status, error) {

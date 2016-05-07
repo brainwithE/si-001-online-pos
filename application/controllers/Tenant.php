@@ -131,18 +131,33 @@ class Tenant extends CI_Controller{
         $this->load->view('footer');
     }
 
-    public function view_pullout(){
+    public function view_pullout(){        
+        $supplier_id = $this->get_supplier_id();       
+
         $this->load->model('Pullout_model');
         
-        $pullout_list = $this->Pullout_model->get_pullout();  
-        $packet['pullout'] = $pullout_list;
-        //$packet['supplier_name'] = $this->get_supplier_name($pullout_list);
+        $pullout_list = $this->Pullout_model->get_pullout_supplier($supplier_id);  
+        $packet['pullout'] = $pullout_list;        
         
         $this->load->view('tenant-header');
-        $this->load->view('report-pullout', $packet);
+        $this->load->view('tenant-report-pullout', $packet);
         $this->load->view('footer');
     }
     
+    public function approved_pullout(){
+        $pullout_id = $this->uri->segment(3);
+        $data['pullout_id'] = $pullout_id;
+
+        $this->load->model('Pullout_model');
+        
+        $pullout = $this->Pullout_model->approve_pullout($data['pullout_id']);  
+        
+
+        redirect('tenant/view_pullout');
+
+    }
+
+
     /*public function get_item_supplier($item_code) {
         $this->load->model('Items_model');
         $result = $this->Items_model->get_item_supplier($item_code);
@@ -165,20 +180,7 @@ class Tenant extends CI_Controller{
         $this->load->view('footer');
     }
 
-    /** DISREGARD ? **/
-
-    /*public function add_sales_transaction(){
-        $item_code = $this->input->post('item_code');
-        $item_quantity = $this->input->post('item_quantity');        
-        $sales_total_price = $this->get_total_price($item_code, $item_quantity);
-        
-        
-        
-        $data = array (
-            'sales_item_code' => $item_code,
-            'sales_item_quantity' => $item_quantity,
-            'sales_total_price' => $sales_total_price
-        ); */
+    
 
 }
 ?>

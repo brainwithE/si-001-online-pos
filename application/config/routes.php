@@ -89,6 +89,8 @@ $route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
 $route['tenant/report-delivery'] = 'tenant/view_delivery';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';
 
+//$route['tenant/approve-pullout'] = 'tenant/approve_pullout/(:num)';
+
 $route['add-delivery'] = 'tenant/add_delivery';
 $route['add-delivery-transaction'] = 'tenant/add_delivery_transaction';
 

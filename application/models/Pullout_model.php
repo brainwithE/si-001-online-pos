@@ -13,6 +13,19 @@ class Pullout_model extends CI_model{
 		return $query;
 	}
 
+	function get_pullout_supplier($supplier_id){ //request on supplier
+		$this->db->order_by("pullout_approved_date", "desc");
+		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, pos_supplier.supplier_name, pos_item.item_name');
+		$this->db->from('pos_pullout');
+		$this->db->where('pullout_supplier =', $supplier_id);
+		$this->db->join('pos_supplier', 'pos_supplier.supplier_id = pos_pullout.pullout_supplier');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_pullout.pullout_item');
+		$query = $this->db->get();
+
+		return $query;
+
+	}
+
 
 	/* INSERT ACTIONS */
 
@@ -36,8 +49,10 @@ class Pullout_model extends CI_model{
 
 	/* UPDATE ACTIONS*/
 
-	//place functions here
-	
-	
+	function approve_pullout($pullout_id){
+		$sql = "UPDATE pos_pullout SET pullout_status='1' WHERE pullout_id='".$pullout_id."'" ;
+		$query = $this->db->query($sql);
+		return $query;
+	}	
 }
 ?>

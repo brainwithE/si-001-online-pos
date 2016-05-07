@@ -14,7 +14,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 
 						<div class="col-xs-12">
-							
+							<div class="row">
+								<?php
+									echo form_open('add-delivery-items');							
+								?>
+								<input type="field" placeholder="Item Code" name="item_code"/>
+								<input type="field" placeholder="Item Quantity" name="item_quantity"/>
+	                        	<input type="submit" class="submit-button" value="Add Item" />
+								<?php									
+									echo form_close();
+								?>
+							</div>
 
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-1"></div>
@@ -34,13 +44,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="row table-entries table-entries-income">
 									<div class="col-xs-1"><?php echo $ctr; ?></div>
 									<div class="col-xs-3"><?php echo $item_name; ?></div>
-									<div class="col-xs-"><?php echo $delivery_quantity; ?></div>
+									<div class="col-xs-2"><?php echo $delivery_quantity; ?></div>
 								</div>
 
 							<?php
 								$ctr++;
-							 } ?>
-							
+							} ?>
 						</div>
 
 						<!-- <div class="table-title table-end table-end-general table-end-income">

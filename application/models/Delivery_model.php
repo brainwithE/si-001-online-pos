@@ -13,9 +13,27 @@ class Delivery_model extends CI_model{
 		return $query;
 	}
 
+	function get_delivery_report_supplier($supplier_id){		
+		$this->db->order_by("dt_id", "desc");
+		$this->db->select('dt_id, dt_total_quantity,dt_date, dt_approve_date, dt_status, pos_supplier.supplier_name');
+		$this->db->from('pos_delivery_transaction');
+		$this->db->where('dt_supplier', $supplier_id);
+		$this->db->join('pos_supplier', 'pos_supplier.supplier_id = pos_delivery_transaction.dt_supplier');
+
+		$query = $this->db->get();
+
+		return $query;
+	}
+
 	function get_specific_delivery($transaction_id){
-		$sql = "SELECT * FROM pos_delivery WHERE delivery_dt='".$transaction_id."'";
-		$query = $this->db->query($sql);
+		
+		$this->db->select('*');
+		$this->db->from('pos_delivery');
+		$this->db->where('delivery_dt', $transaction_id);
+		$this->db->join('pos_item', 'pos_item.item_id = pos_delivery.delivery_item');
+
+		$query = $this->db->get();
+
 		return $query;
 	}
 

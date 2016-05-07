@@ -10,6 +10,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 					<!--The overwatch Main element Container or MEC-->
 					<div class="overwatch-mec mec-income">
+						<?php
+							$total = 0;
+
+							foreach($sales->result_array() as $row){ 
+								$amt = $row['sales_total'];
+								$ddct = $amt*0.12;
+								$net = $amt-$ddct;
+								$total = $total + $net;
+							}
+						?>
+
+						<div class="table-bank-row">
+							<div class="col-xs-9 table-end-general table-end table-bank">
+									<div class="col-md-6 total-label total-label-bank">MONEY IN THE BANK --</div><div class="col-md-6 total-amount"> <?php echo number_format($total, 2, '.',','); ?></div>
+							</div>
+							<div class="col-xs-4"></div>
+						</div>
 						<div class="col-xs-12">
 							<!-- FILTER FUNCTION
 

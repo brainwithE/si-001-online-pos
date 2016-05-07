@@ -4,6 +4,23 @@
 
 		<!--The overwatch Main element Container or MEC-->
 		<div class="overwatch-mec mec-income">
+			<?php
+				$total = 0;
+
+				foreach($sales->result_array() as $row){ 
+					$amt = $row['sales_total'];
+					$ddct = $amt*0.12;
+					$net = $amt-$ddct;
+					$total = $total + $net;
+				}
+			?>
+
+			<div class="table-bank-row">
+						<div class="col-xs-9 table-end-general table-end table-bank">
+								<div class="col-md-6 total-label total-label-bank">MONEY IN THE BANK --</div><div class="col-md-6 total-amount"> <?php echo number_format($total, 2, '.',','); ?></div>
+						</div>
+						<div class="col-xs-4"></div>
+					</div>
 			
 			<div class="row">
 				<!-- FILTER FUNCTION -->
@@ -28,7 +45,8 @@
 			</div>
 			
 			<?php
-				$total_earnings = 0;
+				$total_earnings=0;
+				
 				foreach($sales->result_array() as $row){ 
 					$sales_quantity = $row['sales_quantity'];
 					$sales_item_name = $row['item_name'];
@@ -46,13 +64,15 @@
 					<div class="col-xs-2"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
 				</div>
 			<?php } ?>
-							
-		</div>
 
-		<div class="table-title table-end table-end-general table-end-income">
+			<div class="table-title table-end table-end-general table-end-income">
 			<div class="col-xs-6 col-sm-9 total-label">TOTAL EARNINGS</div>
 			<div class="col-xs-3 total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></div>
 		</div>
+							
+		</div>
+
+		
 	
 	</div><!-- MEC end -->
 

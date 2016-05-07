@@ -108,5 +108,23 @@ class Admin extends CI_Controller{
         
         return $result->item_supplier;        
     }
+
+    public function edit_item(){
+
+        $data = array (
+        'item_id' => $this->input->post('item_code'),
+        'item_name' => $this->input->post('item_name'),
+        'item_price' => $this->input->post('item_price'),
+        'item_category' => $this->input->post('item_category'),
+        
+        );
+
+        $this->load->model('Items_model');
+        $this->Items_model->edit_item($data);  
+ 
+        redirect('admin/report-inventory');
+
+
+    }
 }
 ?>

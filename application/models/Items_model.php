@@ -89,5 +89,18 @@ class Items_model extends CI_model{
 		$sql = "UPDATE pos_item SET item_stock='".$stock."' WHERE item_id='".$item_code."'" ;
 		$this->db->query($sql);	
 	}	
+
+	function edit_item($data){
+		$item_data = array(
+			'item_name' => $data['item_name'],
+			'item_category' => $data['item_category'],
+			'item_price' => $data['item_price'],
+		);
+
+		$item_id=$data['item_id'];
+
+		$this->db->where('item_id', $item_id);
+		$this->db->update('pos_item', $data); 
+	}
 }
 ?>

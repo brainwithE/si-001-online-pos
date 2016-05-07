@@ -80,6 +80,7 @@ $route['admin/create-account'] = 'authenticate/create_account'; //view
 $route['admin/create-user'] = 'authenticate/create_user'; //action
 $route['admin/report-user'] = 'authenticate/view_user_list'; //action
 $route['admin/pullout-item'] = 'admin/input_pullout_item';
+$route['admin/edit-item'] = 'admin/edit_item';
 
 //tenant actions
 $route['tenant/add-items'] = 'tenant/add_items';

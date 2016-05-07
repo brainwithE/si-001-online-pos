@@ -53,7 +53,7 @@
 				</nav>
 
 			<!-- POS PARTS -->
-			<a id="showLeftPush" class="action-buttons action-pullout" href="" data-toggle="modal" data-target="#InputPullout">+ PULLOUT</a>
+			<a id="showLeftPush" class="action-buttons action-pullout" data-toggle="modal" data-target="#InputPullout">+ PULLOUT</a>
 
 
 			<div class="modal fade" id="InputPullout" role="dialog">

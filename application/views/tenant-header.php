@@ -58,5 +58,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 			<!-- POS PARTS -->
-			<a id="showLeftPush" class="action-buttons action-additem" href="#">+ ITEMS</a>
+			<a id="showLeftPush" class="action-buttons action-additem" href="#" data-toggle="modal" data-target="#InputItems">+ ITEMS</a>
 			<a id="showLeftPush" class="action-buttons action-adddel" href="add-delivery">+ DELIVERY</a>
+
+			<div class="modal fade" id="InputItems" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                      <div class="col-md-12">
+
+                        <div class="modal-body modal-project">
+                          <i class="fa fa-coffee"></i>INPUT NEW ITEM
+                          <?php echo form_open('add-items') ?>
+	                        	<input type="field" placeholder="Item Name" name="item_name" />
+	                        	<input type="field" placeholder="Price" name="item_price"/>
+	                        	<input type="field" placeholder="Category" name="item_category"/>
+	                        	<!-- <select name="item_category">
+	                        		<option>Blouse</option>
+	                        		<option>Crop Top</option>
+	                        		<option>Dress</option>
+	                        		<option>Pants</option>
+	                        		<option>Shorts</option>
+	                        		<option>Sleeveless Top</option>
+	                        		<option>Tee</option>
+
+	                        	</select> -->
+	                        	<input type="submit" class="submit-button" value="Submit" />
+	                      <?php echo form_close();?>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                </div>
+            </div>

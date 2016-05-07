@@ -26,6 +26,12 @@ class Pullout_model extends CI_model{
 
 	}
 
+	function get_pullout_item($pullout_id){
+		$sql = "SELECT pullout_item, pullout_quantity FROM pos_pullout WHERE pullout_id='".$pullout_id."'" ;
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 
 	/* INSERT ACTIONS */
 

@@ -44,7 +44,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="row table-entries table-entries-income">
 									<div class="col-xs-1"><?php echo $ctr; ?></div>
 									<div class="col-xs-3"><?php echo $item_name; ?></div>
-									<div class="col-xs-2"><?php echo $delivery_quantity; ?></div>
+									<div class="col-xs-"><?php echo $delivery_quantity; ?></div>
 								</div>
 
 							<?php

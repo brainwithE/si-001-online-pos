@@ -148,14 +148,20 @@ class Tenant extends CI_Controller{
     
     public function approved_pullout(){
         $pullout_id = $this->uri->segment(3);
-        $data['pullout_id'] = $pullout_id;
+        $pull_data = $this->get_pullout_item($pullout_id);
+
+        foreach($pull_data->result_array() as $row){ 
+            $item_code = $row['pullout_item'];
+            $item_quantity = $row['pullout_quantity'];
+        }
+
 
         $this->load->model('Pullout_model');
         
-        $pullout = $this->Pullout_model->approve_pullout($data['pullout_id']); 
+        $pullout = $this->Pullout_model->approve_pullout($pullout_id); 
         
-        /*$new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
-        $this->update_stock($item_code, $new_stock); */
+        $new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
+        $this->update_stock($item_code, $new_stock);
         
 
         redirect('tenant/view_pullout');
@@ -184,6 +190,13 @@ class Tenant extends CI_Controller{
     public function update_stock($item_code, $stock){
         $this->load->model('Items_model');
         $current_stock = $this->Items_model->update_stock($item_code, $stock);
+    }
+
+    public function get_pullout_item($pullout_id){
+        $this->load->model('Pullout_model');
+        $query = $this->Pullout_model->get_pullout_item($pullout_id);
+
+        return $query;
     }
 
 

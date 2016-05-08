@@ -32,7 +32,7 @@ class Delivery extends CI_Controller{
     public function add_delivery_transaction(){
         //insert tons of condition here
 
-        $supplier = '201605000000003'; //enter supplier type here 
+        $supplier = '201605000000001'; //enter supplier type here 
 
         $items = $this->input->post('data');
         $quant = $this->input->post('qty');

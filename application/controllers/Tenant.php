@@ -103,7 +103,9 @@ class Tenant extends CI_Controller{
     public function add_delivery_transaction(){
         //insert tons of condition here
 
-        $supplier_id = $this->get_supplier_id();
+        //insert tons of condition here
+
+        $supplier = '201605000000001'; //enter supplier type here 
 
         $items = $this->input->post('data');
         $quant = $this->input->post('qty');

@@ -68,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<h4><i class="fa fa-coffee"></i>INPUT NEW ITEM</h4>
 						</div>
                         <div class="modal-body modal-project">                          
-                          <?php echo form_open('add-items') ?>
+                          <?php echo form_open('tenant/add-items') ?>
 	                        	<input type="field" placeholder="Item Name" name="item_name" />
 	                        	<input type="field" placeholder="Price" name="item_price"/>
 	                        	<input type="field" placeholder="Category" name="item_category"/>

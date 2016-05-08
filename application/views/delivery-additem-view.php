@@ -205,7 +205,7 @@
 						alert('requested delivery successful!');
 					});
 
-					window.location.href = "<?php echo site_url('tenant'); ?>";
+					window.location.href = "<?php echo site_url('tenant/report-delivery'); ?>";
 					return false;
 
 				});

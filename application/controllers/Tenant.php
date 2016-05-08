@@ -2,9 +2,23 @@
 
 class Tenant extends CI_Controller{
 	
-	public function index(){
-        $this->view_sales_report();
+	public function index(){      
+
+        $user_type =  $this->session_road();
+
+        if ($user_type == 2){
+            $this->view_sales_report();
+        } elseif ($user_type == 1) {
+             redirect('admin');
+        } elseif ($user_type == 3) {
+             redirect('cashier');
+        }
+
 	}
+
+    public function session_road(){        
+        return $_SESSION["type"];       
+    }
 
      public function view_sales_report() {
         $supplier_id = $this->get_supplier_id();       
@@ -79,7 +93,7 @@ class Tenant extends CI_Controller{
     public function add_delivery_transaction(){
         //insert tons of condition here
 
-        $supplier = '201605000000003'; //enter supplier type here 
+        $supplier_id = $this->get_supplier_id();
 
         $items = $this->input->post('data');
         $quant = $this->input->post('qty');

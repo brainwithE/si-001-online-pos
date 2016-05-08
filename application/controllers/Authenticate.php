@@ -9,6 +9,7 @@ if (!defined('BASEPATH'))
  * @property Aauth $aauth Description
  * @version 1.0
  */
+
 class Authenticate extends CI_Controller {
 
     public function __construct() {
@@ -34,7 +35,7 @@ class Authenticate extends CI_Controller {
         $user_name = $this->input->post('user_name');
         $user_password = $this->input->post('user_password');
 
-        $this->aauth->login($user_name, $user_password);
+	$this->aauth->login($user_name, $user_password);
 
 
         if($this->aauth->is_loggedin($user_name, $user_password)){
@@ -42,20 +43,10 @@ class Authenticate extends CI_Controller {
             $user_id = $this->aauth->get_user_id();
             $group_id = $this->get_user_groups($user_id);
 
-            /*if($this->aauth->is_group_allowed($group_id,1)) {
-                redirect('admin');
-            } elseif($this->aauth->is_group_allowed($group_id,2)) {
-                redirect('tenant');
-            } elseif($this->aauth->is_group_allowed($group_id,3)) {
-                redirect('cashier');
-            } else {
-                
-                $this->landing_page();
-            }*/
 
+            $this->session->set_userdata('type', $group_id); 
 
-
-            if($group_id == 1) {
+            if($group_id == 1) {            	
                 redirect('admin');
             } elseif($group_id == 2) {
                 redirect('tenant');
@@ -65,6 +56,7 @@ class Authenticate extends CI_Controller {
                 
                 $this->landing_page();
             }
+
         } else {
             $error_msg = $this->aauth->print_errors();
             $this->landing_page($error_msg);

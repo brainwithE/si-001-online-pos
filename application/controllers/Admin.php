@@ -2,9 +2,23 @@
 
 class Admin extends CI_Controller{
 	
-	public function index(){
-        $this->view_sales_report(); 
-	}
+	public function index(){      
+
+        $user_type =  $this->session_road();
+
+        if ($user_type == 1){
+            $this->view_sales_report();
+        } elseif ($user_type == 2) {
+             redirect('tenant');
+        } elseif ($user_type == 3) {
+             redirect('cashier');
+        }
+
+    }
+
+    public function session_road(){        
+        return $_SESSION["type"];       
+    }
 
     public function view_sales_report() {
         $this->load->model('Sales_model');

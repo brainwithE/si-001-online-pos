@@ -2,9 +2,23 @@
 
 class Cashier extends CI_Controller{
 	
-	public function index(){
-        $this->view_sales_report();        
-	}
+	public function index(){      
+
+        $user_type =  $this->session_road();
+
+        if ($user_type == 3){
+            $this->view_sales_report();
+        } elseif ($user_type == 1) {
+             redirect('admin');
+        } elseif ($user_type == 2) {
+             redirect('tenant');
+        }
+
+    }
+
+    public function session_road(){        
+        return $_SESSION["type"];       
+    }
 
     public function view_sales_report() {
         $account=2; //place account type here

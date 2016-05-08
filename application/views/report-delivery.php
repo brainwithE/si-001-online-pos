@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								foreach($delivery_transaction->result_array() as $row){ 
 									$dt_code = $row['dt_id'];
-									$dt_supplier = $row['supplier_name'];
+									$dt_supplier = $row['dt_supplier']; //$row['supplier_name'];
 									$dt_quantity = $row['dt_total_quantity'];
 									$dt_date = $row['dt_date'];
 									$dt_status = $row['dt_status'];
@@ -55,10 +55,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="col-xs-3"><?php echo $dt_supplier;?></div>
 										<div class="col-xs-1"><?php echo 'x'.$dt_quantity;?></div>
 										<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
-										<div class="col-xs-2"><?php if($dt_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
-										<div class="col-xs-2">
-											<a href='<?php echo base_url() ?>Admin/approved_delivery/<?php echo $dt_code ?>'><i class="fa fa-check-square" aria-hidden="true"></i> Approve</a>										
-									</div>	
+										
+										<?php 
+											if($dt_status==1){ 
+												echo "<div class='col-xs-2'>APPROVED</div>
+														<div class='col-xs-2'></div>"; }
+											else{ 
+												echo "<div class='col-xs-2'>PENDING</div>
+												<div class='col-xs-2'>
+													<a href=".base_url()."Admin/approved_delivery/".$dt_code.">
+													<i class='fa fa-check-square' aria-hidden='true'></i> Approve
+													</a>
+												</div>"; 
+											} 
+										?>
 									</a>
 								</div>
 

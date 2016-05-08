@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								foreach($delivery_transaction->result_array() as $row){ 
 									$dt_code = $row['dt_id'];
-									$dt_supplier = $row['dt_supplier']; //$row['supplier_name'];
+									$dt_supplier = $row['supplier_name'];
 									$dt_quantity = $row['dt_total_quantity'];
 									$dt_date = $row['dt_date'];
 									$dt_status = $row['dt_status'];

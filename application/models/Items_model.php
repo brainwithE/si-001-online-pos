@@ -12,6 +12,17 @@ class Items_model extends CI_model{
 		return $query;
 	}
 
+	function get_specific_item($item_id){		
+		$this->db->order_by("item_id", "desc");
+		$this->db->select('item_id, item_name, item_category,item_price, item_stock, pos_supplier.supplier_name');
+		$this->db->from('pos_item');
+		$this->db->where('item_id =', $item_id);
+		$this->db->join('pos_supplier', 'pos_supplier.supplier_id = pos_item.item_supplier');
+		$query = $this->db->get();
+
+		return $query;
+	}
+
 	function get_supplier_inventory($supplier_id){
 		$this->db->order_by("item_id", "desc");
 		$this->db->select('item_id, item_name, item_category,item_price, item_stock, pos_supplier.supplier_name');

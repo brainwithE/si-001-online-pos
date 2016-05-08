@@ -9,9 +9,11 @@
 		<div class="col-xs-12">
 
 			<div class="row table-title table-title-general table-title-income">
-				<div class="col-xs-2"></div>
 				<div class="col-xs-2">Item Code</div>
-				<div class="col-xs-4">Quantity</div>	
+				<div class="col-xs-2">Item Name</div>
+				<div class="col-xs-2">Supplier</div>
+				<div class="col-xs-2">Quantity</div>
+				<div class="col-xs-2"></div>	
 			</div>
 							
 			<script type="text/javascript">
@@ -22,12 +24,14 @@
 			<div class="records-section"></div>
 
 			<div class="row add-delivery-form">
+				<div class="col-xs-2"><input type="text" name="name" id="name" /></div>
+				<div class="col-xs-2"></div>
+				<div class="col-xs-2"></div>
+				<div class="col-xs-2"><input type="text" name="qty" id="qty" value="1" /></div>
 				<div class="col-xs-2">
-					<div id="add" style="padding: 1px solid white; cursor:pointer; background-color: green; width: 100px; text-align: center;">ADD ITEM</div>
+					<div id="add" style="padding: 1px solid white; cursor:pointer; background-color: green; width: 100px; text-align1: center;">ADD ITEM</div>
 					<!-- <div id="remove" style="padding: 1px solid white; cursor:pointer; background-color: red; width: 100px; text-align: center;">REMOVE</div> -->
 				</div>
-				<div class="col-xs-2"><input type="text" name="name" id="name" /></div>
-				<div class="col-xs-4"><input type="text" name="qty" id="qty" /></div>
 			</div>
 
 			<a id="sub" href="#">FINISH TRANSACTION!</a>	

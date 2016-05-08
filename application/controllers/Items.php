@@ -76,9 +76,13 @@ class Items extends CI_Controller{
     }
 
     public function verify_item(){
-        $this->load->model('Items_model');
-        $item_code = $this->input->post('data');
-        return $this->Items_model->item_validation($item_code);  
+        if (isset($_POST['type'])) {
+          $this->load->model('nodes_m');
+          $data['ajax_req'] = TRUE;
+          $data['node_list'] = $this->nodes_m->get_node_by_code($_POST['type']);
+
+          $this->load->view('ajax_items',$data);
+        }
     }
 }
 ?>

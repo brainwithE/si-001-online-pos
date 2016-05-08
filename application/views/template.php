@@ -46,11 +46,43 @@
 				/*ajax_articles();
 				ajax_images();
 				ajax_gallery();*/
-				ajax_suggest();
-				ajax_suggest_code();
+				/*ajax_suggest();
+				ajax_suggest_code();*/
+
+				var barcode="";
+			    $(document).keydown(function(e) {
+
+			        var code = (e.keyCode ? e.keyCode : e.which);
+			        if(code==13)// Enter key hit
+			        {
+			            alert(barcode);
+			            var username = $('#name').val();
+						$('#code').val(''); //for singular search functions
+						$.ajax({
+							url: "suggest-more-data-code",
+							async: false,
+							type: "POST",
+							data: "type="+barcode,
+							dataType: "html",
+							success: function(data) {
+								$('#ajax-content-container').html(data);
+								barcode="";
+							}
+						})     	
+						return false;			        
+					}
+			        else if(code==9)// Tab key hit
+			        {
+			               	
+			        }
+			        else
+			        {
+			            barcode=barcode+String.fromCharCode(code);
+			        }
+			    });
 			});
 
-			function ajax_suggest(){
+			/*function ajax_suggest(){
 				$('#name').on('input', function() {
 					var username = $('#name').val();
 					$('#code').val(''); //for singular search functions
@@ -82,7 +114,7 @@
 						}
 					})
 				});
-			}
+			}*/
 								  
 			/*function ajax_articles() {
 				$('.show-articles').click(function () {

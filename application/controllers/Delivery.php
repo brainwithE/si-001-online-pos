@@ -96,5 +96,15 @@ class Delivery extends CI_Controller{
         $this->load->view('delivery-item-view',$data);
         $this->load->view('footer');
     }
+
+    function deliver_more_data() {
+        if (isset($_POST['type'])) {
+          $this->load->model('nodes_m');
+          $data['ajax_req'] = TRUE;
+          $data['node_list'] = $this->nodes_m->get_node_by_code($_POST['type']);
+
+          $this->load->view('ajax_items',$data);
+        }
+    }
 }
 ?>

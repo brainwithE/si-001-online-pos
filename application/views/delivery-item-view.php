@@ -10,11 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 					<!--The overwatch Main element Container or MEC-->
 					<div class="overwatch-mec mec-income">
-					<div class="col-md-3 total-label total-label-bank">Delivery Transaction ID: --</div><div class="col-md-6 total-amount"> <?php echo $dt_id; ?></div>
+					<div class="col-md-6 total-label total-label-bank">Delivery Transaction ID: -- <?php echo $dt_id; ?></div><div class="col-md-3 total-amount"></div>
 					
 
 						<div class="col-xs-12">
-							
 
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-1"></div>

@@ -21,7 +21,7 @@
 			
 			<div class="records-section"></div>
 
-			<div class="row table-entries add-delivery-form">
+			<div class="row add-delivery-form">
 				<div class="col-xs-2">
 					<div id="add" style="padding: 1px solid white; cursor:pointer; background-color: green; width: 100px; text-align: center;">ADD ITEM</div>
 					<!-- <div id="remove" style="padding: 1px solid white; cursor:pointer; background-color: red; width: 100px; text-align: center;">REMOVE</div> -->

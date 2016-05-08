@@ -7,7 +7,8 @@
 
 		<?php if (!isset($ajax_req)): ?>
 
-			<div class="col-xs-2"><input type="text" name="name" id="name" /></div>
+			<div class="col-xs-2"><input type="text" name="name" id="name" placeholder="Search Name" /></div>
+			<div class="col-xs-2"><input type="text" name="name" id="code" placeholder="Search Code" /></div>
  
 			<!-- <div class="show-gallery">
 				View only Gallery
@@ -25,11 +26,13 @@
 					<tr>
 						<th>Title</th>
 						<th>Type</th>
+						<th>Price</th>
 					</tr>
 					<?php foreach ($node_list as $key=>$value): ?>
 					<tr>
 						<td><?php print $value->item_id; ?></td>
-						<td width="80%"><?php print ucfirst($value->item_name); ?></td>
+						<td width="40%"><?php print ucfirst($value->item_name); ?></td>
+						<td width="40%"><?php print ucfirst($value->item_price); ?></td>
 					</tr>
 					<?php endforeach; ?>
 				</table>
@@ -44,16 +47,35 @@
 				ajax_images();
 				ajax_gallery();*/
 				ajax_suggest();
+				ajax_suggest_code();
 			});
 
 			function ajax_suggest(){
 				$('#name').on('input', function() {
 					var username = $('#name').val();
+					$('#code').val(''); //for singular search functions
 					$.ajax({
 						url: "suggest-more-data",
 						async: false,
 						type: "POST",
 						data: "type="+username,
+						dataType: "html",
+						success: function(data) {
+							$('#ajax-content-container').html(data);
+						}
+					})
+				});
+			}
+
+			function ajax_suggest_code(){
+				$('#code').on('input', function() {
+					var code = $('#code').val();
+					$('#name').val(''); //for singular search functions
+					$.ajax({
+						url: "suggest-more-data-code",
+						async: false,
+						type: "POST",
+						data: "type="+code,
 						dataType: "html",
 						success: function(data) {
 							$('#ajax-content-container').html(data);

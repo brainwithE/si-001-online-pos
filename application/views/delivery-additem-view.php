@@ -21,13 +21,19 @@
 			
 			<div class="records-section"></div>
 
-			<div class="row table-entries add-delivery-form">
+			<div id="ajax-content-container">
+						 
+			</div>
+
+			<div class="row add-delivery-form">
 				<div class="col-xs-2">
 					<div id="add" style="padding: 1px solid white; cursor:pointer; background-color: green; width: 100px; text-align: center;">ADD ITEM</div>
 					<!-- <div id="remove" style="padding: 1px solid white; cursor:pointer; background-color: red; width: 100px; text-align: center;">REMOVE</div> -->
 				</div>
 				<div class="col-xs-2"><input type="text" name="name" id="name" /></div>
 				<div class="col-xs-4"><input type="text" name="qty" id="qty" /></div>
+				<div class="col-xs-2"><input type="text" name="name2" id="name2" placeholder="Search Name" /></div>
+				<div class="col-xs-2"><input type="text" name="code" id="code" placeholder="Search Code" /></div>
 			</div>
 
 			<a id="submit" href="#">REQUEST DELIVERY!</a>	
@@ -85,7 +91,6 @@
 								$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
 								eachctr++;
 								totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
-								alert(totalQuantity);
 							});
 					   },
 					   error: function(xhr, status, error) {
@@ -113,6 +118,38 @@
 				});
 
 			});
+
+
+				$('#name2').on('input', function() {
+					var username = $('#name2').val();
+					/*$('#code').val('');*/ //for singular search functions
+					$.ajax({
+						url: "suggest-more-data",
+						async: false,
+						type: "POST",
+						data: "type="+username,
+						dataType: "html",
+						success: function(data) {
+							$('#ajax-content-container').html(data);
+						}
+					})
+				});
+		
+				$('#code').on('input', function() {
+					var code = $('#code').val();
+					/*$('#name').val('');*/ //for singular search functions
+					$.ajax({
+						url: "suggest-more-data-code",
+						async: false,
+						type: "POST",
+						data: "type="+code,
+						dataType: "html",
+						success: function(data) {
+							$('#ajax-content-container').html(data);
+						}
+					})
+				});
+			
 
 		</script>
 

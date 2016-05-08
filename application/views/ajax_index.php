@@ -17,11 +17,13 @@
 		<tr>
 			<th>Title</th>
 			<th>Type</th>
+			<th>Price</th>
 		</tr>
     	<?php foreach ($node_list as $key=>$value): ?>
 		<tr>
 			<td><?php print $value->item_id; ?></td>
-			<td width="80%"><?php print ucfirst($value->item_name); ?></td>
+			<td width="40%"><?php print ucfirst($value->item_name); ?></td>
+			<td width="40%"><?php print ucfirst($value->item_price); ?></td>
 		</tr>
     	<?php endforeach; ?>
   </table>

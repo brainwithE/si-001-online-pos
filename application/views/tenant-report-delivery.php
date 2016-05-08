@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="col-xs-1">Quantity</div>
 								<div class="col-xs-2">Date Requested</div>
 								<div class="col-xs-2">Status</div>
-								<div class="col-xs-2">Date Approved</div>	
+								<div class="col-xs-2">Date Approved</div>		
 							</div>
 							<?php
 								/*$total_earnings = 0;
@@ -49,17 +49,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									$dt_status = $row['dt_status'];
 									$dt_date_approved = $row['dt_approve_date'];
 							?>
-								<a class="delivery-links" href='<?php echo base_url() ?>tenant/view_dt_details/<?php echo $dt_code ?>'>	
 								<div class="row table-entries table-entries-income">
+								<a class="delivery-links" href='<?php echo base_url() ?>tenant/view_dt_details/<?php echo $dt_code ?>'>	
 									<div class="col-xs-2"><?php echo $dt_code;?></div>
 									<div class="col-xs-3"><?php echo $dt_supplier;?></div>
 									<div class="col-xs-1"><?php echo 'x'.$dt_quantity;?></div>
 									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
 									<div class="col-xs-2"><?php if($dt_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
 									
-									<div class="col-xs-2"><?//php if($dt_date_approved!='0000-00-00'){echo date("M j, Y", strtotime($dt_date_approved));}else{echo '--';} ?></div>
-								</div>
+									<div class="col-xs-2"><?php if($dt_date_approved!='0000-00-00'){echo date("M j, Y", strtotime($dt_date_approved));}else{echo '--';} ?></div>
 								</a>
+								</div>
 
 							<?php } ?>
 							

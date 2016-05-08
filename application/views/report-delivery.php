@@ -24,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									//echo form_close();
 								?>
 							</div> -->
-
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2">Delivery Code</div>
 								<div class="col-xs-3">Supplier Name</div>
@@ -57,7 +56,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="col-xs-1"><?php echo 'x'.$dt_quantity;?></div>
 										<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
 										<div class="col-xs-2"><?php if($dt_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
-										<div class="col-xs-2"><?php if($dt_date_approved!='0000-00-00'){echo date("M j, Y", strtotime($dt_date_approved));}else{echo '--';} ?></div>	
+										<div class="col-xs-2">
+											<a href='<?php echo base_url() ?>Admin/approved_delivery/<?php echo $dt_code ?>'><i class="fa fa-check-square" aria-hidden="true"></i> Approve</a>										
+									</div>	
 									</a>
 								</div>
 

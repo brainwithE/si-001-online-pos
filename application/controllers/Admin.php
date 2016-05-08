@@ -2,17 +2,37 @@
 
 class Admin extends CI_Controller{
 	
-	public function index(){
-        $this->view_sales_report(); 
-	}
+	public function index(){      
+
+        $user_type =  $this->session_type();
+
+        if ($user_type == 1){
+            $this->view_sales_report();
+        } elseif ($user_type == 2) {
+             redirect('tenant');
+        } elseif ($user_type == 3) {
+             redirect('cashier');
+        }
+
+    }
+
+    public function session_type(){        
+        return $_SESSION["type"];       
+    }
+
+    public function session_name(){
+        return $this->session->userdata('name'); 
+    }
 
     public function view_sales_report() {
         $this->load->model('Sales_model');
                 
         $sale_report = $this->Sales_model->get_sales();  
-        $packet['sales'] = $sale_report;        
+        $packet['sales'] = $sale_report;       
+
+        $data['sessions'] = $this->session_name(); 
     
-        $this->load->view('header');
+        $this->load->view('header', $data);
         $this->load->view('report-sales', $packet);
         $this->load->view('footer');
     }
@@ -47,7 +67,9 @@ class Admin extends CI_Controller{
         $item_list = $this->Items_model->get_items();  
         $packet['item'] = $item_list;
         
-        $this->load->view('header');
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('header', $data);
         $this->load->view('report-item', $packet);
         $this->load->view('footer');
     }
@@ -57,8 +79,10 @@ class Admin extends CI_Controller{
         
         $delivery_report = $this->Delivery_model->get_delivery_report();  
         $packet['delivery_transaction'] = $delivery_report;
+
+        $data['sessions'] = $this->session_name();
         
-        $this->load->view('header');
+        $this->load->view('header',$data);
         $this->load->view('report-delivery', $packet);
         $this->load->view('footer');
     }
@@ -70,7 +94,9 @@ class Admin extends CI_Controller{
         $packet['pullout'] = $pullout_list;
         //$packet['supplier_name'] = $this->get_supplier_name($pullout_list);
         
-        $this->load->view('header');
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('header', $data);
         $this->load->view('report-pullout', $packet);
         $this->load->view('footer');
     }
@@ -78,7 +104,9 @@ class Admin extends CI_Controller{
     public function delivery_notification() {
         //insert model and functions here
 
-        $this->load->view('header');
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('header', $data);
         $this->load->view('delivery-notification');
         $this->load->view('footer');
     }
@@ -150,8 +178,10 @@ class Admin extends CI_Controller{
         
         $delivery_report = $this->Delivery_model->get_specific_delivery($data['dt_id']);  
         $data['delivery_transaction'] = $delivery_report;
+
+        $data['sessions'] = $this->session_name();
         
-        $this->load->view('header');
+        $this->load->view('header', $data);
         $this->load->view('delivery-item-view',$data);
         $this->load->view('footer');
     }

@@ -38,7 +38,7 @@
 				<!-- menu list --> 
 				<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
 				    <ul>
-				    	<li><a href="<?php echo base_url(); ?>" class="menu-title"><i class="fa fa-crosshairs"></i>ADMIN</a></li>				        
+				    	<li><a href="<?php echo base_url(); ?>admin" class="menu-title"><i class="fa fa-crosshairs"></i>Hi, <?php echo $sessions;?></a></li>				        
 				        <!---POS-->
 						<li><a href="<?php echo base_url() ?>admin/report-inventory">INVENTORY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-sales">SALES REPORT</a></li>

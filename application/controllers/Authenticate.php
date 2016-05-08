@@ -63,8 +63,14 @@ class Authenticate extends CI_Controller {
         }       
     }
 
+    public function session_name(){        
+        return $this->session->userdata('name');   
+    }
+
     public function create_account(){
-        $this->load->view('header');
+    	$data['sessions'] = $this->session_name();
+
+        $this->load->view('header',$data);
         $this->load->view('create-account');
         $this->load->view('footer');
     }
@@ -76,7 +82,9 @@ class Authenticate extends CI_Controller {
         $packet['users'] = $user_list;
         $packet['groups'] = $group_list;
 
-        $this->load->view('header');
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('header',$data);
         $this->load->view('report-users', $packet);
         $this->load->view('footer');
 

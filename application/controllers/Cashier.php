@@ -4,7 +4,7 @@ class Cashier extends CI_Controller{
 	
 	public function index(){      
 
-        $user_type =  $this->session_road();
+        $user_type =  $this->session_type();
 
         if ($user_type == 3){
             $this->view_sales_report();
@@ -16,8 +16,12 @@ class Cashier extends CI_Controller{
 
     }
 
-    public function session_road(){        
-        return $_SESSION["type"];       
+    public function session_type(){        
+        return $this->session->userdata('type');    
+    }
+
+    public function session_name(){
+        return $this->session->userdata('name'); 
     }
 
     public function view_sales_report() {
@@ -27,8 +31,10 @@ class Cashier extends CI_Controller{
                 
         $sale_report = $this->Sales_model->get_daily_sales();  
         $packet['sales'] = $sale_report;        
+
+        $data['sessions'] = $this->session_name();
     
-        $this->load->view('cashier-header');
+        $this->load->view('cashier-header',$data);
         $this->load->view('report-sales', $packet);
         $this->load->view('footer');    
     }
@@ -60,7 +66,9 @@ class Cashier extends CI_Controller{
         $sales_report = $this->Sales_model->get_sales();  
         $packet['sales_transaction'] = $sales_report;
         
-        $this->load->view('header');
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('header', $data);
         $this->load->view('sales-add-view', $packet);
         $this->load->view('footer');
     }

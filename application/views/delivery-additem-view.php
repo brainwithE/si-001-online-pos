@@ -28,18 +28,7 @@
 						 
 			</div>
 
-			<!-- <div id="add-delivery-form" class="row add-delivery-form">
-				<div class="col-xs-2">
-					<div id="add" style="padding: 1px solid white; cursor:pointer; background-color: green; width: 100px; text-align: center;">ADD ITEM</div>
-				</div>
-				<div class="col-xs-2"><input type="text" name="name" id="name" /></div>
-				<div class="col-xs-4"><input type="text" name="qty" id="qty" /></div>
-				<div class="col-xs-2"><input type="text" name="name2" id="name2" placeholder="Search Name" /></div>
-				<div class="col-xs-2"><input type="text" name="code" id="code" placeholder="Search Code" /></div>
-			</div> -->
-
-			<a id="submit" href="#">REQUEST DELIVERY!</a>	
-		
+			<a id="submit" href="#">REQUEST DELIVERY!</a>
 		</div>
 
 		<script type="text/javascript">
@@ -72,7 +61,6 @@
 
 				var barcode="";
 			    $(document).keydown(function(e) {
-
 			        var code = (e.keyCode ? e.keyCode : e.which);
 			        if(code==13)// Enter key hit
 			        {
@@ -111,42 +99,10 @@
 						   	}
 						});
 						      	
-						return false;			        }
+						return false;			        
+					}
 			        else if(code==9)// Tab key hit
 			        {
-			            /*alert(barcode);
-			            ItemArray.push({
-							ItemCode : '201602000000001', 
-							ItemName : $('.add-delivery-form #name').val(),
-							ItemQuantity : $('.add-delivery-form #qty').val()
-						});
-							 
-						$('.records-section').html('');
-
-						var eachctr = 0;
-						totalQuantity = 0;
-
-						$.ajax({
-						  	type: 'GET',
-						   	url: 'suggest-more-data-code',
-							data: "type="+$('.add-delivery-form #name').val(),
-							dataType: "html",
-						   	success: function( data ) {
-
-								$('#ajax-content-container').append(data);
-
-								alert(data.Result);
-						   	},
-						   	error: function(xhr, status, error) {
-						      	// check status && error
-						      	alert(error);
-						   	}
-						});
-
-						$('.add-delivery-form #name').val('');
-						$('.add-delivery-form #qty').val('');
-						barcode="";       	
-						return false;*/
 			        }
 			        else
 			        {
@@ -154,16 +110,7 @@
 			        }
 			    });
 
-				$('#remove').click(function(){
-
-					ItemArray.splice(0,1);
-					removeItem();
-
-					return false;
-				});
-
 				$("#add").click(function() {
-
 					ItemArray.push({
 						ItemCode : '201602000000001', 
 						ItemName : $('.add-delivery-form #name').val(),
@@ -195,25 +142,21 @@
 					$('.add-delivery-form #name').val('');
 					$('.add-delivery-form #qty').val('');
 						          	
-					return false;
-						          
+					return false;	          
 				});
 
 				$("#submit").click(function (){
-
 					$.post('add-delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
 						alert('requested delivery successful!');
 					});
 
 					window.location.href = "<?php echo site_url('tenant/report-delivery'); ?>";
 					return false;
-
 				});
 
 			});
 
-
-				$('#name2').on('input', function() {
+			$('#name2').on('input', function() {
 					var username = $('#name2').val();
 					/*$('#code').val('');*/ //for singular search functions
 					$.ajax({
@@ -226,9 +169,9 @@
 							$('#ajax-content-container').html(data);
 						}
 					})
-				});
+			});
 		
-				$('#code').on('input', function() {
+			$('#code').on('input', function() {
 					var code = $('#code').val();
 					/*$('#name').val('');*/ //for singular search functions
 					$.ajax({
@@ -241,9 +184,7 @@
 							$('#ajax-content-container').html(data);
 						}
 					})
-				});
-			
-
+			});
 		</script>
 
 	</div>

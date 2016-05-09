@@ -150,6 +150,12 @@ button{
 	position: fixed;
 	transition: ease all 0.25s;
 }
+
+#submit{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
 .call-links{
 	background-color: #0008ba;
 	color: white !important;

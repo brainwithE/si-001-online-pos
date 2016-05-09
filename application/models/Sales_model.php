@@ -75,7 +75,9 @@ class Sales_model extends CI_model{
 			$this->db->insert('pos_sales', $data[$ctr]);
 		    $ctr++;
 		}
+
+		return true;
 	}
-	
+
 }
 ?>

@@ -75,61 +75,37 @@ class Cashier extends CI_Controller{
 
     public function add_sales_transaction(){
 
-        $supplier = '201605000000003'; //enter supplier type here 
+        $supplier = '201605000000001'; //enter supplier type here 
         $current_date = date('Y-m-d');
 
         $items = $this->input->post('data');
         $quant = $this->input->post('qty');
 
-        $this->load->model('Sales_model');
-        $last_id = $this->Sales_model->add_sales_transaction($supplier, $quant); 
-
-        foreach( $data as $row ) {
-            $this->db->insert('pos_sales_transaction', $data[$ctr]);
-            $ctr++;
-        }
-
         $data=array();  
+
+        $this->load->model('Items_model');
 
         foreach($items as $key => $csm)
         {
             $icode = $items[$key]['ItemName'];
             $iqty = $items[$key]['ItemQuantity'];
 
-            $item_price = $this->get_item_price($icode);
-            $total_price = $this->get_total_price($icode,$iqty);
+            
+            $result = $this->Items_model->get_item_price($icode);
 
             $data[$key]['sales_id'] = '';
             $data[$key]['sales_item'] = $icode;
             $data[$key]['sales_quantity'] = $iqty;
-            $data[$key]['sales_total'] = $total_price;
+            $data[$key]['sales_total'] = $result->item_price;
             $data[$key]['sales_discount'] = '0';
             $data[$key]['sales_date'] = $current_date;
-            $data[$key]['sales_supplier'] = '2010019576';
-            $data[$key]['sales_st'] = $last_id;
+            $data[$key]['sales_supplier'] = $supplier;
+            $data[$key]['sales_st'] = '0';
         }
 
-        /*$this->Delivery_model->add_delivery_transaction($data);  */
-        $this->Sales_model->add_sales_items($data);
-        redirect('cashier');
-
-        /*line*/
-
-        /*$item_code = $this->input->post('item_code');
-        $item_quantity = $this->input->post('item_quantity');        
-        $sales_total_price = $this->get_total_price($item_code, $item_quantity);
-        
-        
-        $data = array (
-            'sales_item_code' => $item_code,
-            'sales_item_quantity' => $item_quantity,
-            'sales_total_price' => $sales_total_price
-        );
-
         $this->load->model('Sales_model');
-        $sales_id = $this->Sales_model->add_sales_transaction($data);*/  
- 
-        redirect('cashier/report-sales');
+        $this->Sales_model->add_sales_items($data);
+        redirect('report-sales');
     }
 
     

@@ -113,11 +113,6 @@ class Tenant extends CI_Controller{
         $this->load->model('Delivery_model');
         $last_id = $this->Delivery_model->add_delivery_transaction($supplier, $quant); 
 
-        foreach( $data as $row ) {
-            $this->db->insert('pos_delivery', $data[$ctr]);
-            $ctr++;
-        }
-
         $data=array();  
 
         foreach($items as $key => $csm)

@@ -1,4 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+<script>
+	function printPage(){
+		window.print();
+	}
+</script>
 	
 	<div class="container">
 
@@ -17,11 +23,14 @@
 			?>
 				<div class="table-bank-row">
 					<div class="col-xs-8 table-end-general table-end table-bank">
-							<div class="col-md-12 total-label total-label-bank">TOTAL SALES -- <span class="total-amount"><?php echo number_format($total, 2, '.',','); ?></span>
+							<div class="col-md-6 total-label total-label-bank">TOTAL SALES -- <span class="total-amount"><?php echo number_format($total, 2, '.',','); ?></span>
+							</div>
+							<div class="col-md-6 total-label total-label-bank">
 							</div>
 					</div>
 					<div class="col-xs-4">
 						<p style="text-align: left;">This is a daily report. Today is: <?php echo $today = date('F j, Y');?></p>
+						<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 					</div>
 				</div>
 				

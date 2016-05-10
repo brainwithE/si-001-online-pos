@@ -160,13 +160,16 @@ button{
 	background-color: #0008ba;
 	color: white !important;
 	padding: 5px;
-	border: 0px;
+	text-align: center;
+	border: 1px solid #0008ba;
+	margin-top: 1px;
 }
 .call-links:hover{
 	background-color: white;
 	color: #0008ba !important;
 	padding: 5px;
 	border: 1px solid #0008ba;
+	cursor: pointer;
 }
 .action-buttons:hover, .action-buttons:active{
 	cursor: pointer;
@@ -1012,6 +1015,9 @@ button{
     .overwatch-mec{
     	margin-top: 0px;
     	margin-bottom: 0px;
+    }
+    .call-links{
+    	display: none;
     }
     .table-filter{
     	display: none;

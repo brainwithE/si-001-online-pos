@@ -12,10 +12,7 @@ class Admin extends CI_Controller{
     }
 
 
-	public function index(){      
-        /*echo "<pre>";
-        print_r($this->session->all_userdata());*/
-
+	public function index(){
         if($this->session->userdata('loggedin')==1 ){
             $this->view_sales_report();
         }         
@@ -215,5 +212,53 @@ class Admin extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function view_item_category_list(){
+        $this->load->model('Items_model');
+
+        $data['category_list'] = $this->Items_model->get_item_category();
+
+        $data['sessions'] = $this->session_name();
+        
+        $this->load->view('header', $data);
+        $this->load->view('report-item-category',$data);
+        $this->load->view('footer');
+    }
+
+    public function add_item_category(){
+        $category_name = $this->input->post('item_category');
+
+        $this->load->model('Items_model');
+        $this->Items_model->add_item_category($category_name);
+
+        $this->view_item_category_list();
+
+    }
+
+    public function activate_category(){
+        $category_id = $this->uri->segment(3);
+
+        $this->load->model('Items_model');
+        $this->Items_model->activate_category($category_id);
+
+        redirect('admin/report-item-category');
+
+    }
+
+    public function deactivate_category(){
+        $category_id = $this->uri->segment(3);
+
+        $this->load->model('Items_model');
+        $this->Items_model->deactivate_category($category_id);
+
+        redirect('admin/report-item-category');
+    }
+
+    public function delete_category(){
+        $category_id = $this->uri->segment(3);
+        $this->load->model('Items_model');
+        $this->Items_model->delete_category($category_id);
+
+        redirect('admin/report-item-category');
+    }
 }
 ?>

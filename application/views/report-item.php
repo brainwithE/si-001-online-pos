@@ -32,11 +32,12 @@ function itemBarcode(id){
 						<div class="col-xs-12">
 
 							<div class="row table-title table-title-general table-title-income">
-								<div class="col-xs-2">Item Code</div>
+								<div class="col-xs-2">Item Code</div>								
+								<div class="col-xs-1">Qty</div>								
+								<div class="col-xs-3">Item Name</div>
+								<div class="col-xs-2">Price</div>	
 								<div class="col-xs-2">Item Supplier</div>
-								<div class="col-xs-4">Item Name</div>
-								<div class="col-xs-2">Price</div>
-								<div class="col-xs-2">Stock on Hand</div>	
+								<div class="col-xs-2">Remarks</div>
 							</div>
 							<?php
 								foreach($item->result_array() as $row){ 
@@ -49,10 +50,11 @@ function itemBarcode(id){
 							?>
 								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code?>>
 									<div class="col-xs-2"><?php echo $item_code;?></div>
+									<div class="col-xs-1"><?php echo $item_stock;?></div>									
+									<div class="col-xs-3"><?php echo $item_name;?></div>
+									<div class="col-xs-2"><?php echo $item_price;?></div>									
 									<div class="col-xs-2"><?php echo $item_supplier;?></div>
-									<div class="col-xs-4"><?php echo $item_name;?></div>
-									<div class="col-xs-2"><?php echo $item_price;?></div>
-									<div class="col-xs-2"><?php echo $item_stock;?></div>	
+									<div class="col-xs-2"></div>
 								</div>
 	
 							<?php } ?>

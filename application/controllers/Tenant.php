@@ -11,7 +11,7 @@ class Tenant extends CI_Controller{
     }
 	
 	public function index(){      
-        $this->view_sales_report();
+        $this->view_sales_report();        
 	}
 
     public function session_type(){        
@@ -33,6 +33,7 @@ class Tenant extends CI_Controller{
                 
         $sale_report = $this->Sales_model->get_supplier_sales($supplier_id);  
         $packet['sales'] = $sale_report;   
+        $data['category_list'] = $this->get_item_category();
 
         $data['sessions'] = $this->session_name();
     
@@ -69,7 +70,8 @@ class Tenant extends CI_Controller{
         
         $item_list = $this->Items_model->get_supplier_inventory($supplier_id);  
         $packet['item'] = $item_list;
-        
+        $data['category_list'] = $this->get_item_category();
+
         $data['sessions'] = $this->session_name();
 
         $this->load->view('tenant-header', $data);
@@ -83,6 +85,7 @@ class Tenant extends CI_Controller{
         $packet['price'] = $this->get_item_price($id);
         
         $data['sessions'] = $this->session_name();
+        $data['category_list'] = $this->get_item_category();
 
         $this->load->view('tenant-header', $data);
         $this->load->view('item-barcode', $packet);
@@ -108,6 +111,7 @@ class Tenant extends CI_Controller{
         $packet['delivery_transaction'] = $delivery_report;
         
         $data['sessions'] = $this->session_name();
+        $data['category_list'] = $this->get_item_category();
 
         $this->load->view('tenant-header', $data);
         $this->load->view('delivery-additem-view', $packet);
@@ -164,6 +168,7 @@ class Tenant extends CI_Controller{
         $packet['delivery_transaction'] = $delivery_report;
         
         $data['sessions'] = $this->session_name();
+        $data['category_list'] = $this->get_item_category();
 
         $this->load->view('tenant-header', $data);
         $this->load->view('tenant-report-delivery', $packet);
@@ -179,6 +184,7 @@ class Tenant extends CI_Controller{
         $packet['pullout'] = $pullout_list;        
         
         $data['sessions'] = $this->session_name();
+        $data['category_list'] = $this->get_item_category();
 
         $this->load->view('tenant-header', $data);
         $this->load->view('tenant-report-pullout', $packet);
@@ -271,10 +277,24 @@ class Tenant extends CI_Controller{
         $data['delivery_transaction'] = $delivery_report;
         
         $data['sessions'] = $this->session_name();
+        $data['category_list'] = $this->get_item_category();
 
         $this->load->view('tenant-header', $data);
         $this->load->view('tenant-delivery-item-view',$data);
         $this->load->view('footer');
+    }
+
+    public function get_item_category(){
+        $this->load->model('Items_model');
+        //$data['category_list'] = $this->Items_model->get_item_category();
+
+        $list = $this->Items_model->get_item_category();
+
+        return $list;
+        /*foreach ($list ->result_array() as $row) {
+            echo $row['category_id'];
+            echo $row['category_name'];
+        }*/
     }
 }
 ?>

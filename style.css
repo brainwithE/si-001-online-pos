@@ -268,6 +268,15 @@ button{
   transition: all 0.3s;
 }
 
+/* BARCODE STYLE */
+.barcode-row{
+	margin-top: 30px;
+}
+
+.print-barcode{
+	display: none;
+}
+
 /* GENERAL STYLES FOR ALL MENUS STARTS */
 
 .cbp-spmenu {
@@ -482,7 +491,7 @@ button{
 	padding: 10px;
 }
 .table-filter {
-	padding: 10px 50px !important;
+	padding: 10px 20px !important;
 	height: 60px;
 }
 .table-filter input{
@@ -1002,5 +1011,22 @@ button{
   	}
   	.table-entries{
   		font-size: 12px;
+  	}
+
+  	.action-buttons{
+  		display: none;
+  	}
+
+  	.print-barcode{
+  		display: block;
+  	}
+  	.print-back{
+  		display: none;
+  	}
+  	.barcodes{
+  		float: left;
+  		margin-top: 20px;
+  		margin-left: -10px;
+  		position: relative;
   	}
 }

@@ -12,8 +12,12 @@ $(document).ready(function(){
         $('.edit-item').hide();
         $('.item-details').show();
     });
+
 });
 
+function itemBarcode(id){
+	$("#bcTarget"+id).barcode(id, "code39");
+}
 </script>
 
 	<div class="container">
@@ -43,7 +47,7 @@ $(document).ready(function(){
 									$item_stock = $row['item_stock'];
 									$item_category = $row['item_category'];
 							?>
-								<div class="row table-entries table-entries-income table-entries-income-int" data-toggle="modal" <?php echo "data-target=#Item".$item_code?>>
+								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code?>>
 									<div class="col-xs-2"><?php echo $item_code;?></div>
 									<div class="col-xs-2"><?php echo $item_supplier;?></div>
 									<div class="col-xs-4"><?php echo $item_name;?></div>
@@ -78,6 +82,12 @@ $(document).ready(function(){
 						                          <p><span>Supplier:</span> <?php echo $item_supplier;?></p>
 						                          <p><span>Price:</span> P<?php echo $item_price;?></p>
 						                          <p><span>Stocks available:</span> <?php echo $item_stock;?></p>
+
+						                          <div class="row barcode-row" style="margin-top: 30px;">
+						                          	<div class="col-xs-6" id="bcTarget<?php echo $item_code; ?>"></div>
+						                          	<div class="col-xs-6"><a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a></div>
+						                          </div>
+
 						                          <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>
 						                        </div>
 						                    </div>
@@ -99,6 +109,7 @@ $(document).ready(function(){
 
 							                        	<a class="btn btn-back">Back</a>
 							                        	<input type="submit" class="btn submit-button" value="Submit" />
+
 							                      <?php echo form_close();?>
 						                        </div>
 					                        </div>

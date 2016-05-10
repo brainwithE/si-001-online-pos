@@ -74,6 +74,18 @@ class Tenant extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function print_barcode($id){
+        $packet['item'] = $id;
+        $packet['supp'] = $this->get_item_supplier($id);
+        $packet['price'] = $this->get_item_price($id);
+        
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('tenant-header', $data);
+        $this->load->view('item-barcode', $packet);
+        $this->load->view('footer');
+    }
+
     public function add_delivery(){
         /*$item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
@@ -221,6 +233,20 @@ class Tenant extends CI_Controller{
         $query = $this->Pullout_model->get_pullout_item($pullout_id);
 
         return $query;
+    }
+
+    public function get_item_supplier($item_code) {
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_supplier($item_code);
+        
+        return $result->item_supplier;        
+    }
+
+    public function get_item_price($item_code) {
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_price($item_code);
+        
+        return $result->item_price;        
     }
 
 

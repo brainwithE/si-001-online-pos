@@ -28,7 +28,7 @@
 			<div class="row">
 				<!-- FILTER FUNCTION -->
 				<div class="col-xs-12 table-filter">
-				<?php echo form_open('filter-month'); ?>
+				<?php echo form_open('cashier/filter-month'); ?>
 					<label>Filter By Date: </label>
 					<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
 					<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">
@@ -40,8 +40,7 @@
 			</div>
 
 			<div class="row table-title table-title-general table-title-income">
-				<div class="col-xs-1">Qty</div>
-				<div class="col-xs-4">Item Name</div>
+				<div class="col-xs-5">Item Name</div>
 				<div class="col-xs-2">Amount</div>
 				<div class="col-xs-2">Deduction</div>
 				<div class="col-xs-3">Net Sales</div>	
@@ -60,8 +59,7 @@
 			?>
 								
 				<div class="row table-entries table-entries-income">
-					<div class="col-xs-1"><?php echo $sales_quantity;?></div>
-					<div class="col-xs-4"><?php echo $sales_item_name;?></div>
+					<div class="col-xs-5"><?php echo $sales_item_name;?></div>
 					<div class="col-xs-2"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 					<div class="col-xs-2"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
 					<div class="col-xs-3"><?php echo number_format($sales_net, 2, '.',','); ?></div>	

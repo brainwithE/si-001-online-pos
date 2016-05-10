@@ -112,6 +112,22 @@ class Cashier extends CI_Controller{
        return $stock;
     }
 
+    public function filter_month(){
+            $this->load->model('Sales_model');       
+
+            $date_start = $this->input->post('filter_start_date');
+            $date_end = $this->input->post('filter_end_date');
+
+            $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
+            $packet['sales'] = $income;
+
+            $data['sessions'] = $this->session_name();
+            
+            $this->load->view('cashier-header', $data);
+            $this->load->view('report-sales', $packet);
+            $this->load->view('footer');
+    }
+
     public function get_item_stock($item_code){
         $this->load->model('Items_model');
         $result = $this->Items_model->get_item_stock($item_code);

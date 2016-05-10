@@ -17,7 +17,7 @@
 
 
 		<div class="overwatch-mec mec-income">
-		admin
+		tenant
 			
 			<div class="table-bank-row">
 						<div class="col-xs-9 table-end-general table-end table-bank">

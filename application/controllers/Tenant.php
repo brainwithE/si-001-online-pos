@@ -33,7 +33,7 @@ class Tenant extends CI_Controller{
         $data['sessions'] = $this->session_name();
     
         $this->load->view('tenant-header', $data);
-        $this->load->view('report-sales', $packet);
+        $this->load->view('tenant-report-sales', $packet);
         $this->load->view('footer');
     }
     
@@ -69,7 +69,7 @@ class Tenant extends CI_Controller{
         $data['sessions'] = $this->session_name();
 
         $this->load->view('tenant-header', $data);
-        $this->load->view('report-item', $packet);
+        $this->load->view('tenant-report-item', $packet);
         $this->load->view('footer');
     }
 

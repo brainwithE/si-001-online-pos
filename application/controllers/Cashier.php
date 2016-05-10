@@ -36,7 +36,7 @@ class Cashier extends CI_Controller{
         $data['sessions'] = $this->session_name();
     
         $this->load->view('cashier-header',$data);
-        $this->load->view('report-sales', $packet);
+        $this->load->view('cashier-report-sales', $packet);
         $this->load->view('footer');    
     }
 

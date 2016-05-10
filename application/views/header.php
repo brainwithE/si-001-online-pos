@@ -84,33 +84,17 @@
             </div>
 
             <script>
-            	
-            	$(function(){
+			    $(function(){
+			        $('body').on('submit', 'form', function(e){
+			           e.preventDefault();
 
-					$('#form_id').submit(function(event){
-					event.preventDefault();
-					var item_code = $('#item_code').val();
-					var item_quantity = $('#item_quantity').val();
-
-					$.ajax({
-					        type: 'POST',
-					        url: 'admin/pullout-item',
-					        data: {
-					         'item_code': item_code,
-					         'item_quantity': item_quantity
-
-					        },
-					        dataType: 'html',
-					        success: function(results){
-					             if(item_code=='' || item_code==null){
-					              $('.error_msg').html('error msg');
-					              return false;
-					             }
-					        }
-					  });
-
-
-					});
-
-				});
-            </script>
+			            $.ajax({
+			                type: "POST",
+			                url: "<?php echo site_url("bondform/save_form"); ?>",
+			                data: $(this).serialize();
+			                success: function(response){ $('#form_container').html(response); alert('Succes');},
+			                error: function(){alert('Error');}
+			            });     
+			        });
+			    });
+			</script>

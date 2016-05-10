@@ -29,7 +29,7 @@ class Sales_model extends CI_model{
 
 	function get_supplier_sales($supplier_id){			
 		$this->db->order_by("sales_id", "desc");
-		$this->db->select('sales_id, pos_item.item_name, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st');
+		$this->db->select('sales_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st');
 		$this->db->from('pos_sales');		
 		$this->db->where('sales_supplier =', $supplier_id);		
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');

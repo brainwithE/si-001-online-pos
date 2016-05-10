@@ -10,8 +10,7 @@ class Admin extends CI_Controller{
             redirect('restricted');            
         }        
     }
-
-
+    
 	public function index(){
         if($this->session->userdata('loggedin')==1 ){
             $this->view_sales_report();
@@ -89,8 +88,8 @@ class Admin extends CI_Controller{
         
         $data['sessions'] = $this->session_name();
 
-        $this->load->view('header', $data);
-        $this->load->view('report-item', $packet);
+        $this->load->view('admin-header', $data);
+        $this->load->view('admin-report-item', $packet);
         $this->load->view('footer');
     }
 
@@ -103,7 +102,7 @@ class Admin extends CI_Controller{
         $data['sessions'] = $this->session_name();
         
         $this->load->view('header',$data);
-        $this->load->view('report-delivery', $packet);
+        $this->load->view('admin-report-delivery', $packet);
         $this->load->view('footer');
     }
 
@@ -117,7 +116,7 @@ class Admin extends CI_Controller{
         $data['sessions'] = $this->session_name();
 
         $this->load->view('header', $data);
-        $this->load->view('report-pullout', $packet);
+        $this->load->view('admin-report-pullout', $packet);
         $this->load->view('footer');
     }
 
@@ -150,9 +149,6 @@ class Admin extends CI_Controller{
      
             redirect('admin/report-pullout');
         }
-
-        
-
     }
 
     
@@ -177,8 +173,6 @@ class Admin extends CI_Controller{
         $this->Items_model->edit_item($data);  
  
         redirect('admin/report-inventory');
-
-
     }
 
     public function approved_delivery(){

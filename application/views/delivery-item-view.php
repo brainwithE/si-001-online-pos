@@ -1,10 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
-
-<!-- insert ponpon about content -->
-			
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 				<div class="container">
 
@@ -12,7 +6,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="overwatch-mec mec-income">
 					<div class="col-md-6 total-label total-label-bank">Delivery Transaction ID: -- <?php echo $dt_id; ?></div><div class="col-md-3 total-amount"></div>
 					
-
 						<div class="col-xs-12">
 
 							<div class="row table-title table-title-general table-title-income">
@@ -42,10 +35,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							
 						</div>
 
-						<!-- <div class="table-title table-end table-end-general table-end-income">
-								<div class="col-xs-6 col-sm-9 total-label">TOTAL EARNINGS</div>
-								<div class="col-xs-3 total-amount"><?php echo $total_earnings; ?></div>
-						</div> -->
 					</div><!-- MEC end -->
 
 				</div>

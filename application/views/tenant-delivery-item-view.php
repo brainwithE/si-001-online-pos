@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					
 
 						<div class="col-xs-12">
-							<div class="row">
+							<!-- <div class="row">
 								<?php
 									echo form_open('add-delivery-items');							
 								?>
@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<?php									
 									echo form_close();
 								?>
-							</div>
+							</div> -->
 
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-1"></div>

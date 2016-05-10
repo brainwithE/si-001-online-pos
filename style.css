@@ -481,7 +481,6 @@ button{
 	height: auto;
 	margin-top: 30px;
 	margin-bottom: 30px;
-	border: 1px solid #0008ba;
 	position: relative;
 }
 .overwatch-mec .col-xs-12 {
@@ -589,10 +588,8 @@ button{
 }
 
 .mec-income{
-	border: 1px solid #52ed18;
 }
 .table-title-income {
-	background-color: #52ed18;
 }
 .table-entries-income {
 	border-bottom: 0px;
@@ -605,29 +602,22 @@ button{
 }
 
 .mec-withdrawal{
-	border: 1px solid #ed5d18;
 }
 .table-title-withdrawal {
-	background-color: #ed5d18;
 }
 .table-entries-withdrawal {
-	border-bottom: 1px solid #ed5d18;
 } 
 .table-end-withdrawal {
 	color: #ed5d18;
 }
 
 .mec-expense{
-	border: 1px solid #ba0600;
 }
 .table-title-expense {
-	background-color: #ba0600;
 }
 .table-entries-expense {
-	border-bottom: 1px solid #ba0600;
 } 
 .table-end-expense {
-	color: #ba0600;
 }
 
 /* ADD PROJECTS */
@@ -923,10 +913,14 @@ button{
 	margin-right: auto;
 }
 
+.modal .head-contain{
+	margin-top: 0px;
+}
 .head-contain{	
     padding: 15px;
     background: #0008ba;
     color: white;    
+    margin-top: 10px;
 }
 
 .head-contain h4	{

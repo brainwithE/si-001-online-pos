@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<script>
+<script type="text/javascript">
 
 $(document).ready(function(){	
     $('.btn-edit').click(function(){
@@ -43,16 +43,17 @@ function printPage(){
 						<div class="col-xs-12">
 
 							<div class="row table-title table-title-general table-title-income">
-								<div class="col-xs-2">Item Code</div>
+								<div class="col-xs-2">Item Code</div>								
+								<div class="col-xs-1">Stock</div>								
+								<div class="col-xs-3">Item Name</div>
+								<div class="col-xs-2">Price</div>	
 								<div class="col-xs-2">Item Supplier</div>
-								<div class="col-xs-4">Item Name</div>
-								<div class="col-xs-2">Price</div>
-								<div class="col-xs-2">Stock on Hand</div>	
+								<div class="col-xs-2">Remarks</div>
 							</div>
 							<?php
 								foreach($item->result_array() as $row){ 
 									$item_code = $row['item_id'];
-									$item_supplier = $row['item_supplier'];
+									$item_supplier = $row['supplier_name'];
 									$item_name = $row['item_name'];
 									$item_price = number_format($row['item_price'],2,'.',',');
 									$item_stock = $row['item_stock'];
@@ -60,10 +61,11 @@ function printPage(){
 							?>
 								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code?>>
 									<div class="col-xs-2"><?php echo $item_code;?></div>
+									<div class="col-xs-1"><?php echo $item_stock;?></div>									
+									<div class="col-xs-3"><?php echo $item_name;?></div>
+									<div class="col-xs-2"><?php echo $item_price;?></div>									
 									<div class="col-xs-2"><?php echo $item_supplier;?></div>
-									<div class="col-xs-4"><?php echo $item_name;?></div>
-									<div class="col-xs-2"><?php echo $item_price;?></div>
-									<div class="col-xs-2"><?php echo $item_stock;?></div>	
+									<div class="col-xs-2"></div>
 								</div>
 	
 							<?php } ?>
@@ -72,7 +74,7 @@ function printPage(){
 						<?php
 							foreach($item->result_array() as $row){ 
 							$item_code = $row['item_id'];
-							$item_supplier = $row['item_supplier'];
+							$item_supplier = $row['supplier_name'];
 							$item_name = $row['item_name'];
 							$item_price = number_format($row['item_price'],2,'.',',');
 							$item_stock = $row['item_stock'];
@@ -94,12 +96,12 @@ function printPage(){
 						                          <p><span>Price:</span> P<?php echo $item_price;?></p>
 						                          <p><span>Stocks available:</span> <?php echo $item_stock;?></p>
 
-						                          <div class="row barcode-row" style="margin-top: 30px;">
+						                          <!-- <div class="row barcode-row" style="margin-top: 30px;">
 						                          	<div class="col-xs-6" id="bcTarget<?php echo $item_code; ?>"></div>
 						                          	<div class="col-xs-6"><a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a></div>
-						                          </div>
+						                          </div> -->
 
-						                          <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>
+						                          <!-- <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div> -->
 						                        </div>
 						                    </div>
 

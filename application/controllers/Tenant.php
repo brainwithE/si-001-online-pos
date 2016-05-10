@@ -41,6 +41,24 @@ class Tenant extends CI_Controller{
         $this->load->view('tenant-report-sales', $packet);
         $this->load->view('footer');
     }
+
+    public function filter_sales_month(){
+            $this->load->model('Sales_model');       
+
+            $date_start = $this->input->post('filter_start_date');
+            $date_end = $this->input->post('filter_end_date');
+
+            $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
+            $packet['sales'] = $income;
+            $packet['fro'] = $date_start;
+            $packet['to'] = $date_end;
+
+            $data['sessions'] = $this->session_name();
+            
+            $this->load->view('tenant-header', $data);
+            $this->load->view('tenant-report-sales-f-month', $packet);
+            $this->load->view('footer');
+    }
     
     public function get_supplier_id(){  // add action to get the supplier id of the user
         $supplier_id='201605000000001'; //static supplier id

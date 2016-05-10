@@ -110,8 +110,9 @@ $route['cashier/report-sales'] = 'cashier/view_sales_report';
 //filter function
 $route['filter-sales'] = 'Sales/filter_sales_date';
 $route['filter-month'] = 'Sales/filter_month';
-$route['cashier/filter-sales-month'] = 'Cashier/filter_sales_month';
+$route['cashier/filter-sales-month'] = 'cashier/filter_sales_month';
 $route['admin/filter-sales-month'] = 'admin/filter_sales_month';
+$route['tenant/filter-sales-month'] = 'tenant/filter_sales_month';
 
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'tenant/add_delivery_transaction';

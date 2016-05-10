@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<script>
+<script type="text/javascript">
 	function printPage(){
 		window.print();
 	}

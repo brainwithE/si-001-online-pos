@@ -1,11 +1,11 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-
-<!-- insert ponpon about content -->
-			
-
+<script type="text/javascript">
+	function printPage(){
+		window.print();
+	}
+</script>
+	
 	<div class="container">
 
 		<!--The overwatch Main element Container or MEC-->
@@ -27,7 +27,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="col-md-12 total-label total-label-bank">TOTAL SALES -- <span class="total-amount"><?php echo number_format($total, 2, '.',','); ?></span>
 							</div>
 					</div>
-					<div class="col-xs-6"><p style="text-align: left;">This report is from <?php echo date("M j, Y", strtotime($fro)); ?> to <?php echo date("M j, Y", strtotime($to)); ?>. Today is <?php echo $today = date('F j, Y');?></p></div>
+					<div class="col-xs-6"><p style="text-align: left;">This report is from <?php echo date("M j, Y", strtotime($fro)); ?> to <?php echo date("M j, Y", strtotime($to)); ?>. Today is <?php echo $today = date('F j, Y');?></p>
+						<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
+					</div>
 				</div>
 				<div class="row">
 					<!-- FILTER FUNCTION -->

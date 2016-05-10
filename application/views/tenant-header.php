@@ -70,18 +70,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="modal-body modal-project">                          
                           <?php echo form_open('tenant/add-items') ?>
 	                        	<input type="field" placeholder="Item Name" name="item_name" />
-	                        	<input type="field" placeholder="Price" name="item_price"/>
-	                        	<input type="field" placeholder="Category" name="item_category"/>
-	                        	<!-- <select name="item_category">
-	                        		<option>Blouse</option>
-	                        		<option>Crop Top</option>
-	                        		<option>Dress</option>
-	                        		<option>Pants</option>
-	                        		<option>Shorts</option>
-	                        		<option>Sleeveless Top</option>
-	                        		<option>Tee</option>
+	                        	<input type="field" placeholder="Price" name="item_price"/>	                        	
+	                        	<select name="item_category">
+	                        	<?php
+		                        	foreach ($category_list ->result_array() as $row) {
+							            $category_id = $row['category_id'];
+							            $category_name = $row['category_name'];
 
-	                        	</select> -->
+							        echo "<option value='".$category_name."'>".$category_name."</option>";
+							    ?>
+							    <?php
+							        }
+	                        	?>
+	                        	</select>
 	                        	<input type="submit" class="submit-button" value="Submit" />
 	                      <?php echo form_close();?>
                         </div>

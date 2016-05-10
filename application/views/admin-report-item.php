@@ -53,7 +53,7 @@ function printPage(){
 							<?php
 								foreach($item->result_array() as $row){ 
 									$item_code = $row['item_id'];
-									$item_supplier = $row['supplier_name'];
+									$item_supplier = $row['item_supplier'];
 									$item_name = $row['item_name'];
 									$item_price = number_format($row['item_price'],2,'.',',');
 									$item_stock = $row['item_stock'];
@@ -74,7 +74,7 @@ function printPage(){
 						<?php
 							foreach($item->result_array() as $row){ 
 							$item_code = $row['item_id'];
-							$item_supplier = $row['supplier_name'];
+							$item_supplier = $row['item_supplier'];
 							$item_name = $row['item_name'];
 							$item_price = number_format($row['item_price'],2,'.',',');
 							$item_stock = $row['item_stock'];

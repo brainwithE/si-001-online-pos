@@ -31,11 +31,8 @@ class Sales extends CI_Controller{
         $items = $this->input->post('data');
         $quant = $this->input->post('qty');
 
-        $this->load->model('Sales_model');
-        $last_id = $this->Sales_model->add_sales_transaction($supplier, $quant); 
-
         foreach( $data as $row ) {
-            $this->db->insert('pos_sales_transaction', $data[$ctr]);
+            $this->db->insert('pos_sales', $data[$ctr]);
             $ctr++;
         }
 
@@ -49,7 +46,40 @@ class Sales extends CI_Controller{
             $data[$key]['sales_total'] = '1000';
             $data[$key]['sales_discount'] = '10';
             $data[$key]['sales_date'] = $current_date;
-            $data[$key]['sales_supplier'] = '2010019576';
+            $data[$key]['sales_supplier'] = $supplier;
+            $data[$key]['sales_st'] = '';
+        }
+
+        $this->Sales_model->add_sales_items($data);
+        redirect('cashier');
+    }
+
+    public function add_sales(){
+        $supplier = '201605000000006'; //enter supplier type here 
+        $current_date = date('Y-m-d');
+
+        $items = $this->input->post('data');
+        $quant = $this->input->post('qty');
+
+        /*$this->load->model('Sales_model');
+        $last_id = $this->Sales_model->add_sales($supplier, $quant); 
+
+        foreach( $data as $row ) {
+            $this->db->insert('pos_sales_transaction', $data[$ctr]);
+            $ctr++;
+        }
+
+        $data=array();*/  
+
+        foreach($items as $key => $csm)
+        {
+            $data[$key]['sales_id'] = '';
+            $data[$key]['sales_item'] = $items[$key]['ItemName'];
+            $data[$key]['sales_quantity'] = $items[$key]['ItemQuantity'];
+            $data[$key]['sales_total'] = '1000';
+            $data[$key]['sales_discount'] = '10';
+            $data[$key]['sales_date'] = $current_date;
+            $data[$key]['sales_supplier'] = $supplier;
             $data[$key]['sales_st'] = $last_id;
         }
         $this->Sales_model->add_sales_items($data);
@@ -104,8 +134,10 @@ class Sales extends CI_Controller{
 
             $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
             $packet['sales'] = $income;
+
+            $data['sessions'] = $this->session_name();
             
-            $this->load->view('header');
+            $this->load->view('header',);
             $this->load->view('report-sales', $packet);
             $this->load->view('footer');
     }
@@ -128,6 +160,16 @@ class Sales extends CI_Controller{
         $this->load->view('header');
         $this->load->view('income-view', $packet);
         $this->load->view('footer');
+    }
+
+    function sales_more_data() {
+        if (isset($_POST['type'])) {
+          $this->load->model('nodes_m');
+          $data['ajax_req'] = TRUE;
+          $data['node_list'] = $this->nodes_m->get_node_by_code($_POST['type']);
+
+          $this->load->view('ajax_items',$data);
+        }
     }
 }
 ?>

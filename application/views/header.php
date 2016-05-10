@@ -57,17 +57,22 @@
 
 			<div class="modal fade" id="InputPullout" role="dialog">
                 <div class="modal-dialog">
-                    <div class="modal-content">                      
+                    <div class="modal-content">          
 	                    <div class="head-contain">
 							<h4><i class="fa fa-coffee"></i>INPUT PULLOUT</h4>
 						</div>
 
                         <div class="modal-body modal-project">
                           
-                          <?php echo form_open('admin/pullout-item') ?>
-	                        	<input type="field" placeholder="Pullout Item Code" name="item_code" />
-	                        	<input type="field" placeholder="Item Quantity" name="item_quantity"/>
+                          <?php 
+                          		$attributes = array('id' => 'pullout_form');
+                          		echo form_open('', $attributes) ;
+                          		
+                          ?>
+	                        	<input type="field" placeholder="Pullout Item Code" name="item_code" id="item_code" />
+	                        	<input type="field" placeholder="Item Quantity" name="item_quantity" id="item_quantity"/>
 	                        	<input type="submit" class="submit-button" value="Submit" />
+	                        	<div class='error_msg'></div>
 	                      <?php echo form_close();?>
                         </div>
 
@@ -77,3 +82,35 @@
 
                 </div>
             </div>
+
+            <script>
+            	
+            	$(function(){
+
+					$('#form_id').submit(function(event){
+					event.preventDefault();
+					var item_code = $('#item_code').val();
+					var item_quantity = $('#item_quantity').val();
+
+					$.ajax({
+					        type: 'POST',
+					        url: 'admin/pullout-item',
+					        data: {
+					         'item_code': item_code,
+					         'item_quantity': item_quantity
+
+					        },
+					        dataType: 'html',
+					        success: function(results){
+					             if(item_code=='' || item_code==null){
+					              $('.error_msg').html('error msg');
+					              return false;
+					             }
+					        }
+					  });
+
+
+					});
+
+				});
+            </script>

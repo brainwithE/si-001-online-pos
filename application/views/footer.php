@@ -21,6 +21,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url(); ?>js/pushmenu.js"></script>
     <script src="<?php echo base_url(); ?>js/rightpush.js"></script>
 
+    <script src="<?php echo base_url(); ?>js/jquery-barcode.min.js"></script> 
+
     <script src="<?php echo base_url(); ?>js/jquery.smoothscroll.min.js"></script>
 
     <script src="<?php echo base_url();?>js/bootstrap-datepicker.js"></script>

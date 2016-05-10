@@ -89,6 +89,7 @@ $route['tenant/add-items'] = 'tenant/add_items';
 $route['tenant/report-inventory'] = 'tenant/view_inventory';
 $route['tenant/report-sales'] = 'tenant/view_sales_report';
 $route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
+$route['tenant/print-barcode/(:any)'] = 'tenant/print_barcode/$1';
 $route['tenant/report-delivery'] = 'tenant/view_delivery';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';
 
@@ -103,16 +104,17 @@ $route['add-sales'] = 'cashier/add_sales';
 $route['add-sales-transaction'] = 'cashier/add_sales_transaction';
 
 $route['cashier/report-sales'] = 'cashier/view_sales_report';
-$route['cashier/add-sales'] = 'cashier/add_sales_transaction';
 
 //filter function
 $route['filter-sales'] = 'Sales/filter_sales_date';
 $route['filter-month'] = 'Sales/filter_month';
+$route['cashier/filter-month'] = 'Cashier/filter_month';
 
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'tenant/add_delivery_transaction';
 
 $route['report-delivery'] = 'delivery';
+$route['report-sales'] = 'sales';
 $route['verify-item'] = 'items/verify_item';
 
 //ajax functions
@@ -122,6 +124,7 @@ $route['suggest-more-data'] = 'ajax_demo/suggest_more_data';
 $route['suggest-more-data-code'] = 'ajax_demo/suggest_more_data_code';
 
 $route['deliver-more-data'] = 'Delivery/deliver_more_data';
+$route['sales-more-data'] = 'Sales/sales_more_data';
 
 /*$route['default_controller'] = 'signup';*/
 /*$route['default_controller'] = 'example'; --for aauth sample*//*

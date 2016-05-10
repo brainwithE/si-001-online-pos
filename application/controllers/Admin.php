@@ -119,18 +119,24 @@ class Admin extends CI_Controller{
     public function input_pullout_item(){
         $item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
-        $item_supplier = $this->get_item_supplier($item_code);
 
-        $data = array (
-            'pullout_item_code' => $item_code,
-            'pullout_item_quantity' => $item_quantity,
-            'pullout_supplier' => $item_supplier
-        );
 
-        $this->load->model('Pullout_model');
-        $sales_id = $this->Pullout_model->add_pullout_item($data);  
- 
-        redirect('admin/report-pullout');
+        if ($this->form_validation->run() == TRUE) {            
+            $item_supplier = $this->get_item_supplier($item_code);
+
+            $data = array (
+                'pullout_item_code' => $item_code,
+                'pullout_item_quantity' => $item_quantity,
+                'pullout_supplier' => $item_supplier
+            );
+
+            $this->load->model('Pullout_model');
+            $sales_id = $this->Pullout_model->add_pullout_item($data);  
+     
+            redirect('admin/report-pullout');
+        }
+
+        
 
     }
 

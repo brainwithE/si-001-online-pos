@@ -35,12 +35,7 @@ class Items extends CI_Controller{
         
         return $result->item_supplier;        
     }
-
-
-
-
     
-
 	public function add_income()
     {
         $data = array (

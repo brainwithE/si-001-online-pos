@@ -1,7 +1,6 @@
 <?php 
 
 class Tenant extends CI_Controller{
-	
 	public function index(){      
 
         $user_type =  $this->session_type();

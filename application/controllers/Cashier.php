@@ -1,9 +1,7 @@
 <?php 
 
 class Cashier extends CI_Controller{
-	
-	public function index(){      
-
+	public function index(){
         $user_type =  $this->session_type();
 
         if ($user_type == 3){
@@ -40,27 +38,6 @@ class Cashier extends CI_Controller{
     }
 
     public function add_sales(){
-        /*$item_code = $this->input->post('item_code');
-        $item_quantity = $this->input->post('item_quantity');        
-        $sales_total_price = $this->get_total_price($item_code, $item_quantity);
-        
-        $this->load->model('Items_model');
-        $result = $this->Items_model->get_item_supplier($item_code);
-        $item_supplier = $result->item_supplier;
-        
-        $data = array (
-            'sales_item_code' => $item_code,
-            'sales_item_quantity' => $item_quantity,
-            'sales_total_price' => $sales_total_price,
-            'sales_supplier' => $item_supplier
-        );
-
-        $this->load->model('Sales_model');
-        $sales_id = $this->Sales_model->add_sales_transaction($data);
-        $new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
-        $this->update_stock($item_code, $new_stock);
-        redirect('cashier');*/
-
         $this->load->model('Sales_model');
         
         $sales_report = $this->Sales_model->get_sales();  
@@ -74,7 +51,6 @@ class Cashier extends CI_Controller{
     }
 
     public function add_sales_transaction(){
-
         $supplier = '201605000000001'; //enter supplier type here 
         $current_date = date('Y-m-d');
 
@@ -147,8 +123,5 @@ class Cashier extends CI_Controller{
         $this->load->model('Items_model');
         $current_stock = $this->Items_model->update_stock($item_code, $stock);
     }
-
-
-
 }
 ?>

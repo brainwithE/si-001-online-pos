@@ -134,8 +134,10 @@ class Sales extends CI_Controller{
 
             $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
             $packet['sales'] = $income;
+
+            $data['sessions'] = $this->session_name();
             
-            $this->load->view('header');
+            $this->load->view('header',);
             $this->load->view('report-sales', $packet);
             $this->load->view('footer');
     }

@@ -31,6 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									$user_id = $row->id;									
 									$user_name = $row->name;
 									$user_email = $row->email;									
+									$is_banned = $row->banned;			
 									$user_last_login = $row->last_login;
 									$user_last_activity = $row->last_activity;
 									$user_last_login_attempt = $row->last_login_attempt;							
@@ -48,6 +49,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="col-xs-2"><?php echo $user_last_login_attempt;?></div>
 									<div class="col-xs-1">
 										<a href="#" class="btn" data-toggle="modal" <?php echo "data-target=#User".$user_id?>>Edit</a>
+										<!-- <a href="<?php  base_url() ?>authenticate/ban_user/<?php  $user_id?>"?> -->
+										<?php
+											if($is_banned==0){
+												echo "<a href='base_url()/authenticate/ban_user/$user_id'>x</a>";
+												
+											} else {
+												echo "<a href='".base_url()."/authenticate/unban_user/$user_id'>/</a>";
+											}
+
+										?>
+										
 									</div>
 									
 								</div>

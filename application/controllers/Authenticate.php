@@ -76,7 +76,7 @@ class Authenticate extends CI_Controller {
     }
 
     public function view_user_list(){
-        $user_list = $this->aauth->list_users();
+        $user_list = $this->aauth->list_users(FALSE, FALSE, FALSE, TRUE);
         $group_list = $this->aauth->list_groups();
 
         $packet['users'] = $user_list;
@@ -265,11 +265,27 @@ class Authenticate extends CI_Controller {
         print_r($this->aauth->is_banned(6));
     }
 
-    function ban_user() {
+    public function ban_user() {
+        $user_id = $this->uri->segment(3);
 
-        $a = $this->aauth->ban_user(6);
+        $this->aauth->ban_user($user_id);
 
-        print_r($a);
+        redirect('admin/report-user');
+        /*$a = $this->aauth->ban_user(6);
+
+        print_r($a);*/
+    }
+
+    public function unban_user() {
+        $user_id = $this->uri->segment(3);
+
+        $this->aauth->unban_user($user_id);
+
+        redirect('admin/report-user');
+
+        /*$a = $this->aauth->unban_user(6);
+
+        print_r($a);*/
     }
 
     function delete_user() {
@@ -279,12 +295,7 @@ class Authenticate extends CI_Controller {
         print_r($a);
     }
 
-    function unban_user() {
-
-        $a = $this->aauth->unban_user(6);
-
-        print_r($a);
-    }
+    
 
     function update_user() {
         $a = $this->aauth->update_user(6, "a@a.com", "12345", "tested");

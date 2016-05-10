@@ -1,19 +1,18 @@
 <?php 
 
 class Tenant extends CI_Controller{
-	
-	public function index(){      
 
+     public function __construct() {
+        parent::__construct();
         $user_type =  $this->session_type();
 
-        if ($user_type == 2){
-            $this->view_sales_report();
-        } elseif ($user_type == 1) {
-             redirect('admin');
-        } elseif ($user_type == 3) {
-             redirect('cashier');
-        }
-
+        if($user_type!=2){
+            redirect('restricted');            
+        }        
+    }
+	
+	public function index(){      
+        $this->view_sales_report();
 	}
 
     public function session_type(){        

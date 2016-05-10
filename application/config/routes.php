@@ -53,9 +53,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*$route['default_controller'] = 'login';*/
 /*POS*/
 $route['default_controller'] = 'authenticate'; //aauth sample
+$route['404_override'] = '';
+$route['restricted'] = 'authenticate/user_restriction';
 
 /*$route['(:any)'] = 'signed_in/$1';
-$route['404_override'] = '';
+
 $route['translate_uri_dashes'] = FALSE;*/
 
 

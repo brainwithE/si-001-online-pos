@@ -92,53 +92,16 @@ class Authenticate extends CI_Controller {
 
     }
 
+    public function user_restriction(){
+        $packet['heading'] = '404 Restricted User Access';
+        $packet['message'] = '<p>Sorry, you are restricted to access this link.</p>';
+
+        $this->load->view('restricted-access', $packet);
+    }
 
 
 
 
-
-
-
-    /*public function index() {
-        $this->aauth->create_user('admin@qwerty.com','admin','admin');
-        $this->aauth->create_user('tenant@querty.com','tenant','tenant');
-        $this->aauth->create_user('cashier@querty.com','cashier','cashier');
-        $this->aauth->create_user('bench@querty.com','bench','bench');
-
-        $this->aauth->create_group('suppliers');
-        $this->aauth->create_group('sales');
-
-
-        $this->aauth->print_errors();
-
-
-
-
-
-
-        //$this->aauth->create_user('bench1@querty.com','bench1','bench1');
-
-        //$this->aauth->login('bigboss@dots.com', 'bigboss');
-        /*$this->is_loggedin('bigboss@dots.com', 'bigboss');
-        $this->logout('bigboss@dots.com', 'bigboss');*/
-        /*$this->aauth->add_member(4, "Admin");
-        $this->aauth->add_member(4, 2);*/
-        
-
-       /* $this->aauth->add_member($this->get_user_id("bigboss@dots.com"), $this->get_group_id("Admin"));*/
-        
-        /*if ($this->aauth->login('bigboss@dots.com', 'bigboss'))
-            echo 'tmm';
-
-        else
-            echo 'hyr';
-        //echo date("Y-m-d H:i:s");
-
-        $this->aauth->print_errors();
-        
-        
-
-    }*/
 
    
 
@@ -216,9 +179,7 @@ class Authenticate extends CI_Controller {
     }
     
     public function is_loggedin() {
-        $this->aauth->is_loggedin();
-        /*if ($this->aauth->is_loggedin())
-            echo 'logged';        */
+        $this->aauth->is_loggedin();        
     }
 
     public function logout() {
@@ -239,15 +200,7 @@ class Authenticate extends CI_Controller {
             echo 'adminovic';
     }
 
-    function get_user_groups($x){
-
-        //print_r( $this->aauth->get_user_groups($x));
-
-        /*foreach($this->aauth->get_user_groups($x) as $a){
-
-            echo $a->id . " " . $a->name . "<br>";
-        }*/
-
+    function get_user_groups($x){        
         foreach($this->aauth->get_user_groups($x) as $a){
 
             return $a->id;
@@ -291,18 +244,6 @@ class Authenticate extends CI_Controller {
     }
 
     function create_user() {
-
-        /*$a = $this->aauth->create_user("admin@admin.com", "12345", "Admin");
-
-        if ($a)
-            echo "tmm   ";
-        else
-            echo "hyr  ";
-
-
-        print_r($this->aauth->get_user($a));
-
-        $this->aauth->print_errors();*/
 
         $user_name = $this->input->post('new_user');
         $user_password = $this->input->post('new_password'); 

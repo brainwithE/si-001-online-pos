@@ -695,7 +695,7 @@ class Aauth {
 	 * @param string $name User's name
 	 * @return int|bool False if create fails or returns user id if successful
 	 */
-	public function create_user($email, $pass, $name = FALSE) {
+	public function create_user($email, $pass, $name = FALSE, $code) {
 
 		$valid = TRUE;
 
@@ -735,6 +735,7 @@ class Aauth {
 			'email' => $email,
 			'pass' => $this->hash_password($pass, 0), // Password cannot be blank but user_id required for salt, setting bad password for now
 			'name' => (!$name) ? '' : $name ,
+			'letter_code' => $code
 		);
 
 		if ( $this->aauth_db->insert($this->config_vars['users'], $data )){

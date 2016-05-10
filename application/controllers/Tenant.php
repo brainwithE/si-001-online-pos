@@ -22,6 +22,10 @@ class Tenant extends CI_Controller{
         return $this->session->userdata('name'); 
     }
 
+    public function session_code(){
+        return $this->session->userdata('code'); 
+    }
+
      public function view_sales_report() {
         $supplier_id = $this->get_supplier_id();       
         
@@ -31,7 +35,7 @@ class Tenant extends CI_Controller{
         $packet['sales'] = $sale_report;   
         $data['category_list'] = $this->get_item_category();
 
-        $data['sessions'] = $this->session_name();
+        $data['sessions'] = $this->session_code();
     
         $this->load->view('tenant-header', $data);
         $this->load->view('tenant-report-sales', $packet);
@@ -45,7 +49,7 @@ class Tenant extends CI_Controller{
 
     public function add_items()
     {
-        $supplier_id = $this->get_supplier_id();
+        $supplier_id = $this->session->userdata('name');
 
         $data = array (
         'item_name' => $this->input->post('item_name'),
@@ -62,7 +66,7 @@ class Tenant extends CI_Controller{
 
     public function view_inventory(){
         $this->load->model('Items_model');
-        $supplier_id = $this->get_supplier_id();
+        $supplier_id = $this->session->userdata('name');
         
         $item_list = $this->Items_model->get_supplier_inventory($supplier_id);  
         $packet['item'] = $item_list;
@@ -77,7 +81,7 @@ class Tenant extends CI_Controller{
 
     public function print_barcode($id){
         $packet['item'] = $id;
-        $packet['supp'] = $this->get_item_supplier($id);
+        $packet['supp'] = $this->session->userdata('code');
         $packet['price'] = $this->get_item_price($id);
         
         $data['sessions'] = $this->session_name();

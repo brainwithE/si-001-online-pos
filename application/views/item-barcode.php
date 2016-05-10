@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 	for (i = 0; i < 24; i++) { 
 	    $("#bcTarget"+i).barcode('<?php echo $item; ?>', "code39");
-	    $("#bcTarget"+i).append('<span style="margin-left: 15px;">BEC</span>');
+	    $("#bcTarget"+i).append('<span style="margin-left: 15px;"><?php echo $supp; ?></span>');
 	    $("#bcTarget"+i).append('<span style="float:right;margin-right:15px;">Php <?php echo $price; ?></span>');
 	}
 

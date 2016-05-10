@@ -35,7 +35,7 @@ class Authenticate extends CI_Controller {
         $user_name = $this->input->post('user_name');
         $user_password = $this->input->post('user_password');
 
-	$this->aauth->login($user_name, $user_password);
+	   $this->aauth->login($user_name, $user_password);
 
 
         if($this->aauth->is_loggedin($user_name, $user_password)){
@@ -43,7 +43,11 @@ class Authenticate extends CI_Controller {
             $user_id = $this->aauth->get_user_id();
             $group_id = $this->get_user_groups($user_id);
 
+            $user_code = $this->get_user_code($user_id);
 
+            ?><script type="text/javascript">console.log("hello@!");</script> <?php
+
+            $this->session->set_userdata('code', $user_code); 
             $this->session->set_userdata('type', $group_id); 
 
             if($group_id == 1) {            	
@@ -62,6 +66,14 @@ class Authenticate extends CI_Controller {
             $this->landing_page($error_msg);
         }       
     }
+
+    public function get_user_code($user_id){
+        $this->load->model('Account_model');
+        $result = $this->Account_model->get_user_code($user_id);
+
+        return $result->letter_code;
+    }
+
 
     public function session_name(){        
         return $this->session->userdata('name');   
@@ -87,9 +99,6 @@ class Authenticate extends CI_Controller {
         $this->load->view('header',$data);
         $this->load->view('report-users', $packet);
         $this->load->view('footer');
-
-        
-
     }
 
     public function user_restriction(){
@@ -98,12 +107,6 @@ class Authenticate extends CI_Controller {
 
         $this->load->view('restricted-access', $packet);
     }
-
-
-
-
-
-   
 
     function debug(){
 
@@ -247,12 +250,11 @@ class Authenticate extends CI_Controller {
 
         $user_name = $this->input->post('new_user');
         $user_password = $this->input->post('new_password'); 
-        $user_email = $this->input->post('new_email'); 
+        $user_email = $this->input->post('new_email');
+        $user_code = $this->input->post('letter_code'); 
         $user_type = $this->input->post('new_account_type'); 
 
-        
-
-        $this->aauth->create_user($user_email, $user_password, $user_name);
+        $this->aauth->create_user($user_email, $user_password, $user_name, $user_code);
         $user_id = $this->aauth->get_user_id($user_email);
 
         $this->aauth->add_member($user_id, $user_type);

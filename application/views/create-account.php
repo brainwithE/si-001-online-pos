@@ -25,6 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				        	<input type="field" placeholder="Enter Username" name="new_user" />
 				        	<input type="field" placeholder="Enter Password" name="new_password"/>
 				        	<input type="email" placeholder="Enter Email" name="new_email"/>
+				        	<input type="field" placeholder="3 LETTER CODE" name="letter_code"/>
 				        	
 				        	<input type="submit" class="btn submit-button" value="Submit" />
 					      <?php echo form_close();?>

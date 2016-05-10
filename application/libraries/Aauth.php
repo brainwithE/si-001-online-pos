@@ -774,7 +774,7 @@ class Aauth {
 	/**
 	 * Update user
 	 * Updates existing user details
-	 * @param int $user_id User id to update
+	 * @param bigint $user_id User id to update
 	 * @param string|bool $email User's email address, or FALSE if not to be updated
 	 * @param string|bool $pass User's password, or FALSE if not to be updated
 	 * @param string|bool $name User's name, or FALSE if not to be updated

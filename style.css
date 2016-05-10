@@ -956,6 +956,12 @@ button{
 	color: #151967;
 }
 
+.btn-delete {
+	color: red;
+	font-size: 24px;
+	margin: 0 10px;
+}
+
 
 /* MOBILE FRIENDLINESS */
 

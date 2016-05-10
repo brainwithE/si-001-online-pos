@@ -76,8 +76,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                        	foreach ($category_list ->result_array() as $row) {
 							            $category_id = $row['category_id'];
 							            $category_name = $row['category_name'];
+							            $category_status = $row['category_status'];
 
-							        echo "<option value='".$category_name."'>".$category_name."</option>";
+							        if($category_status != 0){
+							        	echo "<option value='".$category_name."'>".$category_name."</option>";	
+							        }
 							    ?>
 							    <?php
 							        }

@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<!--The overwatch Main element Container or MEC-->
 					<div class="overwatch-mec mec-income">
 						<div class="head-contain">
-							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>
+							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i>
 							LIST OF ITEM CATEGORY</h4>
 						</div>
 						<div class="col-xs-12">						
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="col-xs-1"></div>
 								<div class="col-xs-2">Category Name</div>
 								<div class="col-xs-1">Status</div>
-								<div class="col-xs-2"></div>
+								<div class="col-xs-1"></div>
 								<div class="col-xs-1"></div>
 							</div>
 							<?php
@@ -36,7 +36,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="col-xs-1"><?php echo $ctr;?></div>
 									<div class="col-xs-2"><?php echo $category_name;?></div>
 									<div class="col-xs-1"><?php echo $category_status;?></div>
-									<div class="col-xs-2">
+									<div class="col-xs-1">
 										<a class="btn"
 											<?php
 												if($category_status==1) {
@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</a>
 									</div>
 									<div class="col-xs-1">
-										<a href="<?php echo base_url() ?>admin/delete_category/<?php echo $category_id?>">x</a>
+										<a href="<?php echo base_url() ?>admin/delete_category/<?php echo $category_id?>" class="btn-delete"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
 									</div>
 									
 									

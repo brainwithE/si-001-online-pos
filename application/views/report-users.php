@@ -30,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								foreach($users as $row){ 
 									$user_id = $row->id;									
 									$user_name = $row->name;
+									$user_password = $row->pass;
 									$user_email = $row->email;									
 									$is_banned = $row->banned;			
 									$user_last_login = $row->last_login;
@@ -73,12 +74,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit User Details</h4>
 												</div>
 						                    	<div class="modal-body modal-project">
-						                        	<?php echo form_open('authenticate/edit-user') ?>
-						                       	  		<input type="hidden" name="user_id" value="<?php echo $user_id?>">
+						                        	<?php echo form_open('admin/user-update'); ?>
+						                       	  		<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 						                       	  		<label>User Name: </label>
-							                        	<input type="field" name="user_name" value="<?php echo $user_name?>">
+							                        	<input type="field" name="user_name" value="<?php echo $user_name; ?>">
+							                        	<label>User Password: </label>
+							                        	<input type="password" name="user_password" value="<?php echo $user_password; ?>">
 							                        	<label>User Email: </label>
-							                        	<input type="field" name="user_email" value="<?php echo $user_email?>">
+							                        	<input type="field" name="user_email" value="<?php echo $user_email; ?>">
 
 							                        	<input type="submit" class="btn submit-button" value="Submit" />
 

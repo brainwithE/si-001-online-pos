@@ -299,10 +299,19 @@ class Authenticate extends CI_Controller {
 
     
 
-    function update_user() {
-        $a = $this->aauth->update_user(6, "a@a.com", "12345", "tested");
+    public function update_user() {
+        $user_id = $this->input->post('user_id');
+        $user_name = $this->input->post('user_name');
+        $user_password = $this->input->post('user_password');
+        $user_email = $this->input->post('user_email');
 
-        print_r($a);
+        //echo $user_id;
+        //$this->aauth->update_user($user_id,$user_email,FALSE,$user_name);
+
+        
+        $this->aauth->update_user($user_id, $user_email, $user_password, $user_name);
+        redirect('admin/report-user');
+        
     }
 
     function update_activity() {

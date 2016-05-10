@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<!-- <a href="<?php  base_url() ?>authenticate/ban_user/<?php  $user_id?>"?> -->
 										<?php
 											if($is_banned==0){
-												echo "<a href='base_url()/authenticate/ban_user/$user_id'>x</a>";
+												echo "<a href='".base_url()."/authenticate/ban_user/$user_id'>x</a>";
 												
 											} else {
 												echo "<a href='".base_url()."/authenticate/unban_user/$user_id'>/</a>";

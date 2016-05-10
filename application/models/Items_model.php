@@ -80,6 +80,12 @@ class Items_model extends CI_model{
 	    return false;
 	}
 
+	function get_item_category(){			
+		$query = $this->db->get('pos_category');
+
+		return $query;
+	}
+
 	/* INSERT ACTION */
 	function add_items($data) {
 		$item_data = array(
@@ -91,6 +97,16 @@ class Items_model extends CI_model{
 			'item_supplier' => $data['item_supplier']
 		);
 		$this->db->insert('pos_item', $item_data);
+	}
+
+	function add_item_category($category_name){
+		$category_data = array(
+			'category_id' => '',
+			'category_name' => $category_name,
+			'category_status' => 1,
+		);
+
+		$this->db->insert('pos_category', $category_data);
 	}
 
 
@@ -113,5 +129,26 @@ class Items_model extends CI_model{
 		$this->db->where('item_id', $item_id);
 		$this->db->update('pos_item', $data); 
 	}
+
+	function activate_category($category_id) {
+		$sql = "UPDATE pos_category SET category_status=1 WHERE category_id='".$category_id."'" ;
+		$this->db->query($sql);	
+	}
+
+	function deactivate_category($category_id) {
+		$sql = "UPDATE pos_category SET category_status=0 WHERE category_id='".$category_id."'" ;
+		$this->db->query($sql);	
+	}
+
+
+
+	/* DELETE ACTION */
+
+	function delete_category($category_id){
+		$this->db->where('category_id', $category_id);
+		$this->db->delete('pos_category'); 
+	}
+
+
 }
 ?>

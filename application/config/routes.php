@@ -100,15 +100,16 @@ $route['add-delivery-transaction'] = 'tenant/add_delivery_transaction';
 
 //cashier actions
 
-$route['add-sales'] = 'cashier/add_sales';
-$route['add-sales-transaction'] = 'cashier/add_sales_transaction';
+$route['cashier/add-sales'] = 'cashier/add_sales';
+$route['cashier/add-sales-transaction'] = 'cashier/add_sales_transaction';
 
 $route['cashier/report-sales'] = 'cashier/view_sales_report';
 
 //filter function
 $route['filter-sales'] = 'Sales/filter_sales_date';
 $route['filter-month'] = 'Sales/filter_month';
-$route['cashier/filter-month'] = 'Cashier/filter_month';
+$route['cashier/filter-sales-month'] = 'Cashier/filter_sales_month';
+$route['admin/filter-sales-month'] = 'admin/filter_sales_month';
 
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'tenant/add_delivery_transaction';
@@ -124,7 +125,7 @@ $route['suggest-more-data'] = 'ajax_demo/suggest_more_data';
 $route['suggest-more-data-code'] = 'ajax_demo/suggest_more_data_code';
 
 $route['deliver-more-data'] = 'Delivery/deliver_more_data';
-$route['sales-more-data'] = 'Sales/sales_more_data';
+$route['cashier/sales-more-data'] = 'cashier/sales_more_data';
 
 /*$route['default_controller'] = 'signup';*/
 /*$route['default_controller'] = 'example'; --for aauth sample*//*

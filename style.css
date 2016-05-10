@@ -567,18 +567,19 @@ button{
 	font-weight: 300;
 	font-size: 16px;
 	text-align: right;
-	padding-right: 60px !important;
 	padding-top: 5px;
+	padding-right: 0px !important;
 }
 .total-label-bank {
 	text-align: left;
+	padding-right: 0px;
 }
 
 .total-amount {
 	font-size: 24px;
 	font-weight: 600;
 	text-align: right;
-	padding-right: 110px !important;
+	padding-right: 0px !important;
 }
 .table-bank .total-amount{
 	text-align: right;
@@ -984,8 +985,20 @@ button{
 }
 
 @media print {
+	*{
+		font-size: 12px !important;
+	}
+	.table-entries{
+		font-size: 8px !important;
+	}
+	.net-col{
+		text-align: right !important;
+	}
     .header {
         display: none;
+    }
+    .table-title{
+    	border-top: 1px solid black;
     }
     .navicon{
     	display:none;
@@ -1028,5 +1041,11 @@ button{
   		margin-top: 20px;
   		margin-left: -10px;
   		position: relative;
+  	}
+  	.container{
+  		width: 100% !important;
+  	}
+  	.overwatch-mec{
+  		border: 0px !important;
   	}
 }

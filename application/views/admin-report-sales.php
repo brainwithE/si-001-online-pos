@@ -28,7 +28,7 @@
 				<div class="row">
 					<!-- FILTER FUNCTION -->
 					<div class="col-xs-12 table-filter">
-						<?php echo form_open('cashier/filter-sales-month'); ?>
+						<?php echo form_open('admin/filter-sales-month'); ?>
 						<label>Filter By Date: </label>
 						<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
 						<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">

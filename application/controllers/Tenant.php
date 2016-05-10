@@ -34,7 +34,7 @@ class Tenant extends CI_Controller{
         $sale_report = $this->Sales_model->get_supplier_sales($supplier_id);  
         $packet['sales'] = $sale_report;   
 
-        $data['sessions'] = $this->session_code();
+        $data['sessions'] = $this->session_name();
     
         $this->load->view('tenant-header', $data);
         $this->load->view('tenant-report-sales', $packet);
@@ -276,8 +276,5 @@ class Tenant extends CI_Controller{
         $this->load->view('tenant-delivery-item-view',$data);
         $this->load->view('footer');
     }
-
-    
-
 }
 ?>

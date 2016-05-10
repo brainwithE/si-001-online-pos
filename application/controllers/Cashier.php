@@ -48,7 +48,7 @@ class Cashier extends CI_Controller{
         
         $data['sessions'] = $this->session_name();
 
-        $this->load->view('header', $data);
+        $this->load->view('cashier-header', $data);
         $this->load->view('sales-add-view', $packet);
         $this->load->view('footer');
     }
@@ -115,7 +115,7 @@ class Cashier extends CI_Controller{
        return $stock;
     }
 
-    public function filter_month(){
+    public function filter_sales_month(){
             $this->load->model('Sales_model');       
 
             $date_start = $this->input->post('filter_start_date');
@@ -123,11 +123,13 @@ class Cashier extends CI_Controller{
 
             $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
             $packet['sales'] = $income;
+            $packet['fro'] = $date_start;
+            $packet['to'] = $date_end;
 
             $data['sessions'] = $this->session_name();
             
             $this->load->view('cashier-header', $data);
-            $this->load->view('report-sales', $packet);
+            $this->load->view('cashier-report-sales-f-month', $packet);
             $this->load->view('footer');
     }
 
@@ -141,6 +143,16 @@ class Cashier extends CI_Controller{
     public function update_stock($item_code, $stock){
         $this->load->model('Items_model');
         $current_stock = $this->Items_model->update_stock($item_code, $stock);
+    }
+
+    function sales_more_data() {
+        if (isset($_POST['type'])) {
+          $this->load->model('nodes_m');
+          $data['ajax_req'] = TRUE;
+          $data['node_list'] = $this->nodes_m->get_node_by_code($_POST['type']);
+
+          $this->load->view('ajax_items',$data);
+        }
     }
 }
 ?>

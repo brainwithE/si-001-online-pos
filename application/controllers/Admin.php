@@ -33,13 +33,31 @@ class Admin extends CI_Controller{
         $this->load->model('Sales_model');
                 
         $sale_report = $this->Sales_model->get_sales();  
-        $packet['sales'] = $sale_report;       
+        $packet['sales'] = $sale_report;        
 
-        $data['sessions'] = $this->session_name(); 
+        $data['sessions'] = $this->session_name();
     
-        $this->load->view('header', $data);
-        $this->load->view('report-sales', $packet);
+        $this->load->view('admin-header', $data);
+        $this->load->view('admin-report-sales', $packet);
         $this->load->view('footer');
+    }
+
+    public function filter_sales_month(){
+            $this->load->model('Sales_model');       
+
+            $date_start = $this->input->post('filter_start_date');
+            $date_end = $this->input->post('filter_end_date');
+
+            $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
+            $packet['sales'] = $income;
+            $packet['fro'] = $date_start;
+            $packet['to'] = $date_end;
+
+            $data['sessions'] = $this->session_name();
+            
+            $this->load->view('admin-header', $data);
+            $this->load->view('admin-report-sales-f-month', $packet);
+            $this->load->view('footer');
     }
 
     

@@ -137,7 +137,7 @@ class Sales extends CI_Controller{
 
             $data['sessions'] = $this->session_name();
             
-            $this->load->view('header',);
+            $this->load->view('header',$data);
             $this->load->view('report-sales', $packet);
             $this->load->view('footer');
     }

@@ -7,6 +7,10 @@
 	<div class="overwatch-mec mec-income">
 		
 		<div class="col-xs-12 table-end-general table-end table-bank">
+			<div class="col-xs-12">
+				<input type="text" name="name" id="code" placeholder="Enter Barcodes Manually" />
+				<input type="submit" id="add-item" value="ADD" class="call-links"></input>
+			</div>
 			<div class="col-md-4 total-label total-label-bank">TOTAL -- Php <span class="total-amount"></span></div>
 		</div>
 
@@ -27,8 +31,6 @@
 			<div id="ajax-content-container">
 						 
 			</div>
-
-			<a id="submit" href="#">REQUEST DELIVERY!</a>
 		</div>
 
 		<script type="text/javascript">
@@ -62,44 +64,51 @@
 				var barcode="";
 			    $(document).keydown(function(e) {
 			        var code = (e.keyCode ? e.keyCode : e.which);
-			        if(code==13)// Enter key hit
-			        {
-						var eachctr = 0;
-						totalQuantity = 0;
+				        if(code==13)// Enter key hit
+				        {
+							var eachctr = 0;
+							totalQuantity = 0;
 
-						$.ajax({
-						   	type: 'POST',
-						   	url: 'deliver-more-data',
-						   	type: "POST",
-							data: {type: barcode},
-							dataType: "html",
-						   	success: function( data ) {
-						   		alert(barcode);
-					            ItemArray.push({
-									ItemCode : '201602000000001', 
-									ItemName : barcode,
-									ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
-								});
+							$.ajax({
+							   	url: 'deliver-more-data',
+							   	type: "POST",
+								data: {type: barcode},
+								dataType: "html",
+							   	success: function( data ) {
+									if(data==null||data==''){
+										alert("Item does not exist.");
 
-						   		$.each(ItemArray, function(key, value) { 
-									totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
-								});
-								$('#ajax-content-container').prepend(data);
-								barcode=""; 
+										barcode="";
+									}
+									else{
+										var total = 0;
+										ItemArray.push({
+											ItemCode : '201602000000001', 
+											ItemName : barcode,
+											ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
+										});
 
-								var total = 0;
-								$(".table-entries").each(function() {
-								  total += parseFloat($(this).find(".price-field").text());
-								});
-								$('.total-amount').html(total);
-						   	},
-						   	error: function(xhr, status, error) {
-						      // check status && error
-						      alert(error);
-						   	}
-						});
-						      	
-						return false;			        
+										$('#ajax-content-container').prepend(data);
+
+										barcode=""; 
+
+									   	$.each(ItemArray, function(key, value) { 
+											totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+										});
+									}
+
+									$(".table-entries").each(function() {
+									  	total += parseFloat($(this).find(".price-field").text());
+									});
+									$('.total-amount').html(total);
+							   	},
+							   	error: function(xhr, status, error) {
+							      // check status && error
+							      alert(error);
+							   	}
+							});
+							      	
+							return false;			        
 					}
 			        else if(code==9)// Tab key hit
 			        {
@@ -110,39 +119,54 @@
 			        }
 			    });
 
-				$("#add").click(function() {
-					ItemArray.push({
-						ItemCode : '201602000000001', 
-						ItemName : $('.add-delivery-form #name').val(),
-						ItemQuantity : $('.add-delivery-form #qty').val()
-					});
-						 
-					$('.records-section').html('');
+				 $("#add-item").click(function (){
+				    		var code = $('#code').val();
+				    		var eachctr = 0;
+							totalQuantity = 0;
 
-					var eachctr = 0;
-					totalQuantity = 0;
+							$.ajax({
+							   	url: 'deliver-more-data',
+							   	type: "POST",
+								data: {type: code},
+								dataType: "html",
+							   	success: function( data ) {
 
-					$.ajax({
-					   type: 'POST',
-					   url: 'verify-item',
-					   data: $('.add-delivery-form #name').val(),
-					   success: function( data ) {
-					   		$.each(ItemArray, function(key, value) { 
-								$('.records-section').append('<div class="row table-entries table-entries-income">			<div class="col-xs-2"><div class="remove" onclick="ItemArray.splice('+eachctr+',1); removeItem();">x</div></div><div class="col-xs-2 name">'+ItemArray[key].ItemName+'</div><div class="col-xs-4 qty">'+ItemArray[key].ItemQuantity+'</div></div>');
-								eachctr++;
-								totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+									if(data==null||data==''){
+										alert("Item does not exist.");
+
+										barcode='';
+										$('#code').val('');
+									}
+									else{
+										var total = 0;
+										ItemArray.push({
+											ItemCode : '201602000000001', 
+											ItemName : code,
+											ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
+										});
+
+										$('#ajax-content-container').prepend(data);
+
+										$('#code').val('');
+										barcode='';
+
+									   	$.each(ItemArray, function(key, value) { 
+											totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+										});
+									}
+
+									$(".table-entries").each(function() {
+									  	total += parseFloat($(this).find(".price-field").text());
+									});
+									$('.total-amount').html(total);
+							   	},
+							   	error: function(xhr, status, error) {
+							      // check status && error
+							      alert(error);
+							   	}
 							});
-					   },
-					   error: function(xhr, status, error) {
-					      // check status && error
-					      alert(error);
-					   }
-					});
-
-					$('.add-delivery-form #name').val('');
-					$('.add-delivery-form #qty').val('');
-						          	
-					return false;	          
+							      	
+							return false;
 				});
 
 				$("#submit").click(function (){
@@ -156,9 +180,8 @@
 
 			});
 
-			$('#name2').on('input', function() {
+			/*$('#name2').on('input', function() {
 					var username = $('#name2').val();
-					/*$('#code').val('');*/ //for singular search functions
 					$.ajax({
 						url: "suggest-more-data",
 						async: false,
@@ -173,7 +196,6 @@
 		
 			$('#code').on('input', function() {
 					var code = $('#code').val();
-					/*$('#name').val('');*/ //for singular search functions
 					$.ajax({
 						url: "suggest-more-data-code",
 						async: false,
@@ -184,9 +206,9 @@
 							$('#ajax-content-container').html(data);
 						}
 					})
-			});
+			});*/
 		</script>
-
+		<a id="submit" href="#" class="call-links">COMPLETE DELIVERY REQUEST</a>
 	</div>
 
 </div>

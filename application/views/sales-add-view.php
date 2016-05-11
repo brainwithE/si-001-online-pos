@@ -72,27 +72,37 @@
 							totalQuantity = 0;
 
 							$.ajax({
-							   	type: 'POST',
 							   	url: 'sales-more-data',
 							   	type: "POST",
 								data: {type: barcode},
 								dataType: "html",
 							   	success: function( data ) {
-						            ItemArray.push({
-										ItemCode : '201602000000001', 
-										ItemName : barcode,
-										ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
-									});
+									if(data==null||data==''){
+										alert("Item does not exist.");
 
-							   		$.each(ItemArray, function(key, value) { 
-										totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
-									});
-									$('#ajax-content-container').prepend(data);
-									barcode=""; 
+										barcode="";
+										$('#code').val('');
+									}
+									else{
+										var total = 0;
+										ItemArray.push({
+											ItemCode : '201602000000001', 
+											ItemName : barcode,
+											ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
+										});
 
-									var total = 0;
+										$('#ajax-content-container').prepend(data);
+
+										barcode=""; 
+										$('#code').val('');
+
+									   	$.each(ItemArray, function(key, value) { 
+											totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+										});
+									}
+
 									$(".table-entries").each(function() {
-									  total += parseFloat($(this).find(".price-field").text());
+									  	total += parseFloat($(this).find(".price-field").text());
 									});
 									$('.total-amount').html(total);
 							   	},
@@ -119,38 +129,44 @@
 							totalQuantity = 0;
 
 							$.ajax({
-							   	type: 'POST',
 							   	url: 'sales-more-data',
 							   	type: "POST",
 								data: {type: code},
 								dataType: "html",
 							   	success: function( data ) {
-							   		if(data!=null||data!=''){
-										$('#ajax-content-container').prepend(data);
-										barcode=""; 
 
+									if(data==null||data==''){
+										alert("Item does not exist.");
+
+										barcode='';
+										$('#code').val('');
+									}
+									else{
 										var total = 0;
-										$(".table-entries").each(function() {
-										  	total += parseFloat($(this).find(".price-field").text());
-										  	ItemArray.push({
-												ItemCode : '201602000000001', 
-												ItemName : code,
-												ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
-											});
-
-											$.each(ItemArray, function(key, value) { 
-												totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
-											});
+										ItemArray.push({
+											ItemCode : '201602000000001', 
+											ItemName : code,
+											ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
 										});
-										$('.total-amount').html(total);
-							   		}
-							   		else{
-							   			alert("hello");
-							   		}
+
+										$('#ajax-content-container').prepend(data);
+
+										$('#code').val('');
+										barcode='';
+
+									   	$.each(ItemArray, function(key, value) { 
+											totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+										});
+									}
+
+									$(".table-entries").each(function() {
+									  	total += parseFloat($(this).find(".price-field").text());
+									});
+									$('.total-amount').html(total);
 							   	},
 							   	error: function(xhr, status, error) {
 							      // check status && error
-							      alert("that item doesn't exist.");
+							      alert(error);
 							   	}
 							});
 							      	

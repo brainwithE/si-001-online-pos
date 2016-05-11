@@ -282,5 +282,23 @@ class Tenant extends CI_Controller{
             redirect('tenant/report-pullout');
         }
     }
+
+    function deliver_more_data() {
+        if (isset($_POST['type'])) {
+          $this->load->model('nodes_m');
+          $data['node_exists'] = $this->nodes_m->get_node_exists($_POST['type']);
+          
+            if($data['node_exists']){
+                $data['ajax_req'] = TRUE;
+                $data['node_list'] = $this->nodes_m->get_node_by_spec_code($_POST['type']);
+
+                $this->load->view('ajax_add_del_items',$data);
+            }
+            else{
+                $data['ajax_req'] = TRUE;
+                $data['node_list'] = $this->nodes_m->get_node_by_spec_code($_POST['type']);
+            }
+        }
+    }
 }
 ?>

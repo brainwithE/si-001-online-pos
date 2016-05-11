@@ -133,8 +133,10 @@ $route['give-more-data'] = 'ajax_demo/give_more_data';
 $route['suggest-more-data'] = 'ajax_demo/suggest_more_data';
 $route['suggest-more-data-code'] = 'ajax_demo/suggest_more_data_code';
 
-$route['deliver-more-data'] = 'Delivery/deliver_more_data';
+$route['tenant/deliver-more-data'] = 'tenant/deliver_more_data';
+$route['deliver-more-data'] = 'tenant/deliver_more_data';
 $route['cashier/sales-more-data'] = 'cashier/sales_more_data';
+$route['sales-more-data'] = 'cashier/sales_more_data';
 
 /*$route['default_controller'] = 'signup';*/
 /*$route['default_controller'] = 'example'; --for aauth sample*//*

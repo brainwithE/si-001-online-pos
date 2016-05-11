@@ -61,10 +61,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="table-title table-end table-end-general table-end-income">
 						<?php echo form_open('admin/add-category');?>
 	                        	<input type="field" placeholder="Add New Item Category" name="item_category" id="item_category" />
-	                        	<input type="submit" class="submit-button" value="Submit" />
+	                        	<input type="submit" class="submit-button call-links" value="Submit" />
 	                        	
-	                      <?php echo form_close();?>
-								
+	                    <?php echo form_close();?>
+						<?php echo validation_errors('<div class="error">', '</div>'); ?>
 						</div>
 					</div><!-- MEC end -->
 

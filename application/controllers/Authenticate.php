@@ -254,13 +254,16 @@ class Authenticate extends CI_Controller {
         $user_code = $this->input->post('letter_code'); 
         $user_type = $this->input->post('new_account_type'); 
 
+        
         $this->aauth->create_user($user_email, $user_password, $user_name, $user_code);
-        $user_id = $this->aauth->get_user_id($user_email);
-
-        $this->aauth->add_member($user_id, $user_type);
-        $this->aauth->print_errors();
-        $this->view_user_list();
-
+        
+        if($this->aauth->get_errors_array()){
+            $this->create_account();
+        } else {
+            $user_id = $this->aauth->get_user_id($user_email);
+            $this->aauth->add_member($user_id, $user_type);
+            $this->view_user_list();          
+        }
     }
 
     public function is_banned() {

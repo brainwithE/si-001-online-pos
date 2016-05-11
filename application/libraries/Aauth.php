@@ -727,9 +727,15 @@ class Aauth {
 			$this->error($this->CI->lang->line('aauth_error_username_invalid'));
 			$valid = FALSE;
 		}
+		if (strlen($code)!=3){
+            $this->error('Please enter a 3-letter code');
+            $valid = FALSE;
+        }
 		if (!$valid) {
 			return FALSE; 
 		}
+
+
 
 		$data = array(
 			'email' => $email,
@@ -1934,7 +1940,7 @@ class Aauth {
 			}
 			$i++;
 		}
-		echo $msg;
+		echo "<div class='error'>".$msg."</div>";
 	}
 	
 	/**

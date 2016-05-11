@@ -254,9 +254,24 @@ class Admin extends CI_Controller{
         $category_name = $this->input->post('item_category');
 
         $this->load->model('Items_model');
-        $this->Items_model->add_item_category($category_name);
+        
+        $this->form_validation->set_rules('item_category', 'Item Category', 'required');
+        $this->form_validation->set_rules('item_category', 'Item Category', 'alpha');
+        
 
-        $this->view_item_category_list();
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->view_item_category_list();
+        }
+        else
+        {
+            
+            $this->Items_model->add_item_category($category_name);
+            redirect('admin/report-item-category');
+        }
+
+
+        //$this->view_item_category_list();
 
     }
 

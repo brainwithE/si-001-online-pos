@@ -29,6 +29,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				        	
 				        	<input type="submit" class="btn submit-button" value="Submit" />
 					      <?php echo form_close();?>
+					      <div class="errors"><?php $this->aauth->print_errors();?></div>
 					    </div>
 					</div><!-- MEC end -->
 

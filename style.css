@@ -963,6 +963,9 @@ button{
 	background-color: green;
 }
 
+.btn-reject{
+	color: red;
+}
 .error{ 
 	color: red; 
 	float: left;

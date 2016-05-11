@@ -55,6 +55,7 @@
 									<div class="col-xs-2">
 
 										<a href='<?php echo base_url() ?>cashier/approved_pullout/<?php echo $pullout_code ?>'><i class="fa fa-check-square" aria-hidden="true"></i> Approve</a>
+										<a href='<?php echo base_url() ?>cashier/reject_pullout/<?php echo $pullout_code ?>' class="btn-reject"><i class="fa fa-minus-square" aria-hidden="true"></i> Reject</a>
 									</div>
 								</div>
 

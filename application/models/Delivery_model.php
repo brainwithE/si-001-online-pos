@@ -102,11 +102,17 @@ class Delivery_model extends CI_model{
 
 	/* UPDATE ACTIONS */
 
-	function approve_pullout($dt_id){
+	function approve_delivery($dt_id){
 		$current_date = date('Y-m-d');	
 		$sql = "UPDATE pos_delivery_transaction SET dt_status='1', dt_approve_date='".$current_date."' WHERE dt_id='".$dt_id."'" ;
 		$query = $this->db->query($sql);
 		return $query;
-	}	
+	}
+
+	function reject_delivery($dt_id){
+		$sql = "UPDATE pos_delivery_transaction SET dt_status='2' WHERE dt_id='".$dt_id."'" ;
+		$query = $this->db->query($sql);
+		return $query;
+	}
 }
 ?>

@@ -246,6 +246,14 @@ class Cashier extends CI_Controller{
         redirect('cashier/report-delivery');
 
     }
+
+    public function reject_delivery(){
+        $dt_id = $this->uri->segment(3);
+        $this->load->model('Delivery_model');
+        $pullout = $this->Delivery_model->reject_delivery($dt_id);
+
+        redirect('cashier/report-delivery');
+    }
 }
 ?>
 

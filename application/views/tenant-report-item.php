@@ -15,8 +15,41 @@ $(document).ready(function(){
 
 });
 
+function downloadBarcode(id) {
+	var link = document.getElementById('downloadLink'+id);
+	link.setAttribute('crossOrigin', 'anonymous');
+	link.href = document.getElementById('canvas'+id).toDataURL();
+    link.download = 'barcode.png';
+}
+
 function itemBarcode(id){
 	$("#bcTarget"+id).barcode(id, "code39");
+
+	var mycanvas = document.getElementById('bcTarget'+id).innerHTML;
+ 	var canvas = document.getElementById('canvas'+id);
+	var ctx    = canvas.getContext('2d');
+
+	var data   = '<svg xmlns="http://www.w3.org/2000/svg" width="250" height="250">' +
+	               '<foreignObject width="100%" height="100%">' +
+	                 '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
+	                   '<div id="controlDiv">'+mycanvas+'</div>' +
+	                 '</div>' +
+	               '</foreignObject>' +
+	             '</svg>';
+
+	var DOMURL = window.URL || window.webkitURL || window;
+
+	var img = new Image();
+	var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+	var url = DOMURL.createObjectURL(svg);
+
+	img.onload = function () {
+	  ctx.drawImage(img, 0, 0);
+	  DOMURL.revokeObjectURL(url);
+	}
+
+	img.src = url;
+	document.getElementById('bcTarget'+id).innerHTML = "";
 }
 
 function printPage(){
@@ -95,9 +128,14 @@ function printPage(){
 						                          <p><span>Stocks available:</span> <?php echo $item_stock;?></p>
 
 						                          <div class="row barcode-row" style="margin-top: 30px;">
-						                          	<div class="col-xs-6" id="bcTarget<?php echo $item_code; ?>"></div>
-						                          	<div class="col-xs-6"><a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a></div>
+						                          	<canvas id="canvas<?php echo $item_code; ?>" class="col-xs-6" style="border:2px solid black;"></canvas>
+						                          	<div class="col-xs-6">
+						                          		<a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a>
+						                          		<a href="#" id="downloadLink<?php echo $item_code; ?>" onClick="downloadBarcode(<?php echo $item_code; ?>);">DOWNLOAD AS IMAGE</a>
+						                          	</div>
 						                          </div>
+
+						                          <div id="bcTarget<?php echo $item_code; ?>"></div>
 
 						                          <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>
 						                        </div>

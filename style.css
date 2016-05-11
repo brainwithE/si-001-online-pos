@@ -548,11 +548,11 @@ button{
 	bottom: 0;
 	right: 0;
 	left: 0;
-	border-top: 1px solid #52ed18;
+	border-top: 1px solid #47a3da;
 }
 
 .table-end-general {
-	color: #7579da;
+	color: #47a3da;
 	height: 55px;
 }
 
@@ -599,7 +599,7 @@ button{
 	cursor: pointer;
 } 
 .table-end-income {
-	color: #52ed18;
+	color: #47a3da;
 }
 
 .mec-withdrawal{
@@ -609,7 +609,7 @@ button{
 .table-entries-withdrawal {
 } 
 .table-end-withdrawal {
-	color: #ed5d18;
+	color: #47a3da;
 }
 
 .mec-expense{

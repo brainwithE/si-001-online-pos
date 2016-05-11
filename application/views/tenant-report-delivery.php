@@ -13,7 +13,7 @@
 
 						<div class="table-bank-row">
 							<div class="col-xs-6">
-								<p style="text-align: left;">These are all your pullout history. Today is: <?php echo $today = date('F j, Y');?></p>
+								<p style="text-align: left;">These are all your delivery history. Today is: <?php echo $today = date('F j, Y');?></p>
 								<div id="print" onClick="printPage();" class="call-links">PRINT PULLOUT RECORDS</div>
 							</div>
 						</div>
@@ -35,7 +35,7 @@
 								<?php
 									foreach($delivery_transaction->result_array() as $row){ 
 									$dt_code = $row['dt_id'];
-									$dt_supplier = $row['supplier_name'];
+									$dt_supplier = $row['dt_supplier'];
 									$dt_quantity = $row['dt_total_quantity'];
 									$dt_date = $row['dt_date'];
 									$dt_status = $row['dt_status'];

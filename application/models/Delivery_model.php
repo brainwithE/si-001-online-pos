@@ -15,10 +15,9 @@ class Delivery_model extends CI_model{
 
 	function get_delivery_report_supplier($supplier_id){		
 		$this->db->order_by("dt_id", "desc");
-		$this->db->select('dt_id, dt_total_quantity,dt_date, dt_approve_date, dt_status, pos_supplier.supplier_name');
+		$this->db->select('dt_id, dt_total_quantity,dt_date, dt_approve_date, dt_status, dt_supplier');
 		$this->db->from('pos_delivery_transaction');
 		$this->db->where('dt_supplier', $supplier_id);
-		$this->db->join('pos_supplier', 'pos_supplier.supplier_id = pos_delivery_transaction.dt_supplier');
 
 		$query = $this->db->get();
 

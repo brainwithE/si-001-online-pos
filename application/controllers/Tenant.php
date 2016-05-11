@@ -143,7 +143,7 @@ class Tenant extends CI_Controller{
 
         //insert tons of condition here
 
-        $supplier = '201605000000001'; //enter supplier type here 
+        $supplier = $this->session_name(); 
 
         $items = $this->input->post('data');
         $quant = $this->input->post('qty');
@@ -180,7 +180,7 @@ class Tenant extends CI_Controller{
     }
 
     public function view_delivery(){
-        $supplier_id = $this->get_supplier_id();
+        $supplier_id = $this->session_name();
 
         $this->load->model('Delivery_model');
         

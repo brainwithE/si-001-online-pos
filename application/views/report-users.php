@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="overwatch-mec mec-income">
 						<div class="head-contain">
 							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>
-							LIST OF ACCOUNTS</h4>
+							ACTIVE USER ACCOUNTS</h4>
 						</div>
 						<div class="col-xs-12">						
 
@@ -35,7 +35,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									$is_banned = $row->banned;			
 									$user_last_login = $row->last_login;
 									$user_last_activity = $row->last_activity;
-									$user_last_login_attempt = $row->last_login_attempt;							
+									$user_last_login_attempt = $row->last_login_attempt;
+
+									if($is_banned == 0){
 
 
 							?>
@@ -45,21 +47,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="col-xs-2"><?php echo $user_id;?></div>
 									<div class="col-xs-1"><?php echo $user_name;?></div>
 									<div class="col-xs-2"><?php echo $user_email;?></div>
-									<div class="col-xs-2"><?php echo $user_last_login;?></div>
-									<div class="col-xs-2"><?php echo $user_last_activity;?></div>
-									<div class="col-xs-2"><?php echo $user_last_login_attempt;?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($user_last_login)); ?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($user_last_activity)); ?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($user_last_login_attempt)); ?></div>
 									<div class="col-xs-1">
-										<a href="#" class="btn" data-toggle="modal" <?php echo "data-target=#User".$user_id?>>Edit</a>
-										<!-- <a href="<?php  base_url() ?>authenticate/ban_user/<?php  $user_id?>"?> -->
-										<?php
-											if($is_banned==0){
-												echo "<a href='".base_url()."/authenticate/ban_user/$user_id'>x</a>";
-												
-											} else {
-												echo "<a href='".base_url()."/authenticate/unban_user/$user_id'>/</a>";
-											}
 
-										?>
+										<a href="#" class="btn" data-toggle="modal" <?php echo "data-target=#User".$user_id?>>Edit</a>
+										<a href="<?php echo base_url(); ?>authenticate/ban_user/<?php echo $user_id?>" class="btn-red"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
 										
 									</div>
 									
@@ -94,13 +88,74 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					                </div>
 					        </div>
 
-							<?php } ?>
+							<?php 
+								}
+							} 
+							?>
 							
 						</div>
 
-						<div class="table-title table-end table-end-general table-end-income">
-								
+						
+					</div><!-- MEC end -->
+
+
+
+					<div class="overwatch-mec mec-income">
+						<div class="head-contain">
+							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>
+							DEACTIVATED USER ACCOUNTS</h4>
 						</div>
+						<div class="col-xs-12">						
+
+							<div class="row table-title table-title-general table-title-income">
+								<div class="col-xs-2">User ID</div>
+								<div class="col-xs-1">Name</div>
+								<div class="col-xs-2">Email</div>
+								<div class="col-xs-2">Last Login</div>
+								<div class="col-xs-2">Last Activity</div>	
+								<div class="col-xs-2">Last Login Attempt</div>	
+								<div class="col-xs-1"></div>	
+							</div>
+							<?php								
+
+								foreach($users as $row){ 
+									$user_id = $row->id;									
+									$user_name = $row->name;
+									$user_password = $row->pass;
+									$user_email = $row->email;									
+									$is_banned = $row->banned;			
+									$user_last_login = $row->last_login;
+									$user_last_activity = $row->last_activity;
+									$user_last_login_attempt = $row->last_login_attempt;
+
+									if($is_banned == 1){
+
+
+							?>
+								
+								<div class="row table-entries table-entries-income">
+
+									<div class="col-xs-2"><?php echo $user_id;?></div>
+									<div class="col-xs-1"><?php echo $user_name;?></div>
+									<div class="col-xs-2"><?php echo $user_email;?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($user_last_login)); ?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($user_last_activity)); ?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($user_last_login_attempt)); ?></div>
+									<div class="col-xs-1">
+										<a href="<?php echo base_url(); ?>authenticate/ban_user/<?php echo $user_id?>" class="btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+										
+									</div>
+									
+								</div>
+
+							<?php 
+								}
+							} 
+							?>
+							
+						</div>
+
+						
 					</div><!-- MEC end -->
 
 				</div>

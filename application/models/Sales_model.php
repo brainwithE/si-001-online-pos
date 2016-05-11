@@ -51,6 +51,20 @@ class Sales_model extends CI_model{
 
 		return $query;
 	}
+
+	function get_sales_supplier_certmonth($date_start,$date_end,$supplier){
+		$this->db->order_by("sales_date", "desc");
+		$this->db->select('sales_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st');
+		$this->db->where('sales_date >=', $date_start);
+		$this->db->where('sales_date <=', $date_end);
+		$this->db->where('sales_supplier =', $supplier);
+		$this->db->from('pos_sales');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+		
+		$query = $this->db->get();
+
+		return $query;
+	}
 	
 	function add_sales_transaction($supplier,$qty){
 		$current_date = date('Y-m-d');	

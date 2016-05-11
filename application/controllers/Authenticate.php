@@ -58,7 +58,7 @@ class Authenticate extends CI_Controller {
                 redirect('cashier');
             } else {
                 
-                $this->landing_page();
+                $this->landing_page('');
             }
 
         } else {
@@ -305,11 +305,12 @@ class Authenticate extends CI_Controller {
         $user_password = $this->input->post('user_password');
         $user_email = $this->input->post('user_email');
 
-        //echo $user_id;
-        //$this->aauth->update_user($user_id,$user_email,FALSE,$user_name);
+        if($user_password!=null|| $user_password!=''){
+            $this->aauth->update_user($user_id, false, $user_password, false);
+        } else {
+            $this->aauth->update_user($user_id, $user_email, false, $user_name);
+        }
 
-        
-        $this->aauth->update_user($user_id, $user_email, $user_password, $user_name);
         redirect('admin/report-user');
         
     }

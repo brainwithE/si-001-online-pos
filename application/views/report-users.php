@@ -89,10 +89,10 @@ $(document).ready(function(){
 						                       	  		<input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
 						                       	  		<label>User Name: </label>
 							                        	<input type="field" name="user_name" value="<?php echo $user_name; ?>">
-							                        	<label>User Password: </label>
-							                        	<input type="password" name="user_password" value="<?php echo $user_password; ?>">
 							                        	<label>User Email: </label>
 							                        	<input type="field" name="user_email" value="<?php echo $user_email; ?>">
+							                        	<label>User Password: </label>
+							                        	<input type="password" name="user_password" placeholder="Change password">
 
 							                        	<input type="submit" class="btn submit-button" value="Submit" />
 

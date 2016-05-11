@@ -56,7 +56,7 @@
 											else{ 
 												echo "<div class='col-xs-2'>PENDING</div>
 												<div class='col-xs-2'>
-													<a href=".base_url()."Admin/approved_delivery/".$dt_code.">
+													<a href=".base_url()."cashier/approved_delivery/".$dt_code.">
 													<i class='fa fa-check-square' aria-hidden='true'></i> Approve
 													</a>
 												</div>"; 

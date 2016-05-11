@@ -96,6 +96,11 @@ $route['tenant/print-barcode/(:any)'] = 'tenant/print_barcode/$1';
 $route['tenant/report-delivery'] = 'tenant/view_delivery';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';
 $route['tenant/pullout-item'] = 'tenant/input_pullout_item';
+$route['tenant/edit-user-info'] = 'authenticate/edit_user_info';
+$route['tenant/user-update'] = 'authenticate/update_user';
+
+
+
 
 //$route['tenant/approve-pullout'] = 'tenant/approve_pullout/(:num)';
 

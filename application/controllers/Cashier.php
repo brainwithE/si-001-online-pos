@@ -234,3 +234,4 @@ class Cashier extends CI_Controller{
     }
 }
 ?>
+

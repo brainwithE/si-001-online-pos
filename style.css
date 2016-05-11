@@ -960,11 +960,19 @@ button{
 }
 
 .btn-green{
-	color: green;
-	font-size: 24px;
-	margin: 0 10px;
+	background-color: green;
 }
 
+.error{ 
+	color: red; 
+	float: left;
+    clear: both; 
+}
+
+.table-end form, .table-end .error{
+	display: inline-block;
+	float: none;
+}
 
 /* MOBILE FRIENDLINESS */
 

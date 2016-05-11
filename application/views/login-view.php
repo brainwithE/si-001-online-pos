@@ -19,11 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				      	<?php echo form_open('account-login') ?>				      
 				        	<input type="field" placeholder="Username" name="user_name" />
 				        	<input type="password" placeholder="Password" name="user_password"/>
-				        	<?php
-				        		if ($message != null){
-				        			echo "<p>".$message."</p>";
-				        		}
-				        	?>
+				        	<div class="error"><?php $this->aauth->print_errors();?></div>
 				        	<input type="submit" class="submit-button" value="Submit" />
 				      	<?php echo form_close();?>
 				    </div>

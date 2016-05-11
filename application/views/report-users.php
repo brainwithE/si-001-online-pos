@@ -133,8 +133,8 @@ $(document).ready(function(){
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-1"></div>
 								<div class="col-xs-2">User ID</div>
-								<div class="col-xs-1">Name</div>
-								<div class="col-xs-2">Email</div>
+								<div class="col-xs-2">Name</div>
+								<div class="col-xs-3">Email</div>
 								<div class="col-xs-2">Last Login</div>
 								<div class="col-xs-1"></div>	
 							</div>
@@ -158,11 +158,11 @@ $(document).ready(function(){
 								<div class="row table-entries table-entries-income">
 									<div class="col-xs-1"><?php echo $ctr;?></div>
 									<div class="col-xs-2"><?php echo $user_id;?></div>
-									<div class="col-xs-1"><?php echo $user_name;?></div>
-									<div class="col-xs-2"><?php echo $user_email;?></div>
+									<div class="col-xs-2"><?php echo $user_name;?></div>
+									<div class="col-xs-3"><?php echo $user_email;?></div>
 									<div class="col-xs-2"><?php echo date("M j, Y g:i a", strtotime($user_last_login)); ?></div>
 									<div class="col-xs-1">
-										<a href="<?php echo base_url(); ?>authenticate/unban_user/<?php echo $user_id?>" class="btn-green"><i class="fa fa-check-circle" aria-hidden="true"></i></a>
+										<a href="<?php echo base_url(); ?>authenticate/unban_user/<?php echo $user_id?>" class="btn btn-green">Activate</a>
 										
 									</div>
 									

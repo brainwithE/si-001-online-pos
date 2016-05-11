@@ -19,15 +19,15 @@ class Authenticate extends CI_Controller {
     }
 
      public function index() {  
-        $this->landing_page(" ");
+        $this->landing_page();
      
 
     }
 
-    public function landing_page($error_msg){
-        $packet['message'] = $error_msg;
+    public function landing_page(){
+        
         $this->load->view('header-landing');
-        $this->load->view('login-view', $packet);
+        $this->load->view('login-view');
         $this->load->view('footer');
     }
 
@@ -58,12 +58,12 @@ class Authenticate extends CI_Controller {
                 redirect('cashier');
             } else {
                 
-                $this->landing_page('');
+                $this->landing_page();
             }
 
         } else {
-            $error_msg = $this->aauth->print_errors();
-            $this->landing_page($error_msg);
+            
+            $this->landing_page();
         }       
     }
 
@@ -188,7 +188,7 @@ class Authenticate extends CI_Controller {
     public function logout() {
 
         $this->aauth->logout();
-        $this->landing_page('');
+        $this->landing_page();
     }
 
     public function is_member() {
@@ -254,13 +254,16 @@ class Authenticate extends CI_Controller {
         $user_code = $this->input->post('letter_code'); 
         $user_type = $this->input->post('new_account_type'); 
 
+        
         $this->aauth->create_user($user_email, $user_password, $user_name, $user_code);
-        $user_id = $this->aauth->get_user_id($user_email);
-
-        $this->aauth->add_member($user_id, $user_type);
-        $this->aauth->print_errors();
-        $this->view_user_list();
-
+        
+        if($this->aauth->get_errors_array()){
+            $this->create_account();
+        } else {
+            $user_id = $this->aauth->get_user_id($user_email);
+            $this->aauth->add_member($user_id, $user_type);
+            $this->view_user_list();
+        }
     }
 
     public function is_banned() {

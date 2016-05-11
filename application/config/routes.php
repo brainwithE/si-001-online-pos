@@ -108,6 +108,8 @@ $route['cashier/add-sales'] = 'cashier/add_sales';
 $route['cashier/add-sales-transaction'] = 'cashier/add_sales_transaction';
 
 $route['cashier/report-sales'] = 'cashier/view_sales_report';
+$route['cashier/report-delivery'] = 'cashier/view_delivery';
+$route['cashier/report-pullout'] = 'cashier/view_pullout';
 
 //filter function
 $route['filter-sales'] = 'Sales/filter_sales_date';

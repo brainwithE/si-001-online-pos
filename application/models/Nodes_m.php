@@ -37,5 +37,28 @@ class Nodes_m extends CI_Model {
   
     return $query->result();
   }
+
+  function get_node_by_spec_code($id){
+    $this->db->select('item_id,item_name,item_price');
+    $this->db->where('item_id',$id,'=');
+    $this->db->order_by('item_id','DESC');
+    $query = $this->db->get($this->table);
+    
+    return $query->result();
+  }
+
+  function get_node_exists($id){
+    $this->db->select('item_id,item_name,item_price');
+    $this->db->where('item_id',$id,'=');
+    $this->db->order_by('item_id','DESC');
+    $query = $this->db->get($this->table);
+    
+    if($query->num_rows() == 1) {
+          return true;
+    } else {
+        return false;
+    }
+  }
+
 }
 ?>

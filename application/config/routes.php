@@ -104,7 +104,9 @@ $route['add-delivery-transaction'] = 'tenant/add_delivery_transaction';
 //cashier actions
 
 $route['cashier/add-sales'] = 'cashier/add_sales';
+$route['add-sales'] = 'cashier/add_sales';
 $route['cashier/add-sales-transaction'] = 'cashier/add_sales_transaction';
+$route['add-sales-transaction'] = 'cashier/add_sales_transaction';
 
 $route['cashier/report-sales'] = 'cashier/view_sales_report';
 

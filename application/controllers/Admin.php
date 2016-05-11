@@ -101,7 +101,7 @@ class Admin extends CI_Controller{
 
         $data['sessions'] = $this->session_name();
         
-        $this->load->view('header',$data);
+        $this->load->view('admin-header',$data);
         $this->load->view('admin-report-delivery', $packet);
         $this->load->view('footer');
     }
@@ -115,7 +115,7 @@ class Admin extends CI_Controller{
         
         $data['sessions'] = $this->session_name();
 
-        $this->load->view('header', $data);
+        $this->load->view('admin-header', $data);
         $this->load->view('admin-report-pullout', $packet);
         $this->load->view('footer');
     }

@@ -1,4 +1,4 @@
-f<?php 
+<?php 
 class Sales_model extends CI_model{
 
 	/* SELECT ACTION */

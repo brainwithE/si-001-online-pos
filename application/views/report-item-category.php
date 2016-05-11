@@ -48,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</a>
 									</div>
 									<div class="col-xs-1">
-										<a href="<?php echo base_url() ?>admin/delete_category/<?php echo $category_id?>" class="btn-delete"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+										<a href="<?php echo base_url() ?>admin/delete_category/<?php echo $category_id?>" class="btn-red"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
 									</div>
 									
 									

@@ -71,11 +71,11 @@
 
 				    	var disc = ItemArray[i].ItemDiscount;
 				    	var actdisc = disc/100;
-				    	alert(actdisc);
+				    	/*alert(actdisc);*/
 
 				    	var price = parseFloat($('#'+$id).find(".price-field").text());
 				    	var total = price - (price * actdisc);
-				        alert($id+"discount"+ItemArray[i].ItemDiscount);
+				        /*alert($id+"discount"+ItemArray[i].ItemDiscount);*/
 				        $('#'+$id).find(".discount").text(ItemArray[i].ItemDiscount+"%");
 				        $('#'+$id).find(".price-field").text(total);
         				break; //Stop this loop, we found it!

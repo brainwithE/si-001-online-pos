@@ -1,6 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <!DOCTYPE html>
 
 	<head>
@@ -45,20 +43,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    <ul>
 				    	<li><a href="<?php echo base_url(); ?>tenant" class="menu-title"><i class="fa fa-crosshairs"></i>Hi, <?php echo $sessions;?></a></li>				        
 				        <!---POS-->
-						<li><a href="<?php echo base_url() ?>tenant/report-inventory">INVENTORY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>tenant/report-sales">SALES REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>tenant/report-delivery">DELIVERY REPORT</a></li>
-						<li><a href="<?php echo base_url() ?>tenant/report-pullout">PULLOUT REPORT</a></li>
+						<li><a href="<?php echo base_url(); ?>tenant/report-inventory">INVENTORY REPORT</a></li>
+						<li><a href="<?php echo base_url(); ?>tenant/report-sales">SALES REPORT</a></li>
+						<li><a href="<?php echo base_url(); ?>tenant/report-delivery">DELIVERY REPORT</a></li>
+						<li><a href="<?php echo base_url(); ?>tenant/report-pullout">PULLOUT REPORT</a></li>
 
 				    </ul>
-				    <a href="<?php echo base_url() ?>logout" class="logout">LOGOUT <i class="fa fa-sign-out"></i></a>
+				    <a href="<?php echo base_url(); ?>logout" class="logout">LOGOUT <i class="fa fa-sign-out"></i></a>
 				</nav>
 
 
 
 			<!-- POS PARTS -->
 			<a id="showLeftPush" class="action-buttons action-additem" href="#" data-toggle="modal" data-target="#InputItems">+ ITEMS</a>
-			<a id="showLeftPush" class="action-buttons action-adddel" href="<?php echo base_url() ?>add-delivery">+ DELIVERY</a>
+			<a id="showLeftPush" class="action-buttons action-adddel" href="<?php echo base_url(); ?>add-delivery">+ DELIVERY</a>
 			<a id="showLeftPush" class="action-buttons action-pullout" data-toggle="modal" data-target="#InputPullout">+ PULLOUT</a>
 
 			<!-- MODAL PART -->
@@ -70,7 +68,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<h4><i class="fa fa-coffee"></i>INPUT NEW ITEM</h4>
 						</div>
                         <div class="modal-body modal-project">                          
-                          <?php echo form_open('tenant/add-items') ?>
+                          <?php echo form_open('tenant/add-items'); ?>
 	                        	<input type="field" placeholder="Item Name" name="item_name" />
 	                        	<input type="field" placeholder="Price" name="item_price"/>	                        	
 	                        	<select name="item_category">
@@ -80,9 +78,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							            $category_name = $row['category_name'];
 							            $category_status = $row['category_status'];
 
-							        if($category_status != 0){
-							        	echo "<option value='".$category_name."'>".$category_name."</option>";	
-							        }
+								        if($category_status != 0){
+								        	echo "<option value='".$category_name."'>".$category_name."</option>";	
+								        }
 							    ?>
 							    <?php
 							        }
@@ -114,8 +112,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
 
                       </div>
-
-                    
 
                 </div>
             </div>

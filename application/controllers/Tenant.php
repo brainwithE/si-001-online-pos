@@ -27,7 +27,7 @@ class Tenant extends CI_Controller{
     }
 
      public function view_sales_report() {
-        $supplier_id = $this->get_supplier_id();       
+        $supplier_id = $this->session_name();       
         
         $this->load->model('Sales_model');
                 
@@ -53,6 +53,7 @@ class Tenant extends CI_Controller{
             $packet['fro'] = $date_start;
             $packet['to'] = $date_end;
 
+            $data['category_list'] = $this->get_item_category();
             $data['sessions'] = $this->session_name();
             
             $this->load->view('tenant-header', $data);

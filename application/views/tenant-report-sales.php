@@ -54,7 +54,7 @@
 					<div class="col-xs-1">Type</div>
 					<div class="col-xs-1">Amount</div>
 					<div class="col-xs-1">Discount</div>
-					<div class="col-xs-1">Deduction</div>
+					<div class="col-xs-1">Tax</div>
 					<div class="col-xs-2 net-col">Net</div>	
 				</div>
 				<?php	

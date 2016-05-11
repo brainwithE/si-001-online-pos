@@ -54,7 +54,6 @@ class Cashier extends CI_Controller{
     }
 
     public function add_sales_transaction(){
-        $supplier = '201605000000001'; //enter supplier type here 
         $current_date = date('Y-m-d');
 
         $items = $this->input->post('data');
@@ -72,6 +71,7 @@ class Cashier extends CI_Controller{
 
             
             $result = $this->Items_model->get_item_price($icode);
+            $supplier = $this->Items_model->get_item_supplier($icode);
             $assprice = $result->item_price;
 
             $actuald = $idisc/100;
@@ -98,6 +98,13 @@ class Cashier extends CI_Controller{
         $result = $this->Items_model->get_item_price($item_code);
         
         return $result->item_price;        
+    }
+
+    public function get_item_supplier($item_code) {
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_supplier($item_code);
+        
+        return $result->item_supplier;        
     }
 
     public function get_total_price($item_code, $quantity) {

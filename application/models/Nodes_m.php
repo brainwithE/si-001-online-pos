@@ -39,7 +39,7 @@ class Nodes_m extends CI_Model {
   }
 
   function get_node_by_spec_code($id){
-    $this->db->select('item_id,item_name,item_price');
+    $this->db->select('item_id,item_name,item_price,item_supplier');
     $this->db->where('item_id',$id,'=');
     $this->db->order_by('item_id','DESC');
     $query = $this->db->get($this->table);

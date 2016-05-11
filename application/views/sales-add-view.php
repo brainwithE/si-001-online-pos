@@ -20,10 +20,11 @@
 
 		<div class="col-xs-12">
 			<div class="row table-title table-title-general">
-				<div class="col-xs-2"></div>
+				<div class="col-xs-1"></div>
 				<div class="col-xs-2">item code</div>
 				<div class="col-xs-2">supplier</div>
-				<div class="col-xs-4">item</div>
+				<div class="col-xs-2">discount</div>
+				<div class="col-xs-3">item</div>
 				<div class="col-xs-2 price-field">price</div>
 			</div>
 							
@@ -59,6 +60,42 @@
 				$('.total-amount').html(total);
 			}
 
+			function confirmDiscount(){
+				$('#myModal').modal("hide");
+				var $id = $('#item-check').text();
+				for (var i = 0; i < ItemArray.length; i++){
+				    if(ItemArray[i].ItemName == $id) 
+				    { 
+				    	var discass = $('#discount').val();
+				    	ItemArray[i].ItemDiscount = discass;
+
+				    	var disc = ItemArray[i].ItemDiscount;
+				    	var actdisc = disc/100;
+				    	alert(actdisc);
+
+				    	var price = parseFloat($('#'+$id).find(".price-field").text());
+				    	var total = price - (price * actdisc);
+				        alert($id+"discount"+ItemArray[i].ItemDiscount);
+				        $('#'+$id).find(".discount").text(ItemArray[i].ItemDiscount+"%");
+				        $('#'+$id).find(".price-field").text(total);
+        				break; //Stop this loop, we found it!
+				    }
+				}
+
+			    var total = 0;
+				$(".table-entries").each(function() {
+					total += parseFloat($(this).find(".price-field").text());
+				});
+				$('.total-amount').html(total);
+			}
+
+			function addDiscount($id) {
+
+				$('#myModal').modal("show");
+
+				$('#item-check').text($id);
+			}
+
 			$(document).ready(function() {
 
 					var totalQuantity = 0;
@@ -84,11 +121,15 @@
 										$('#code').val('');
 									}
 									else{
+										/*$('#myModal').modal("show");
+										$('#item-check').html(data);*/
+
 										var total = 0;
 										ItemArray.push({
 											ItemCode : '201602000000001', 
 											ItemName : barcode,
-											ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
+											ItemQuantity : '1',/*$('.add-delivery-form #qty').val()*/
+											ItemDiscount : '0'
 										});
 
 										$('#ajax-content-container').prepend(data);
@@ -99,12 +140,12 @@
 									   	$.each(ItemArray, function(key, value) { 
 											totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
 										});
-									}
 
-									$(".table-entries").each(function() {
-									  	total += parseFloat($(this).find(".price-field").text());
-									});
-									$('.total-amount').html(total);
+										$(".table-entries").each(function() {
+										  	total += parseFloat($(this).find(".price-field").text());
+										});
+										$('.total-amount').html(total);
+									}
 							   	},
 							   	error: function(xhr, status, error) {
 							      // check status && error
@@ -142,11 +183,15 @@
 										$('#code').val('');
 									}
 									else{
+										/*$('#myModal').modal("show");
+										$('#item-check').html(data);*/
+
 										var total = 0;
 										ItemArray.push({
 											ItemCode : '201602000000001', 
 											ItemName : code,
-											ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
+											ItemQuantity : '1',/*$('.add-delivery-form #qty').val()*/
+											ItemDiscount : '0'
 										});
 
 										$('#ajax-content-container').prepend(data);
@@ -185,6 +230,37 @@
 			});
 
 		</script>
+
+
+			
+
+							<div class="modal fade" id="myModal" role="dialog">
+					                <div class="modal-dialog">
+					                    <!-- Modal content-->
+					                    <div class="modal-content item-modal">					                    
+					                    	<div class="edit-item">
+												<div class="head-contain">
+													<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</h4>
+												</div>
+												<div class="modal-body modal-project">
+												ADD DISCOUNT FOR ITEM: <span id="item-check"></span>
+															                    
+													<!-- <input type="hidden" name="item_code" value="<?php echo $item_code?>">
+													<label>Item Name: </label>
+													<input type="field" name="item_name" value="<?php echo $item_name?>">
+													<label>Item Price: </label>
+													<input type="field" name="item_price" value="<?php echo $item_price?>">
+													<label>Item Category: </label>
+													<input type="field" name="item_category" value="<?php echo $item_category?>"> -->
+													<input type="text" name="name" id="discount" placeholder="Enter Discount" />
+
+													<input type="submit" class="btn submit-button" onClick="confirmDiscount();" value="Confirm" />
+												</div>
+											</div>
+						                </div>
+					                </div>
+					        </div>
+
 		<a id="submit" href="#" class="call-links">COMPLETE SALE</a>
 	</div>
 

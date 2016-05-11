@@ -68,15 +68,21 @@ class Cashier extends CI_Controller{
         {
             $icode = $items[$key]['ItemName'];
             $iqty = $items[$key]['ItemQuantity'];
+            $idisc = $items[$key]['ItemDiscount'];
 
             
             $result = $this->Items_model->get_item_price($icode);
+            $assprice = $result->item_price;
+
+            $actuald = $idisc/100;
+
+            $totalprice = $assprice - ($assprice * $actuald); 
 
             $data[$key]['sales_id'] = '';
             $data[$key]['sales_item'] = $icode;
             $data[$key]['sales_quantity'] = $iqty;
-            $data[$key]['sales_total'] = $result->item_price;
-            $data[$key]['sales_discount'] = '0';
+            $data[$key]['sales_total'] = $totalprice;
+            $data[$key]['sales_discount'] = $idisc;
             $data[$key]['sales_date'] = $current_date;
             $data[$key]['sales_supplier'] = $supplier;
             $data[$key]['sales_st'] = '0';

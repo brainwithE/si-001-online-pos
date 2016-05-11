@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
-<script>
+<script type="text/javascript">
 
 $(document).ready(function(){	
     $('.btn-edit').click(function(){
@@ -58,7 +58,7 @@ function printPage(){
 									$item_stock = $row['item_stock'];
 									$item_category = $row['item_category'];
 							?>
-								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code?>>
+								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code; ?>>
 									<div class="col-xs-2"><?php echo $item_code;?></div>
 									<div class="col-xs-2"><?php echo $item_supplier;?></div>
 									<div class="col-xs-4"><?php echo $item_name;?></div>

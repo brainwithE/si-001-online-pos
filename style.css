@@ -768,8 +768,7 @@ button{
 }
 .modal-body, .modal-body p{
 	color: #2e2e2e;
-    font-family: 'Verdana';
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
     line-height: 18px;
 }
@@ -954,8 +953,14 @@ button{
 	color: #151967;
 }
 
-.btn-delete {
+.btn-red {
 	color: red;
+	font-size: 24px;
+	margin: 0 10px;
+}
+
+.btn-green{
+	color: green;
 	font-size: 24px;
 	margin: 0 10px;
 }

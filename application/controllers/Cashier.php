@@ -237,7 +237,7 @@ class Cashier extends CI_Controller{
 
         $this->load->model('Delivery_model');
         
-        $pullout = $this->Delivery_model->approve_pullout($dt_id); 
+        $pullout = $this->Delivery_model->approve_delivery($dt_id); 
         
         /*$new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
         $this->update_stock($item_code, $new_stock); */

@@ -51,38 +51,7 @@
 				    
 				</nav>
 
-			<!-- POS PARTS -->
-			<a id="showLeftPush" class="action-buttons action-pullout" data-toggle="modal" data-target="#InputPullout">+ PULLOUT</a>
-
-
-			<div class="modal fade" id="InputPullout" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">          
-	                    <div class="head-contain">
-							<h4><i class="fa fa-coffee"></i>INPUT PULLOUT</h4>
-						</div>
-
-                        <div class="modal-body modal-project">
-                          
-                          <?php 
-                          		$attributes = array('id' => 'pullout_form');
-                          		echo form_open('', $attributes) ;
-                          		
-                          ?>
-	                        	<input type="field" placeholder="Pullout Item Code" name="item_code" id="item_code" />
-	                        	<input type="field" placeholder="Item Quantity" name="item_quantity" id="item_quantity"/>
-	                        	<input type="submit" class="submit-button" value="Submit" />
-	                        	<div class='error_msg'></div>
-	                      <?php echo form_close();?>
-                        </div>
-
-                      </div>
-
-                    
-
-                </div>
-            </div>
-
+			
             <script>
 			    $(function(){
 			        $('body').on('submit', 'form', function(e){

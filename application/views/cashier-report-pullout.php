@@ -54,7 +54,7 @@
 									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date)); ?></div>										
 									<div class="col-xs-2">
 
-										<a href='<?php echo base_url() ?>admin/approved_pullout/<?php echo $pullout_code ?>'><i class="fa fa-check-square" aria-hidden="true"></i> Approve</a>
+										<a href='<?php echo base_url() ?>cashier/approved_pullout/<?php echo $pullout_code ?>'><i class="fa fa-check-square" aria-hidden="true"></i> Approve</a>
 									</div>
 								</div>
 
@@ -75,8 +75,9 @@
 								<div class="col-xs-2">Supplier</div>
 								<div class="col-xs-1">Qty</div>
 								<div class="col-xs-3">Item Name</div>
-								<div class="col-xs-2">Request Pullout Date</div>
-								<div class="col-xs-2">Approved Pullout Date</div>
+								<div class="col-xs-1">Request Pullout Date</div>
+								<div class="col-xs-1">Approved Pullout Date</div>
+								<div class="col-xs-1">Remarks</div>
 							</div>
 							<?php
 
@@ -99,8 +100,9 @@
 									<div class="col-xs-2"><?php echo $pullout_supplier;?></div>
 									<div class="col-xs-1"><?php echo $pullout_quantity;?></div>	
 									<div class="col-xs-3"><?php echo $pullout_item;?></div>
-									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date)); ?></div>
-									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_approved_date)); ?></div>									
+									<div class="col-xs-1"><?php echo date("M j, Y", strtotime($pullout_date)); ?></div>
+									<div class="col-xs-1"><?php echo date("M j, Y", strtotime($pullout_approved_date)); ?></div>									
+									<div class="col-xs-2"></div>
 									
 								</div>
 

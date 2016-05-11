@@ -156,5 +156,61 @@ class Cashier extends CI_Controller{
           $this->load->view('ajax_add_sales_items',$data);
         }
     }
+
+    public function view_delivery(){
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_delivery_report();  
+        $packet['delivery_transaction'] = $delivery_report;
+
+        $data['sessions'] = $this->session_name();
+        
+        $this->load->view('cashier-header',$data);
+        $this->load->view('cashier-report-delivery', $packet);
+        $this->load->view('footer');
+    }
+
+    public function view_pullout(){
+        $this->load->model('Pullout_model');
+        
+        $pullout_list = $this->Pullout_model->get_pullout();  
+        $packet['pullout'] = $pullout_list;
+        //$packet['supplier_name'] = $this->get_supplier_name($pullout_list);
+        
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('cashier-header', $data);
+        $this->load->view('cashier-report-pullout', $packet);
+        $this->load->view('footer');
+    }
+
+    public function approved_pullout(){
+        $pullout_id = $this->uri->segment(3);
+        $pull_data = $this->get_pullout_item($pullout_id);
+
+        foreach($pull_data->result_array() as $row){ 
+            $item_code = $row['pullout_item'];
+            $item_quantity = $row['pullout_quantity'];
+        }
+
+
+        $this->load->model('Pullout_model');
+        
+        $pullout = $this->Pullout_model->approve_pullout($pullout_id); 
+        
+        $new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
+        $this->update_stock($item_code, $new_stock);
+        
+
+        redirect('cashier/report-pullout');
+
+    }
+
+    public function get_pullout_item($pullout_id){
+        $this->load->model('Pullout_model');
+        $query = $this->Pullout_model->get_pullout_item($pullout_id);
+
+        return $query;
+    }
 }
 ?>

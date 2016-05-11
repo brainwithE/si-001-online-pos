@@ -44,7 +44,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    	<li><a href="<?php echo base_url(); ?>cashier" class="menu-title"><i class="fa fa-crosshairs"></i>Hi, <?php echo $sessions;?></a></li>				        
 				        <!---POS-->						
 						<li><a href="<?php echo base_url() ?>cashier/report-sales">SALES REPORT</a></li>
-						
+						<li><a href="<?php echo base_url() ?>cashier/report-delivery">DELIVERY REPORT</a></li>
+						<li><a href="<?php echo base_url() ?>cashier/report-pullout">PULLOUT REPORT</a></li>	
 				    </ul>
 				   <a href="<?php echo base_url() ?>logout" class="logout">LOGOUT <i class="fa fa-sign-out"></i></a>
 				</nav>

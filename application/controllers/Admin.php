@@ -120,6 +120,59 @@ class Admin extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function approved_pullout(){
+        $pullout_id = $this->uri->segment(3);
+        $pull_data = $this->get_pullout_item($pullout_id);
+
+        foreach($pull_data->result_array() as $row){ 
+            $item_code = $row['pullout_item'];
+            $item_quantity = $row['pullout_quantity'];
+        }
+
+
+        $this->load->model('Pullout_model');
+        
+        $pullout = $this->Pullout_model->approve_pullout($pullout_id); 
+        
+        $new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
+        $this->update_stock($item_code, $new_stock);
+        
+
+        redirect('admin/view_pullout');
+
+    }
+
+    public function deduct_inv_stock($item_code, $item_quantity){
+        $current_stock = $this->get_item_stock($item_code);
+
+        if($current_stock != 0) {
+            $stock = $current_stock - $item_quantity;
+        } else {
+            echo "no more stock available";
+        }
+
+       return $stock;
+    }
+
+    public function get_item_stock($item_code){
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_stock($item_code);
+
+        return $result->item_stock;
+    }
+
+    public function update_stock($item_code, $stock){
+        $this->load->model('Items_model');
+        $current_stock = $this->Items_model->update_stock($item_code, $stock);
+    }
+
+    public function get_pullout_item($pullout_id){
+        $this->load->model('Pullout_model');
+        $query = $this->Pullout_model->get_pullout_item($pullout_id);
+
+        return $query;
+    }
+
     public function delivery_notification() {
         //insert model and functions here
 
@@ -128,28 +181,7 @@ class Admin extends CI_Controller{
         $this->load->view('header', $data);
         $this->load->view('delivery-notification');
         $this->load->view('footer');
-    }
-
-    public function input_pullout_item(){
-        $item_code = $this->input->post('item_code');
-        $item_quantity = $this->input->post('item_quantity');
-
-
-        if ($this->form_validation->run() == TRUE) {            
-            $item_supplier = $this->get_item_supplier($item_code);
-
-            $data = array (
-                'pullout_item_code' => $item_code,
-                'pullout_item_quantity' => $item_quantity,
-                'pullout_supplier' => $item_supplier
-            );
-
-            $this->load->model('Pullout_model');
-            $sales_id = $this->Pullout_model->add_pullout_item($data);  
-     
-            redirect('admin/report-pullout');
-        }
-    }
+    }   
 
     
     public function get_item_supplier($item_code) {
@@ -254,5 +286,26 @@ class Admin extends CI_Controller{
 
         redirect('admin/report-item-category');
     }
+
+   /* public function input_pullout_item(){
+        $item_code = $this->input->post('item_code');
+        $item_quantity = $this->input->post('item_quantity');
+
+
+        if ($this->form_validation->run() == TRUE) {            
+            $item_supplier = $this->get_item_supplier($item_code);
+
+            $data = array (
+                'pullout_item_code' => $item_code,
+                'pullout_item_quantity' => $item_quantity,
+                'pullout_supplier' => $item_supplier
+            );
+
+            $this->load->model('Pullout_model');
+            $sales_id = $this->Pullout_model->add_pullout_item($data);  
+     
+            redirect('admin/report-pullout');
+        }
+    }*/
 }
 ?>

@@ -59,7 +59,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<!-- POS PARTS -->
 			<a id="showLeftPush" class="action-buttons action-additem" href="#" data-toggle="modal" data-target="#InputItems">+ ITEMS</a>
 			<a id="showLeftPush" class="action-buttons action-adddel" href="<?php echo base_url() ?>add-delivery">+ DELIVERY</a>
+			<a id="showLeftPush" class="action-buttons action-pullout" data-toggle="modal" data-target="#InputPullout">+ PULLOUT</a>
 
+			<!-- MODAL PART -->
 			<div class="modal fade" id="InputItems" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -90,6 +92,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                      <?php echo form_close();?>
                         </div>
                     </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="InputPullout" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">          
+	                    <div class="head-contain">
+							<h4><i class="fa fa-coffee"></i>INPUT PULLOUT</h4>
+						</div>
+
+                        <div class="modal-body modal-project">
+                          
+                          <?php echo form_open('tenant/pullout-item');?>
+	                        	<input type="field" placeholder="Pullout Item Code" name="item_code" id="item_code" />
+	                        	<input type="field" placeholder="Item Quantity" name="item_quantity" id="item_quantity"/>
+	                        	<input type="submit" class="submit-button" value="Submit" />
+	                        	<div class='error_msg'></div>
+	                      <?php echo form_close();?>
+                        </div>
+
+                      </div>
+
+                    
 
                 </div>
             </div>

@@ -2,6 +2,8 @@
 class Pullout_model extends CI_model{
 
 	/* SELECT ACTIONS */
+
+	//admin
 	function get_pullout(){
 		$this->db->order_by("pullout_approved_date", "desc");
 		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, pos_supplier.supplier_name, pos_item.item_name');
@@ -11,9 +13,11 @@ class Pullout_model extends CI_model{
 		$query = $this->db->get();
 
 		return $query;
+
 	}
 
-	function get_pullout_supplier($supplier_id){ //request on supplier
+	//tenant
+	function get_pullout_supplier($supplier_id){
 		$this->db->order_by("pullout_approved_date", "desc");
 		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, pos_supplier.supplier_name, pos_item.item_name');
 		$this->db->from('pos_pullout');
@@ -23,7 +27,6 @@ class Pullout_model extends CI_model{
 		$query = $this->db->get();
 
 		return $query;
-
 	}
 
 	function get_pullout_item($pullout_id){

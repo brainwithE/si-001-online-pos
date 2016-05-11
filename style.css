@@ -768,8 +768,7 @@ button{
 }
 .modal-body, .modal-body p{
 	color: #2e2e2e;
-    font-family: 'Verdana';
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
     line-height: 18px;
 }

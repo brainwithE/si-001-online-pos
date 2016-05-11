@@ -114,7 +114,7 @@
 								data: {type: barcode},
 								dataType: "html",
 							   	success: function( data ) {
-									if(data==null||data==''){
+									if(data==null||data==''||data=='\n'){
 										alert("Item does not exist.");
 
 										barcode="";
@@ -141,11 +141,12 @@
 											totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
 										});
 
-										$(".table-entries").each(function() {
+									   	$(".table-entries").each(function() {
 										  	total += parseFloat($(this).find(".price-field").text());
 										});
 										$('.total-amount').html(total);
 									}
+										
 							   	},
 							   	error: function(xhr, status, error) {
 							      // check status && error
@@ -176,7 +177,7 @@
 								dataType: "html",
 							   	success: function( data ) {
 
-									if(data==null||data==''){
+									if(data==null||data==''||data=='\n'){
 										alert("Item does not exist.");
 
 										barcode='';

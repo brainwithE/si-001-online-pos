@@ -3,11 +3,19 @@
 <div class="container">
 
 	<!--The overwatch Main element Container or MEC-->
+
+	<div class="head-contain">
+			<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i>ADD ITEMS (SCAN BARCODE NOW)</h4>
+	</div>
 	
 	<div class="overwatch-mec mec-income">
-		
+
 		<div class="col-xs-12 table-end-general table-end table-bank">
-			<div class="col-md-4 total-label total-label-bank">TOTAL -- Php <span class="total-amount"></span></div>
+			<div class="col-xs-12">
+				<input type="text" name="name" id="code" placeholder="Enter Barcodes Manually" />
+				<input type="submit" id="add-item" value="ADD" class="call-links"></input>
+			</div>
+			<div class="col-xs-12 total-label total-label-bank">TOTAL -- Php <span class="total-amount"></span></div>
 		</div>
 
 		<div class="col-xs-12">
@@ -104,6 +112,50 @@
 				            barcode=barcode+String.fromCharCode(code);
 				        }
 				    });
+
+				    $("#add-item").click(function (){
+				    		var code = $('#code').val();
+				    		var eachctr = 0;
+							totalQuantity = 0;
+
+							$.ajax({
+							   	type: 'POST',
+							   	url: 'sales-more-data',
+							   	type: "POST",
+								data: {type: code},
+								dataType: "html",
+							   	success: function( data ) {
+							   		if(data!=null||data!=''){
+										$('#ajax-content-container').prepend(data);
+										barcode=""; 
+
+										var total = 0;
+										$(".table-entries").each(function() {
+										  	total += parseFloat($(this).find(".price-field").text());
+										  	ItemArray.push({
+												ItemCode : '201602000000001', 
+												ItemName : code,
+												ItemQuantity : '1'/*$('.add-delivery-form #qty').val()*/
+											});
+
+											$.each(ItemArray, function(key, value) { 
+												totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
+											});
+										});
+										$('.total-amount').html(total);
+							   		}
+							   		else{
+							   			alert("hello");
+							   		}
+							   	},
+							   	error: function(xhr, status, error) {
+							      // check status && error
+							      alert("that item doesn't exist.");
+							   	}
+							});
+							      	
+							return false;
+					});
 
 					$("#submit").click(function (){
 						$.post('add-sales-transaction',{data:ItemArray,qty:totalQuantity},function(html){

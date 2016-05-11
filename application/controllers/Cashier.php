@@ -148,10 +148,12 @@ class Cashier extends CI_Controller{
     function sales_more_data() {
         if (isset($_POST['type'])) {
           $this->load->model('nodes_m');
+          $data['node_exists'] = $this->nodes_m->get_node_exists($_POST['type']);
+          
           $data['ajax_req'] = TRUE;
-          $data['node_list'] = $this->nodes_m->get_node_by_code($_POST['type']);
+          $data['node_list'] = $this->nodes_m->get_node_by_spec_code($_POST['type']);
 
-          $this->load->view('ajax_items',$data);
+          $this->load->view('ajax_add_sales_items',$data);
         }
     }
 }

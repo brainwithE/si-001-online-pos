@@ -217,6 +217,14 @@ class Cashier extends CI_Controller{
 
     }
 
+    public function reject_pullout(){
+        $pullout_id = $this->uri->segment(3);
+        $this->load->model('Pullout_model');
+        $pullout = $this->Pullout_model->reject_pullout($pullout_id);
+
+        redirect('cashier/view_pullout');
+    }
+
     public function get_pullout_item($pullout_id){
         $this->load->model('Pullout_model');
         $query = $this->Pullout_model->get_pullout_item($pullout_id);
@@ -237,6 +245,14 @@ class Cashier extends CI_Controller{
 
         redirect('cashier/report-delivery');
 
+    }
+
+    public function reject_delivery(){
+        $dt_id = $this->uri->segment(3);
+        $this->load->model('Delivery_model');
+        $pullout = $this->Delivery_model->reject_delivery($dt_id);
+
+        redirect('cashier/report-delivery');
     }
 }
 ?>

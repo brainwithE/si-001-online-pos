@@ -142,6 +142,14 @@ class Admin extends CI_Controller{
 
     }
 
+    public function reject_pullout(){
+        $pullout_id = $this->uri->segment(3);
+        $this->load->model('Pullout_model');
+        $pullout = $this->Pullout_model->reject_pullout($pullout_id);
+
+        redirect('admin/view_pullout');
+    }
+
     public function deduct_inv_stock($item_code, $item_quantity){
         $current_stock = $this->get_item_stock($item_code);
 
@@ -212,7 +220,7 @@ class Admin extends CI_Controller{
 
         $this->load->model('Delivery_model');
         
-        $pullout = $this->Delivery_model->approve_pullout($dt_id); 
+        $pullout = $this->Delivery_model->approve_delivery($dt_id); 
         
         /*$new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
         $this->update_stock($item_code, $new_stock); */
@@ -220,6 +228,14 @@ class Admin extends CI_Controller{
 
         redirect('admin/view_delivery');
 
+    }
+
+    public function reject_delivery(){
+        $dt_id = $this->uri->segment(3);
+        $this->load->model('Delivery_model');
+        $pullout = $this->Delivery_model->reject_delivery($dt_id);
+
+        redirect('admin/view_delivery');
     }
 
     public function view_dt_details(){

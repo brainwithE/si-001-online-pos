@@ -255,8 +255,9 @@ class Admin extends CI_Controller{
 
         $this->load->model('Items_model');
         
-        $this->form_validation->set_rules('item_category', 'Item Category', 'required');
+        
         $this->form_validation->set_rules('item_category', 'Item Category', 'alpha');
+        $this->form_validation->set_rules('item_category', 'Item Category', 'required|alpha|is_unique[pos_category.category_name]');
         
 
         if ($this->form_validation->run() == FALSE)

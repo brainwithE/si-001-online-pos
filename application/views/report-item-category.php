@@ -64,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                        	<input type="submit" class="submit-button call-links" value="Submit" />
 	                        	
 	                    <?php echo form_close();?>
-						<?php echo validation_errors('<div class="error">', '</div>'); ?>
+						<div class="error"><?php echo validation_errors(); ?></div>
 						</div>
 					</div><!-- MEC end -->
 

@@ -1940,7 +1940,7 @@ class Aauth {
 			}
 			$i++;
 		}
-		echo "<div class='error'>".$msg."</div>";
+		echo $msg;
 	}
 	
 	/**

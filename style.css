@@ -963,9 +963,16 @@ button{
 	background-color: green;
 }
 
-.table-end form, .table-end .error{display: inline-block;}
+.error{ 
+	color: red; 
+	float: left;
+    clear: both; 
+}
 
-.error{ color: red; }
+.table-end form, .table-end .error{
+	display: inline-block;
+	float: none;
+}
 
 /* MOBILE FRIENDLINESS */
 

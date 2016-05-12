@@ -19,10 +19,9 @@ class Pullout_model extends CI_model{
 	//tenant
 	function get_pullout_supplier($supplier_id){
 		$this->db->order_by("pullout_approved_date", "desc");
-		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, pos_supplier.supplier_name, pos_item.item_name');
+		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, pullout_supplier, pos_item.item_name');
 		$this->db->from('pos_pullout');
 		$this->db->where('pullout_supplier =', $supplier_id);
-		$this->db->join('pos_supplier', 'pos_supplier.supplier_id = pos_pullout.pullout_supplier');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_pullout.pullout_item');
 		$query = $this->db->get();
 

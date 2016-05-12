@@ -35,7 +35,7 @@
 								foreach($pullout->result_array() as $row){ 
 									$pullout_code = $row['pullout_id'];
 									$pullout_item = $row['item_name'];
-									$pullout_supplier = $row['supplier_name'];
+									$pullout_supplier = $row['pullout_supplier'];
 									$pullout_quantity = $row['pullout_quantity'];
 									$pullout_status = $row['pullout_status'];
 									$pullout_date_approved = $row['pullout_date'];

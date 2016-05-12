@@ -49,7 +49,7 @@
 				</div>
 
 				<div class="row table-title table-title-general table-title-income">
-					<div class="col-xs-4">Item Name</div>
+					<div class="col-xs-3">Item Name</div>
 					<div class="col-xs-1">Type</div>
 					<div class="col-xs-2">Supplier</div>
 					<div class="col-xs-1">Amount</div>
@@ -60,26 +60,37 @@
 				<?php	
 					$total_earnings = 0;
 					foreach($sales->result_array() as $row){ 
+						$sales_id = $row['sales_id'];
 						$sales_quantity = $row['sales_quantity'];
 						$sales_item_name = $row['item_name'];
 						$sales_amount = $row['sales_total'];
 						$sales_category = $row['item_category'];
 						$sales_supplier = $row['item_supplier'];
 						$sales_date = $row['sales_date'];
+						$sales_status = $row['sales_status'];
 						$sales_deduction = $sales_amount*0.12;
 						$sales_net = $sales_amount-$sales_deduction;
 						$total_earnings = $total_earnings + $sales_net;
+
+						///if($sales_status == 0) {
+
+					if($sales_status == 0){
 				?>
 					<div class="row table-entries table-entries-income">
-						<div class="col-xs-4"><?php echo $sales_item_name;?></div>
+						<div class="col-xs-3"><?php echo $sales_item_name;?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
 						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 						<div class="col-xs-1">--</div>
 						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
 						<div class="col-xs-2 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
+						<div class="col-xs-1">
+							<a href='<?php echo base_url() ?>cashier/void_sales/<?php echo $sales_id; ?>'><i class="fa fa-archive" aria-hidden="true"></i></a>
+						</div> 
 					</div>
-				<?php } ?>
+				<?php }
+					}
+				?>
 
 			<div class="table-title table-end table-end-general table-end-income">
 					<div class="col-xs-12 total-label">TOTAL EARNINGS <span class="total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></span>

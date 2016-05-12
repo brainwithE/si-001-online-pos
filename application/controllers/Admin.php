@@ -27,7 +27,7 @@ class Admin extends CI_Controller{
 
     public function view_sales_report() {
         $this->load->model('Sales_model');
-                
+
         $sale_report = $this->Sales_model->get_sales();  
         $packet['sales'] = $sale_report;        
 
@@ -317,6 +317,15 @@ class Admin extends CI_Controller{
         $this->Items_model->delete_category($category_id);
 
         redirect('admin/report-item-category');
+    }
+
+    public function void_sales(){
+        $sales_id = $this->uri->segment(3);
+
+        $this->load->model('Sales_model');
+        $pullout = $this->Sales_model->void_sales($sales_id);
+
+        redirect('admin/report-sales');
     }
 
    /* public function input_pullout_item(){

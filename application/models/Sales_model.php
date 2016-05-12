@@ -4,7 +4,7 @@ class Sales_model extends CI_model{
 	/* SELECT ACTION */
 	function get_sales(){		
 		$this->db->order_by("sales_id", "desc");
-		$this->db->select('sales_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st');
+		$this->db->select('*');
 		$this->db->from('pos_sales');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
 
@@ -17,7 +17,7 @@ class Sales_model extends CI_model{
 		$today = date('Y-m-d');	
 
 	    $this->db->order_by("sales_id", "desc");
-		$this->db->select('sales_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st');
+		$this->db->select('sales_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
 		$this->db->from('pos_sales');
 		$this->db->where('sales_date =', $today);
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
@@ -66,6 +66,8 @@ class Sales_model extends CI_model{
 		return $query;
 	}
 	
+
+	/* INSERT ACTIONS */
 	function add_sales_transaction($supplier,$qty){
 		$current_date = date('Y-m-d');	
 		
@@ -91,6 +93,14 @@ class Sales_model extends CI_model{
 		}
 
 		return true;
+	}
+
+	/*UPDATE STATUS*/
+
+	function void_sales($sales_id){
+		$sql = "UPDATE pos_sales SET sales_status='1' WHERE sales_id='".$sales_id."'" ;
+		$query = $this->db->query($sql);
+		return $query;
 	}
 
 }

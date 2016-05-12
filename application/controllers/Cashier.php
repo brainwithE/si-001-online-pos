@@ -254,6 +254,15 @@ class Cashier extends CI_Controller{
 
         redirect('cashier/report-delivery');
     }
+
+    public function void_sales(){
+        $sales_id = $this->uri->segment(3);
+
+        $this->load->model('Sales_model');
+        $pullout = $this->Sales_model->void_sales($sales_id);
+
+        redirect('cashier/report-sales');
+    }
 }
 ?>
 

@@ -45,6 +45,7 @@
 						<li><a href="<?php echo base_url() ?>cashier/report-delivery">DELIVERY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>cashier/report-pullout">PULLOUT REPORT</a></li>	
 				    </ul>
+				    <a href="<?php echo base_url(); ?>cashier/edit-user-info">EDIT ACCOUNT <i class="fa fa-user"></i></a>
 				   <a href="<?php echo base_url() ?>logout" class="logout">LOGOUT <i class="fa fa-sign-out"></i></a>
 				</nav>
 

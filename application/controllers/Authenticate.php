@@ -108,6 +108,26 @@ class Authenticate extends CI_Controller {
         $this->load->view('restricted-access', $packet);
     }
 
+
+    public function edit_user_info() {
+        $packet['users'] = $this->aauth->get_user();
+
+        $data['sessions'] = $this->session->userdata('name'); 
+        $data['category_list'] = $this->get_item_category();
+
+        $this->load->view('tenant-header', $data);        
+        $this->load->view('tenant-edit-account', $packet);
+        $this->load->view('footer');   
+    }
+
+    public function get_item_category(){
+        $this->load->model('Items_model');
+        $list = $this->Items_model->get_item_category();
+        return $list;
+    }
+
+
+
     function debug(){
 
         echo "<pre>";
@@ -309,12 +329,16 @@ class Authenticate extends CI_Controller {
         $user_email = $this->input->post('user_email');
 
         if($user_password!=null|| $user_password!=''){
-            $this->aauth->update_user($user_id, false, $user_password, false);
+            $this->aauth->update_user($user_id, $user_email, $user_password, $user_name);
         } else {
             $this->aauth->update_user($user_id, $user_email, false, $user_name);
         }
 
-        redirect('admin/report-user');
+        if($this->session->userdata('type')==2){
+            redirect('tenant');
+        } else{
+            redirect('admin/report-user');
+        }
         
     }
 

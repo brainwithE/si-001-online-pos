@@ -196,9 +196,7 @@ class Tenant extends CI_Controller{
     }
 
     public function view_pullout(){        
-        $supplier_id = $this->get_supplier_id();       
-
-        redirect('tenant/report-pullout');
+        $supplier_id = $this->session_name();       
 
         $this->load->model('Pullout_model');
         

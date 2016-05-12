@@ -19,8 +19,22 @@ class Authenticate extends CI_Controller {
     }
 
      public function index() {  
-        $this->landing_page();
-     
+        $sess_id = $this->session->userdata('type');
+        
+        
+        if(empty($sess_id)) {
+            $this->landing_page();
+        } elseif($sess_id == 1) {
+            redirect('admin');
+        } elseif($sess_id == 2) {
+            redirect('tenant');
+        } elseif($sess_id == 3) {
+            redirect('cashier');
+        } else{
+            $this->landing_page();
+        }
+
+       
 
     }
 
@@ -33,7 +47,7 @@ class Authenticate extends CI_Controller {
 
     public function user_login(){
         $user_name = $this->input->post('user_name');
-        $user_password = $this->input->post('user_password');
+        $user_password = $this->input->post('user_password');        
 
 	   $this->aauth->login($user_name, $user_password);
 
@@ -44,8 +58,6 @@ class Authenticate extends CI_Controller {
             $group_id = $this->get_user_groups($user_id);
 
             $user_code = $this->get_user_code($user_id);
-
-            ?><script type="text/javascript">console.log("hello@!");</script> <?php
 
             $this->session->set_userdata('code', $user_code); 
             $this->session->set_userdata('type', $group_id); 

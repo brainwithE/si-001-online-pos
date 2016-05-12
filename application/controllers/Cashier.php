@@ -13,8 +13,8 @@ class Cashier extends CI_Controller{
         }        
     }
 	
-	public function index(){      
-        $this->view_sales_report();
+	public function index(){
+       $this->view_sales_report();
     }
 
     public function session_type(){        

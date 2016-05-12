@@ -115,9 +115,15 @@ class Authenticate extends CI_Controller {
         $data['sessions'] = $this->session->userdata('name'); 
         $data['category_list'] = $this->get_item_category();
 
-        $this->load->view('tenant-header', $data);        
-        $this->load->view('tenant-edit-account', $packet);
-        $this->load->view('footer');   
+        if($this->session->userdata('type')==2){
+            $this->load->view('tenant-header', $data);
+            $this->load->view('tenant-edit-account', $packet); 
+        } elseif($this->session->userdata('type')==3){
+            $this->load->view('cashier-header', $data);
+            $this->load->view('cashier-edit-account', $packet);
+        }
+
+        $this->load->view('footer');
     }
 
     public function get_item_category(){
@@ -336,7 +342,10 @@ class Authenticate extends CI_Controller {
 
         if($this->session->userdata('type')==2){
             redirect('tenant');
-        } else{
+        } elseif($this->session->userdata('type')==3){
+            redirect('cashier');
+        }
+        else{
             redirect('admin/report-user');
         }
         

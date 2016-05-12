@@ -117,6 +117,8 @@ $route['add-sales-transaction'] = 'cashier/add_sales_transaction';
 $route['cashier/report-sales'] = 'cashier/view_sales_report';
 $route['cashier/report-delivery'] = 'cashier/view_delivery';
 $route['cashier/report-pullout'] = 'cashier/view_pullout';
+$route['cashier/edit-user-info'] = 'authenticate/edit_user_info';
+$route['cashier/user-update'] = 'authenticate/update_user';
 
 //filter function
 $route['filter-sales'] = 'Sales/filter_sales_date';

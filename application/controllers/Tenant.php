@@ -240,8 +240,10 @@ class Tenant extends CI_Controller{
 
         $this->load->model('Delivery_model');
         
-        $delivery_report = $this->Delivery_model->get_specific_delivery($data['dt_id']);  
+        $delivery_report = $this->Delivery_model->get_specific_delivery($data['dt_id']); 
+        $delivery_transaction = $this->Delivery_model->get_specific_delivery_transaction($data['dt_id']);  
         $data['delivery_transaction'] = $delivery_report;
+        $data['delivery_transaction_indiv'] = $delivery_transaction;
         
         $data['sessions'] = $this->session_name();
         $data['category_list'] = $this->get_item_category();

@@ -16,10 +16,12 @@ $(document).ready(function(){
 });
 
 function downloadBarcode(id) {
-	var link = document.getElementById('downloadLink'+id);
-	link.setAttribute('crossOrigin', 'anonymous');
-	link.href = document.getElementById('canvas'+id).toDataURL();
-    link.download = 'barcode.png';
+	var c=document.getElementById('canvas'+id);
+	c.setAttribute('crossOrigin', 'anonymous');
+	var image = new Image();
+	image.crossOrigin='anonymous';
+	image.src = c.toDataURL("image/png");
+	window.open(image.toDataURL());
 }
 
 function itemBarcode(id){

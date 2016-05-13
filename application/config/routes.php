@@ -95,6 +95,7 @@ $route['tenant/report-sales'] = 'tenant/view_sales_report';
 $route['tenant/add-delivery-items'] = 'tenant/add_delivery_items';
 $route['tenant/print-barcode/(:any)'] = 'tenant/print_barcode/$1';
 $route['tenant/report-delivery'] = 'tenant/view_delivery';
+$route['tenant/view-dt-details/(:any)'] = 'tenant/view-dt-details/$1';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';
 $route['tenant/pullout-item'] = 'tenant/input_pullout_item';
 $route['tenant/edit-user-info'] = 'authenticate/edit_user_info';

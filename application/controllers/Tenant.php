@@ -269,10 +269,8 @@ class Tenant extends CI_Controller{
     public function input_pullout_item(){
         $item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
-
-
-        if ($this->form_validation->run() == TRUE) {            
-            $item_supplier = $this->get_supplier_id();
+                    
+            $item_supplier = $this->session_name();
 
             $data = array (
                 'pullout_item_code' => $item_code,
@@ -284,7 +282,6 @@ class Tenant extends CI_Controller{
             $sales_id = $this->Pullout_model->add_pullout_item($data);  
      
             redirect('tenant/report-pullout');
-        }
     }
 
     function deliver_more_data() {

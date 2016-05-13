@@ -26,12 +26,14 @@ function downloadBarcode(id) {
 
 function itemBarcode(id){
 	$("#bcTarget"+id).barcode(id, "code39");
+	$("#bcTarget"+id).append('<span style="float: left; margin-left: 15px; font-size: 15px">SA1</span>');
+	$("#bcTarget"+id).append('<span style="float:right;margin-right:15px; font-size: 15px;">Php 150</span>');
 
 	var mycanvas = document.getElementById('bcTarget'+id).innerHTML;
  	var canvas = document.getElementById('canvas'+id);
 	var ctx    = canvas.getContext('2d');
 
-	var data   = '<svg xmlns="http://www.w3.org/2000/svg" width="250" height="250">' +
+	var data   = '<svg xmlns="http://www.w3.org/2000/svg" width="250" height="350">' +
 	               '<foreignObject width="100%" height="100%">' +
 	                 '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
 	                   '<div id="controlDiv">'+mycanvas+'</div>' +
@@ -130,10 +132,9 @@ function printPage(){
 						                          <p><span>Stocks available:</span> <?php echo $item_stock;?></p>
 
 						                          <div class="row barcode-row" style="margin-top: 30px;">
-						                          	<canvas id="canvas<?php echo $item_code; ?>" class="col-xs-6" style="border:2px solid black;"></canvas>
+						                          	<div class="col-xs-6"><canvas id="canvas<?php echo $item_code; ?>"></canvas></div>
 						                          	<div class="col-xs-6">
 						                          		<a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a>
-						                          		<a href="#" id="downloadLink<?php echo $item_code; ?>" onClick="downloadBarcode(<?php echo $item_code; ?>);">DOWNLOAD AS IMAGE</a>
 						                          	</div>
 						                          </div>
 

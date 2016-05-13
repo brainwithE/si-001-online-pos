@@ -48,6 +48,7 @@
 							
 							<?php 
 								$ctr = 1;
+								$delivery_total = 0;
 								foreach($delivery_transaction->result_array() as $row){ 
 									$delivery_id = $row['delivery_id'];
 									$item_code = $row['item_id'];
@@ -55,6 +56,8 @@
 									$item_price = $row['item_price'];
 									$delivery_quantity = $row['delivery_quantity'];
 									$delivery_dt = $row['delivery_dt'];
+
+									$delivery_total = $delivery_total + $delivery_quantity;
 							?>
 
 								<div class="row table-entries table-entries-income">
@@ -68,6 +71,10 @@
 							<?php
 								$ctr++;
 							} ?>
+
+							<div class="row table-entries table-entries-income">
+									<div class="col-xs-6"><?php echo $delivery_total; ?> total items to be delivered</div>
+							</div>
 						</div>
 
 						<div class="table-title table-end table-end-general table-end-income">

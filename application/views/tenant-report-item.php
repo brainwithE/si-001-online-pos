@@ -75,16 +75,15 @@ function printPage(){
 					
 						<div class="head-contain">
 							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>
-							INVENTORY REPORT</h4>
+							ITEM LIST</h4>
 						</div>
 						<div class="col-xs-12">
 
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2">Item Code</div>
-								<div class="col-xs-2">Item Supplier</div>
+								<div class="col-xs-2">Category</div>
 								<div class="col-xs-4">Item Name</div>
-								<div class="col-xs-2">Price</div>
-								<div class="col-xs-2">Stock on Hand</div>	
+								<div class="col-xs-4">Price</div>
 							</div>
 							<?php
 								foreach($item->result_array() as $row){ 
@@ -97,10 +96,9 @@ function printPage(){
 							?>
 								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code; ?>>
 									<div class="col-xs-2"><?php echo $item_code;?></div>
-									<div class="col-xs-2"><?php echo $item_supplier;?></div>
+									<div class="col-xs-2"><?php echo $item_category;?></div>
 									<div class="col-xs-4"><?php echo $item_name;?></div>
-									<div class="col-xs-2"><?php echo $item_price;?></div>
-									<div class="col-xs-2"><?php echo $item_stock;?></div>	
+									<div class="col-xs-4"><?php echo $item_price;?></div>
 								</div>
 	
 							<?php } ?>
@@ -127,9 +125,7 @@ function printPage(){
 						                          <p><span>Item Name:</span><?php echo $item_name;?></p>
 						                          <p><span>Item Code:</span><?php echo $item_code;?></p>
 						                          <p><span>Category:</span> <?php echo $item_category;?></p>
-						                          <p><span>Supplier:</span> <?php echo $item_supplier;?></p>
 						                          <p><span>Price:</span> P<?php echo $item_price;?></p>
-						                          <p><span>Stocks available:</span> <?php echo $item_stock;?></p>
 
 						                          <div class="row barcode-row" style="margin-top: 30px;">
 						                          	<div class="col-xs-6"><canvas id="canvas<?php echo $item_code; ?>"></canvas></div>

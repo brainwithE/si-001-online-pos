@@ -268,6 +268,11 @@ class Admin extends CI_Controller{
         $this->load->view('footer');
     }
 
+    function alpha_dash_space($str)
+    {
+        return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
+    } 
+
     public function add_item_category(){
         $category_name = $this->input->post('item_category');
 
@@ -275,7 +280,7 @@ class Admin extends CI_Controller{
         
         
         $this->form_validation->set_rules('item_category', 'Item Category', 'alpha');
-        $this->form_validation->set_rules('item_category', 'Item Category', 'required|alpha|is_unique[pos_category.category_name]');
+        $this->form_validation->set_rules('item_category', 'Item Category', 'required|is_unique[pos_category.category_name]');
         
 
         if ($this->form_validation->run() == FALSE)

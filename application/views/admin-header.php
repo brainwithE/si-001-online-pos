@@ -44,7 +44,8 @@
 						<li><a href="<?php echo base_url() ?>admin/report-sales">SALES REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-delivery">DELIVERY REPORT</a></li>
 						<li><a href="<?php echo base_url() ?>admin/report-pullout">PULLOUT REPORT</a></li>										
-						<li><a href="<?php echo base_url() ?>admin/report-user">USER LISTS</a></li>					
+						<li><a href="<?php echo base_url() ?>admin/report-user">USER LISTS</a></li>		
+						<li><a href="<?php echo base_url() ?>admin/report-item-category">VIEW ITEM CATEGORIES</a></li>					
 				    </ul>
 				    
 				    <a href="<?php echo base_url() ?>admin/create-account">CREATE USERS <i class="fa fa-user"></i></a>

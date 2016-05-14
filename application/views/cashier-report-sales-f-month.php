@@ -19,7 +19,7 @@
 
 					if($sales_status == 0) { 
 						$amt = $row['sales_total'];
-						$ddct = $amt*0.12;
+						$ddct = $amt*0.03;
 						$net = $amt-$ddct;
 						$total = $total + $net;
 					}
@@ -38,7 +38,7 @@
 				<div class="row">
 					<!-- FILTER FUNCTION -->
 					<div class="col-xs-12 table-filter">
-					<?php echo form_open('admin/filter-sales-month'); ?>
+					<?php echo form_open('cashier/filter-sales-month'); ?>
 						<label>Filter By Date: </label>
 						<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
 						<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">
@@ -49,12 +49,12 @@
 					</div>
 				</div>
 				<div class="row table-title table-title-general table-title-income">
+					<div class="col-xs-2">Item Code</div>
 					<div class="col-xs-3">Item Name</div>
 					<div class="col-xs-2">Date</div>
-					<div class="col-xs-1">Type</div>
-					<div class="col-xs-2">Supplier</div>
-					<div class="col-xs-1">Amount</div>
+					<div class="col-xs-1">Supplier</div>
 					<div class="col-xs-1">Discount</div>
+					<div class="col-xs-1">Amount</div>
 					<div class="col-xs-1">Deduction</div>
 					<div class="col-xs-1 net-col">Net</div>	
 				</div>
@@ -63,11 +63,13 @@
 					foreach($sales->result_array() as $row){ 
 						$sales_quantity = $row['sales_quantity'];
 						$sales_item_name = $row['item_name'];
+						$item_code = $row['item_id'];
 						$sales_amount = $row['sales_total'];
 						$sales_category = $row['item_category'];
 						$sales_supplier = $row['item_supplier'];
 						$sales_date = $row['sales_date'];
 						$sales_status = $row['sales_status'];
+						$sales_discount = $row['sales_discount'];
 						$sales_deduction = $sales_amount*0.03;
 						$sales_net = $sales_amount-$sales_deduction;
 
@@ -79,12 +81,12 @@
 				?>
 					
 					<div class="row table-entries table-entries-income">
+						<div class="col-xs-2"><?php echo $item_code;?></div>
 						<div class="col-xs-3"><?php echo $sales_item_name;?></div>
 						<div class="col-xs-2"><?php echo date("M j, Y", strtotime($sales_date)); ?></div>
-						<div class="col-xs-1"><?php echo $sales_category; ?></div>
-						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
+						<div class="col-xs-1"><?php echo $sales_supplier; ?></div>
+						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
-						<div class="col-xs-1">--</div>
 						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
 						<div class="col-xs-1 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
 					</div>

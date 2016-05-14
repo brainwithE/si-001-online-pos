@@ -66,17 +66,21 @@
 				for (var i = 0; i < ItemArray.length; i++){
 				    if(ItemArray[i].ItemName == $id) 
 				    { 
+				    	if(ItemArray[i].ItemAct == '99999999999999'){
+				    		ItemArray[i].ItemAct = parseFloat($('#'+$id).find(".price-field").text());
+				    	}
+
 				    	var discass = $('#discount').val();
 				    	ItemArray[i].ItemDiscount = discass;
 
 				    	var disc = ItemArray[i].ItemDiscount;
-				    	var actdisc = disc/100;
+				    	var actdisc = disc;
 				    	/*alert(actdisc);*/
 
-				    	var price = parseFloat($('#'+$id).find(".price-field").text());
-				    	var total = price - (price * actdisc);
+				    	var price = ItemArray[i].ItemAct;
+				    	var total = price - actdisc;
 				        /*alert($id+"discount"+ItemArray[i].ItemDiscount);*/
-				        $('#'+$id).find(".discount").text(ItemArray[i].ItemDiscount+"%");
+				        $('#'+$id).find(".discount").text(ItemArray[i].ItemDiscount+"Php");
 				        $('#'+$id).find(".price-field").text(total);
         				break; //Stop this loop, we found it!
 				    }
@@ -129,7 +133,8 @@
 											ItemCode : '201602000000001', 
 											ItemName : barcode,
 											ItemQuantity : '1',/*$('.add-delivery-form #qty').val()*/
-											ItemDiscount : '0'
+											ItemDiscount : '0',
+											ItemAct : '99999999999999'
 										});
 
 										$('#ajax-content-container').prepend(data);
@@ -192,10 +197,13 @@
 											ItemCode : '201602000000001', 
 											ItemName : code,
 											ItemQuantity : '1',/*$('.add-delivery-form #qty').val()*/
-											ItemDiscount : '0'
+											ItemDiscount : '0',
+											ItemAct : '99999999999999'
 										});
 
 										$('#ajax-content-container').prepend(data);
+
+										updateActual(code);
 
 										$('#code').val('');
 										barcode='';

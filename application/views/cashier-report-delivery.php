@@ -43,7 +43,7 @@
 							?>
 								
 								<div class="row table-entries table-entries-income">
-									<a class="delivery-links" href="<?php echo base_url() ?>Delivery/view_dt_details/<?php echo $dt_code ?>">
+									<a class="delivery-links" href="<?php echo base_url() ?>cashier/view_dt_details/<?php echo $dt_code ?>">
 										<div class="col-xs-2"><?php echo $dt_code;?></div>
 										<div class="col-xs-3"><?php echo $dt_supplier;?></div>
 										<div class="col-xs-1"><?php echo 'x'.$dt_quantity;?></div>
@@ -91,7 +91,7 @@
 							?>
 								
 								<div class="row table-entries table-entries-income">
-									<a class="delivery-links" href="<?php echo base_url() ?>Delivery/view_dt_details/<?php echo $dt_code ?>">
+									<a class="delivery-links" href="<?php echo base_url() ?>cashier/view_dt_details/<?php echo $dt_code ?>">
 										<div class="col-xs-2"><?php echo $dt_code;?></div>
 										<div class="col-xs-2"><?php echo $dt_supplier;?></div>
 										<div class="col-xs-1"><?php echo 'x'.$dt_quantity;?></div>

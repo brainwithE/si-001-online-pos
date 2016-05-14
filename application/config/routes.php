@@ -78,6 +78,7 @@ $route['admin/report-sales'] = 'admin/view_sales_report';
 $route['admin/report-delivery'] = 'admin/view_delivery';
 $route['admin/report-pullout'] = 'admin/view_pullout';
 $route['admin/delivery-notification'] = 'admin/delivery_notification';
+$route['admin/view-dt-details/(:any)'] = 'admin/view-dt-details/$1';
 $route['admin/create-account'] = 'authenticate/create_account'; //view
 $route['admin/create-user'] = 'authenticate/create_user'; //action
 $route['admin/report-user'] = 'authenticate/view_user_list'; //action
@@ -101,9 +102,6 @@ $route['tenant/pullout-item'] = 'tenant/input_pullout_item';
 $route['tenant/edit-user-info'] = 'authenticate/edit_user_info';
 $route['tenant/user-update'] = 'authenticate/update_user';
 
-
-
-
 //$route['tenant/approve-pullout'] = 'tenant/approve_pullout/(:num)';
 
 $route['add-delivery'] = 'tenant/add_delivery';
@@ -118,6 +116,7 @@ $route['add-sales-transaction'] = 'cashier/add_sales_transaction';
 
 $route['cashier/report-sales'] = 'cashier/view_sales_report';
 $route['cashier/report-delivery'] = 'cashier/view_delivery';
+$route['cashier/view-dt-details/(:any)'] = 'cashier/view-dt-details/$1';
 $route['cashier/report-pullout'] = 'cashier/view_pullout';
 $route['cashier/edit-user-info'] = 'authenticate/edit_user_info';
 $route['cashier/user-update'] = 'authenticate/update_user';

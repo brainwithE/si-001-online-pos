@@ -179,6 +179,24 @@ class Cashier extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function view_dt_details(){
+        $dt_id = $this->uri->segment(3);
+        $data['dt_id'] = $dt_id;
+
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_specific_delivery($data['dt_id']); 
+        $delivery_transaction = $this->Delivery_model->get_specific_delivery_transaction($data['dt_id']);  
+        $data['delivery_transaction'] = $delivery_report;
+        $data['delivery_transaction_indiv'] = $delivery_transaction;
+        
+        $data['sessions'] = $this->session_name();
+        
+        $this->load->view('cashier-header', $data);
+        $this->load->view('delivery-item-view',$data);
+        $this->load->view('footer');
+    }
+
     public function view_pullout(){
         $this->load->model('Pullout_model');
         

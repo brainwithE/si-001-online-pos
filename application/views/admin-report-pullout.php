@@ -36,6 +36,7 @@
 								foreach($pullout->result_array() as $row){ 
 									$pullout_code = $row['pullout_id'];
 									$pullout_item = $row['item_name'];
+									$item_code = $row['item_id'];
 									$pullout_supplier = $row['name'];
 									$pullout_quantity = $row['pullout_quantity'];
 									$pullout_status = $row['pullout_status'];
@@ -47,7 +48,7 @@
 							
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-2"><?php echo $pullout_code;?></div>
+									<div class="col-xs-2"><?php echo $item_code;?></div>
 									<div class="col-xs-2"><?php echo $pullout_supplier;?></div>
 									<div class="col-xs-1"><?php echo $pullout_quantity;?></div>
 									<div class="col-xs-3"><?php echo $pullout_item;?></div>
@@ -83,6 +84,7 @@
 
 								foreach($pullout->result_array() as $row){ 
 									$pullout_code = $row['pullout_id'];
+									$item_code = $row['item_id'];
 									$pullout_item = $row['item_name'];
 									$pullout_supplier = $row['name'];
 									$pullout_quantity = $row['pullout_quantity'];
@@ -96,7 +98,7 @@
 							
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-2"><?php echo $pullout_code;?></div>
+									<div class="col-xs-2"><?php echo $item_code;?></div>
 									<div class="col-xs-2"><?php echo $pullout_supplier;?></div>
 									<div class="col-xs-1"><?php echo $pullout_quantity;?></div>	
 									<div class="col-xs-3"><?php echo $pullout_item;?></div>

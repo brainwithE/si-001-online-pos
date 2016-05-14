@@ -34,6 +34,7 @@
 							<?php
 								foreach($pullout->result_array() as $row){ 
 									$pullout_code = $row['pullout_id'];
+									$item_code = $row['item_id'];
 									$pullout_item = $row['item_name'];
 									$pullout_supplier = $row['pullout_supplier'];
 									$pullout_date = $row['pullout_date'];
@@ -46,7 +47,7 @@
 							?>
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-2"><?php echo $pullout_code;?></div>
+									<div class="col-xs-2"><?php echo $item_code;?></div>
 									<div class="col-xs-4"><?php echo $pullout_item;?></div>
 									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date)); ?></div>
 									<div class="col-xs-1"><?php echo $pullout_quantity; ?></div>

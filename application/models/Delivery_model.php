@@ -6,8 +6,8 @@ class Delivery_model extends CI_model{
 		$this->db->order_by("dt_id", "desc");
 		$this->db->select('*');
 		$this->db->from('pos_delivery_transaction');
-		$this->db->join('pos_supplier', 'pos_delivery_transaction.dt_supplier = 
-			pos_supplier.supplier_id');
+		$this->db->join('aauth_users', 'pos_delivery_transaction.dt_supplier = 
+			aauth_users.name');
 		$query = $this->db->get();
 
 		return $query;

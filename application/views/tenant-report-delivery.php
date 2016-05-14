@@ -40,6 +40,9 @@
 									$dt_date = $row['dt_date'];
 									$dt_status = $row['dt_status'];
 									$dt_date_approved = $row['dt_approve_date'];
+
+									$dt_status_word = '';
+									if($dt_status == 1){$dt_status_word = 'APPROVED';} else if($dt_status == 2){$dt_status_word = 'REJECTED';} else if($dt_status == 0){$dt_status_word = 'PENDING';}
 								?>
 								<div class="row table-entries table-entries-income">
 									<a class="delivery-links" href='<?php echo base_url() ?>tenant/view_dt_details/<?php echo $dt_code ?>'>	
@@ -47,7 +50,7 @@
 										<div class="col-xs-3"><?php echo $dt_supplier;?></div>
 										<div class="col-xs-1"><?php echo $dt_quantity;?></div>
 										<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
-										<div class="col-xs-2"><?php if($dt_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
+										<div class="col-xs-2"><?php echo $dt_status_word; ?></div>
 										<div class="col-xs-2">
 											<?php if($dt_date_approved!='0000-00-00'){echo date("M j, Y", strtotime($dt_date_approved));}else{echo '--';} ?>
 										</div>

@@ -40,6 +40,9 @@
 									$pullout_quantity = $row['pullout_quantity'];
 									$pullout_status = $row['pullout_status'];
 									$pullout_date_approved = $row['pullout_date'];
+
+									$dt_status_word = '';
+									if($pullout_status == 1){$pullout_status_word = 'APPROVED';} else if($pullout_status == 2){$pullout_status_word = 'REJECTED';} else if($pullout_status == 0){$pullout_status_word = 'PENDING';}
 							?>
 								
 								<div class="row table-entries table-entries-income">
@@ -47,7 +50,7 @@
 									<div class="col-xs-4"><?php echo $pullout_item;?></div>
 									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date)); ?></div>
 									<div class="col-xs-1"><?php echo $pullout_quantity; ?></div>
-									<div class="col-xs-1"><?php if($pullout_status==1){ echo "APPROVED"; }else{ echo "PENDING"; } ?></div>
+									<div class="col-xs-1"><?php echo $pullout_status_word ?></div>
 									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date_approved)); ?></div>	
 								</div>
 

@@ -16,10 +16,11 @@
 
 		<div class="col-xs-12">
 			<div class="row table-title table-title-general">
-				<div class="col-xs-2"></div>
+				<div class="col-xs-1"></div>
+				<div class="col-xs-1">Qty</div>
 				<div class="col-xs-2">item code</div>
-				<div class="col-xs-2">supplier</div>
-				<div class="col-xs-4">item</div>
+				<div class="col-xs-2">category</div>
+				<div class="col-xs-3">item</div>
 				<div class="col-xs-2 price-field">price</div>
 			</div>
 							
@@ -35,13 +36,17 @@
 
 		<script type="text/javascript">
 
+			var totalQuantity = 0;
+
 			function removeItem($id) {
-				alert($id);
 				$('#'+$id).remove();
 
 				for (var i = 0; i < ItemArray.length; i++){
 				    if(ItemArray[i].ItemName == $id) 
 				    { 
+				    	var temp = ItemArray[i].ItemQuantity;
+
+				    	totalQuantity = totalQuantity - temp;
 				        ItemArray.splice(i, 1);
 				        break;
 				    }
@@ -53,13 +58,54 @@
 				});
 				$('.total-amount').html(total);
 
-				alert("success!");
+				alert($id+" successfully removed!");
 
 			}
 
-			$(document).ready(function() {
+			function confirmQty(){
+				$('#myModal').modal("hide");
+				var $id = $('#item-check').text();
+				for (var i = 0; i < ItemArray.length; i++){
+				    if(ItemArray[i].ItemName == $id) 
+				    { 
+				    	var qty = parseInt($('#qty').val());
 
-				var totalQuantity = 0;
+				    	var temp = ItemArray[i].ItemQuantity;
+
+				    	totalQuantity = totalQuantity - temp;
+
+				    	/*alert("before:"+totalQuantity);*/
+
+				    	ItemArray[i].ItemQuantity = qty;
+
+				    	$('#'+$id).find(".qtyarea").text(qty+" (edit)");
+
+				    	/*alert("qty: "+qty);*/
+
+				    	totalQuantity = totalQuantity + qty;
+
+				    	/*alert("after"+totalQuantity);*/
+				    	/*var disc = ItemArray[i].ItemDiscount;
+				    	var actdisc = disc;
+
+				    	var price = ItemArray[i].ItemAct;
+				    	var total = price - actdisc;
+
+				        $('#'+$id).find(".discount").text(ItemArray[i].ItemDiscount+"Php");
+				        $('#'+$id).find(".price-field").text(total);*/
+        				break; //Stop this loop, we found it!
+				    }
+				}
+			}
+
+			function editQty($id) {
+
+				$('#myModal').modal("show");
+
+				$('#item-check').text($id);
+			}
+
+			$(document).ready(function() {
 
 				var barcode="";
 			    $(document).keydown(function(e) {
@@ -75,7 +121,7 @@
 								data: {type: barcode},
 								dataType: "html",
 							   	success: function( data ) {
-									if(data==null||data==''){
+									if(data==null||data==''||data=='\n'){
 										alert("Item does not exist.");
 
 										barcode="";
@@ -131,7 +177,7 @@
 								dataType: "html",
 							   	success: function( data ) {
 
-									if(data==null||data==''){
+									if(data==null||data==''||data=='\n'){
 										alert("Item does not exist.");
 
 										barcode='';
@@ -210,5 +256,33 @@
 		</script>
 		<a id="submit" href="#" class="call-links">COMPLETE DELIVERY REQUEST</a>
 	</div>
+
+							<div class="modal fade" id="myModal" role="dialog">
+					                <div class="modal-dialog">
+					                    <!-- Modal content-->
+					                    <div class="modal-content item-modal">					                    
+					                    	<div class="edit-item">
+												<div class="head-contain">
+													<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</h4>
+												</div>
+												<div class="modal-body modal-project">
+												EDIT QTY FOR ITEM: <span id="item-check"></span>
+															                    
+													<!-- <input type="hidden" name="item_code" value="<?php echo $item_code?>">
+													<label>Item Name: </label>
+													<input type="field" name="item_name" value="<?php echo $item_name?>">
+													<label>Item Price: </label>
+													<input type="field" name="item_price" value="<?php echo $item_price?>">
+													<label>Item Category: </label>
+													<input type="field" name="item_category" value="<?php echo $item_category?>"> -->
+													<input type="text" name="name" id="qty" placeholder="Enter Qty" />
+
+													<input type="submit" class="btn submit-button" onClick="confirmQty();" value="Confirm" />
+												</div>
+											</div>
+						                </div>
+					                </div>
+					        </div>
+
 
 </div>

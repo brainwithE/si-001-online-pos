@@ -97,7 +97,7 @@ class Tenant extends CI_Controller{
         $this->load->model('Items_model');
         $this->Items_model->edit_item($data);  
  
-        redirect('admin/report-inventory');
+        redirect('tenant/report-inventory');
     }
 
     public function view_inventory(){

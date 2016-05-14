@@ -21,7 +21,6 @@ class Authenticate extends CI_Controller {
      public function index() {  
         $sess_id = $this->session->userdata('type');
         
-        
         if(empty($sess_id)) {
             $this->landing_page();
         } elseif($sess_id == 1) {
@@ -39,7 +38,6 @@ class Authenticate extends CI_Controller {
     }
 
     public function landing_page(){
-        
         $this->load->view('header-landing');
         $this->load->view('login-view');
         $this->load->view('footer');

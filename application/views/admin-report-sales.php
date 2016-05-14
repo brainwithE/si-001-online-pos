@@ -73,7 +73,7 @@
 						$sales_supplier = $row['item_supplier'];
 						$sales_date = $row['sales_date'];
 						$sales_status = $row['sales_status'];
-						$sales_deduction = $sales_amount*0.12;
+						$sales_deduction = $sales_amount*0.03;
 						$sales_net = $sales_amount-$sales_deduction;
 
 						if($sales_status == 0) {

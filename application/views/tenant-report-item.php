@@ -146,7 +146,7 @@ function printPage(){
 												</div>
 						                    	<div class="modal-body modal-project">
 						                        	
-						                       	  <?php echo form_open('admin/edit-item') ?>
+						                       	  <?php echo form_open('tenant/edit-item') ?>
 						                       	  		<input type="hidden" name="item_code" value="<?php echo $item_code?>">
 						                       	  		<label>Item Name: </label>
 							                        	<input type="field" name="item_name" value="<?php echo $item_name?>">

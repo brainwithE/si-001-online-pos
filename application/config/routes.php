@@ -85,7 +85,7 @@ $route['admin/report-user'] = 'authenticate/view_user_list'; //action
 $route['admin/user-update'] = 'authenticate/update_user'; //action
 $route['admin/report-item-category'] = 'admin/view_item_category_list';
 $route['admin/add-category'] = 'admin/add_item_category';
-$route['admin/edit-item'] = 'admin/edit_item';
+
 $route['admin/void_sales'] = 'admin/void_sales';
 //$route['admin/pullout-item'] = 'admin/input_pullout_item';
 
@@ -99,6 +99,7 @@ $route['tenant/report-delivery'] = 'tenant/view_delivery';
 $route['tenant/view-dt-details/(:any)'] = 'tenant/view-dt-details/$1';
 $route['tenant/report-pullout'] = 'tenant/view_pullout';
 $route['tenant/pullout-item'] = 'tenant/input_pullout_item';
+$route['tenant/edit-item'] = 'tenant/edit_item';
 $route['tenant/edit-user-info'] = 'authenticate/edit_user_info';
 $route['tenant/user-update'] = 'authenticate/update_user';
 

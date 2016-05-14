@@ -60,6 +60,10 @@
 				</div>
 				<?php	
 					$total_earnings = 0;
+					$total_discount = 0;
+					$total_earnings = 0;
+					$total_deduction = 0;
+					$total_price = 0;
 					foreach($sales->result_array() as $row){ 
 						$sales_quantity = $row['sales_quantity'];
 						$item_code = $row['item_id'];
@@ -76,7 +80,10 @@
 						///if($sales_status == 0) {
 
 					if($sales_status == 0){
+					$total_discount = $total_discount + $sales_discount;
 					$total_earnings = $total_earnings + $sales_net;
+					$total_deduction = $total_deduction + $sales_deduction;
+					$total_price = $total_price + $sales_amount;
 				?>
 					
 					<div class="row table-entries table-entries-income">
@@ -94,8 +101,11 @@
 				} ?>
 
 			<div class="table-title table-end table-end-general table-end-income">
-					<div class="col-xs-12 total-label">TOTAL EARNINGS <span class="total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></span>
-					</div>
+					<div class="col-xs-8 total-label">TOTAL 					</div>
+					<div class="col-xs-1 total-label"><?php echo number_format($total_discount, 2, '.',','); ?></div>
+					<div class="col-xs-1 total-label"><?php echo number_format($total_price, 2, '.',','); ?></div>
+					<div class="col-xs-1 total-label"><?php echo number_format($total_deduction, 2, '.',','); ?></div>
+					<div class="col-xs-1 total-label"><span class="total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></span></div>
 			</div>
 
 		</div><!-- MEC end -->

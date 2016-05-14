@@ -55,14 +55,17 @@
 				<div class="row table-title table-title-general table-title-income">
 					<div class="col-xs-2">Item Code</div>
 					<div class="col-xs-3">Item Name</div>
-					<div class="col-xs-1">Supplier</div>
+					<div class="col-xs-2">Supplier</div>
 					<div class="col-xs-1">Discount</div>
 					<div class="col-xs-1">Amount</div>
 					<div class="col-xs-1">Deduction</div>
 					<div class="col-xs-2 net-col">Net</div>	
 				</div>
 				<?php	
+					$total_discount = 0;
 					$total_earnings = 0;
+					$total_deduction = 0;
+					$total_price = 0;
 					foreach($sales->result_array() as $row){ 
 						$sales_id = $row['sales_id'];
 						$item_code = $row['item_id'];
@@ -80,27 +83,31 @@
 						///if($sales_status == 0) {
 
 					if($sales_status == 0){
+					$total_discount = $total_discount + $sales_discount;
 					$total_earnings = $total_earnings + $sales_net;
+					$total_deduction = $total_deduction + $sales_deduction;
+					$total_price = $total_price + $sales_amount;
 				?>
 					<div class="row table-entries table-entries-income">
 						<div class="col-xs-2"><?php echo $item_code;?></div>
 						<div class="col-xs-3"><?php echo $sales_item_name;?></div>
-						<div class="col-xs-1"><?php echo $sales_supplier; ?></div>
+						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
 						<div class="col-xs-1"><?php echo "- ". number_format($sales_amount,2,'.',',');?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_deduction,2,'.',','); ?></div>
-						<div class="col-xs-2 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
-						<div class="col-xs-1">
-							<a href='<?php echo base_url() ?>cashier/void_sales/<?php echo $sales_id; ?>'><i class="fa fa-archive" aria-hidden="true"></i></a>
-						</div> 
+						<div class="col-xs-2 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	 
 					</div>
 				<?php }
 					}
 				?>
 
 			<div class="table-title table-end table-end-general table-end-income">
-					<div class="col-xs-12 total-label">TOTAL EARNINGS <span class="total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></span>
-					</div>
+					<div class="col-xs-7 total-label">TOTAL 					</div>
+					<div class="col-xs-1 total-label"><?php echo number_format($total_discount, 2, '.',','); ?></div>
+					<div class="col-xs-1 total-label"><?php echo number_format($total_price, 2, '.',','); ?></div>
+					<div class="col-xs-1 total-label"><?php echo number_format($total_deduction, 2, '.',','); ?></div>
+					<div class="col-xs-1 total-label"><span class="total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></span></div>
+					<div class="col-xs-1 total-label"></div>
 			</div>
 
 		</div><!-- MEC end -->

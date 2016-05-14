@@ -15,10 +15,16 @@
 				$total = 0;
 
 				foreach($sales->result_array() as $row){ 
-					$amt = $row['sales_total'];
-					$ddct = $amt*0.12;
-					$net = $amt-$ddct;
-					$total = $total + $net;
+
+					$sales_status = $row['sales_status'];
+
+					if($sales_status == 0) { 
+						$amt = $row['sales_total'];
+						$ddct = $amt*0.12;
+						$net = $amt-$ddct;
+						$total = $total + $net;
+					}
+					
 				} 
 			?>
 				<div class="table-bank-row">
@@ -69,9 +75,9 @@
 						$sales_status = $row['sales_status'];
 						$sales_deduction = $sales_amount*0.12;
 						$sales_net = $sales_amount-$sales_deduction;
-						$total_earnings = $total_earnings + $sales_net;
 
 						if($sales_status == 0) {
+						$total_earnings = $total_earnings + $sales_net;
 				?>
 					<div class="row table-entries table-entries-income">
 						<div class="col-xs-3"><?php echo $sales_item_name;?></div>
@@ -82,7 +88,7 @@
 						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
 						<div class="col-xs-2 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
 						<div class="col-xs-1">
-							<a href='<?php echo base_url() ?>admin/void_sales/<?php echo $sales_id; ?>'><i class="fa fa-archive" aria-hidden="true"></i></a>
+							<a href='<?php echo base_url() ?>admin/void_sales/<?php echo $sales_id; ?>'><i class="fa fa-archive" tooltip="archive" aria-hidden="true"></i></a>
 						</div> 
 					</div>
 				<?php 

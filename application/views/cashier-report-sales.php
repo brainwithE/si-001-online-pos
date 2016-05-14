@@ -15,10 +15,14 @@
 				$total = 0;
 
 				foreach($sales->result_array() as $row){ 
-					$amt = $row['sales_total'];
-					$ddct = $amt*0.12;
-					$net = $amt-$ddct;
-					$total = $total + $net;
+					$sales_status = $row['sales_status'];
+
+					if($sales_status == 0) { 
+						$amt = $row['sales_total'];
+						$ddct = $amt*0.12;
+						$net = $amt-$ddct;
+						$total = $total + $net;
+					}
 				} 
 			?>
 				<div class="table-bank-row">
@@ -70,11 +74,11 @@
 						$sales_status = $row['sales_status'];
 						$sales_deduction = $sales_amount*0.12;
 						$sales_net = $sales_amount-$sales_deduction;
-						$total_earnings = $total_earnings + $sales_net;
 
 						///if($sales_status == 0) {
 
 					if($sales_status == 0){
+					$total_earnings = $total_earnings + $sales_net;
 				?>
 					<div class="row table-entries table-entries-income">
 						<div class="col-xs-3"><?php echo $sales_item_name;?></div>

@@ -84,6 +84,22 @@ class Tenant extends CI_Controller{
         redirect('tenant/report-inventory');
     }
 
+    public function edit_item(){
+
+        $data = array (
+        'item_id' => $this->input->post('item_code'),
+        'item_name' => $this->input->post('item_name'),
+        'item_price' => $this->input->post('item_price'),
+        'item_category' => $this->input->post('item_category'),
+        
+        );
+
+        $this->load->model('Items_model');
+        $this->Items_model->edit_item($data);  
+ 
+        redirect('admin/report-inventory');
+    }
+
     public function view_inventory(){
         $this->load->model('Items_model');
         $supplier_id = $this->session->userdata('name');

@@ -49,17 +49,19 @@
 				</div>
 
 				<div class="row table-title table-title-general table-title-income">
-					<div class="col-xs-4">Item Name</div>
+					<div class="col-xs-2">Item Code</div>
+					<div class="col-xs-3">Item Name</div>
 					<div class="col-xs-2">Date</div>
 					<div class="col-xs-1">Type</div>
 					<div class="col-xs-1">Amount</div>
 					<div class="col-xs-1">Discount</div>
 					<div class="col-xs-1">Deduction</div>
-					<div class="col-xs-2 net-col">Net</div>	
+					<div class="col-xs-1 net-col">Net</div>	
 				</div>
 				<?php	
 					$total_earnings = 0;
 					foreach($sales->result_array() as $row){ 
+						$item_code = $row['item_id'];
 						$sales_quantity = $row['sales_quantity'];
 						$sales_item_name = $row['item_name'];
 						$sales_amount = $row['sales_total'];
@@ -71,13 +73,14 @@
 						$total_earnings = $total_earnings + $sales_net;
 				?>
 					<div class="row table-entries table-entries-income">
-						<div class="col-xs-4"><?php echo $sales_item_name;?></div>
+						<div class="col-xs-2"><?php echo $item_code;?></div>
+						<div class="col-xs-3"><?php echo $sales_item_name;?></div>
 						<div class="col-xs-2"><?php echo date("M j, Y", strtotime($sales_date)); ?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 						<div class="col-xs-1">--</div>
 						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
-						<div class="col-xs-2 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
+						<div class="col-xs-1 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
 					</div>
 				<?php } ?>
 

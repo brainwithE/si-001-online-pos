@@ -22,8 +22,8 @@
 					<div class="col-xs-12 total-label total-label-bank">Delivery Transaction ID: -- <?php echo $dt_id; ?></div>
 					<div class="col-xs-7 total-label total-label-bank">Date Requested: <?php echo date("M j, Y", strtotime($dt_date)); ?> </div>
 					<div class="col-xs-5 total-label total-label-bank">Brand Name: <?php echo $dt_supplier; ?></div>
-					<div class="col-xs-7 total-label total-label-bank">Date Approved: <?php echo date("M j, Y", strtotime($dt_approved)); ?> </div>
-					<div class="col-xs-5 total-label total-label-bank"><div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div></div>
+					<div class="col-xs-7 total-label total-label-bank">Date Approved: <?php if($dt_approved=='0000-00-00'){echo "not yet approved";}else{echo date("M j, Y", strtotime($dt_approved));} ?> </div>
+					<div class="col-xs-5 total-label total-label-bank"><div id="print" onClick="printPage();" class="call-links">PRINT DELIVERY RECORDS</div></div>
 
 						<div class="col-xs-12">
 							<!-- <div class="row">

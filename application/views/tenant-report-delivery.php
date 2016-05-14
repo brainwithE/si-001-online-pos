@@ -14,7 +14,7 @@
 						<div class="table-bank-row">
 							<div class="col-xs-6">
 								<p style="text-align: left;">These are all your delivery history. Today is: <?php echo $today = date('F j, Y');?></p>
-								<div id="print" onClick="printPage();" class="call-links">PRINT PULLOUT RECORDS</div>
+								<div id="print" onClick="printPage();" class="call-links">PRINT DELIVERY RECORDS</div>
 							</div>
 						</div>
 

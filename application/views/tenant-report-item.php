@@ -152,8 +152,26 @@ function printPage(){
 							                        	<input type="field" name="item_name" value="<?php echo $item_name?>">
 							                        	<label>Item Price: </label>
 							                        	<input type="field" name="item_price" value="<?php echo $item_price?>">
-							                        	<label>Item Category: </label>
-							                        	<input type="field" name="item_category" value="<?php echo $item_category?>">
+							                        	<div class="row" style="margin-bottom: 15px;">
+								                        	<div class="col-xs-12"
+									                        	<label>Item Category: </label>
+									                        	<select name="item_category">
+										                        	<?php
+											                        	foreach ($category_list ->result_array() as $row) {
+																            $category_id = $row['category_id'];
+																            $category_name = $row['category_name'];
+																            $category_status = $row['category_status'];
+
+																        if($category_status != 0){
+																        	echo "<option value='".$category_name."'>".$category_name."</option>";	
+																        }
+																    ?>
+																    <?php
+																        }
+										                        	?>
+										                        </select>
+									                        </div>
+								                        </div>
 
 							                        	<a class="btn btn-back">Back</a>
 							                        	<input type="submit" class="btn submit-button" value="Submit" />

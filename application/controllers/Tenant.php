@@ -102,10 +102,12 @@ class Tenant extends CI_Controller{
 
     public function view_inventory(){
         $this->load->model('Items_model');
+        $packet['supp'] = $this->session->userdata('code');
         $supplier_id = $this->session->userdata('name');
         
         $item_list = $this->Items_model->get_supplier_inventory($supplier_id);  
         $packet['item'] = $item_list;
+        $packet[] = 
         $data['category_list'] = $this->get_item_category();
 
         $data['sessions'] = $this->session_name();

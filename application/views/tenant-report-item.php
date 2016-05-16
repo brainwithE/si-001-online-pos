@@ -24,10 +24,10 @@ function downloadBarcode(id) {
 	window.open(image.toDataURL());
 }
 
-function itemBarcode(id){
+function itemBarcode(id,price,supp){
 	$("#bcTarget"+id).barcode(id, "code39");
-	$("#bcTarget"+id).append('<span style="float: left; margin-left: 15px; font-size: 15px">SA1</span>');
-	$("#bcTarget"+id).append('<span style="float:right;margin-right:15px; font-size: 15px;">Php 150</span>');
+	$("#bcTarget"+id).append('<span style="float: left; margin-left: 15px; font-size: 15px">'+supp+'</span>');
+	$("#bcTarget"+id).append('<span style="float:right;margin-right:15px; font-size: 15px;">Php '+price+'</span>');
 
 	var mycanvas = document.getElementById('bcTarget'+id).innerHTML;
  	var canvas = document.getElementById('canvas'+id);
@@ -94,7 +94,7 @@ function printPage(){
 									$item_stock = $row['item_stock'];
 									$item_category = $row['item_category'];
 							?>
-								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code; ?>>
+								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>','<?php echo $item_price; ?>','<?php echo $supp; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code; ?>>
 									<div class="col-xs-2"><?php echo $item_code;?></div>
 									<div class="col-xs-2"><?php echo $item_category;?></div>
 									<div class="col-xs-4"><?php echo $item_name;?></div>

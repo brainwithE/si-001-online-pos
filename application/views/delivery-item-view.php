@@ -1,5 +1,11 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+<script>
+	function printPage(){
+		window.print();
+	}
+</script>
+
 				<?php 
 					$ctr = 1;
 					foreach($delivery_transaction_indiv->result_array() as $row){ 

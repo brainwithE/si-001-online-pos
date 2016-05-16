@@ -24,7 +24,7 @@
 						</div>
 						<div class="col-xs-12">							
 							<div class="row table-title table-title-general table-title-income">
-								<div class="col-xs-2">Pullout Code</div>
+								<div class="col-xs-2">Item ID</div>
 								<div class="col-xs-2">Supplier</div>
 								<div class="col-xs-1">Qty</div>
 								<div class="col-xs-3">Item Name</div>

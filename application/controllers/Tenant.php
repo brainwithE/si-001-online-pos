@@ -286,7 +286,11 @@ class Tenant extends CI_Controller{
         $item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');
                     
-            $item_supplier = $this->session_name();
+        $item_supplier = $this->session_name();
+
+        $current_stock = $this->get_item_stock($item_code);
+
+        if($current_stock != 0){
 
             $data = array (
                 'pullout_item_code' => $item_code,
@@ -298,6 +302,10 @@ class Tenant extends CI_Controller{
             $sales_id = $this->Pullout_model->add_pullout_item($data);  
      
             redirect('tenant/report-pullout');
+        } else {
+            echo "Cannot proceed with the pullout request. 0 stock available.";
+        }
+
     }
 
     function deliver_more_data() {
@@ -316,6 +324,13 @@ class Tenant extends CI_Controller{
                 $data['node_list'] = $this->nodes_m->get_node_by_spec_code($_POST['type']);
             }
         }
+    }
+
+    public function get_item_stock($item_code){
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_stock($item_code);
+
+        return $result->item_stock;
     }
 }
 ?>

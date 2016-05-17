@@ -116,6 +116,20 @@ class Delivery_model extends CI_model{
 		$current_date = date('Y-m-d');	
 		$sql = "UPDATE pos_delivery_transaction SET dt_status='1', dt_approve_date='".$current_date."' WHERE dt_id='".$dt_id."'" ;
 		$query = $this->db->query($sql);
+
+		$this->db->select('delivery_quantity, delivery_item');
+		$this->db->from('pos_delivery');
+		$this->db->where('delivery_dt =', $dt_id);
+		$tempquery = $this->db->get();
+
+		foreach($tempquery->result_array() as $row){ 
+			$quantity = $row['delivery_quantity'];
+			$item = $row['delivery_item'];
+
+			$sql = "UPDATE pos_item SET item_stock=item_stock+".$quantity." WHERE item_id='".$item."'" ;
+			$query2 = $this->db->query($sql);
+		}
+
 		return $query;
 	}
 

@@ -83,6 +83,9 @@ class Cashier extends CI_Controller{
             $data[$key]['sales_date'] = $current_date;
             $data[$key]['sales_supplier'] = $supplier->item_supplier;
             $data[$key]['sales_st'] = '0';
+
+
+            $this->Items_model->update_item_sale($icode);
         }
 
         $this->load->model('Sales_model');

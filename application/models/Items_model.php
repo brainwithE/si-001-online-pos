@@ -85,6 +85,12 @@ class Items_model extends CI_model{
 	    return false;
 	}
 
+	function remove_item($item_code){
+		$sql = "DELETE FROM pos_item WHERE item_id='".$item_code."'" ;
+		$query = $this->db->query($sql);		
+	    return true;
+	}
+
 	function get_item_category(){			
 		$query = $this->db->get('pos_category');
 

@@ -335,6 +335,15 @@ class Admin extends CI_Controller{
         redirect('admin/report-sales');
     }
 
+    public function remove_item(){
+        $sales_id = $this->uri->segment(3);
+
+        $this->load->model('Items_model');
+        $this->Items_model->remove_item($sales_id);
+
+        redirect('admin/report-inventory');
+    }
+
    /* public function input_pullout_item(){
         $item_code = $this->input->post('item_code');
         $item_quantity = $this->input->post('item_quantity');

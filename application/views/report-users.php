@@ -15,9 +15,6 @@ $(document).ready(function(){
 
 </script>
 
-<!-- insert ponpon about content -->
-			
-
 				<div class="container">
 
 					<!--The overwatch Main element Container or MEC-->

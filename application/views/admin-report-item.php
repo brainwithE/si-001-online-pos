@@ -43,10 +43,11 @@ function printPage(){
 						<div class="col-xs-12">
 
 							<div class="row table-title table-title-general table-title-income">
+								<div class="col-xs-1"></div>
 								<div class="col-xs-2">Item Code</div>								
 								<div class="col-xs-1">Stock</div>								
 								<div class="col-xs-3">Item Name</div>
-								<div class="col-xs-2">Price</div>	
+								<div class="col-xs-1">Price</div>	
 								<div class="col-xs-2">Item Supplier</div>
 								<div class="col-xs-2">Remarks</div>
 							</div>
@@ -60,10 +61,11 @@ function printPage(){
 									$item_category = $row['item_category'];
 							?>
 								<div class="row table-entries table-entries-income table-entries-income-int" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code?>>
+									<div class="col-xs-1"><a href="<?php echo base_url(); ?>admin/remove-item/<?php echo $item_code; ?>" class="btn-red"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
 									<div class="col-xs-2"><?php echo $item_code;?></div>
 									<div class="col-xs-1"><?php echo $item_stock;?></div>									
 									<div class="col-xs-3"><?php echo $item_name;?></div>
-									<div class="col-xs-2"><?php echo $item_price;?></div>									
+									<div class="col-xs-1"><?php echo $item_price;?></div>									
 									<div class="col-xs-2"><?php echo $item_supplier;?></div>
 									<div class="col-xs-2"></div>
 								</div>

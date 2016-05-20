@@ -76,6 +76,7 @@ $route['cashier'] = 'cashier';
 $route['admin/report-inventory'] = 'admin/view_inventory';
 $route['admin/report-sales'] = 'admin/view_sales_report';
 $route['admin/remove-item/(:any)'] = 'admin/remove_item/$1';
+$route['admin/remove-delivery-item/(:any)'] = 'admin/remove_delivery_item/$1';
 $route['admin/report-delivery'] = 'admin/view_delivery';
 $route['admin/report-pullout'] = 'admin/view_pullout';
 $route['admin/delivery-notification'] = 'admin/delivery_notification';

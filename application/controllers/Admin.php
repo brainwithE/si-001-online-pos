@@ -252,7 +252,7 @@ class Admin extends CI_Controller{
         $data['sessions'] = $this->session_name();
         
         $this->load->view('admin-header', $data);
-        $this->load->view('delivery-item-view',$data);
+        $this->load->view('admin-delivery-item-view',$data);
         $this->load->view('footer');
     }
 
@@ -340,6 +340,18 @@ class Admin extends CI_Controller{
 
         $this->load->model('Items_model');
         $this->Items_model->remove_item($sales_id);
+
+        redirect('admin/report-inventory');
+    }
+
+    public function remove_delivery_item(){
+        $sales_id = $this->uri->segment(3);
+
+        $items = $this->input->post('data');
+        $quant = $this->input->post('qty');
+
+        $this->load->model('Items_model');
+        $this->Items_model->remove_delivery_item($sales_id);
 
         redirect('admin/report-inventory');
     }

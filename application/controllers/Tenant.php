@@ -158,8 +158,6 @@ class Tenant extends CI_Controller{
     public function add_delivery_transaction(){
         //insert tons of condition here
 
-        //insert tons of condition here
-
         $supplier = $this->session_name(); 
 
         $items = $this->input->post('data');

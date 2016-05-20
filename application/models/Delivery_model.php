@@ -56,11 +56,14 @@ class Delivery_model extends CI_model{
 	    return false;
 	}
 
-
+	function remove_delivery_item($item_code){
+		$sql = "DELETE FROM pos_delivery WHERE delivery_item ='".$item_code."'" ;
+		$query = $this->db->query($sql);		
+	    return true;
+	}
 
 	/* INSERT ACTIONS */
 
-	//function add_delivery_transaction($data){
 	/*NOTE: STATIC ADD DELIVERY TRANSACTION BELOW*/
 	function add_delivery_transaction($supplier,$qty){
 		$current_date = date('Y-m-d');	
@@ -91,22 +94,7 @@ class Delivery_model extends CI_model{
 			$this->db->insert('pos_delivery', $data[$ctr]);
 		    $ctr++;
 		    /*$sql[] = '('.$row['dt_id'].', '.$row['dt_supplier'].', '.$row['dt_total_quantity'].', '.$row['dt_date'].', '.$row['dt_approve_date'].', '.$row['dt_status'].')';*/
-		}
-
-		/*$sql = array(); 
-		foreach( $data as $row ) {
-		    $sql[] = '("'.mysql_real_escape_string($row['text']).'", '.$row['category_id'].')';
-		}
-
-		mysql_query('INSERT INTO table (text, category) VALUES '.implode(',', $sql));*/
-		/*	$data = array(
-			'delivery_id' => '',
-			'delivery_item' => $data['del_item_code'],
-			'delivery_quantity' => $data['del_item_quantity'],
-			'delivery_dt' => $data['dt_id']
-			
-		);
-		$this->db->insert('pos_delivery', $data);	*/	
+		}	
 	}
 
 

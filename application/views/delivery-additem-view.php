@@ -58,8 +58,7 @@
 				});
 				$('.total-amount').html(total);
 
-				alert($id+" successfully removed!");
-
+				alert($id+" successfully removed!")
 			}
 
 			function confirmQty(){
@@ -74,39 +73,21 @@
 
 				    	totalQuantity = totalQuantity - temp;
 
-				    	/*alert("before:"+totalQuantity);*/
-
 				    	ItemArray[i].ItemQuantity = qty;
 
 				    	$('#'+$id).find(".qtyarea").text(qty+" (edit)");
 
-				    	/*alert("qty: "+qty);*/
-
 				    	totalQuantity = totalQuantity + qty;
-
-				    	/*alert("after"+totalQuantity);*/
-				    	/*var disc = ItemArray[i].ItemDiscount;
-				    	var actdisc = disc;
-
-				    	var price = ItemArray[i].ItemAct;
-				    	var total = price - actdisc;
-
-				        $('#'+$id).find(".discount").text(ItemArray[i].ItemDiscount+"Php");
-				        $('#'+$id).find(".price-field").text(total);*/
-        				break; //Stop this loop, we found it!
 				    }
 				}
 			}
 
 			function editQty($id) {
-
 				$('#myModal').modal("show");
-
 				$('#item-check').text($id);
 			}
 
 			$(document).ready(function() {
-
 				var barcode="";
 			    $(document).keydown(function(e) {
 			        var code = (e.keyCode ? e.keyCode : e.which);
@@ -165,7 +146,7 @@
 			        }
 			    });
 
-				 $("#add-item").click(function (){
+				$("#add-item").click(function (){
 				    		var code = $('#code').val();
 				    		var eachctr = 0;
 							totalQuantity = 0;
@@ -223,36 +204,7 @@
 					window.location.href = "<?php echo site_url('tenant/report-delivery'); ?>";
 					return false;
 				});
-
 			});
-
-			/*$('#name2').on('input', function() {
-					var username = $('#name2').val();
-					$.ajax({
-						url: "suggest-more-data",
-						async: false,
-						type: "POST",
-						data: "type="+username,
-						dataType: "html",
-						success: function(data) {
-							$('#ajax-content-container').html(data);
-						}
-					})
-			});
-		
-			$('#code').on('input', function() {
-					var code = $('#code').val();
-					$.ajax({
-						url: "suggest-more-data-code",
-						async: false,
-						type: "POST",
-						data: "type="+code,
-						dataType: "html",
-						success: function(data) {
-							$('#ajax-content-container').html(data);
-						}
-					})
-			});*/
 		</script>
 		<a id="submit" href="#" class="call-links">COMPLETE DELIVERY REQUEST</a>
 	</div>
@@ -266,15 +218,7 @@
 													<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</h4>
 												</div>
 												<div class="modal-body modal-project">
-												EDIT QTY FOR ITEM: <span id="item-check"></span>
-															                    
-													<!-- <input type="hidden" name="item_code" value="<?php echo $item_code?>">
-													<label>Item Name: </label>
-													<input type="field" name="item_name" value="<?php echo $item_name?>">
-													<label>Item Price: </label>
-													<input type="field" name="item_price" value="<?php echo $item_price?>">
-													<label>Item Category: </label>
-													<input type="field" name="item_category" value="<?php echo $item_category?>"> -->
+													EDIT QTY FOR ITEM: <span id="item-check"></span>
 													<input type="text" name="name" id="qty" placeholder="Enter Qty" />
 
 													<input type="submit" class="btn submit-button" onClick="confirmQty();" value="Confirm" />

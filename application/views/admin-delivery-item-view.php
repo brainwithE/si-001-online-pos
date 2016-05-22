@@ -5,29 +5,51 @@
 		window.print();
 	}
 
-							function removeItem(item,delivery,qty,dt,dtotal){
-									$('#delrow'+delivery).remove();
+	function removeItem(item,delivery,qty,dt,dtotal){
+		$('#delrow'+delivery).remove();
 
-									$.ajax({
-									   	url: '<?php echo base_url(); ?>remove-delivery-item',
-									   	type: "POST",
-										data: {item: item, del: delivery, qty: qty, transaction: dt, total: dtotal},
-										dataType: "html",
-									   	success: function( data ) {
-											var total = 0;
-											$(".del-rows").each(function() {
-												total += parseFloat($(this).find(".del-qty").text());
-											});
-											$('.del-total').html(total + " total items to be delivered");
-									   	},
-									   	error: function(xhr, status, error) {
-									      alert(error);
-									   	}
-									});
+		$.ajax({
+			url: '<?php echo base_url(); ?>remove-delivery-item',
+				type: "POST",
+				data: {item: item, del: delivery, qty: qty, transaction: dt, total: dtotal},
+				dataType: "html",
+				success: function( data ) {
+					var total = 0;
+					$(".del-rows").each(function() {
+						total += parseFloat($(this).find(".del-qty").text());
+					});
+					$('.del-total').html(total + " total items to be delivered");
+				},
+				error: function(xhr, status, error) {
+					alert(error);
+				}
+		});
 									      	
-									return false;
-							}
-				
+		return false;
+	}	
+
+	function editItem(delivery,qty){
+		alert(delivery+","+qty);
+
+		/*$.ajax({
+			url: '<?php echo base_url(); ?>remove-delivery-item',
+				type: "POST",
+				data: {item: item, del: delivery, qty: qty, transaction: dt, total: dtotal},
+				dataType: "html",
+				success: function( data ) {
+					var total = 0;
+					$(".del-rows").each(function() {
+						total += parseFloat($(this).find(".del-qty").text());
+					});
+					$('.del-total').html(total + " total items to be delivered");
+				},
+				error: function(xhr, status, error) {
+					alert(error);
+				}
+		});*/
+									      	
+		return false;
+	}	
 </script>
 
 				<?php 
@@ -88,7 +110,7 @@
 
 								<div id="delrow<?php echo $delivery_id; ?>" class="row del-rows table-entries table-entries-income">
 									<div class="col-xs-1"><a onClick="removeItem(<?php echo $item_code; ?>,<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>,<?php echo $dt_id; ?>,<?php echo $dt_total; ?>);" class="btn-red btn-red-del"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
-									<div class="col-xs-1 del-qty"><?php echo $delivery_quantity; ?></div>
+									<div class="col-xs-1 del-qty" onClick="editItem(<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>);"><?php echo $delivery_quantity; ?></div>
 									<div class="col-xs-2 item-code"><?php echo $item_code; ?></div>
 									<div class="col-xs-3"><?php echo $item_name; ?></div>
 									<div class="col-xs-2"><?php echo $item_price; ?></div>

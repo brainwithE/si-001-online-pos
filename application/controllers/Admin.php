@@ -2,7 +2,7 @@
 
 class Admin extends CI_Controller{
 	
-     public function __construct() {
+    public function __construct() {
         parent::__construct();
         $user_type =  $this->session_type();
 
@@ -55,7 +55,6 @@ class Admin extends CI_Controller{
             $this->load->view('admin-report-sales-f-month', $packet);
             $this->load->view('footer');
     }
-
     
     public function get_supplier_id(){  // add action to get the supplier id of the user
         $supplier_id='201605000000001'; //static supplier id
@@ -111,7 +110,6 @@ class Admin extends CI_Controller{
         
         $pullout_list = $this->Pullout_model->get_pullout();  
         $packet['pullout'] = $pullout_list;
-        //$packet['supplier_name'] = $this->get_supplier_name($pullout_list);
         
         $data['sessions'] = $this->session_name();
 
@@ -129,17 +127,14 @@ class Admin extends CI_Controller{
             $item_quantity = $row['pullout_quantity'];
         }
 
-
         $this->load->model('Pullout_model');
         
         $pullout = $this->Pullout_model->approve_pullout($pullout_id); 
         
         $new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
         $this->update_stock($item_code, $new_stock);
-        
 
         redirect('admin/view_pullout');
-
     }
 
     public function reject_pullout(){
@@ -182,8 +177,6 @@ class Admin extends CI_Controller{
     }
 
     public function delivery_notification() {
-        //insert model and functions here
-
         $data['sessions'] = $this->session_name();
 
         $this->load->view('header', $data);
@@ -221,13 +214,8 @@ class Admin extends CI_Controller{
         $this->load->model('Delivery_model');
         
         $pullout = $this->Delivery_model->approve_delivery($dt_id); 
-        
-        /*$new_stock = $this->deduct_inv_stock($item_code,$item_quantity);
-        $this->update_stock($item_code, $new_stock); */
-        
-
+    
         redirect('admin/view_delivery');
-
     }
 
     public function reject_delivery(){
@@ -293,10 +281,6 @@ class Admin extends CI_Controller{
             $this->Items_model->add_item_category($category_name);
             redirect('admin/report-item-category');
         }
-
-
-        //$this->view_item_category_list();
-
     }
 
     public function activate_category(){
@@ -306,7 +290,6 @@ class Admin extends CI_Controller{
         $this->Items_model->activate_category($category_id);
 
         redirect('admin/report-item-category');
-
     }
 
     public function deactivate_category(){
@@ -362,33 +345,35 @@ class Admin extends CI_Controller{
             else{
                 $this->Delivery_model->remove_delivery_item($delivery, $dt, $final_qty); 
             }
-
-            ?><script type="text/javascript">alert("boom<?php echo $item; ?>, <?php echo $delivery; ?> ,<?php echo $quantity; ?> ,<?php echo $dt; ?>, <?php echo $dtotal; ?>");</script><?php
         }
         else{
             ?><script type="text/javascript">alert("fail");</script><?php
         }
     }
 
-   /* public function input_pullout_item(){
-        $item_code = $this->input->post('item_code');
-        $item_quantity = $this->input->post('item_quantity');
+    public function edit_delivery_item(){
+        if(isset($_POST['del'])) {
+            $delivery = $_POST['del'];
+            $quantity = $_POST['qty'];
+            $dt = $_POST['transaction'];
+            $dtotal = $_POST['total'];
 
+            $final_qty = $dtotal - $quantity;
 
-        if ($this->form_validation->run() == TRUE) {            
-            $item_supplier = $this->get_item_supplier($item_code);
+            $this->load->model('Delivery_model');
 
-            $data = array (
-                'pullout_item_code' => $item_code,
-                'pullout_item_quantity' => $item_quantity,
-                'pullout_supplier' => $item_supplier
-            );
+            /*if($final_qty==0){
+                $this->Delivery_model->reject_delivery($dt); 
+            }
+            else{
+                $this->Delivery_model->remove_delivery_item($delivery, $dt, $final_qty); 
+            }
 
-            $this->load->model('Pullout_model');
-            $sales_id = $this->Pullout_model->add_pullout_item($data);  
-     
-            redirect('admin/report-pullout');
+            ?><script type="text/javascript">alert("boom<?php echo $item; ?>, <?php echo $delivery; ?> ,<?php echo $quantity; ?> ,<?php echo $dt; ?>, <?php echo $dtotal; ?>");</script><?php*/
         }
-    }*/
+        else{
+        
+        }
+    }
 }
 ?>

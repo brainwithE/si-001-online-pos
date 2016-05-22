@@ -4,6 +4,31 @@
 	function printPage(){
 		window.print();
 	}
+
+							function removeItem(item,delivery,qty,dt,dtotal){
+									$('#delrow'+delivery).remove();
+
+									$.ajax({
+									   	url: '<?php echo base_url(); ?>remove-delivery-item',
+									   	type: "POST",
+										data: {item: item, del: delivery, qty: qty, transaction: dt, total: dtotal},
+										dataType: "html",
+									   	success: function( data ) {
+											var total = 0;
+											$(".del-rows").each(function() {
+												total += parseFloat($(this).find(".del-qty").text());
+												alert(total);
+											});
+											$('.del-total').html(total + " total items to be delivered");
+									   	},
+									   	error: function(xhr, status, error) {
+									      alert(error);
+									   	}
+									});
+									      	
+									return false;
+							}
+				
 </script>
 
 				<?php 
@@ -12,6 +37,7 @@
 						$dt_date = $row['dt_date'];
 						$dt_supplier = $row['dt_supplier'];
 						$dt_approved = $row['dt_approve_date'];
+						$dt_total = $row['dt_total_quantity'];
 					$ctr++;
 				} ?>
 			
@@ -61,10 +87,10 @@
 									$delivery_total = $delivery_total + $delivery_quantity;
 							?>
 
-								<div class="row table-entries table-entries-income">
-									<div class="col-xs-1"><a href="<?php echo base_url(); ?>admin/remove-delivery-item/<?php echo $item_code; ?>" class="btn-red btn-red-del"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
-									<div class="col-xs-1"><?php echo $delivery_quantity; ?></div>
-									<div class="col-xs-2"><?php echo $item_code; ?></div>
+								<div id="delrow<?php echo $delivery_id; ?>" class="row del-rows table-entries table-entries-income">
+									<div class="col-xs-1"><a onClick="removeItem(<?php echo $item_code; ?>,<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>,<?php echo $dt_id; ?>,<?php echo $dt_total; ?>);" class="btn-red btn-red-del"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
+									<div class="col-xs-1 del-qty"><?php echo $delivery_quantity; ?></div>
+									<div class="col-xs-2 item-code"><?php echo $item_code; ?></div>
 									<div class="col-xs-3"><?php echo $item_name; ?></div>
 									<div class="col-xs-2"><?php echo $item_price; ?></div>
 									<div class="col-xs-3"></div>
@@ -75,7 +101,7 @@
 							} ?>
 
 							<div class="row table-entries table-entries-income">
-									<div class="col-xs-6"><?php echo $delivery_total; ?> total items to be delivered</div>
+									<div class="col-xs-6 del-total"><?php echo $delivery_total; ?> total items to be delivered</div>
 							</div>
 						</div>
 
@@ -89,5 +115,4 @@
 								<div class="col-xs-3 total-amount"><?php echo $total_earnings; ?></div>
 						</div> -->
 					</div><!-- MEC end -->
-
 				</div>

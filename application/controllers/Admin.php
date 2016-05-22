@@ -345,15 +345,29 @@ class Admin extends CI_Controller{
     }
 
     public function remove_delivery_item(){
-        $sales_id = $this->uri->segment(3);
+        if(isset($_POST['item'])) {
+            $item = $_POST['item'];
+            $delivery = $_POST['del'];
+            $quantity = $_POST['qty'];
+            $dt = $_POST['transaction'];
+            $dtotal = $_POST['total'];
 
-        $items = $this->input->post('data');
-        $quant = $this->input->post('qty');
+            $final_qty = $dtotal - $quantity;
 
-        $this->load->model('Items_model');
-        $this->Items_model->remove_delivery_item($sales_id);
+            $this->load->model('Delivery_model');
 
-        redirect('admin/report-inventory');
+            if($final_qty==0){
+                $this->Delivery_model->reject_delivery($dt); 
+            }
+            else{
+                $this->Delivery_model->remove_delivery_item($delivery, $dt, $final_qty); 
+            }
+
+            ?><script type="text/javascript">alert("boom<?php echo $item; ?>, <?php echo $delivery; ?> ,<?php echo $quantity; ?> ,<?php echo $dt; ?>, <?php echo $dtotal; ?>");</script><?php
+        }
+        else{
+            ?><script type="text/javascript">alert("fail");</script><?php
+        }
     }
 
    /* public function input_pullout_item(){

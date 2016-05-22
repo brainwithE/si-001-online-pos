@@ -17,7 +17,6 @@
 											var total = 0;
 											$(".del-rows").each(function() {
 												total += parseFloat($(this).find(".del-qty").text());
-												alert(total);
 											});
 											$('.del-total').html(total + " total items to be delivered");
 									   	},

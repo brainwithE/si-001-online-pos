@@ -8,17 +8,24 @@
 	function removeItem(item,delivery,qty,dt,dtotal){
 		$('#delrow'+delivery).remove();
 
+		var total = 0;
+		$(".del-rows").each(function() {
+			total += parseFloat($(this).find(".del-qty").text());
+		});
+		$('.del-total').html("<span id='realtotal'>"+total+"</span>"+" total items to be delivered");
+
+		var delTotal = 0;
+		delTotal = $('#realtotal').html();
+
+		alert(delTotal);
+
 		$.ajax({
 			url: '<?php echo base_url(); ?>remove-delivery-item',
 				type: "POST",
-				data: {item: item, del: delivery, qty: qty, transaction: dt, total: dtotal},
+				data: {item: item, del: delivery, qty: qty, transaction: dt, total: delTotal},
 				dataType: "html",
 				success: function( data ) {
-					var total = 0;
-					$(".del-rows").each(function() {
-						total += parseFloat($(this).find(".del-qty").text());
-					});
-					$('.del-total').html(total + " total items to be delivered");
+					alert("Item successfully deleted!");			
 				},
 				error: function(xhr, status, error) {
 					alert(error);
@@ -30,23 +37,19 @@
 
 	function editItem(delivery,qty){
 		alert(delivery+","+qty);
-
-		/*$.ajax({
+		
+		$.ajax({
 			url: '<?php echo base_url(); ?>remove-delivery-item',
 				type: "POST",
 				data: {item: item, del: delivery, qty: qty, transaction: dt, total: dtotal},
 				dataType: "html",
 				success: function( data ) {
-					var total = 0;
-					$(".del-rows").each(function() {
-						total += parseFloat($(this).find(".del-qty").text());
-					});
-					$('.del-total').html(total + " total items to be delivered");
+					
 				},
 				error: function(xhr, status, error) {
 					alert(error);
 				}
-		});*/
+		});
 									      	
 		return false;
 	}	
@@ -110,7 +113,7 @@
 
 								<div id="delrow<?php echo $delivery_id; ?>" class="row del-rows table-entries table-entries-income">
 									<div class="col-xs-1"><a onClick="removeItem(<?php echo $item_code; ?>,<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>,<?php echo $dt_id; ?>,<?php echo $dt_total; ?>);" class="btn-red btn-red-del"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
-									<div class="col-xs-1 del-qty" onClick="editItem(<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>);"><?php echo $delivery_quantity; ?></div>
+									<div class="col-xs-1 del-qty"><?php echo $delivery_quantity; ?></div>
 									<div class="col-xs-2 item-code"><?php echo $item_code; ?></div>
 									<div class="col-xs-3"><?php echo $item_name; ?></div>
 									<div class="col-xs-2"><?php echo $item_price; ?></div>
@@ -122,7 +125,7 @@
 							} ?>
 
 							<div class="row table-entries table-entries-income">
-									<div class="col-xs-6 del-total"><?php echo $delivery_total; ?> total items to be delivered</div>
+									<div class="col-xs-6 del-total"><span id="realtotal"><?php echo $delivery_total; ?></span> total items to be delivered</div>
 							</div>
 						</div>
 

@@ -335,15 +335,14 @@ class Admin extends CI_Controller{
             $dt = $_POST['transaction'];
             $dtotal = $_POST['total'];
 
-            $final_qty = $dtotal - $quantity;
-
             $this->load->model('Delivery_model');
 
-            if($final_qty==0){
+            if($dtotal==0){
                 $this->Delivery_model->reject_delivery($dt); 
             }
             else{
-                $this->Delivery_model->remove_delivery_item($delivery, $dt, $final_qty); 
+                $this->Delivery_model->remove_delivery_item($delivery); 
+                $this->Delivery_model->update_total_qty($dt, $dtotal);
             }
         }
         else{

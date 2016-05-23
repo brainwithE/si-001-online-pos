@@ -17,8 +17,6 @@
 		var delTotal = 0;
 		delTotal = $('#realtotal').html();
 
-		alert(delTotal);
-
 		$.ajax({
 			url: '<?php echo base_url(); ?>remove-delivery-item',
 				type: "POST",
@@ -35,11 +33,42 @@
 		return false;
 	}	
 
-	function editItem(delivery,qty){
-		alert(delivery+","+qty);
+	function confirmQty(dt_id){
+		$('#myModal').modal("hide");
+		var delid = $('#item-check').text();
+		var qty = parseInt($('#qty').val());
+
+		$('#quant'+delid).text(qty);
+
+		var total = 0;
+		$(".del-rows").each(function() {
+			total += parseFloat($(this).find(".del-qty").text());
+		});
+		$('.del-total').html("<span id='realtotal'>"+total+"</span>"+" total items to be delivered");
+
+		var delTotal = 0;
+		delTotal = $('#realtotal').html();
 		
 		$.ajax({
-			url: '<?php echo base_url(); ?>remove-delivery-item',
+			url: '<?php echo base_url(); ?>edit-delivery-item',
+				type: "POST",
+				data: {del: delid, qty: qty, transaction: dt_id, total: delTotal},
+				dataType: "html",
+				success: function( data ) {
+					alert("Item successfully updated!");			
+				},
+				error: function(xhr, status, error) {
+					alert(error);
+				}
+		});					      	
+		return false;
+	}
+
+	function editItem(delivery,qty){
+		$('#myModal').modal("show");
+		$('#item-check').text(delivery);
+		/*$.ajax({
+			url: '<?php echo base_url(); ?>edit-delivery-item',
 				type: "POST",
 				data: {item: item, del: delivery, qty: qty, transaction: dt, total: dtotal},
 				dataType: "html",
@@ -51,7 +80,7 @@
 				}
 		});
 									      	
-		return false;
+		return false;*/
 	}	
 </script>
 
@@ -66,7 +95,6 @@
 				} ?>
 			
 				<div class="container">
-
 					<!--The overwatch Main element Container or MEC-->
 					<div class="overwatch-mec mec-income" style="min-height: 400px;">
 					<div class="col-xs-12 total-label total-label-bank">Delivery Transaction ID: -- <?php echo $dt_id; ?></div>
@@ -113,7 +141,7 @@
 
 								<div id="delrow<?php echo $delivery_id; ?>" class="row del-rows table-entries table-entries-income">
 									<div class="col-xs-1"><a onClick="removeItem(<?php echo $item_code; ?>,<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>,<?php echo $dt_id; ?>,<?php echo $dt_total; ?>);" class="btn-red btn-red-del"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
-									<div class="col-xs-1 del-qty"><?php echo $delivery_quantity; ?></div>
+									<div class="col-xs-1 del-qty" id="quant<?php echo $delivery_id; ?>" onClick="editItem(<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>);"><?php echo $delivery_quantity; ?></div>
 									<div class="col-xs-2 item-code"><?php echo $item_code; ?></div>
 									<div class="col-xs-3"><?php echo $item_name; ?></div>
 									<div class="col-xs-2"><?php echo $item_price; ?></div>
@@ -139,4 +167,22 @@
 								<div class="col-xs-3 total-amount"><?php echo $total_earnings; ?></div>
 						</div> -->
 					</div><!-- MEC end -->
+				</div>
+
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
+					    <!-- Modal content-->
+					    <div class="modal-content item-modal">					                    
+					        <div class="edit-item">
+								<div class="head-contain">
+									<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</h4>
+								</div>
+								<div class="modal-body modal-project">
+									EDIT QTY FOR ITEM: <span id="item-check"></span>
+									<input type="text" name="name" id="qty" placeholder="Enter Qty" />
+									<input type="submit" class="btn submit-button" onClick="confirmQty(<?php echo $dt_id; ?>);" value="Confirm" />
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>

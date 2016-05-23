@@ -63,8 +63,15 @@ class Delivery_model extends CI_model{
 	    return true;
 	}
 
+	function edit_delivery_qty($delivery,$qty){
+		$sql = "UPDATE pos_delivery SET delivery_quantity='".$qty."' WHERE delivery_id ='".$delivery."'";
+		$this->db->query($sql);			
+
+	    return true;
+	}
+
 	function update_total_qty($dt,$final_qty){
-		$sql2 = "UPDATE pos_delivery_transaction SET dt_total_quantity='".$final_qty."' WHERE dt_id='".$dt."'" ;
+		$sql2 = "UPDATE pos_delivery_transaction SET dt_total_quantity='".$final_qty."' WHERE dt_id='".$dt."'";
 		$this->db->query($sql2);
 
 	    return true;

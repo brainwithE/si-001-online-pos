@@ -63,6 +63,13 @@ class Delivery_model extends CI_model{
 	    return true;
 	}
 
+	function remove_delivery_transaction($dt){
+		$sql = "DELETE FROM pos_delivery_transaction WHERE dt_id ='".$dt."'";
+		$query = $this->db->query($sql);			
+
+	    return true;
+	}
+
 	function edit_delivery_qty($delivery,$qty){
 		$sql = "UPDATE pos_delivery SET delivery_quantity='".$qty."' WHERE delivery_id ='".$delivery."'";
 		$this->db->query($sql);			

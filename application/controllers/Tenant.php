@@ -316,5 +316,53 @@ class Tenant extends CI_Controller{
             }
         }
     }
+
+    public function remove_delivery_item(){
+        if(isset($_POST['item'])) {
+            $item = $_POST['item'];
+            $delivery = $_POST['del'];
+            $quantity = $_POST['qty'];
+            $dt = $_POST['transaction'];
+            $dtotal = $_POST['total'];
+
+            $this->load->model('Delivery_model');
+
+            if($dtotal==0){
+                $this->Delivery_model->remove_delivery_transaction($dt); 
+            }
+            else{
+                $this->Delivery_model->remove_delivery_item($delivery); 
+                $this->Delivery_model->update_total_qty($dt, $dtotal);
+            }
+        }
+        else{
+            ?><script type="text/javascript">alert("fail");</script><?php
+        }
+    }
+
+    public function edit_delivery_item(){
+        if(isset($_POST['del'])) {
+            $delivery = $_POST['del'];
+            $quantity = $_POST['qty'];
+            $dtotal = $_POST['total'];
+            $dt = $_POST['transaction'];
+
+            $this->load->model('Delivery_model');
+            $this->Delivery_model->edit_delivery_qty($delivery,$quantity);
+            $this->Delivery_model->update_total_qty($dt,$dtotal);
+
+            /*if($final_qty==0){
+                $this->Delivery_model->reject_delivery($dt); 
+            }
+            else{
+                $this->Delivery_model->remove_delivery_item($delivery, $dt, $final_qty); 
+            }
+
+            ?><script type="text/javascript">alert("boom<?php echo $item; ?>, <?php echo $delivery; ?> ,<?php echo $quantity; ?> ,<?php echo $dt; ?>, <?php echo $dtotal; ?>");</script><?php*/
+        }
+        else{
+        
+        }
+    }
 }
 ?>

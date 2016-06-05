@@ -11,7 +11,7 @@
 				<input type="text" name="name" id="code" placeholder="Enter Barcodes Manually" />
 				<input type="submit" id="add-item" value="ADD" class="call-links"></input>
 			</div>
-			<div class="col-md-4 total-label total-label-bank">TOTAL -- Php <span class="total-amount"></span></div>
+			<!-- <div class="col-md-4 total-label total-label-bank">TOTAL -- Php <span class="total-amount"></span></div> -->
 		</div>
 
 		<div class="col-xs-12">
@@ -52,11 +52,11 @@
 				    }
 				}
 
-			    var total = 0;
+			    /*var total = 0;
 				$(".table-entries").each(function() {
 					total += parseFloat($(this).find(".price-field").text());
 				});
-				$('.total-amount').html(total);
+				$('.total-amount').html(total);*/
 
 				alert($id+" successfully removed!")
 			}

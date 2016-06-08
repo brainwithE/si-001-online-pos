@@ -2,7 +2,7 @@
 
 class Admin extends CI_Controller{
 	
-    public function __construct() {
+    public function __construct(){
         parent::__construct();
         $user_type =  $this->session_type();
 
@@ -25,7 +25,7 @@ class Admin extends CI_Controller{
         return $this->session->userdata('name'); 
     }
 
-    public function view_sales_report() {
+    public function view_sales_report(){
         $this->load->model('Sales_model');
 
         $sale_report = $this->Sales_model->get_sales();  
@@ -39,21 +39,21 @@ class Admin extends CI_Controller{
     }
 
     public function filter_sales_month(){
-            $this->load->model('Sales_model');       
+        $this->load->model('Sales_model');       
 
-            $date_start = $this->input->post('filter_start_date');
-            $date_end = $this->input->post('filter_end_date');
+        $date_start = $this->input->post('filter_start_date');
+        $date_end = $this->input->post('filter_end_date');
 
-            $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
-            $packet['sales'] = $income;
-            $packet['fro'] = $date_start;
-            $packet['to'] = $date_end;
+        $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
+        $packet['sales'] = $income;
+        $packet['fro'] = $date_start;
+        $packet['to'] = $date_end;
 
-            $data['sessions'] = $this->session_name();
+        $data['sessions'] = $this->session_name();
             
-            $this->load->view('admin-header', $data);
-            $this->load->view('admin-report-sales-f-month', $packet);
-            $this->load->view('footer');
+        $this->load->view('admin-header', $data);
+        $this->load->view('admin-report-sales-f-month', $packet);
+        $this->load->view('footer');
     }
     
     public function get_supplier_id(){  // add action to get the supplier id of the user
@@ -61,8 +61,7 @@ class Admin extends CI_Controller{
         return $supplier_id; 
     }
 
-    public function add_items()
-    {
+    public function add_items(){
         $supplier_id = $this->get_supplier_id();
 
         $data = array (
@@ -193,7 +192,6 @@ class Admin extends CI_Controller{
     }
 
     public function edit_item(){
-
         $data = array (
         'item_id' => $this->input->post('item_code'),
         'item_name' => $this->input->post('item_name'),
@@ -256,8 +254,7 @@ class Admin extends CI_Controller{
         $this->load->view('footer');
     }
 
-    function alpha_dash_space($str)
-    {
+    function alpha_dash_space($str){
         return ( ! preg_match("/^([-a-z_ ])+$/i", $str)) ? FALSE : TRUE;
     } 
 
@@ -265,19 +262,15 @@ class Admin extends CI_Controller{
         $category_name = $this->input->post('item_category');
 
         $this->load->model('Items_model');
-        
-        
         $this->form_validation->set_rules('item_category', 'Item Category', 'alpha');
         $this->form_validation->set_rules('item_category', 'Item Category', 'required|is_unique[pos_category.category_name]');
         
-
         if ($this->form_validation->run() == FALSE)
         {
             $this->view_item_category_list();
         }
         else
         {
-            
             $this->Items_model->add_item_category($category_name);
             redirect('admin/report-item-category');
         }
@@ -360,15 +353,6 @@ class Admin extends CI_Controller{
             $this->load->model('Delivery_model');
             $this->Delivery_model->edit_delivery_qty($delivery,$quantity);
             $this->Delivery_model->update_total_qty($dt,$dtotal);
-
-            /*if($final_qty==0){
-                $this->Delivery_model->reject_delivery($dt); 
-            }
-            else{
-                $this->Delivery_model->remove_delivery_item($delivery, $dt, $final_qty); 
-            }
-
-            ?><script type="text/javascript">alert("boom<?php echo $item; ?>, <?php echo $delivery; ?> ,<?php echo $quantity; ?> ,<?php echo $dt; ?>, <?php echo $dtotal; ?>");</script><?php*/
         }
         else{
         

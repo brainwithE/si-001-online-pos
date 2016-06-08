@@ -1,7 +1,6 @@
 <?php 
 class Sales_model extends CI_model{
 
-	/* SELECT ACTION */
 	function get_sales(){		
 		$this->db->order_by("sales_id", "desc");
 		$this->db->select('*');
@@ -66,8 +65,6 @@ class Sales_model extends CI_model{
 		return $query;
 	}
 	
-
-	/* INSERT ACTIONS */
 	function add_sales_transaction($supplier,$qty){
 		$current_date = date('Y-m-d');	
 		
@@ -94,8 +91,6 @@ class Sales_model extends CI_model{
 
 		return true;
 	}
-
-	/*UPDATE STATUS*/
 
 	function void_sales($sales_id){
 		$sql = "UPDATE pos_sales SET sales_status='1' WHERE sales_id='".$sales_id."'" ;

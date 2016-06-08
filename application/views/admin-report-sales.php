@@ -54,9 +54,9 @@
 
 				<div class="row table-title table-title-general table-title-income">
 					<div class="col-xs-2">Item Code</div>
-					<div class="col-xs-3">Item Name</div>
+					<div class="col-xs-2">Item Name</div>
 					<div class="col-xs-1">Type</div>
-					<div class="col-xs-1">Supplier</div>
+					<div class="col-xs-2">Supplier</div>
 					<div class="col-xs-1">Discount</div>
 					<div class="col-xs-1">Amount</div>
 					<div class="col-xs-1">Deduction</div>
@@ -90,9 +90,9 @@
 				?>
 					<div class="row table-entries table-entries-income">
 						<div class="col-xs-2"><?php echo $item_code;?></div>
-						<div class="col-xs-3"><?php echo $sales_item_name;?></div>
+						<div class="col-xs-2"><?php echo $sales_item_name;?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
-						<div class="col-xs-1"><?php echo $sales_supplier; ?></div>
+						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>

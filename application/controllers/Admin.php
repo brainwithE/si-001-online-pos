@@ -28,7 +28,7 @@ class Admin extends CI_Controller{
     public function view_sales_report(){
         $this->load->model('Sales_model');
 
-        $sale_report = $this->Sales_model->get_sales();  
+        $sale_report = $this->Sales_model->get_daily_sales();  
         $packet['sales'] = $sale_report;        
 
         $data['sessions'] = $this->session_name();
@@ -36,6 +36,49 @@ class Admin extends CI_Controller{
         $this->load->view('admin-header', $data);
         $this->load->view('admin-report-sales', $packet);
         $this->load->view('footer');
+    }
+
+    public function view_sales_report_all(){
+        $this->load->model('Sales_model');
+
+        $sale_report = $this->Sales_model->get_all_sales();  
+        $packet['sales'] = $sale_report;        
+
+        $data['sessions'] = $this->session_name();
+    
+        $this->load->view('admin-header', $data);
+        $this->load->view('admin-report-all-sales', $packet);
+        $this->load->view('footer');
+    }
+
+    public function suggest_more_admin_all_sales_data(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Sales_model');
+          $data['ajax_req'] = TRUE;
+          $data['sales'] = $this->Sales_model->get_sales_by_tenant($_POST['type']);
+
+          $this->load->view('admin-report-all-sales-ajax',$data);
+        }
+    }
+
+    public function suggest_more_admin_sales_data(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Sales_model');
+          $data['ajax_req'] = TRUE;
+          $data['sales'] = $this->Sales_model->get_sales_by_tenant_daily($_POST['type']);
+
+          $this->load->view('admin-report-sales-ajax',$data);
+        }
+    }
+
+    public function suggest_more_admin_fdate_sales_data(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Sales_model');
+          $data['ajax_req'] = TRUE;
+          $data['sales'] = $this->Sales_model->get_sales_by_fdate_tenant($_POST['type'],$_POST['sdate'],$_POST['edate']);
+
+          $this->load->view('admin-report-all-sales-ajax',$data);
+        }
     }
 
     public function filter_sales_month(){

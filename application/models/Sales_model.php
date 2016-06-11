@@ -26,6 +26,60 @@ class Sales_model extends CI_model{
 		return $query;
 	}
 
+	function get_all_sales(){
+		$today = date('Y-m-d');	
+
+	    $this->db->order_by("sales_id", "desc");
+		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
+		$this->db->from('pos_sales');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+
+		$query = $this->db->get();
+
+		return $query;
+	}
+
+	function get_sales_by_tenant_daily($tenant){	
+		$today = date('Y-m-d');	
+
+	    $this->db->order_by("sales_id", "desc");
+		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
+		$this->db->from('pos_sales');
+		$this->db->where('sales_date =', $today);
+		$this->db->like('pos_item.item_supplier',$tenant,'=');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+
+		$query = $this->db->get();
+
+		return $query;
+	}
+
+	function get_sales_by_tenant($tenant){	
+	    $this->db->order_by("sales_id", "desc");
+		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
+		$this->db->from('pos_sales');
+		$this->db->like('pos_item.item_supplier',$tenant,'=');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+
+		$query = $this->db->get();
+
+		return $query;
+	}
+
+	function get_sales_by_fdate_tenant($tenant,$date_start,$date_end){	
+	    $this->db->order_by("sales_id", "desc");
+		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
+		$this->db->from('pos_sales');
+		$this->db->where('sales_date >=', $date_start);
+		$this->db->where('sales_date <=', $date_end);
+		$this->db->like('pos_item.item_supplier',$tenant,'=');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+
+		$query = $this->db->get();
+
+		return $query;
+	}
+
 	function get_supplier_sales($supplier_id){			
 		$this->db->order_by("sales_id", "desc");
 		$this->db->select('sales_id, pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st');

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 	<head>
-		<title>Villa Lifestyle Boutique</title>
+		<title>Villalifestyle Boutique</title>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 

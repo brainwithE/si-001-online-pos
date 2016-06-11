@@ -10,21 +10,44 @@
 
 		<!--The overwatch Main element Container or MEC-->
 		<div class="overwatch-mec mec-income">
-		
-			<?php
-				$total = 0;
 
-				foreach($sales->result_array() as $row){ 
-					$sales_status = $row['sales_status'];
+			<div class="row">
+					<!-- FILTER FUNCTION -->
+					<div class="col-xs-12 col-md-8 table-filter">
+						<?php echo form_open('admin/filter-sales-month'); ?>
+						<label>Filter By Date: </label>
+						<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
+						<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">
+						<?php
+							echo form_submit(array('name'=>'submit','value'=>'FILTER','class'=>'call-links'));
+							echo form_close();
+						?>
+					</div>
+					<div class="col-xs-12 col-md-4 table-filter">
+						<?php echo form_open('cashier/filter-sales-month'); ?>
+						<label>Filter By Tenant:</label>
+						<input id="tenant-name" type="text" class="datepicker" placeholder="Tenant" name="filter_start_date">
+						<?php
+							echo form_close();
+						?>
+					</div>
+			</div>
 
-					if($sales_status == 0) { 
-						$amt = $row['sales_total'];
-						$ddct = $amt*0.03;
-						$net = $amt-$ddct;
-						$total = $total + $net;
+			<div id="ajax-content-container">
+				<?php
+					$total = 0;
+
+					foreach($sales->result_array() as $row){ 
+						$sales_status = $row['sales_status'];
+
+						if($sales_status == 0) { 
+							$amt = $row['sales_total'];
+							$ddct = $amt*0.03;
+							$net = $amt-$ddct;
+							$total = $total + $net;
+						}
 					}
-				}
-			?>
+				?>
 
 				<div class="table-bank-row">
 					<div class="col-xs-6 table-end-general table-end table-bank">
@@ -35,25 +58,13 @@
 						<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 					</div>
 				</div>
-				<div class="row">
-					<!-- FILTER FUNCTION -->
-					<div class="col-xs-12 table-filter">
-					<?php echo form_open('admin/filter-sales-month'); ?>
-						<label>Filter By Date: </label>
-						<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
-						<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">
-					<?php
-						echo form_submit(array('name'=>'submit','value'=>'FILTER','class'=>'call-links'));
-						echo form_close();
-					?>
-					</div>
-				</div>
+				
 				<div class="row table-title table-title-general table-title-income">
 					<div class="col-xs-2">Item Code</div>
-					<div class="col-xs-2">Item Name</div>
+					<div class="col-xs-1">Item Name</div>
 					<div class="col-xs-1">Date</div>
 					<div class="col-xs-1">Type</div>
-					<div class="col-xs-1">Supplier</div>
+					<div class="col-xs-2">Supplier</div>
 					<div class="col-xs-1">Discount</div>
 					<div class="col-xs-1">Amount</div>
 					<div class="col-xs-1">Deduction</div>
@@ -78,8 +89,6 @@
 						$sales_deduction = $sales_amount*0.03;
 						$sales_net = $sales_amount-$sales_deduction;
 
-						///if($sales_status == 0) {
-
 					if($sales_status == 0){
 					$total_discount = $total_discount + $sales_discount;
 					$total_earnings = $total_earnings + $sales_net;
@@ -89,10 +98,10 @@
 					
 					<div class="row table-entries table-entries-income">
 						<div class="col-xs-2"><?php echo $item_code;?></div>
-						<div class="col-xs-2"><?php echo $sales_item_name;?></div>
+						<div class="col-xs-1"><?php echo $sales_item_name;?></div>
 						<div class="col-xs-1"><?php echo date("M j, Y", strtotime($sales_date)); ?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
-						<div class="col-xs-1"><?php echo $sales_supplier; ?></div>
+						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
@@ -114,6 +123,32 @@
 					<div class="col-xs-1 total-label"></div>
 			</div>
 
+			</div> <!-- #ajax-content-container end -->
+
 		</div><!-- MEC end -->
 
 	</div>
+
+	<script type="text/javascript">
+			$(document).ready(function () {
+				ajax_suggest();
+				ajax_suggest_code();
+			});
+
+			function ajax_suggest(){
+				$('#tenant-name').on('input', function() {
+					var username = $('#tenant-name').val();
+					$.ajax({
+						url: "suggest-more-admin-fdate-sales-data",
+						async: false,
+						type: "POST",
+						data: {type:username,sdate:<?php echo $fro; ?>,edate: <?php echo $to; ?>},
+						dataType: "html",
+						success: function(data) {
+							$('#ajax-content-container').html(data);
+							alert(<?php echo $to; ?>);
+						}
+					})
+				});
+			}  
+	</script>

@@ -74,7 +74,10 @@ $route['cashier'] = 'cashier';
 
 //admin actions
 $route['admin/report-inventory'] = 'admin/view_inventory';
-$route['admin/report-sales'] = 'admin/view_sales_report';
+$route['admin/report-sales'] = 'admin/view_sales_report_all';
+$route['admin/suggest-more-admin-sales-data'] = 'admin/suggest_more_admin_sales_data';
+$route['admin/suggest-more-admin-all-sales-data'] = 'admin/suggest_more_admin_all_sales_data';
+$route['admin/suggest-more-admin-fdate-sales-data'] = 'admin/suggest_more_admin_fdate_sales_data';
 $route['admin/remove-item/(:any)'] = 'admin/remove_item/$1';
 $route['admin/remove-delivery-item'] = 'admin/remove_delivery_item';
 $route['remove-delivery-item'] = 'admin/remove_delivery_item';

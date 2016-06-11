@@ -46,8 +46,8 @@
 				/*ajax_articles();
 				ajax_images();
 				ajax_gallery();*/
-				/*ajax_suggest();
-				ajax_suggest_code();*/
+				ajax_suggest();
+				ajax_suggest_code();
 
 				var barcode="";
 			    $(document).keydown(function(e) {
@@ -82,7 +82,7 @@
 			    });
 			});
 
-			/*function ajax_suggest(){
+			function ajax_suggest(){
 				$('#name').on('input', function() {
 					var username = $('#name').val();
 					$('#code').val(''); //for singular search functions
@@ -114,7 +114,7 @@
 						}
 					})
 				});
-			}*/
+			}
 								  
 			/*function ajax_articles() {
 				$('.show-articles').click(function () {

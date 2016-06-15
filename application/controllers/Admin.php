@@ -67,7 +67,7 @@ class Admin extends CI_Controller{
           $data['ajax_req'] = TRUE;
           $data['sales'] = $this->Sales_model->get_sales_by_tenant_daily($_POST['type']);
 
-          $this->load->view('admin-report-sales-ajax',$data);
+          $this->load->view('admin-report-fdate-sales-ajax',$data);
         }
     }
 
@@ -77,7 +77,10 @@ class Admin extends CI_Controller{
           $data['ajax_req'] = TRUE;
           $data['sales'] = $this->Sales_model->get_sales_by_fdate_tenant($_POST['type'],$_POST['sdate'],$_POST['edate']);
 
-          $this->load->view('admin-report-all-sales-ajax',$data);
+            $data['fro'] = $_POST['sdate'];
+            $data['to'] = $_POST['edate'];
+
+          $this->load->view('admin-report-fdate-sales-ajax',$data);
         }
     }
 

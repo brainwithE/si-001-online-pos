@@ -146,7 +146,6 @@
 						dataType: "html",
 						success: function(data) {
 							$('#ajax-content-container').html(data);
-							alert(<?php echo $to; ?>);
 						}
 					})
 				});

@@ -124,18 +124,46 @@ class Admin extends CI_Controller{
     }
 
     public function view_inventory(){
+        $inventory_details = array();
+
         $this->load->model('Items_model');
-        $supplier_id = $this->get_supplier_id();
-        
+        $this->load->model('Pullout_model');
+        $this->load->model('Sales_model');
+        $this->load->model('Delivery_model');
+
+        $supplier_id = $this->get_supplier_id();        
         $item_list = $this->Items_model->get_items();  
-        $packet['item'] = $item_list;
-        
         $data['sessions'] = $this->session_name();
 
+        
+        foreach($item_list->result_array() as $row){
+
+            $inventory_details[] = $row;
+
+        }
+
+        for($x=0 ; $x < sizeof($inventory_details) ; $x++) {
+            $id = $inventory_details[$x]['item_id'];
+            $inventory_details[$x]['pullout_count'] = $this->Pullout_model->pullout_count($id);
+            $inventory_details[$x]['delivery_count'] = $this->Delivery_model->delivery_count($id);
+            $inventory_details[$x]['sales_count'] = $this->Sales_model->sold_item_count($id);
+        }
+
+
+        /*echo "<pre>";
+        print_r($inventory_details);*/
+
+
+
+        $packet['item'] = $inventory_details;
+          //print_r($item_list->result_array);
+
+      
         $this->load->view('admin-header', $data);
         $this->load->view('admin-report-item', $packet);
         $this->load->view('footer');
     }
+
 
     public function view_delivery(){
         $this->load->model('Delivery_model');

@@ -11,13 +11,6 @@ class Items_model extends CI_model{
 		return $query;
 	}
 
-	function update_item_sale($id){
-		$sql = "UPDATE pos_item SET item_stock=item_stock-1 WHERE item_id='".$id."'" ;
-		$query2 = $this->db->query($sql);
-	
-		return $query2;
-	}
-
 	function get_specific_item($item_id){		
 		$this->db->order_by("item_id", "desc");
 		$this->db->select('item_id, item_name, item_category,item_price, item_stock, pos_supplier.supplier_name');
@@ -149,6 +142,13 @@ class Items_model extends CI_model{
 	function deactivate_category($category_id) {
 		$sql = "UPDATE pos_category SET category_status=0 WHERE category_id='".$category_id."'" ;
 		$this->db->query($sql);	
+	}
+
+	function update_item_sale($id){
+		$sql = "UPDATE pos_item SET item_stock=item_stock-1 WHERE item_id='".$id."'" ;
+		$query2 = $this->db->query($sql);
+	
+		return $query2;
 	}
 
 

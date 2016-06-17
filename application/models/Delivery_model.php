@@ -56,6 +56,27 @@ class Delivery_model extends CI_model{
 	    return false;
 	}
 
+	function delivery_count($item_id){
+
+		$this->db->select_sum('delivery_quantity');
+		$this->db->from('pos_delivery');
+		$this->db->join('pos_delivery_transaction', 'pos_delivery_transaction.dt_id = pos_delivery.delivery_dt');
+		$this->db->where('delivery_item =', $item_id);
+		$this->db->where('dt_status =', 1);
+		$query = $this->db->get();
+
+		if($query->row()->delivery_quantity == null){
+			return 0;
+		} else{
+			return $query->row()->delivery_quantity;
+		}
+		
+
+
+
+
+	}
+
 	function remove_delivery_item($delivery){
 		$sql = "DELETE FROM pos_delivery WHERE delivery_id ='".$delivery."'";
 		$query = $this->db->query($sql);			

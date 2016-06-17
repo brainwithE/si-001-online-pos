@@ -118,6 +118,13 @@ class Sales_model extends CI_model{
 
 		return $query;
 	}
+
+	function sold_item_count($item_id){
+		$sql = 	"SELECT * FROM pos_sales WHERE sales_item='".$item_id."'";
+		$query = $this->db->query($sql);
+		return $query->num_rows();
+
+	}
 	
 	function add_sales_transaction($supplier,$qty){
 		$current_date = date('Y-m-d');	

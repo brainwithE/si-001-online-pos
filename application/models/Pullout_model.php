@@ -30,8 +30,24 @@ class Pullout_model extends CI_model{
 
 	function get_pullout_item($pullout_id){
 		$sql = "SELECT pullout_item, pullout_quantity FROM pos_pullout WHERE pullout_id='".$pullout_id."'" ;
-		$query = $this->db->query($sql);
+		$query = count($sql->all);
 		return $query;
+	}
+
+	function pullout_count($item_id){
+
+		$this->db->select_sum('pullout_quantity');		
+		$this->db->from('pos_pullout');
+		$this->db->where('pullout_item =', $item_id);
+		$this->db->where('pullout_status =', 1);
+		$query = $this->db->get();
+
+		if($query->row()->pullout_quantity == null){
+			return 0;
+		} else{
+			return $query->row()->pullout_quantity;
+		}
+
 	}
 
 

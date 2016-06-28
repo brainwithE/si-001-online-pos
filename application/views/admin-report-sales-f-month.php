@@ -16,8 +16,8 @@
 					<div class="col-xs-12 col-md-8 table-filter">
 						<?php echo form_open('admin/filter-sales-month'); ?>
 						<label>Filter By Date: </label>
-						<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
-						<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">
+						<input type="text" id="datepickerstart" class="datetimepicker" placeholder="From" name="filter_start_date">
+						<input type="text" id="datepickerend" class="datetimepicker" placeholder="To" name="filter_end_date">
 						<?php
 							echo form_submit(array('name'=>'submit','value'=>'FILTER','class'=>'call-links'));
 							echo form_close();
@@ -99,7 +99,7 @@
 					<div class="row table-entries table-entries-income">
 						<div class="col-xs-2"><?php echo $item_code;?></div>
 						<div class="col-xs-1"><?php echo $sales_item_name;?></div>
-						<div class="col-xs-1"><?php echo date("M j, Y", strtotime($sales_date)); ?></div>
+						<div class="col-xs-1"><?php echo date("M j, Y g:i A", strtotime($sales_date)); ?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
 						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>

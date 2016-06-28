@@ -70,11 +70,6 @@ class Delivery_model extends CI_model{
 		} else{
 			return $query->row()->delivery_quantity;
 		}
-		
-
-
-
-
 	}
 
 	function remove_delivery_item($delivery){
@@ -109,7 +104,8 @@ class Delivery_model extends CI_model{
 
 	/*NOTE: STATIC ADD DELIVERY TRANSACTION BELOW*/
 	function add_delivery_transaction($supplier,$qty){
-		$current_date = date('Y-m-d');	
+		date_default_timezone_set('Asia/Manila');
+		$current_date = date('Y-m-d H:i:s');	
 		
 		$dt_data = array(
 			'dt_id' => '',
@@ -123,10 +119,7 @@ class Delivery_model extends CI_model{
 		$this->db->insert('pos_delivery_transaction', $dt_data);
 		$last_id = $this->db->insert_id();
 
-		return $last_id;
-		/*mysql_query('INSERT INTO pos_delivery_transaction (dt_id, dt_supplier, dt_total_quantity, dt_date, dt_approve_date, dt_status) VALUES '.implode(',', $sql));*/
-		/*$this->db->insert('pos_delivery_transaction', $dt_data);*/
-		
+		return $last_id;		
 	}
 
 	function add_delivery_items($data){
@@ -136,15 +129,13 @@ class Delivery_model extends CI_model{
 		foreach( $data as $row ) {
 			$this->db->insert('pos_delivery', $data[$ctr]);
 		    $ctr++;
-		    /*$sql[] = '('.$row['dt_id'].', '.$row['dt_supplier'].', '.$row['dt_total_quantity'].', '.$row['dt_date'].', '.$row['dt_approve_date'].', '.$row['dt_status'].')';*/
 		}	
 	}
-
-
 	/* UPDATE ACTIONS */
 
 	function approve_delivery($dt_id){
-		$current_date = date('Y-m-d');	
+		date_default_timezone_set('Asia/Manila');
+		$current_date = date('Y-m-d H:i:s');	
 		$sql = "UPDATE pos_delivery_transaction SET dt_status='1', dt_approve_date='".$current_date."' WHERE dt_id='".$dt_id."'" ;
 		$query = $this->db->query($sql);
 

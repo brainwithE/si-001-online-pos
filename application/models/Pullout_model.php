@@ -5,7 +5,7 @@ class Pullout_model extends CI_model{
 
 	//admin
 	function get_pullout(){
-		$this->db->order_by("pullout_approved_date", "desc");
+		$this->db->order_by("pullout_id", "desc");
 		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, aauth_users.name, pos_item.item_name, pos_item.item_id');
 		$this->db->from('pos_pullout');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_pullout.pullout_supplier');
@@ -50,11 +50,10 @@ class Pullout_model extends CI_model{
 
 	}
 
-
 	/* INSERT ACTIONS */
-
 	function add_pullout_item($data){
-		$current_date = date('Y-m-d');	
+		date_default_timezone_set('Asia/Manila');
+		$current_date = date('Y-m-d H:i:s');	
 		
 		$po_data = array(
 			'pullout_id' => '',
@@ -62,19 +61,17 @@ class Pullout_model extends CI_model{
 			'pullout_quantity' => $data['pullout_item_quantity'],
 			'pullout_supplier' => $data['pullout_supplier'],
 			'pullout_date' => $current_date,
-			'pullout_approved_date' => $current_date,
+			'pullout_approved_date' => '',
 			'pullout_status' => '0',
-			
-			
 		);
 		$this->db->insert('pos_pullout', $po_data);
 	}
-
-
 	/* UPDATE ACTIONS*/
 
 	function approve_pullout($pullout_id){
-		$current_date = date('Y-m-d');	
+		date_default_timezone_set('Asia/Manila');
+		$current_date = date('Y-m-d H:i:s');
+
 		$sql = "UPDATE pos_pullout SET pullout_status='1',pullout_approved_date='".$current_date."' WHERE pullout_id='".$pullout_id."'" ;
 		$query = $this->db->query($sql);
 		return $query;

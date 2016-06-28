@@ -47,7 +47,7 @@
 										<div class="col-xs-2"><?php echo $dt_code;?></div>
 										<div class="col-xs-3"><?php echo $dt_supplier;?></div>
 										<div class="col-xs-1"><?php echo $dt_quantity;?></div>
-										<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
+										<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($dt_date)); ?></div>
 										<div class="col-xs-2">
 											<a href='<?php echo base_url() ?>admin/approved_delivery/<?php echo $dt_code ?>'><i class="fa fa-check-square" aria-hidden="true"></i> Approve</a>
 											<a href='<?php echo base_url() ?>admin/reject_delivery/<?php echo $dt_code ?>' class="btn-reject"><i class="fa fa-minus-square" aria-hidden="true"></i> Reject</a>
@@ -96,8 +96,8 @@
 										<div class="col-xs-2"><?php echo $dt_code;?></div>
 										<div class="col-xs-2"><?php echo $dt_supplier;?></div>
 										<div class="col-xs-1"><?php echo 'x'.$dt_quantity;?></div>
-										<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
-										<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date_approved)); ?></div>
+										<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($dt_date)); ?></div>
+										<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($dt_date_approved)); ?></div>
 										<div class="col-xs-3"></div>
 									</a>
 								</div>

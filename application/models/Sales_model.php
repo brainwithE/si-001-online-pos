@@ -13,12 +13,13 @@ class Sales_model extends CI_model{
 	}
 
 	function get_daily_sales(){
+		date_default_timezone_set('Asia/Manila');
 		$today = date('Y-m-d');	
 
 	    $this->db->order_by("sales_id", "desc");
 		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
 		$this->db->from('pos_sales');
-		$this->db->where('sales_date =', $today);
+		$this->db->where('sales_date >=', $today);
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
 
 		$query = $this->db->get();
@@ -27,8 +28,6 @@ class Sales_model extends CI_model{
 	}
 
 	function get_all_sales(){
-		$today = date('Y-m-d');	
-
 	    $this->db->order_by("sales_id", "desc");
 		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
 		$this->db->from('pos_sales');
@@ -39,8 +38,9 @@ class Sales_model extends CI_model{
 		return $query;
 	}
 
-	function get_sales_by_tenant_daily($tenant){	
-		$today = date('Y-m-d');	
+	function get_sales_by_tenant_daily($tenant){
+		date_default_timezone_set('Asia/Manila');
+		$today = date('Y-m-d');
 
 	    $this->db->order_by("sales_id", "desc");
 		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
@@ -70,8 +70,8 @@ class Sales_model extends CI_model{
 	    $this->db->order_by("sales_id", "desc");
 		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
 		$this->db->from('pos_sales');
-		$this->db->where('sales_date >=', $date_start);
-		$this->db->where('sales_date <=', $date_end);
+		$this->db->where('sales_date >=', $date_start." 00:00:00");
+		$this->db->where('sales_date <=', $date_end." 23:59:59");
 		$this->db->like('pos_item.item_supplier',$tenant,'=');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
 
@@ -95,8 +95,8 @@ class Sales_model extends CI_model{
 	function get_sales_certmonth($date_start,$date_end){
 		$this->db->order_by("sales_date", "desc");
 		$this->db->select('sales_id, pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st');
-		$this->db->where('sales_date >=', $date_start);
-		$this->db->where('sales_date <=', $date_end);
+		$this->db->where('sales_date >=', $date_start." 00:00:00");
+		$this->db->where('sales_date <=', $date_end." 23:59:59");
 		$this->db->from('pos_sales');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
 		
@@ -127,7 +127,8 @@ class Sales_model extends CI_model{
 	}
 	
 	function add_sales_transaction($supplier,$qty){
-		$current_date = date('Y-m-d');	
+		date_default_timezone_set('Asia/Manila');
+		$current_date = date('Y-m-d g:i:s');
 		
 		$st_data = array(
 			'st_id' => '',
@@ -149,7 +150,6 @@ class Sales_model extends CI_model{
 			$this->db->insert('pos_sales', $data[$ctr]);
 		    $ctr++;
 		}
-
 		return true;
 	}
 
@@ -158,6 +158,5 @@ class Sales_model extends CI_model{
 		$query = $this->db->query($sql);
 		return $query;
 	}
-
 }
 ?>

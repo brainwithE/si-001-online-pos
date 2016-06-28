@@ -52,7 +52,8 @@ class Cashier extends CI_Controller{
     }
 
     public function add_sales_transaction(){
-        $current_date = date('Y-m-d');
+        date_default_timezone_set('Asia/Manila');
+        $current_date = date('Y-m-d H:i:s');
 
         $items = $this->input->post('data');
         $quant = $this->input->post('qty');

@@ -48,11 +48,11 @@
 							
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-2"><?php echo $item_code;?></div>
+									<div class="col-xs-2"><?php echo $pullout_code;?></div>
 									<div class="col-xs-2"><?php echo $pullout_supplier;?></div>
 									<div class="col-xs-1"><?php echo $pullout_quantity;?></div>
-									<div class="col-xs-3"><?php echo $pullout_item;?></div>
-									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date)); ?></div>										
+									<div class="col-xs-3"><?php echo $item_code." "; echo $pullout_item;?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($pullout_date)); ?></div>										
 									<div class="col-xs-2">
 
 										<a href='<?php echo base_url() ?>admin/approved_pullout/<?php echo $pullout_code ?>'><i class="fa fa-check-square" aria-hidden="true"></i> Approve</a>
@@ -98,12 +98,12 @@
 							
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-2"><?php echo $item_code;?></div>
+									<div class="col-xs-2"><?php echo $pullout_code;?></div>
 									<div class="col-xs-2"><?php echo $pullout_supplier;?></div>
 									<div class="col-xs-1"><?php echo $pullout_quantity;?></div>	
-									<div class="col-xs-3"><?php echo $pullout_item;?></div>
-									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date)); ?></div>
-									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_approved_date)); ?></div>									
+									<div class="col-xs-3"><?php echo $item_code." "; echo $pullout_item;?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($pullout_date)); ?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($pullout_approved_date)); ?></div>									
 									
 								</div>
 

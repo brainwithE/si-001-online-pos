@@ -56,7 +56,7 @@
 							</div>
 					</div>
 					<div class="col-xs-5">
-						<p style="text-align: left;">These are all of the sales report. Today is: <?php echo $today = date('F j, Y');?></p>
+						<p style="text-align: left;">These are all of the sales report. Today is: <?php echo $today = date('F j, Y  h:i:s');?></p>
 						<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 					</div>
 				</div>
@@ -102,7 +102,7 @@
 					<div class="row table-entries table-entries-income">
 						<div class="col-xs-2"><?php echo $item_code;?></div>
 						<div class="col-xs-1"><?php echo $sales_item_name;?></div>
-						<div class="col-xs-1"><?php echo date("M j, Y", strtotime($sales_date)); ?></div>
+						<div class="col-xs-1"><?php echo date("M j, Y g:i A", strtotime($sales_date)); ?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
 						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>

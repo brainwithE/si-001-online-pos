@@ -201,6 +201,19 @@ button{
 	text-decoration:none;
 }
 
+.wrap-word {
+	word-break: break-all;
+}
+
+.padding-alter>div{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.tright {
+	text-align: right;
+}
+
 /* BANNER */
 
 .banner{

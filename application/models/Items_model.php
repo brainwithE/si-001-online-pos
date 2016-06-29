@@ -4,8 +4,9 @@ class Items_model extends CI_model{
 	/* SELECT ACTION*/
 	function get_items(){		
 		$this->db->order_by("item_id", "desc");
-		$this->db->select('item_id, item_name, item_category,item_price, item_stock, item_supplier');
+		$this->db->select('item_id, item_name, item_category,item_price, item_stock, item_supplier, letter_code');
 		$this->db->from('pos_item');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 		$query = $this->db->get();
 
 		return $query;

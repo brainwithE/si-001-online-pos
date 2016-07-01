@@ -34,9 +34,9 @@
 		<script type="text/javascript">
 			var ItemArray = [];
 
+			//removal of item from queue
 			function removeItem($id) {
 				$('#'+$id).remove();
-
 				for (var i = 0; i < ItemArray.length; i++){
 				    if(ItemArray[i].ItemName == $id) 
 				    { 
@@ -44,7 +44,6 @@
 				        break;
 				    }
 				}
-
 			    var total = 0;
 				$(".table-entries").each(function() {
 					total += parseFloat($(this).find(".price-field").text());
@@ -104,6 +103,10 @@
 							var eachctr = 0;
 							totalQuantity = 0;
 
+							if(barcode==""||barcode==null){
+								barcode = $('#code').val();
+							}
+
 							$.ajax({
 							   	url: 'sales-more-data',
 							   	type: "POST",
@@ -117,30 +120,33 @@
 										$('#code').val('');
 									}
 									else{
+										$('#ajax-content-container').prepend(data);
+
+										//pre-processing input from item code
+										var newcode = document.getElementById("lettercode").innerHTML;
+										alert(newcode);
+										var subcode = barcode.substr(3,code.length);
+
 										var total = 0;
 										ItemArray.push({
-											ItemCode : '201602000000001', 
-											ItemName : barcode,
+											ItemCode : '201602000000001',
+											ItemName : newcode,
 											ItemQuantity : '1',/*$('.add-delivery-form #qty').val()*/
 											ItemDiscount : '0',
 											ItemAct : '99999999999999'
 										});
 
-										$('#ajax-content-container').prepend(data);
-
-										barcode=""; 
 										$('#code').val('');
+										barcode='';
 
 									   	$.each(ItemArray, function(key, value) { 
 											totalQuantity = parseInt(ItemArray[key].ItemQuantity) + totalQuantity;
-										});
-
-									   	$(".table-entries").each(function() {
-										  	total += parseFloat($(this).find(".price-field").text());
-										});
-										$('.total-amount').html(total);
+										});										
 									}
-										
+									$(".table-entries").each(function() {
+									  	total += parseFloat($(this).find(".price-field").text());
+									});
+									$('.total-amount').html(total);
 							   	},
 							   	error: function(xhr, status, error) {
 							      // check status && error
@@ -180,10 +186,9 @@
 									else{
 										$('#ajax-content-container').prepend(data);
 
+										//pre-processing input from item code
 										var newcode = document.getElementById("lettercode").innerHTML;
-
 										alert(newcode);
-
 										var subcode = code.substr(3,code.length);
 
 										var total = 0;

@@ -193,6 +193,10 @@
 										/*$('#myModal').modal("show");
 										$('#item-check').html(data);*/
 
+										var newcode = $(".lettercode").eq(0).html();
+
+										alert(newcode);
+
 										var total = 0;
 										ItemArray.push({
 											ItemCode : '201602000000001', 
@@ -205,7 +209,7 @@
 
 										$('#ajax-content-container').prepend(data);
 
-										updateActual(code);
+										/*updateActual(code);*/
 
 										$('#code').val('');
 										barcode='';

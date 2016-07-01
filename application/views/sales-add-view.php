@@ -1,9 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <div class="container">
-
 	<!--The overwatch Main element Container or MEC-->
-
 	<div class="head-contain">
 			<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i>ADD ITEMS (SCAN BARCODE NOW)</h4>
 	</div>
@@ -28,20 +26,13 @@
 				<div class="col-xs-2">Item</div>
 				<div class="col-xs-2 price-field">Price</div>
 			</div>
-							
-			<script type="text/javascript">
-				//initialization of jquery array
-				var ItemArray = [];
-			</script>
 
-			<div id="ajax-content-container">
-						 
-			</div>
-
+			<div id="ajax-content-container"></div>
 
 		</div>
 
 		<script type="text/javascript">
+			var ItemArray = [];
 
 			function removeItem($id) {
 				$('#'+$id).remove();
@@ -126,9 +117,6 @@
 										$('#code').val('');
 									}
 									else{
-										/*$('#myModal').modal("show");
-										$('#item-check').html(data);*/
-
 										var total = 0;
 										ItemArray.push({
 											ItemCode : '201602000000001', 
@@ -190,28 +178,22 @@
 										$('#code').val('');
 									}
 									else{
-										/*$('#myModal').modal("show");
-										$('#item-check').html(data);*/
+										$('#ajax-content-container').prepend(data);
 
-										/*var newcode = document.getElementById("lettercode").innerHTML;
+										var newcode = document.getElementById("lettercode").innerHTML;
 
-										alert(newcode);*/
+										alert(newcode);
 
-										var subcode = code.substr(3,17);
+										var subcode = code.substr(3,code.length);
 
 										var total = 0;
 										ItemArray.push({
-											ItemCode : '201602000000001', 
-											ItemName : subcode,
-											//ItemName : data,
+											ItemCode : '201602000000001',
+											ItemName : newcode,
 											ItemQuantity : '1',/*$('.add-delivery-form #qty').val()*/
 											ItemDiscount : '0',
 											ItemAct : '99999999999999'
 										});
-
-										$('#ajax-content-container').prepend(data);
-
-										/*updateActual(code);*/
 
 										$('#code').val('');
 										barcode='';

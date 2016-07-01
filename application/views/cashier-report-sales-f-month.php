@@ -27,7 +27,7 @@
 			?>
 
 				<div class="table-bank-row">
-					<div class="col-xs-6 table-end-general table-end table-bank">
+					<div class="col-xs-6 table-end-general table-bank">
 							<div class="col-md-12 total-label total-label-bank">TOTAL SALES -- <span class="total-amount"><?php echo number_format($total, 2, '.',','); ?></span>
 							</div>
 					</div>
@@ -48,15 +48,15 @@
 					?>
 					</div>
 				</div>
-				<div class="row table-title table-title-general table-title-income">
-					<div class="col-xs-2">Item Code</div>
+				<div class="row table-title table-title-general table-title-income row-alter">
+					<div class="col-xs-1 alter-xs-1">Brand Code</div>
+					<div class="col-xs-2 alter-xs-2">Item Code</div>
 					<div class="col-xs-3">Item Name</div>
-					<div class="col-xs-2">Date</div>
-					<div class="col-xs-1">Supplier</div>
+					<div class="col-xs-2">Supplier</div>
 					<div class="col-xs-1">Discount</div>
 					<div class="col-xs-1">Amount</div>
 					<div class="col-xs-1">Deduction</div>
-					<div class="col-xs-1 net-col">Net</div>	
+					<div class="col-xs-1 net-col alter-xs-1">Net</div>	
 				</div>
 				<?php	
 					$total_discount = 0;
@@ -64,7 +64,8 @@
 					$total_deduction = 0;
 					$total_price = 0;
 					foreach($sales->result_array() as $row){ 
-						$sales_quantity = $row['sales_quantity'];
+						$sales_quantity = $row['sales_quantity'];						
+						$letter_code = $row['letter_code'];
 						$sales_item_name = $row['item_name'];
 						$item_code = $row['item_id'];
 						$sales_amount = $row['sales_total'];
@@ -86,22 +87,22 @@
 
 				?>
 					
-					<div class="row table-entries table-entries-income">
-						<div class="col-xs-2"><?php echo $item_code;?></div>
+					<div class="table-entries table-entries-income row-alter">
+						<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>
+						<div class="col-xs-2 alter-xs-2"><?php echo $item_code;?></div>
 						<div class="col-xs-3"><?php echo $sales_item_name;?></div>
-						<div class="col-xs-2"><?php echo date("M j, Y", strtotime($sales_date)); ?></div>
-						<div class="col-xs-1"><?php echo $sales_supplier; ?></div>
+						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
-						<div class="col-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
-						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
-						<div class="col-xs-1 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
+						<div class="col-xs-1"><?php echo "- ". number_format($sales_amount,2,'.',',');?></div>
+						<div class="col-xs-1"><?php echo number_format($sales_deduction,2,'.',','); ?></div>
+						<div class="col-xs-1 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	 
 					</div>
 
 				<?php } } ?>
 
 			<div class="table-title table-end table-end-general table-end-income">
-					<div class="col-xs-8 total-label">TOTAL 					</div>
-					<div class="col-xs-1 total-label"><?php echo number_format($total_discount, 2, '.',','); ?></div>
+					<div class="col-xs-7 total-label">TOTAL 					</div>
+					<div class="col-xs-1 total-label tcenter"><?php echo number_format($total_discount, 2, '.',','); ?></div>
 					<div class="col-xs-1 total-label"><?php echo number_format($total_price, 2, '.',','); ?></div>
 					<div class="col-xs-1 total-label"><?php echo number_format($total_deduction, 2, '.',','); ?></div>
 					<div class="col-xs-1 total-label"><span class="total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></span></div>

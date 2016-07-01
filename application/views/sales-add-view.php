@@ -10,7 +10,7 @@
 	
 	<div class="overwatch-mec mec-income">
 
-		<div class="col-xs-12 table-end-general table-end table-bank">
+		<div class="col-xs-12 table-end-general table-bank">
 			<div class="col-xs-12">
 				<input type="text" name="name" id="code" placeholder="Enter Barcodes Manually" />
 				<input type="submit" id="add-item" value="ADD" class="call-links"></input>
@@ -21,11 +21,12 @@
 		<div class="col-xs-12">
 			<div class="row table-title table-title-general">
 				<div class="col-xs-1"></div>
-				<div class="col-xs-2">item code</div>
-				<div class="col-xs-2">supplier</div>
-				<div class="col-xs-2">discount</div>
-				<div class="col-xs-3">item</div>
-				<div class="col-xs-2 price-field">price</div>
+				<div class="col-xs-1">Brand Code</div>
+				<div class="col-xs-2">Item code</div>
+				<div class="col-xs-2">Supplier</div>
+				<div class="col-xs-2">Discount</div>
+				<div class="col-xs-2">Item</div>
+				<div class="col-xs-2 price-field">Price</div>
 			</div>
 							
 			<script type="text/javascript">
@@ -196,6 +197,7 @@
 										ItemArray.push({
 											ItemCode : '201602000000001', 
 											ItemName : code,
+											//ItemName : data,
 											ItemQuantity : '1',/*$('.add-delivery-form #qty').val()*/
 											ItemDiscount : '0',
 											ItemAct : '99999999999999'

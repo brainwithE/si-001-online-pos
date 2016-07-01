@@ -210,9 +210,19 @@ button{
 	padding-right: 5px;
 }
 
-.tright {
-	text-align: right;
+.row-alter{
+	margin: 0;
 }
+
+.action-link:hover{
+	text-decoration: underline;
+	color:red;
+}
+
+.discount:hover{
+	color:green;
+}
+
 
 /* BANNER */
 
@@ -504,7 +514,7 @@ button{
 
 .table-title {
 	color: white;
-	padding: 10px;
+	padding: 10px 0;
 }
 .table-filter {
 	padding: 10px 20px !important;
@@ -521,10 +531,11 @@ button{
 }
 
 .table-entries {
-	padding: 5px;
+	padding: 5px 0;
 	border-bottom: 1px solid #7579da;
 	overflow: hidden;
 	height: auto;
+	font-size: 12px;
 } 
 .table-entries:nth-of-type(odd){
 	background-color: #d6e5ff;
@@ -634,6 +645,14 @@ button{
 .table-end-expense {
 }
 
+.alter-xs-2{
+	width: 13.66%;
+}
+
+.alter-xs-1{
+	width: 5.33%;
+}
+
 /* ADD PROJECTS */
 .add-project{
 	position: fixed;
@@ -661,6 +680,18 @@ button{
 .add-project:hover .fa{
 	color: #7579da;
 	transition: color ease 0.5s;
+}
+
+.tright {
+	text-align: right;
+}
+
+.tleft {
+	text-align: left;
+}
+
+.tcenter{
+	text-align: center;
 }
 
 /* ADD EXPENSES */

@@ -4,11 +4,6 @@
 	<head>
 		<title>Villalifestyle Boutique</title>
 
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
-
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-		
 		<!-- FOR ACCORDION CSS -->
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/accordion.css">
 
@@ -25,6 +20,8 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 	</head>
 
 	<body class="cbp-spmenu-push">

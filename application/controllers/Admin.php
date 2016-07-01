@@ -67,7 +67,7 @@ class Admin extends CI_Controller{
           $data['ajax_req'] = TRUE;
           $data['sales'] = $this->Sales_model->get_sales_by_tenant_daily($_POST['type']);
 
-          $this->load->view('admin-report-fdate-sales-ajax',$data);
+          $this->load->view('admin-report-sales-ajax',$data);
         }
     }
 
@@ -75,10 +75,14 @@ class Admin extends CI_Controller{
         if (isset($_POST['type'])) {
           $this->load->model('Sales_model');
           $data['ajax_req'] = TRUE;
+        
+        echo "ajax: ". date("M j, Y", strtotime($_POST['sdate']));
+          /*echo $_POST['sdate'] ." ".$_POST['edate'] echo date($_POST['sdate']);;*/
+
           $data['sales'] = $this->Sales_model->get_sales_by_fdate_tenant($_POST['type'],$_POST['sdate'],$_POST['edate']);
 
-            $data['fro'] = $_POST['sdate'];
-            $data['to'] = $_POST['edate'];
+          echo  $data['fro'] = $_POST['sdate'] . ' ';
+         echo   $data['to'] = $_POST['edate'];
 
           $this->load->view('admin-report-fdate-sales-ajax',$data);
         }
@@ -90,6 +94,7 @@ class Admin extends CI_Controller{
         $date_start = $this->input->post('filter_start_date');
         $date_end = $this->input->post('filter_end_date');
 
+        echo "Normal: ". date("M j, Y", strtotime($date_start));
         $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
         $packet['sales'] = $income;
         $packet['fro'] = $date_start;

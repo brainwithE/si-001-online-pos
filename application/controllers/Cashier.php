@@ -10,8 +10,8 @@ class Cashier extends CI_Controller{
             redirect('restricted');            
         }        
     }
-	
-	public function index(){
+    
+    public function index(){
        $this->view_sales_report();
     }
 
@@ -37,6 +37,20 @@ class Cashier extends CI_Controller{
         $this->load->view('cashier-report-sales', $packet);
         $this->load->view('footer');    
     }
+
+    public function view_sales_report_all(){
+        $this->load->model('Sales_model');
+
+        $sale_report = $this->Sales_model->get_all_sales();  
+        $packet['sales'] = $sale_report;        
+
+        $data['sessions'] = $this->session_name();
+    
+        $this->load->view('cashier-header',$data);
+        $this->load->view('cashier-report-all-sales', $packet);
+        $this->load->view('footer'); 
+    }
+
 
     public function add_sales(){
         $this->load->model('Sales_model');
@@ -152,20 +166,34 @@ class Cashier extends CI_Controller{
     }
 
     function sales_more_data() {
-        if (isset($_POST['type'])) {
+        $item_code = $_POST['type'];
+
+        if (isset($item_code)) {
           $this->load->model('nodes_m');
-          $data['node_exists'] = $this->nodes_m->get_node_exists($_POST['type']);
+
+            if (is_numeric($item_code))
+            {
+                $data['node_exists'] = $this->nodes_m->get_node_exists($item_code);
+            } else {
+                $letter_code = substr($item_code, 0,3); //letter code
+                $item_id = substr($item_code, 3); //item_id
+                $data['node_exists'] = $this->nodes_m->get_node2_exists($item_id, $letter_code);
+            }
+
           
             if($data['node_exists']){
                 $data['ajax_req'] = TRUE;
-                $data['node_list'] = $this->nodes_m->get_node_by_spec_code($_POST['type']);
+                $data['node_list'] = $this->nodes_m->get_node_by_spec_code($data['node_exists']->item_id);
 
+                //echo "<pre>";
+                //print_r($data['node_list']);
                 $this->load->view('ajax_add_sales_items',$data);
             }
             else{
                 $data['ajax_req'] = TRUE;
-                $data['node_list'] = $this->nodes_m->get_node_by_spec_code($_POST['type']);
+                $data['node_list'] = $this->nodes_m->get_node_by_spec_code($item_code);
             }
+            
         }
     }
 
@@ -195,7 +223,7 @@ class Cashier extends CI_Controller{
         
         $data['sessions'] = $this->session_name();
         
-        $this->load->view('cashier-header', $data);
+        $this->load->view('cashier-header', $data); 
         $this->load->view('delivery-item-view',$data);
         $this->load->view('footer');
     }

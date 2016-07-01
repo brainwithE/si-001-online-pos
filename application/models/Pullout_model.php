@@ -6,7 +6,7 @@ class Pullout_model extends CI_model{
 	//admin
 	function get_pullout(){
 		$this->db->order_by("pullout_id", "desc");
-		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, aauth_users.name, pos_item.item_name, pos_item.item_id');
+		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, aauth_users.name, pos_item.item_name, pos_item.item_id, letter_code');
 		$this->db->from('pos_pullout');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_pullout.pullout_supplier');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_pullout.pullout_item');

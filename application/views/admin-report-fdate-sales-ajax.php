@@ -22,21 +22,26 @@
 				<span id="total-amount" class="total-amount"><?php echo number_format($total, 2, '.',','); ?></span>
 			</div>
 		</div>
-					<div class="col-xs-6"><p style="text-align: left;">This report is from <?php echo date("M j, Y", strtotime($fro)); ?> to <?php echo date("M j, Y", strtotime($to)); ?>. Today is <?php echo $today = date('F j, Y');?></p>
+					<div class="col-xs-6"><p style="text-align: left;">This report is from <?php echo date("F j, Y", strtotime($fro)); ?> to <?php echo date("F j, Y", strtotime($to)); ?>. Today is <?php echo $today = date('F j, Y');?></p>
 						<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 					</div>
+
+					<?php echo $fro?>
+						
 	</div>
 
-	<div class="row table-title table-title-general table-title-income">
-		<div class="col-xs-2">Item Code</div>
+	<div class="row table-title table-title-general table-title-income padding-alter row-alter">
+		<div class="col-xs-1 alter-xs-1">Brand Code</div>
+		<div class="col-xs-2 alter-xs-2">Item Code</div>					
 		<div class="col-xs-2">Item Name</div>
+		<div class="col-xs-1">Date</div>
 		<div class="col-xs-1">Type</div>
-		<div class="col-xs-2">Supplier</div>
+		<div class="col-xs-2 alter-xs-2">Supplier</div>
 		<div class="col-xs-1">Discount</div>
-		<div class="col-xs-1">Amount</div>
+		<div class="col-xs-1 alter-xs-1">Amount</div>
 		<div class="col-xs-1">Deduction</div>
-		<div class="col-xs-1 net-col">Net</div>	
-		<div class="col-xs-1"></div>	
+		<div class="col-xs-1 net-col alter-xs-1">Net</div>	
+		<div class="col-xs-1 alter-xs-1"></div>	
 	</div>
 
 	<!-- looping the data -->
@@ -48,6 +53,7 @@
 		foreach($sales->result_array() as $row){ 
 			$sales_id = $row['sales_id'];
 			$item_code = $row['item_id'];
+			$letter_code = $row['letter_code'];
 			$sales_quantity = $row['sales_quantity'];
 			$sales_item_name = $row['item_name'];
 			$sales_amount = $row['sales_total'];
@@ -65,16 +71,18 @@
 				$total_deduction = $total_deduction + $sales_deduction;
 				$total_price = $total_price + $sales_amount;
 	?>
-				<div class="row table-entries table-entries-income">
-					<div class="col-xs-2"><?php echo $item_code;?></div>
+				<div class="row table-entries table-entries-income padding-alter row-alter">
+					<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>
+					<div class="col-xs-2 alter-xs-2"><?php echo $item_code;?></div>
 					<div class="col-xs-2"><?php echo $sales_item_name;?></div>
+					<div class="col-xs-1"><?php echo date("M j, Y g:i A", strtotime($sales_date)); ?></div>
 					<div class="col-xs-1"><?php echo $sales_category; ?></div>
-					<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
+					<div class="col-xs-2 wrap-word alter-xs-2"><?php echo $sales_supplier; ?></div>
 					<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
-					<div class="col-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
+					<div class="col-xs-1 alter-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 					<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
-					<div class="col-xs-1 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
-					<div class="col-xs-1">
+					<div class="col-xs-1 net-col alter-xs-1"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
+					<div class="col-xs-1 alter-xs-1 tright">
 						<a href='<?php echo base_url() ?>admin/void_sales/<?php echo $sales_id; ?>'><i class="fa fa-archive" alt="archive" aria-hidden="true"></i></a>
 					</div> 
 				</div>

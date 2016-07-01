@@ -124,7 +124,7 @@ $route['add-sales'] = 'cashier/add_sales';
 $route['cashier/add-sales-transaction'] = 'cashier/add_sales_transaction';
 $route['add-sales-transaction'] = 'cashier/add_sales_transaction';
 
-$route['cashier/report-sales'] = 'cashier/view_sales_report';
+$route['cashier/report-sales'] = 'cashier/view_sales_report_all';
 $route['cashier/report-delivery'] = 'cashier/view_delivery';
 $route['cashier/view-dt-details/(:any)'] = 'cashier/view-dt-details/$1';
 $route['cashier/report-pullout'] = 'cashier/view_pullout';

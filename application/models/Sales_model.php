@@ -6,6 +6,7 @@ class Sales_model extends CI_model{
 		$this->db->select('*');
 		$this->db->from('pos_sales');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 
 		$query = $this->db->get();
 
@@ -17,10 +18,11 @@ class Sales_model extends CI_model{
 		$today = date('Y-m-d');	
 
 	    $this->db->order_by("sales_id", "desc");
-		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
+		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status,letter_code');
 		$this->db->from('pos_sales');
 		$this->db->where('sales_date >=', $today);
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 
 		$query = $this->db->get();
 
@@ -29,53 +31,92 @@ class Sales_model extends CI_model{
 
 	function get_all_sales(){
 	    $this->db->order_by("sales_id", "desc");
-		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
+		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status, letter_code');
 		$this->db->from('pos_sales');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 
 		$query = $this->db->get();
 
 		return $query;
 	}
 
-	function get_sales_by_tenant_daily($tenant){
+	function get_sales_by_tenant_daily($input){
 		date_default_timezone_set('Asia/Manila');
-		$today = date('Y-m-d');
 
+		$sql = "
+		SELECT * FROM pos_sales 
+		join pos_item on pos_item.item_id = pos_sales.sales_item
+		left join aauth_users on aauth_users.name = pos_item.item_supplier
+		WHERE DATE(sales_date) = DATE(now()) 
+		and 
+			(pos_item.item_name like '%". $input ."%' or
+			sales_item like '%". $input ."%' or
+			sales_supplier like '%". $input ."%'
+			)" ;
+
+
+		$query = $this->db->query($sql);
+
+		return $query;
+	}
+
+	function get_sales_by_tenant($input){	
 	    $this->db->order_by("sales_id", "desc");
-		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
+		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status, letter_code');
 		$this->db->from('pos_sales');
-		$this->db->where('sales_date =', $today);
-		$this->db->like('pos_item.item_supplier',$tenant,'=');
+		$this->db->like('pos_item.item_supplier',$input,'=');
+		$this->db->or_like('pos_item.item_id', $input, '=');
+		$this->db->or_like('pos_item.item_name', $input, '=');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 
 		$query = $this->db->get();
 
 		return $query;
 	}
 
-	function get_sales_by_tenant($tenant){	
-	    $this->db->order_by("sales_id", "desc");
-		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
+	function get_sales_by_fdate_tenant($input,$date_start,$date_end){	
+		date_default_timezone_set('Asia/Manila');
+	   /* $this->db->order_by("sales_id", "desc");
+		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status,letter_code');
 		$this->db->from('pos_sales');
-		$this->db->like('pos_item.item_supplier',$tenant,'=');
+		//$this->db->where('sales_date >=', $date_start." 00:00:00");
+		//$this->db->where('sales_date <=', $date_end." 23:59:59");
+
+		$this->db->where('sales_date >=', DATE($date_start));
+		$this->db->where('sales_date <=', DATE($date_end));
+		$this->db->where('sales_date BETWEEN "'. date('Y-m-d', strtotime($date_start)). '" and "'. date('Y-m-d', strtotime($date_end)).'"');
+
+		$this->db->like('pos_item.item_supplier',$input);
+		$this->db->like('pos_item.item_id', $input);
+		$this->db->like('pos_item.item_name', $input);
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 
-		$query = $this->db->get();
+		$query = $this->db->get();*/
 
-		return $query;
-	}
+		$sql = "
+		SELECT * FROM pos_sales 
+		join pos_item on pos_item.item_id = pos_sales.sales_item 
+		left join aauth_users on aauth_users.name = pos_item.item_supplier 
+		WHERE 
+		sales_date BETWEEN '".$date_start." 00:00:00' AND '2016-07-01 23:59:59' 		
+        AND
+		(sales_supplier like '%". $input ."%' or
+		pos_item.item_name like '%". $input ."%' or
+		sales_item like '%". $input ."%'
+		)
+			" ;
 
-	function get_sales_by_fdate_tenant($tenant,$date_start,$date_end){	
-	    $this->db->order_by("sales_id", "desc");
-		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status');
-		$this->db->from('pos_sales');
-		$this->db->where('sales_date >=', $date_start." 00:00:00");
-		$this->db->where('sales_date <=', $date_end." 23:59:59");
-		$this->db->like('pos_item.item_supplier',$tenant,'=');
-		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
+			/*sales_date BETWEEN '2016-06-30 00:00:00' AND '2016-07-01 23:59:59' 
+			(pos_item.item_name like '%". $input ."%' or
+			sales_item like '%". $input ."%' or
+			sales_supplier like '%". $input ."%'
+			)*/
 
-		$query = $this->db->get();
+
+		$query = $this->db->query($sql);
 
 		return $query;
 	}
@@ -94,12 +135,12 @@ class Sales_model extends CI_model{
 
 	function get_sales_certmonth($date_start,$date_end){
 		$this->db->order_by("sales_date", "desc");
-		$this->db->select('sales_id, pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st');
+		$this->db->select('sales_id, pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, letter_code');
 		$this->db->where('sales_date >=', $date_start." 00:00:00");
 		$this->db->where('sales_date <=', $date_end." 23:59:59");
 		$this->db->from('pos_sales');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
-		
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 		$query = $this->db->get();
 
 		return $query;

@@ -193,14 +193,16 @@
 										/*$('#myModal').modal("show");
 										$('#item-check').html(data);*/
 
-										var newcode = $(".lettercode").eq(0).html();
+										/*var newcode = document.getElementById("lettercode").innerHTML;
 
-										alert(newcode);
+										alert(newcode);*/
+
+										var subcode = code.substr(3,17);
 
 										var total = 0;
 										ItemArray.push({
 											ItemCode : '201602000000001', 
-											ItemName : code,
+											ItemName : subcode,
 											//ItemName : data,
 											ItemQuantity : '1',/*$('.add-delivery-form #qty').val()*/
 											ItemDiscount : '0',

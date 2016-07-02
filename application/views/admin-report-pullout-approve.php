@@ -69,7 +69,8 @@
 									<div class="col-xs-4 alter-xs-4"><?php echo $letter_code."-".$item_code." "; echo $pullout_item;?></div>
 									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_date)); ?></div>
 									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_approved_date)); ?></div>
-									<div class="col-xs-1"><input class="col-xs-12 remarks" id="" value="" /></div>							
+									<div class="col-xs-1"><input class="col-xs-12 remarks" id="" value="" /></div>	
+									<a href='<?php echo base_url() ?>admin/archive_pullout/<?php echo $pullout_code; ?>'><i class="fa fa-archive" alt="archive" aria-hidden="true"></i></a>						
 									
 								</div>
 

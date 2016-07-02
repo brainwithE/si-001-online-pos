@@ -177,5 +177,19 @@ class Delivery_model extends CI_model{
 		$query = $this->db->query($sql);
 		return $query;
 	}
+
+	function archive_delivery($dt_id){
+		$sql = "UPDATE pos_delivery_transaction SET dt_status='3' WHERE dt_id='".$dt_id."'" ;
+		$query = $this->db->query($sql);
+		return $query;
+	}
 }
+
+/**
+NOTE: Delivery status:
+1 - Approved Delivery
+2 - Rejected Delivery
+3 - Archived Delivery
+**/
 ?>
+

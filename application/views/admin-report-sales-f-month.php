@@ -152,6 +152,7 @@
 						dataType: "html",
 						success: function(data) {
 							$('#ajax-content-container').html(data);
+
 						}
 					})
 				});

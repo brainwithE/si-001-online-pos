@@ -65,7 +65,7 @@
 									<div class="col-xs-2"><?php echo $item_code; ?></div>
 									<div class="col-xs-3"><?php echo $item_name; ?></div>
 									<div class="col-xs-2"><?php echo $item_price; ?></div>
-									<div class="col-xs-4"></div>
+									<div class="col-xs-4"><input class="col-xs-12 remarks" id="" value="" /></div>
 								</div>
 
 							<?php

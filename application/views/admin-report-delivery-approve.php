@@ -69,7 +69,10 @@
 										<div class="col-xs-1"><?php echo $dt_quantity;?></div>
 										<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($dt_date)); ?></div>
 										<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($dt_date_approved)); ?></div>
-										<div class="col-xs-3"></div>
+										
+										<div class="col-xs-3 alter-xs-3 tright">
+											<a href='<?php echo base_url() ?>admin/archive_delivery/<?php echo $dt_code; ?>'><i class="fa fa-archive" alt="archive" aria-hidden="true"></i></a>
+										</div> 
 									</a>
 								</div>
 

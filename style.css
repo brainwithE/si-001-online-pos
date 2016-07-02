@@ -1009,6 +1009,7 @@ button{
 	display: inline-block;
 	background: #7579da;
 	color: white;
+	padding: 0 5px;
 }
 
 .btn .fa{

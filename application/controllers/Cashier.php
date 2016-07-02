@@ -136,8 +136,7 @@ class Cashier extends CI_Controller{
     }
 
     public function filter_sales_month(){
-            $this->load->model('Sales_model');       
-
+            $this->load->model('Sales_model');      
             $date_start = $this->input->post('filter_start_date');
             $date_end = $this->input->post('filter_end_date');
 
@@ -151,6 +150,46 @@ class Cashier extends CI_Controller{
             $this->load->view('cashier-header', $data);
             $this->load->view('cashier-report-sales-f-month', $packet);
             $this->load->view('footer');
+    }
+
+    public function filter_pending_delivery_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Delivery_model');
+          $data['ajax_req'] = TRUE;
+          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
+
+          $this->load->view('cashier-report-delivery-pending-ajax',$data);
+        }
+    }
+
+    public function filter_approved_delivery_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Delivery_model');
+          $data['ajax_req'] = TRUE;
+          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
+
+          $this->load->view('cashier-report-delivery-approve-ajax',$data);
+        }
+    }
+
+    public function filter_pending_pullout_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Pullout_model');
+          $data['ajax_req'] = TRUE;
+          $data['pullout'] = $this->Pullout_model->filter_pullout_transaction($_POST['type']);
+
+          $this->load->view('cashier-report-pullout-pending-ajax',$data);
+        }
+    }
+
+    public function filter_approved_pullout_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Pullout_model');
+          $data['ajax_req'] = TRUE;
+          $data['pullout'] = $this->Pullout_model->filter_pullout_transaction($_POST['type']);
+
+          $this->load->view('cashier-report-pullout-approve-ajax',$data);
+        }
     }
 
     public function get_item_stock($item_code){
@@ -210,6 +249,19 @@ class Cashier extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function view_approved_delivery(){
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_delivery_report();  
+        $packet['delivery_transaction'] = $delivery_report;
+
+        $data['sessions'] = $this->session_name();
+        
+        $this->load->view('cashier-header',$data);
+        $this->load->view('cashier-report-delivery-approve', $packet);
+        $this->load->view('footer');
+    }
+
     public function view_dt_details(){
         $dt_id = $this->uri->segment(3);
         $data['dt_id'] = $dt_id;
@@ -239,6 +291,19 @@ class Cashier extends CI_Controller{
 
         $this->load->view('cashier-header', $data);
         $this->load->view('cashier-report-pullout', $packet);
+        $this->load->view('footer');
+    }
+
+    public function view_approved_pullout(){
+        $this->load->model('Pullout_model');
+        
+        $pullout_list = $this->Pullout_model->get_pullout();  
+        $packet['pullout'] = $pullout_list;
+        
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('cashier-header', $data);
+        $this->load->view('cashier-report-pullout-approve', $packet);
         $this->load->view('footer');
     }
 

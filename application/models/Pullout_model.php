@@ -16,6 +16,25 @@ class Pullout_model extends CI_model{
 
 	}
 
+	function filter_pullout_transaction($input) {
+
+		$this->db->order_by("pullout_id", "desc");
+		$this->db->select('*');
+		$this->db->from('pos_pullout');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_pullout.pullout_supplier');
+		$this->db->join('pos_item', 'pos_item.item_id = pos_pullout.pullout_item');
+
+		$this->db->like('pullout_id',$input,'=');
+		$this->db->or_like('aauth_users.name',$input,'=');
+		$this->db->or_like('aauth_users.letter_code',$input,'=');
+		$this->db->or_like('pos_item.item_name',$input,'=');
+		$this->db->or_like('pos_item.item_id',$input,'=');
+
+		$query = $this->db->get();
+
+		return $query;
+	}
+
 	//tenant
 	function get_pullout_supplier($supplier_id){
 		$this->db->order_by("pullout_approved_date", "desc");

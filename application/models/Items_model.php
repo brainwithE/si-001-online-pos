@@ -12,6 +12,22 @@ class Items_model extends CI_model{
 		return $query;
 	}
 
+	function filter_inventory($input) {
+
+		$this->db->order_by("item_id", "desc");
+		$this->db->select('*');
+		$this->db->from('pos_item');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
+		$this->db->like('item_id',$input,'=');
+		$this->db->or_like('aauth_users.name',$input,'=');
+		$this->db->or_like('aauth_users.letter_code',$input,'=');
+
+
+		$query = $this->db->get();
+
+		return $query;
+	}
+
 	function get_specific_item($item_id){		
 		$this->db->order_by("item_id", "desc");
 		$this->db->select('item_id, item_name, item_category,item_price, item_stock, pos_supplier.supplier_name');

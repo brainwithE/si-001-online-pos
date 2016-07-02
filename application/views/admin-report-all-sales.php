@@ -24,7 +24,7 @@
 						?>
 					</div>
 					<div class="col-xs-12 col-md-4 table-filter">
-						<?php echo form_open('cashier/filter-sales-month'); ?>
+						<?php echo form_open('admin/filter-sales-month'); ?>
 						<label>Filter By Tenant:</label>
 						<input id="tenant-name" type="text" class="datepicker" placeholder="Tenant" name="filter_start_date">
 						<?php

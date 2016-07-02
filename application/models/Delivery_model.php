@@ -72,6 +72,23 @@ class Delivery_model extends CI_model{
 		}
 	}
 
+	function filter_delivery_transaction($input) {
+
+		$this->db->order_by("dt_id", "desc");
+		$this->db->select('*');
+		$this->db->from('pos_delivery_transaction');
+		$this->db->join('aauth_users', 'pos_delivery_transaction.dt_supplier = 
+			aauth_users.name');
+		$this->db->like('dt_id',$input,'=');
+		$this->db->or_like('aauth_users.name',$input,'=');
+		$this->db->or_like('aauth_users.letter_code',$input,'=');
+
+		$query = $this->db->get();
+
+		return $query;
+	}
+
+
 	function remove_delivery_item($delivery){
 		$sql = "DELETE FROM pos_delivery WHERE delivery_id ='".$delivery."'";
 		$query = $this->db->query($sql);			

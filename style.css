@@ -182,19 +182,27 @@ button{
 	text-decoration: none;
 }
 
-.action-additem{
-	top: 0px;
-}
 
-.action-adddel{
-	top: 60px;
-}
-.action-pullout{
-	top: 120px;
-}
 .action-addsales{
 	top: 0px;
 }
+
+.action-button-1{
+	top: 0px;
+}
+
+.action-button-2{
+	top: 60px;
+}
+
+.action-button-3{
+	top: 120px;
+}
+
+.delivery-action{
+	padding: 3px 15px;
+}
+
 .logout {	
 	background-color: #333;
 	color:#fff !important;

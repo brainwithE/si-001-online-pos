@@ -53,9 +53,9 @@
 
 
 			<!-- POS PARTS -->
-			<a id="showLeftPush" class="action-buttons action-additem" href="#" data-toggle="modal" data-target="#InputItems">+ ITEMS</a>
-			<a id="showLeftPush" class="action-buttons action-adddel" href="<?php echo base_url(); ?>add-delivery">+ DELIVERY</a>
-			<a id="showLeftPush" class="action-buttons action-pullout" data-toggle="modal" data-target="#InputPullout">+ PULLOUT</a>
+			<a id="showLeftPush" class="action-buttons action-button-1" href="#" data-toggle="modal" data-target="#InputItems">+ ITEMS</a>
+			<a id="showLeftPush" class="action-buttons action-button-2" href="<?php echo base_url(); ?>add-delivery">+ DELIVERY</a>
+			<a id="showLeftPush" class="action-buttons action-button-3" data-toggle="modal" data-target="#InputPullout">+ PULLOUT</a>
 
 			<!-- MODAL PART -->
 			<div class="modal fade" id="InputPullout" role="dialog">

@@ -106,6 +106,85 @@ class Admin extends CI_Controller{
         $this->load->view('admin-report-sales-f-month', $packet);
         $this->load->view('footer');
     }
+
+    public function filter_inventory_item(){
+        if (isset($_POST['type'])) {
+            $this->load->model('Items_model');
+            $this->load->model('Pullout_model');
+            $this->load->model('Sales_model');
+            $this->load->model('Delivery_model');
+            $data['ajax_req'] = TRUE;
+            
+            $item_list = $this->Items_model->filter_inventory($_POST['type']);
+
+            if(!empty($item_list)){
+                foreach($item_list->result_array() as $row){
+                    $inventory_details[] = $row;
+                }
+
+                if($inventory_details!=null){
+                    for($x=0 ; $x < sizeof($inventory_details) ; $x++) {
+                        $id = $inventory_details[$x]['item_id'];
+                        $inventory_details[$x]['pullout_count'] = $this->Pullout_model->pullout_count($id);
+                        $inventory_details[$x]['delivery_count'] = $this->Delivery_model->delivery_count($id);
+                        $inventory_details[$x]['sales_count'] = $this->Sales_model->sold_item_count($id);
+                    }
+
+                   
+                } 
+                $data['item'] = $inventory_details;
+            } else{
+                $data['item'] = null;
+            }
+
+
+            
+                
+            
+
+            $this->load->view('admin-report-item-ajax',$data);
+        }
+    }
+
+    public function filter_pending_delivery_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Delivery_model');
+          $data['ajax_req'] = TRUE;
+          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
+
+          $this->load->view('admin-report-delivery-pending-ajax',$data);
+        }
+    }
+
+     public function filter_approved_delivery_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Delivery_model');
+          $data['ajax_req'] = TRUE;
+          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
+
+          $this->load->view('admin-report-delivery-approve-ajax',$data);
+        }
+    }
+
+    public function filter_pending_pullout_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Pullout_model');
+          $data['ajax_req'] = TRUE;
+          $data['pullout'] = $this->Pullout_model->filter_pullout_transaction($_POST['type']);
+
+          $this->load->view('admin-report-pullout-pending-ajax',$data);
+        }
+    }
+
+    public function filter_approved_pullout_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Pullout_model');
+          $data['ajax_req'] = TRUE;
+          $data['pullout'] = $this->Pullout_model->filter_pullout_transaction($_POST['type']);
+
+          $this->load->view('admin-report-pullout-approve-ajax',$data);
+        }
+    }
     
     public function get_supplier_id(){  // add action to get the supplier id of the user
         $supplier_id='201605000000001'; //static supplier id
@@ -183,6 +262,20 @@ class Admin extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function view_approved_delivery(){
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_delivery_report();  
+        $packet['delivery_transaction'] = $delivery_report;
+
+        $data['sessions'] = $this->session_name();
+        
+        $this->load->view('admin-header',$data);
+        $this->load->view('admin-report-delivery-approve', $packet);
+        $this->load->view('footer');
+    }
+
+
     public function view_pullout(){
         $this->load->model('Pullout_model');
         
@@ -193,6 +286,19 @@ class Admin extends CI_Controller{
 
         $this->load->view('admin-header', $data);
         $this->load->view('admin-report-pullout', $packet);
+        $this->load->view('footer');
+    }
+
+    public function view_approved_pullout(){
+        $this->load->model('Pullout_model');
+        
+        $pullout_list = $this->Pullout_model->get_pullout();  
+        $packet['pullout'] = $pullout_list;
+        
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('admin-header', $data);
+        $this->load->view('admin-report-pullout-approve', $packet);
         $this->load->view('footer');
     }
 

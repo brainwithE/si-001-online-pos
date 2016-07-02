@@ -47,7 +47,7 @@
 				</nav>
 
 				<!-- POS PARTS -->
-				<a id="showLeftPush" class="action-buttons action-addsales" href="add-sales">+ SALES</a>			
+				<a id="showLeftPush" class="action-buttons action-button-1" href="add-sales">+ SALES</a>			
 
 				<!-- <div class="modal fade" id="InputSaleTransact" role="dialog">
 	                <div class="modal-dialog">

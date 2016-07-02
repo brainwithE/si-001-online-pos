@@ -31,49 +31,47 @@
 							</div>
 						</div>
 
-
 						<div class="head-contain">
-							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>PENDING PULLOUT REQUEST</h4>
+							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>APPROVED PULLOUT REQUEST</h4>
 						</div>
 						<div id="ajax-content-container" class="col-xs-12">							
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2 alter-xs-2">Pullout Code</div>
-								<div class="col-xs-2">Supplier</div>
+								<div class="col-xs-2 alter-xs-2">Supplier</div>
 								<div class="col-xs-1 alter-xs-1">Qty</div>
 								<div class="col-xs-1 alter-xs-1">Brand Code</div>
-								<div class="col-xs-3">Item Name</div>
-								<div class="col-xs-2">Request Pullout Date</div>
-								<div class="col-xs-2">Pullout Action</div>
+								<div class="col-xs-2">Item Name</div>
+								<div class="col-xs-2 alter-xs-2">Request Pullout Date</div>
+								<div class="col-xs-2 alter-xs-2">Approved Pullout Date</div>
+								<div class="col-xs-1">Remarks</div>
 							</div>
 							<?php
 
 								foreach($pullout->result_array() as $row){ 
 									$pullout_code = $row['pullout_id'];
-									$pullout_item = $row['item_name'];
 									$item_code = $row['item_id'];
+									$pullout_item = $row['item_name'];
 									$pullout_supplier = $row['name'];
 									$pullout_quantity = $row['pullout_quantity'];
 									$pullout_status = $row['pullout_status'];
 									$pullout_date = $row['pullout_date'];
+									$pullout_approved_date = $row['pullout_approved_date'];
 									$letter_code = $row['letter_code'];
 
-									if($pullout_status == 0 ){
+									if($pullout_status == 1 ){
 							?>
 							
 							
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-2 alter-xs-2"><?php echo $pullout_code;?></div>
-									<div class="col-xs-2 wrap-word"><?php echo $pullout_supplier;?></div>
-									<div class="col-xs-1 alter-xs-1"><?php echo $pullout_quantity;?></div>									
-									<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>
-									<div class="col-xs-3"><?php echo $item_code." "; echo $pullout_item;?></div>
-									<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($pullout_date)); ?></div>										
-									<div class="col-xs-2">
-
-										<a href='<?php echo base_url() ?>admin/approved_pullout/<?php echo $pullout_code ?>'><i class="fa fa-check-square" aria-hidden="true"></i> Approve</a>
-										<a href='<?php echo base_url() ?>admin/reject_pullout/<?php echo $pullout_code ?>' class="btn-reject"><i class="fa fa-minus-square" aria-hidden="true"></i> Reject</a>
-									</div>
+									<div class="col-xs-2 alter-xs-2"><?php echo $pullout_code;?></div>									
+									<div class="col-xs-2 wrap-word alter-xs-2"><?php echo $pullout_supplier;?></div>
+									<div class="col-xs-1 alter-xs-1"><?php echo $pullout_quantity;?></div>
+									<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>	
+									<div class="col-xs-2"><?php echo $item_code." "; echo $pullout_item;?></div>
+									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_date)); ?></div>
+									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_approved_date)); ?></div>									
+									
 								</div>
 
 								<?php
@@ -83,6 +81,9 @@
 						</div>
 					</div>
 					
+
+						<!-- pending view end -->
+
 						
 					
 
@@ -98,7 +99,7 @@
 		$('#pullout-filter-box').on('input', function() {
 			var username = $('#pullout-filter-box').val();
 			$.ajax({
-				url: "filter-pending-pullout-transaction",
+				url: "filter-approved-pullout-transaction",
 				async: false,
 				type: "POST",
 				data: "type="+username,

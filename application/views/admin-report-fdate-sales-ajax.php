@@ -31,8 +31,7 @@
 	</div>
 
 	<div class="row table-title table-title-general table-title-income padding-alter row-alter">
-		<div class="col-xs-1 alter-xs-1">Brand Code</div>
-		<div class="col-xs-2 alter-xs-2">Item Code</div>					
+		<div class="col-xs-2">Item Code</div>					
 		<div class="col-xs-2">Item Name</div>
 		<div class="col-xs-1">Date</div>
 		<div class="col-xs-1">Type</div>
@@ -72,8 +71,7 @@
 				$total_price = $total_price + $sales_amount;
 	?>
 				<div class="row table-entries table-entries-income padding-alter row-alter">
-					<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>
-					<div class="col-xs-2 alter-xs-2"><?php echo $item_code;?></div>
+					<div class="col-xs-2"><?php echo $letter_code."-".$item_code;?></div>
 					<div class="col-xs-2"><?php echo $sales_item_name;?></div>
 					<div class="col-xs-1"><?php echo date("M j, Y g:i A", strtotime($sales_date)); ?></div>
 					<div class="col-xs-1"><?php echo $sales_category; ?></div>

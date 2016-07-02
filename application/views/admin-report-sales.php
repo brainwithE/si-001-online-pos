@@ -14,7 +14,7 @@
 				<div class="row">
 					<!-- FILTER FUNCTION -->
 					<div class="col-xs-12 col-md-4 table-filter">
-						<?php echo form_open('cashier/filter-sales-month'); ?>
+						<?php echo form_open(); ?>
 						<label>Filter By Tenant:</label>
 						<input id="tenant-name" type="text" class="datepicker" placeholder="Tenant" name="filter_start_date">
 						<?php
@@ -51,9 +51,8 @@
 					</div>
 				</div>
 
-				<div class="row table-title table-title-general table-title-income row-alter">
-					<div class="col-xs-1 alter-xs-1">Brand Code</div>
-					<div class="col-xs-2 alter-xs-2">Item Code</div>
+				<div class="row table-title table-title-general table-title-income row-alter">					
+					<div class="col-xs-2">Item Code</div>
 					<div class="col-xs-2">Item Name</div>
 					<div class="col-xs-1">Type</div>
 					<div class="col-xs-2 alter-xs-2">Supplier</div>
@@ -90,9 +89,8 @@
 						$total_deduction = $total_deduction + $sales_deduction;
 						$total_price = $total_price + $sales_amount;
 				?>
-					<div class="row table-entries table-entries-income row-alter">	
-						<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>
-						<div class="col-xs-2 alter-xs-2"><?php echo $item_code;?></div>
+					<div class="row table-entries table-entries-income row-alter">							
+						<div class="col-xs-2"><?php echo $letter_code."-".$item_code;?></div>
 						<div class="col-xs-2"><?php echo $sales_item_name;?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
 						<div class="col-xs-2 alter-xs-2 wrap-word"><?php echo $sales_supplier; ?></div>

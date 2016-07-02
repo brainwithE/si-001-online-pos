@@ -117,12 +117,12 @@
 							</div> -->
 
 							<div class="row table-title table-title-general table-title-income">
-								<div class="col-xs-1"></div>
-								<div class="col-xs-1">Qty</div>
-								<div class="col-xs-2">Item Code</div>
+								<div class="col-xs-1 alter-xs-1"></div>
+								<div class="col-xs-1 alter-xs-1">Qty</div>
+								<div class="col-xs-2 alter-xs-2">Item Code</div>
 								<div class="col-xs-3">Item Name</div>
-								<div class="col-xs-2">Price</div>
-								<div class="col-xs-3">Remarks</div>
+								<div class="col-xs-1">Price</div>
+								<div class="col-xs-5">Remarks</div>
 							</div>
 							
 							<?php 
@@ -140,12 +140,12 @@
 							?>
 
 								<div id="delrow<?php echo $delivery_id; ?>" class="row del-rows table-entries table-entries-income">
-									<div class="col-xs-1"><a onClick="removeItem(<?php echo $item_code; ?>,<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>,<?php echo $dt_id; ?>,<?php echo $dt_total; ?>);" class="btn-red btn-red-del"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
-									<div class="col-xs-1 del-qty" id="quant<?php echo $delivery_id; ?>" onClick="editItem(<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>);"><?php echo $delivery_quantity; ?></div>
-									<div class="col-xs-2 item-code"><?php echo $item_code; ?></div>
+									<div class="col-xs-1 alter-xs-1"><a onClick="removeItem(<?php echo $item_code; ?>,<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>,<?php echo $dt_id; ?>,<?php echo $dt_total; ?>);" class="btn-red"><i class="fa fa-times-circle" aria-hidden="true"></i></a></div>
+									<div class="col-xs-1 alter-xs-1 del-qty" id="quant<?php echo $delivery_id; ?>" onClick="editItem(<?php echo $delivery_id; ?>,<?php echo $delivery_quantity; ?>);"><?php echo $delivery_quantity; ?></div>
+									<div class="col-xs-2 alter-xs-2 item-code"><?php echo $item_code; ?></div>
 									<div class="col-xs-3"><?php echo $item_name; ?></div>
-									<div class="col-xs-2"><?php echo $item_price; ?></div>
-									<div class="col-xs-3"></div>
+									<div class="col-xs-1"><?php echo $item_price; ?></div>
+									<div class="col-xs-5"><input class="col-xs-12 remarks" id="" value="" /></div>
 								</div>
 
 							<?php

@@ -22,7 +22,7 @@
 							</div>
 
 							<div class="col-xs-6 table-filter">
-								<?php echo form_open('admin/filter-sales-month'); ?>
+								<?php echo form_open(); ?>
 								<label>Filter Pullout Transaction:</label>
 								<input id="pullout-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
 								<?php
@@ -38,9 +38,8 @@
 							<div class="row table-title table-title-general table-title-income">
 								<div class="col-xs-2 alter-xs-2">Pullout Code</div>
 								<div class="col-xs-2 alter-xs-2">Supplier</div>
-								<div class="col-xs-1 alter-xs-1">Qty</div>
-								<div class="col-xs-1 alter-xs-1">Brand Code</div>
-								<div class="col-xs-2">Item Name</div>
+								<div class="col-xs-1 alter-xs-1">Qty</div>								
+								<div class="col-xs-4 alter-xs-4">Item Name</div>
 								<div class="col-xs-2 alter-xs-2">Request Pullout Date</div>
 								<div class="col-xs-2 alter-xs-2">Approved Pullout Date</div>
 								<div class="col-xs-1">Remarks</div>
@@ -67,10 +66,10 @@
 									<div class="col-xs-2 alter-xs-2"><?php echo $pullout_code;?></div>									
 									<div class="col-xs-2 wrap-word alter-xs-2"><?php echo $pullout_supplier;?></div>
 									<div class="col-xs-1 alter-xs-1"><?php echo $pullout_quantity;?></div>
-									<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>	
-									<div class="col-xs-2"><?php echo $item_code." "; echo $pullout_item;?></div>
+									<div class="col-xs-4 alter-xs-4"><?php echo $letter_code."-".$item_code." "; echo $pullout_item;?></div>
 									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_date)); ?></div>
-									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_approved_date)); ?></div>									
+									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_approved_date)); ?></div>
+									<div class="col-xs-1"><input class="col-xs-12 remarks" id="" value="" /></div>							
 									
 								</div>
 

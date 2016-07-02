@@ -38,7 +38,7 @@ function printPage(){
 							</div>
 
 							<div class="col-xs-6 table-filter">
-								<?php echo form_open('admin/filter-sales-month'); ?>
+								<?php echo form_open(); ?>
 								<label>Filter Delivery Transaction:</label>
 								<input id="inventory-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
 								<?php
@@ -50,6 +50,21 @@ function printPage(){
 						<div class="head-contain">
 							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>
 							INVENTORY REPORT</h4>
+						</div>
+						<div class="col-xs-12">
+						<div class="row table-title table-title-general table-title-income padding-alter">
+							
+							<div class="col-xs-2">Item Code</div>								
+							<div class="col-xs-3 alter-xs-3">Item Name</div>
+							<div class="col-xs-1">Price</div>
+							<div class="col-xs-2">Item Supplier</div>
+
+							<div class="col-xs-1 tright">Delivered</div>
+							<div class="col-xs-1 tright">Pulled Out</div>
+							<div class="col-xs-1 alter-xs-1 tright">Sold</div>
+							<div class="col-xs-1 tright">Current</div>
+							<div class="col-xs-1 alter-xs-1"></div>
+						</div>
 						</div>
 						<div class="col-xs-12" id="ajax-content-container">
 							
@@ -68,8 +83,12 @@ function printPage(){
 	});
 
 	function ajax_suggest(){
-		$('#inventory-filter-box').on('input', function() {
-			var username = $('#inventory-filter-box').val();
+
+		$('#inventory-filter-box').keydown(function(e) {
+	        var code = (e.keyCode ? e.keyCode : e.which);
+	        var username = $('#inventory-filter-box').val();
+	        if(code==13) {// Enter key hit
+	        
 			$.ajax({
 				url: "filter-inventory-item",
 				async: false,
@@ -77,9 +96,15 @@ function printPage(){
 				data: "type="+username,
 				dataType: "html",
 				success: function(data) {
-					$('#ajax-content-container').html(data);
+					$('#ajax-content-container').empty();
+					$('#ajax-content-container').prepend(data);
 				}
+
 			})
+
+			return false;	
+	        }
 		});
+
 	}  
 	</script>

@@ -19,6 +19,7 @@ class Items_model extends CI_model{
 		$this->db->from('pos_item');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 		$this->db->like('item_id',$input,'=');
+		$this->db->or_like('item_category',$input,'=');
 		$this->db->or_like('aauth_users.name',$input,'=');
 		$this->db->or_like('aauth_users.letter_code',$input,'=');
 

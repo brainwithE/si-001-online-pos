@@ -136,6 +136,10 @@ $route['cashier/edit-user-info'] = 'authenticate/edit_user_info';
 $route['cashier/user-update'] = 'authenticate/update_user';
 $route['cashier/void_sales'] = 'cashier/void_sales';
 
+$route['cashier/suggest-more-cashier-sales-data'] = 'cashier/suggest_more_cashier_sales_data';
+$route['cashier/suggest-more-cashier-all-sales-data'] = 'cashier/suggest_more_cashier_all_sales_data';
+$route['cashier/suggest-more-cashier-fdate-sales-data'] = 'cashier/suggest_more_cashier_fdate_sales_data';
+
 //filter function
 $route['filter-sales'] = 'Sales/filter_sales_date';
 $route['filter-month'] = 'Sales/filter_month';

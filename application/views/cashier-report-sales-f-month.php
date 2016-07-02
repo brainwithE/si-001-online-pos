@@ -49,12 +49,13 @@
 					</div>
 				</div>
 				<div class="row table-title table-title-general table-title-income row-alter">
-					<div class="col-xs-1 alter-xs-1">Brand Code</div>
-					<div class="col-xs-2 alter-xs-2">Item Code</div>
-					<div class="col-xs-3">Item Name</div>
-					<div class="col-xs-2">Supplier</div>
+					<div class="col-xs-2">Item Code</div>					
+					<div class="col-xs-2">Item Name</div>
+					<div class="col-xs-1">Date</div>
+					<div class="col-xs-1">Type</div>
+					<div class="col-xs-2 alter-xs-2">Supplier</div>
 					<div class="col-xs-1">Discount</div>
-					<div class="col-xs-1">Amount</div>
+					<div class="col-xs-1 alter-xs-1">Amount</div>
 					<div class="col-xs-1">Deduction</div>
 					<div class="col-xs-1 net-col alter-xs-1">Net</div>	
 				</div>
@@ -88,14 +89,15 @@
 				?>
 					
 					<div class="table-entries table-entries-income row-alter">
-						<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>
-						<div class="col-xs-2 alter-xs-2"><?php echo $item_code;?></div>
-						<div class="col-xs-3"><?php echo $sales_item_name;?></div>
-						<div class="col-xs-2"><?php echo $sales_supplier; ?></div>
+						<div class="col-xs-2"><?php echo $letter_code."-".$item_code;?></div>
+						<div class="col-xs-2"><?php echo $sales_item_name;?></div>
+						<div class="col-xs-1"><?php echo date("M j, Y g:i A", strtotime($sales_date)); ?></div>
+						<div class="col-xs-1"><?php echo $sales_category; ?></div>
+						<div class="col-xs-2 wrap-word alter-xs-2"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
-						<div class="col-xs-1"><?php echo "- ". number_format($sales_amount,2,'.',',');?></div>
-						<div class="col-xs-1"><?php echo number_format($sales_deduction,2,'.',','); ?></div>
-						<div class="col-xs-1 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	 
+						<div class="col-xs-1 alter-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
+						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
+						<div class="col-xs-1 net-col alter-xs-1"><?php echo number_format($sales_net, 2, '.',','); ?></div>		 
 					</div>
 
 				<?php } } ?>

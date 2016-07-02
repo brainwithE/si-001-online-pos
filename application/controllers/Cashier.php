@@ -51,6 +51,26 @@ class Cashier extends CI_Controller{
         $this->load->view('footer'); 
     }
 
+    public function suggest_more_cashier_sales_data(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Sales_model');
+          $data['ajax_req'] = TRUE;
+          $data['sales'] = $this->Sales_model->get_sales_by_tenant_daily($_POST['type']);
+
+          $this->load->view('cashier-report-sales-ajax',$data);
+        }
+    }
+
+    public function suggest_more_cashier_all_sales_data(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Sales_model');
+          $data['ajax_req'] = TRUE;
+          $data['sales'] = $this->Sales_model->get_sales_by_tenant($_POST['type']);
+
+          $this->load->view('admin-report-all-sales-ajax',$data);
+        }
+    }
+
 
     public function add_sales(){
         $this->load->model('Sales_model');

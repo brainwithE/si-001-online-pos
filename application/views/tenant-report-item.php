@@ -136,7 +136,7 @@ function printPage(){
 
 						                          <div id="bcTarget<?php echo $item_code; ?>"></div>
 
-						                          <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>
+						                          <!--<div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>-->
 						                        </div>
 						                    </div>
 

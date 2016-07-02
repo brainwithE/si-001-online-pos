@@ -10,6 +10,30 @@
 
 		<!--The overwatch Main element Container or MEC-->
 		<div class="overwatch-mec mec-income">
+			<div class="row">
+				<!-- FILTER FUNCTION -->
+				<div class="col-xs-8 table-filter">
+					<?php echo form_open('cashier/filter-sales-month'); ?>
+					<label>Filter By Date: </label>
+					<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
+					<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">
+					<?php
+						echo form_submit(array('name'=>'submit','value'=>'FILTER','class'=>'call-links'));
+						echo form_close();
+					?>
+				</div>
+
+				<div class="col-xs-4 col-md-4 table-filter">
+					<?php echo form_open(); ?>
+					<label>Filter By Tenant:</label>
+					<input id="tenant-name" type="text" class="datepicker" placeholder="Tenant" name="filter_start_date">
+					<?php
+						echo form_close();
+					?>
+				</div>
+			</div>
+
+			<div id="ajax-content-container">
 		
 			<?php 
 				$total = 0;
@@ -40,24 +64,12 @@
 					</div>
 				</div>
 
-				<div class="row">
-					<!-- FILTER FUNCTION -->
-					<div class="col-xs-12 table-filter">
-						<?php echo form_open('cashier/filter-sales-month'); ?>
-						<label>Filter By Date: </label>
-						<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
-						<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">
-						<?php
-							echo form_submit(array('name'=>'submit','value'=>'FILTER','class'=>'call-links'));
-							echo form_close();
-						?>
-					</div>
-				</div>
+				
 
 				
 				<div class="row table-title table-title-general table-title-income padding-alter row-alter">
-					<div class="col-xs-1 alter-xs-1">Brand Code</div>
-					<div class="col-xs-2 alter-xs-2">Item Code</div>					
+					
+					<div class="col-xs-2">Item Code</div>					
 					<div class="col-xs-2">Item Name</div>
 					<div class="col-xs-1">Date</div>
 					<div class="col-xs-1">Type</div>
@@ -66,6 +78,7 @@
 					<div class="col-xs-1 alter-xs-1">Amount</div>
 					<div class="col-xs-1">Deduction</div>
 					<div class="col-xs-1 net-col alter-xs-1">Net</div>	
+
 				</div>
 				<?php	
 					$total_discount = 0;
@@ -96,8 +109,7 @@
 					$total_price = $total_price + $sales_amount;
 				?>
 					<div class="table-entries table-entries-income padding-alter row-alter">
-						<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>
-						<div class="col-xs-2 alter-xs-2"><?php echo $item_code;?></div>
+						<div class="col-xs-2"><?php echo $letter_code."-".$item_code;?></div>
 						<div class="col-xs-2"><?php echo $sales_item_name;?></div>
 						<div class="col-xs-1"><?php echo date("M j, Y g:i A", strtotime($sales_date)); ?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
@@ -106,6 +118,9 @@
 						<div class="col-xs-1 alter-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
 						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
 						<div class="col-xs-1 net-col alter-xs-1"><?php echo number_format($sales_net, 2, '.',','); ?></div>	 
+						<div class="col-xs-1 alter-xs-1 tright">
+						<a href='<?php echo base_url() ?>admin/void_sales/<?php echo $sales_id; ?>'><i class="fa fa-archive" alt="archive" aria-hidden="true"></i></a>
+					</div> 
 					</div>
 				<?php }
 					}
@@ -120,6 +135,30 @@
 					<div class="col-xs-1 total-label"></div>
 			</div>
 
+			</div>
 		</div><!-- MEC end -->
 
 	</div>
+
+	<script type="text/javascript">
+			$(document).ready(function () {
+				ajax_suggest();
+				ajax_suggest_code();
+			});
+
+			function ajax_suggest(){
+				$('#tenant-name').on('input', function() {
+					var username = $('#tenant-name').val();
+					$.ajax({
+						url: "suggest-more-cashier-all-sales-data",
+						async: false,
+						type: "POST",
+						data: "type="+username,
+						dataType: "html",
+						success: function(data) {
+							$('#ajax-content-container').html(data);
+						}
+					})
+				});
+			}  
+	</script>

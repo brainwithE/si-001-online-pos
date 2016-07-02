@@ -10,7 +10,19 @@
 
 		<!--The overwatch Main element Container or MEC-->
 		<div class="overwatch-mec mec-income">
-		
+
+			<div class="row">
+				<!-- FILTER FUNCTION -->
+				<div class="col-xs-12 col-md-4 table-filter">
+					<?php echo form_open(); ?>
+					<label>Filter By Tenant:</label>
+					<input id="tenant-name" type="text" class="datepicker" placeholder="Tenant" name="filter_start_date">
+					<?php
+						echo form_close();
+					?>
+				</div>
+			</div>
+			<div id="ajax-content-container">
 			<?php 
 				$total = 0;
 
@@ -33,7 +45,7 @@
 							</div>
 					</div>
 					<div class="col-xs-4">
-						<p style="text-align: left;">This is a daily report. Today is: <?php echo $today = date('F j, Y');?></p>
+						<p style="text-align: left;">This is a <b>daily</b> report. Today is: <?php echo $today = date('F j, Y');?></p>
 						<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 					</div>
 				</div>
@@ -44,15 +56,15 @@
 				</div>
 
 				<div class="row table-title table-title-general table-title-income row-alter">
-					<div class="col-xs-1 alter-xs-1">Brand Code</div>
-					<div class="col-xs-2 alter-xs-2">Item Code</div>
+					<div class="col-xs-2">Item Code</div>
 					<div class="col-xs-2">Item Name</div>
 					<div class="col-xs-1">Type</div>
-					<div class="col-xs-2">Supplier</div>
+					<div class="col-xs-2 alter-xs-2">Supplier</div>
 					<div class="col-xs-1">Discount</div>
 					<div class="col-xs-1">Amount</div>
 					<div class="col-xs-1">Deduction</div>
 					<div class="col-xs-1 net-col alter-xs-1">Net</div>	
+					<div class="col-xs-1"></div>	
 				</div>
 				<?php	
 					$total_discount = 0;
@@ -83,15 +95,17 @@
 					$total_price = $total_price + $sales_amount;
 				?>
 					<div class="table-entries table-entries-income row-alter">
-						<div class="col-xs-1 alter-xs-1"><?php echo $letter_code;?></div>
-						<div class="col-xs-2 alter-xs-2"><?php echo $item_code;?></div>
+						<div class="col-xs-2"><?php echo $letter_code."-".$item_code;?></div>
 						<div class="col-xs-2"><?php echo $sales_item_name;?></div>
 						<div class="col-xs-1"><?php echo $sales_category; ?></div>
-						<div class="col-xs-2 wrap-word"><?php echo $sales_supplier; ?></div>
+						<div class="col-xs-2 alter-xs-2 wrap-word"><?php echo $sales_supplier; ?></div>
 						<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
-						<div class="col-xs-1"><?php echo "- ". number_format($sales_amount,2,'.',',');?></div>
-						<div class="col-xs-1"><?php echo number_format($sales_deduction,2,'.',','); ?></div>
-						<div class="col-xs-1 net-col"><?php echo number_format($sales_net, 2, '.',','); ?></div>	 
+						<div class="col-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
+						<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
+						<div class="col-xs-1 net-col alter-xs-1"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
+						<div class="col-xs-1 tright">
+							<a href='<?php echo base_url() ?>admin/void_sales/<?php echo $sales_id; ?>'><i class="fa fa-archive" alt="archive" aria-hidden="true"></i></a>
+						</div> 
 					</div>
 				<?php }
 					}
@@ -105,7 +119,30 @@
 					<div class="col-xs-1 total-label"><span class="total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></span></div>
 					<div class="col-xs-1 total-label"></div>
 			</div>
-
+		</div>
 		</div><!-- MEC end -->
 
 	</div>
+
+	<script type="text/javascript">
+			$(document).ready(function () {
+				ajax_suggest();
+				ajax_suggest_code();
+			});
+
+			function ajax_suggest(){
+				$('#tenant-name').on('input', function() {
+					var username = $('#tenant-name').val();
+					$.ajax({
+						url: "cashier/suggest-more-cashier-sales-data",
+						async: false,
+						type: "POST",
+						data: "type="+username,
+						dataType: "html",
+						success: function(data) {
+							$('#ajax-content-container').html(data);
+						}
+					})
+				});
+			}  
+	</script>

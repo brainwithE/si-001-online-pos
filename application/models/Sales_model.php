@@ -52,8 +52,9 @@ class Sales_model extends CI_model{
 		and 
 			(pos_item.item_name like '%". $input ."%' or
 			sales_item like '%". $input ."%' or
+			letter_code like '%". $input ."%' or
 			sales_supplier like '%". $input ."%'
-			)" ;
+			) order by sales_date desc";
 
 
 		$query = $this->db->query($sql);
@@ -67,6 +68,7 @@ class Sales_model extends CI_model{
 		$this->db->from('pos_sales');
 		$this->db->like('pos_item.item_supplier',$input,'=');
 		$this->db->or_like('pos_item.item_id', $input, '=');
+		$this->db->or_like('letter_code', $input, '=');
 		$this->db->or_like('pos_item.item_name', $input, '=');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
@@ -105,6 +107,7 @@ class Sales_model extends CI_model{
         AND
 		(sales_supplier like '%". $input ."%' or
 		pos_item.item_name like '%". $input ."%' or
+		letter_code like '%". $input ."%' or
 		sales_item like '%". $input ."%'
 		)
 			" ;

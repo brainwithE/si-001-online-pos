@@ -231,6 +231,12 @@ button{
 	color:green;
 }
 
+.remarks{
+	border: 0;
+    border-bottom: 1px solid gray;
+    padding: 0 2px;
+    background: none;
+}
 
 /* BANNER */
 
@@ -653,6 +659,13 @@ button{
 .table-end-expense {
 }
 
+.alter-xs-4{
+	width: 28%;
+}
+
+.alter-xs-3{
+	width: 20%;
+}
 .alter-xs-2{
 	width: 13.66%;
 }
@@ -1007,7 +1020,6 @@ button{
 
 .btn-red {
 	color: red;
-	font-size: 24px;
 	margin: 0 10px;
 }
 .btn-red-del {

@@ -117,7 +117,7 @@ class Admin extends CI_Controller{
             
             $item_list = $this->Items_model->filter_inventory($_POST['type']);
 
-            if(!empty($item_list)){
+            if($item_list->num_rows() > 0){
                 foreach($item_list->result_array() as $row){
                     $inventory_details[] = $row;
                 }
@@ -129,17 +129,13 @@ class Admin extends CI_Controller{
                         $inventory_details[$x]['delivery_count'] = $this->Delivery_model->delivery_count($id);
                         $inventory_details[$x]['sales_count'] = $this->Sales_model->sold_item_count($id);
                     }
-
-                   
                 } 
                 $data['item'] = $inventory_details;
+                
             } else{
                 $data['item'] = null;
-            }
-
-
-            
                 
+            }
             
 
             $this->load->view('admin-report-item-ajax',$data);
@@ -208,7 +204,7 @@ class Admin extends CI_Controller{
     }
 
     public function view_inventory(){
-        $inventory_details = array();
+        /*$inventory_details = array();
 
         $this->load->model('Items_model');
         $this->load->model('Pullout_model');
@@ -216,14 +212,11 @@ class Admin extends CI_Controller{
         $this->load->model('Delivery_model');
 
         $supplier_id = $this->get_supplier_id();        
-        $item_list = $this->Items_model->get_items();  
+        $item_list = $this->Items_model->get_items();  */
         $data['sessions'] = $this->session_name();
-
         
-        foreach($item_list->result_array() as $row){
-
+       /* foreach($item_list->result_array() as $row){
             $inventory_details[] = $row;
-
         }
 
         for($x=0 ; $x < sizeof($inventory_details) ; $x++) {
@@ -233,18 +226,11 @@ class Admin extends CI_Controller{
             $inventory_details[$x]['sales_count'] = $this->Sales_model->sold_item_count($id);
         }
 
-
-        /*echo "<pre>";
-        print_r($inventory_details);*/
-
-
-
-        $packet['item'] = $inventory_details;
-          //print_r($item_list->result_array);
-
+        $packet['item'] = $inventory_details;*/
       
         $this->load->view('admin-header', $data);
-        $this->load->view('admin-report-item', $packet);
+        $this->load->view('admin-report-item');
+        //$this->load->view('admin-report-item', $packet);
         $this->load->view('footer');
     }
 

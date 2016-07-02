@@ -35,6 +35,7 @@
 			$item_name = $item[$x]['item_name'];									
 			$item_price = number_format($item[$x]['item_price'],2,'.',',');
 			$item_stock = $item[$x]['item_stock'];
+			$item_category = $item[$x]['item_category'];
 
 			$pullout_count = $item[$x]['pullout_count'];
 			$delivery_count = $item[$x]['delivery_count'];
@@ -57,5 +58,56 @@
 			
 			
 		</div>
+
+		<div class="modal fade" <?php echo "id='Item".$item_code."'"?> role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content item-modal">					                    
+                  	<div class="item-details">
+                  		<div class="head-contain">
+							<h4><i class="fa fa-shopping-cart" aria-hidden="true"></i>Item Details</h4>
+						</div>
+                  		<div class="modal-body modal-project">
+                          <p><span>Item Name:</span><?php echo $item_name;?></p>
+                          <p><span>Item Code:</span><?php echo $item_code;?></p>
+                          <p><span>Category:</span> <?php echo $item_category;?></p>
+                          <p><span>Supplier:</span> <?php echo $item_supplier;?></p>
+                          <p><span>Price:</span> P<?php echo $item_price;?></p>
+                          <p><span>Stocks available:</span> <?php echo $item_stock;?></p>
+
+                          <div class="row barcode-row" style="margin-top: 30px;">
+                          	<div class="col-xs-6" id="bcTarget<?php echo $item_code; ?>"></div>
+                          	<div class="col-xs-6"><a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a></div>
+                          </div>
+
+                          <!-- <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div> -->
+                        </div>
+                    </div>
+
+                    <div class="edit-item" style="display: none;">
+                    	<div class="head-contain">
+							<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</h4>
+						</div>
+                    	<div class="modal-body modal-project">
+                        	
+                       	  <?php echo form_open('admin/edit-item') ?>
+                       	  		<input type="hidden" name="item_code" value="<?php echo $item_code?>">
+                       	  		<label>Item Name: </label>
+	                        	<input type="field" name="item_name" value="<?php echo $item_name?>">
+	                        	<label>Item Price: </label>
+	                        	<input type="field" name="item_price" value="<?php echo $item_price?>">
+	                        	<label>Item Category: </label>
+	                        	<input type="field" name="item_category" value="<?php echo $item_category?>">
+
+	                        	<a class="btn btn-back">Back</a>
+	                        	<input type="submit" class="btn submit-button" value="Submit" />
+
+	                      <?php echo form_close();?>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+    </div>
 
 	<?php } ?>

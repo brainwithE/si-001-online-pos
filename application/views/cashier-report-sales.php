@@ -15,7 +15,7 @@
 				<!-- FILTER FUNCTION -->
 				<div class="col-xs-12 col-md-4 table-filter">
 					<?php echo form_open(); ?>
-					<label>Filter By Tenant:</label>
+					<label>Filter Records:</label>
 					<input id="tenant-name" type="text" class="datepicker" placeholder="Tenant" name="filter_start_date">
 					<?php
 						echo form_close();

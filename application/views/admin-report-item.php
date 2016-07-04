@@ -39,7 +39,7 @@ function printPage(){
 
 							<div class="col-xs-6 table-filter">
 								<?php echo form_open(); ?>
-								<label>Filter Delivery Transaction:</label>
+								<label>Filter Inventory:</label>
 								<input id="inventory-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
 								<?php
 									echo form_close();

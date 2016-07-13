@@ -1,20 +1,63 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <script type="text/javascript">
-		$(document).ready(function(){	
-		    $('.btn-edit').click(function(){
-		        $('.edit-item').show();
-		        $('.item-details').hide();		        
-		    });
+$(document).ready(function(){	
+    $('.btn-edit').click(function(){
+        $('.edit-item').show();
+        $('.item-details').hide();		        
+    });
 
-		    $('.btn-back').click(function(){
-		        $('.edit-item').hide();
-		        $('.item-details').show();
-		    });
+    $('.btn-back').click(function(){
+        $('.edit-item').hide();
+        $('.item-details').show();
+    });
 
-		});
+});
+
+function downloadBarcode(id) {
+	var c=document.getElementById('canvas'+id);
+	c.setAttribute('crossOrigin', 'anonymous');
+	var image = new Image();
+	image.crossOrigin='anonymous';
+	image.src = c.toDataURL("image/png");
+	window.open(image.toDataURL());
+}
+
+function itemBarcode(id,price,supp){
+	$("#bcTarget"+id).barcode(id, "code39");
+	$("#bcTarget"+id).append('<span style="float: left; margin-left: 15px; font-size: 15px">'+supp+'</span>');
+	$("#bcTarget"+id).append('<span style="float:right;margin-right:15px; font-size: 15px;">Php '+price+'</span>');
+
+	var mycanvas = document.getElementById('bcTarget'+id).innerHTML;
+ 	var canvas = document.getElementById('canvas'+id);
+	var ctx    = canvas.getContext('2d');
+
+	var data   = '<svg xmlns="http://www.w3.org/2000/svg" width="250" height="350">' +
+	               '<foreignObject width="100%" height="100%">' +
+	                 '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
+	                   '<div id="controlDiv">'+mycanvas+'</div>' +
+	                 '</div>' +
+	               '</foreignObject>' +
+	             '</svg>';
+
+	var DOMURL = window.URL || window.webkitURL || window;
+
+	var img = new Image();
+	var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+	var url = DOMURL.createObjectURL(svg);
+
+	img.onload = function () {
+	  ctx.drawImage(img, 0, 0);
+	  DOMURL.revokeObjectURL(url);
+	}
+
+	img.src = url;
+	document.getElementById('bcTarget'+id).innerHTML = "";
+}
 
 
-	</script>
+</script>
+
+
 	
 	<?php
 		
@@ -32,7 +75,7 @@
 			$sales_count = $item[$x]['sales_count'];
 			
 	?>
-		<div class="row table-entries table-entries-income table-entries-income-int padding-alter" onClick="itemBarcode('<?php echo $item_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code?> >
+		<div class="row table-entries table-entries-income table-entries-income-int padding-alter" onClick="itemBarcode('<?php echo $item_code; ?>','<?php echo $item_price; ?>','<?php echo $supplier_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code?> >
 			
 			<div class="col-xs-2"><?php echo $supplier_code."-".$item_code;?></div>
 			<div class="col-xs-3 alter-xs-3"><?php echo $item_name?></div>
@@ -66,9 +109,16 @@
                           <p><span>Stocks available:</span> <?php echo $item_stock;?></p>
 
                           <div class="row barcode-row" style="margin-top: 30px;">
-                          	<div class="col-xs-6" id="bcTarget<?php echo $item_code; ?>"></div>
-                          	<div class="col-xs-6"><a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a></div>
+                          	<!--<div class="col-xs-6" id="bcTarget<?php// echo $item_code; ?>"><!--</div>
+                          	<div class="col-xs-6"><a href="print-barcode/<?php// echo $item_code; ?>"><!--PRINT BARCODE</a></div>-->
+
+                          	<div class="col-xs-6"><canvas id="canvas<?php echo $item_code; ?>"></canvas></div>
+                          	<div class="col-xs-6">
+                          		<a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a>
+                          	</div>
                           </div>
+
+                          <div id="bcTarget<?php echo $item_code; ?>"></div>
 
                           <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>
                         </div>

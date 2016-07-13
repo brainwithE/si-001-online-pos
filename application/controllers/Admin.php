@@ -212,27 +212,6 @@ class Admin extends CI_Controller{
         }
     }
     
-    public function get_supplier_id(){  // add action to get the supplier id of the user
-        $supplier_id='201605000000001'; //static supplier id
-        return $supplier_id; 
-    }
-
-    public function add_items(){
-        $supplier_id = $this->get_supplier_id();
-
-        $data = array (
-        'item_name' => $this->input->post('item_name'),
-        'item_price' => $this->input->post('item_price'),
-        'item_category' => $this->input->post('item_category'),
-        'item_supplier' => $supplier_id
-        );
-
-        $this->load->model('Items_model');
-        $item_id = $this->Items_model->add_items($data);  
- 
-        redirect('report-inventory');
-    }
-
     public function view_inventory(){
         /*$inventory_details = array();
 
@@ -640,5 +619,31 @@ class Admin extends CI_Controller{
         
         }
     }
+
+    public function print_barcode($id){
+        $packet['item'] = $id;
+        $packet['supp'] = $this->get_supplier_code($id);
+        $packet['price'] = $this->get_item_price($id);
+        
+        $data['sessions'] = $this->session_name();
+        
+        $this->load->view('admin-header',$data);
+        $this->load->view('item-barcode', $packet);
+        $this->load->view('footer');
+    }
+
+    public function get_item_price($item_code) {
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_item_price($item_code);
+        
+        return $result->item_price;        
+    }
+
+    public function get_supplier_code($item_code){  
+        $this->load->model('Items_model');
+        $result = $this->Items_model->get_supplier_code($item_code);
+        return $result->letter_code; 
+    }
+
 }
 ?>

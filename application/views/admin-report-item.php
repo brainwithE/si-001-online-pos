@@ -2,22 +2,52 @@
 
 <script type="text/javascript">
 
-$(document).ready(function(){	
-    $('.btn-edit').click(function(){
-        $('.edit-item').show();
-        $('.item-details').hide();
-    });
 
-    $('.btn-back').click(function(){
-        $('.edit-item').hide();
-        $('.item-details').show();
-    });
-
-});
-
-function itemBarcode(id){
+/*function itemBarcode(id){
 	$("#bcTarget"+id).barcode(id, "code39");
+}*/
+
+function downloadBarcode(id) {
+	var c=document.getElementById('canvas'+id);
+	c.setAttribute('crossOrigin', 'anonymous');
+	var image = new Image();
+	image.crossOrigin='anonymous';
+	image.src = c.toDataURL("image/png");
+	window.open(image.toDataURL());
 }
+
+function itemBarcode(id,price,supp){
+	$("#bcTarget"+id).barcode(id, "code39");
+	$("#bcTarget"+id).append('<span style="float: left; margin-left: 15px; font-size: 15px">'+supp+'</span>');
+	$("#bcTarget"+id).append('<span style="float:right;margin-right:15px; font-size: 15px;">Php '+price+'</span>');
+
+	var mycanvas = document.getElementById('bcTarget'+id).innerHTML;
+ 	var canvas = document.getElementById('canvas'+id);
+	var ctx    = canvas.getContext('2d');
+
+	var data   = '<svg xmlns="http://www.w3.org/2000/svg" width="250" height="350">' +
+	               '<foreignObject width="100%" height="100%">' +
+	                 '<div xmlns="http://www.w3.org/1999/xhtml" style="font-size:40px">' +
+	                   '<div id="controlDiv">'+mycanvas+'</div>' +
+	                 '</div>' +
+	               '</foreignObject>' +
+	             '</svg>';
+
+	var DOMURL = window.URL || window.webkitURL || window;
+
+	var img = new Image();
+	var svg = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
+	var url = DOMURL.createObjectURL(svg);
+
+	img.onload = function () {
+	  ctx.drawImage(img, 0, 0);
+	  DOMURL.revokeObjectURL(url);
+	}
+
+	img.src = url;
+	document.getElementById('bcTarget'+id).innerHTML = "";
+}
+
 
 function printPage(){
 	window.print();
@@ -67,7 +97,7 @@ function printPage(){
 						</div>
 						</div>
 						<div class="col-xs-12" id="ajax-content-container">
-							
+							<p style="padding:30px 0;">Search items through search box above.</p>
 							
 						</div>
 

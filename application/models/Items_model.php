@@ -108,6 +108,30 @@ class Items_model extends CI_model{
 		return $query;
 	}
 
+	function get_supplier_code($item_id){
+		$this->db->order_by("id", "desc");
+		$this->db->select('letter_code');
+		$this->db->from('pos_item');
+		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
+		$this->db->where('item_id =', $item_id);
+
+		$query = $this->db->get();
+		
+		if($query->num_rows() == 1) {
+	        return $query->row();	        
+	    }
+	    return false; 
+
+		/*$sql = "SELECT letter_code FROM pos_item join aauth_users on aauth_users.name = pos_item.item_supplier WHERE item_id='".$item_id."'" ;
+		$query = $this->db->query($sql);		
+		if($query->num_rows() == 1) {
+	        return $query->row();	        
+	    }
+	    return false;*/
+
+		
+	}
+
 	/* INSERT ACTION */
 	function add_items($data) {
 		$item_data = array(

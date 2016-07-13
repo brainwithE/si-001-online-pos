@@ -47,7 +47,7 @@
 								<div class="col-xs-2">Supplier Name</div>
 								<div class="col-xs-1">Total Quantity</div>
 								<div class="col-xs-2">Date Requested</div>
-								<div class="col-xs-2">Date Approved</div>
+								<div class="col-xs-2">Date Rejected</div>
 								<div class="col-xs-3">Remarks</div>	
 							</div>
 							<?php

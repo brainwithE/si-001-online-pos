@@ -173,7 +173,9 @@ class Delivery_model extends CI_model{
 	}
 
 	function reject_delivery($dt_id){
-		$sql = "UPDATE pos_delivery_transaction SET dt_status='2' WHERE dt_id='".$dt_id."'" ;
+		date_default_timezone_set('Asia/Manila');
+		$current_date = date('Y-m-d H:i:s');	
+		$sql = "UPDATE pos_delivery_transaction SET dt_status='2', dt_approve_date='".$current_date."' WHERE dt_id='".$dt_id."'" ;
 		$query = $this->db->query($sql);
 		return $query;
 	}

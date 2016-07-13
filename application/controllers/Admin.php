@@ -368,7 +368,7 @@ class Admin extends CI_Controller{
         $this->load->model('Pullout_model');
         $pullout = $this->Pullout_model->reject_pullout($pullout_id);
 
-        redirect('admin/view_pullout');
+        redirect('admin/view_rejected_pullout');
     }
 
     public function archive_pullout(){

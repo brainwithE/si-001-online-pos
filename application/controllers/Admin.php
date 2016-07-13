@@ -626,9 +626,9 @@ class Admin extends CI_Controller{
         $packet['price'] = $this->get_item_price($id);
         
         $data['sessions'] = $this->session_name();
-        
+
         $this->load->view('admin-header',$data);
-        $this->load->view('item-barcode', $packet);
+        $this->load->view('admin-item-barcode', $packet);
         $this->load->view('footer');
     }
 

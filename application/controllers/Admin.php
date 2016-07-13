@@ -162,6 +162,16 @@ class Admin extends CI_Controller{
         }
     }
 
+    public function filter_rejected_delivery_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Delivery_model');
+          $data['ajax_req'] = TRUE;
+          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
+
+          $this->load->view('admin-report-delivery-reject-ajax',$data);
+        }
+    }
+
     public function filter_pending_pullout_transaction(){
         if (isset($_POST['type'])) {
           $this->load->model('Pullout_model');
@@ -179,6 +189,16 @@ class Admin extends CI_Controller{
           $data['pullout'] = $this->Pullout_model->filter_pullout_transaction($_POST['type']);
 
           $this->load->view('admin-report-pullout-approve-ajax',$data);
+        }
+    }
+
+    public function filter_rejected_pullout_transaction(){
+        if (isset($_POST['type'])) {
+          $this->load->model('Pullout_model');
+          $data['ajax_req'] = TRUE;
+          $data['pullout'] = $this->Pullout_model->filter_pullout_transaction($_POST['type']);
+
+          $this->load->view('admin-report-pullout-reject-ajax',$data);
         }
     }
     
@@ -261,6 +281,19 @@ class Admin extends CI_Controller{
         $this->load->view('footer');
     }
 
+    public function view_rejected_delivery(){
+        $this->load->model('Delivery_model');
+        
+        $delivery_report = $this->Delivery_model->get_delivery_report();  
+        $packet['delivery_transaction'] = $delivery_report;
+
+        $data['sessions'] = $this->session_name();
+        
+        $this->load->view('admin-header',$data);
+        $this->load->view('admin-report-delivery-reject', $packet);
+        $this->load->view('footer');
+    }
+
 
     public function view_pullout(){
         $this->load->model('Pullout_model');
@@ -285,6 +318,19 @@ class Admin extends CI_Controller{
 
         $this->load->view('admin-header', $data);
         $this->load->view('admin-report-pullout-approve', $packet);
+        $this->load->view('footer');
+    }
+
+    public function view_rejected_pullout(){
+        $this->load->model('Pullout_model');
+        
+        $pullout_list = $this->Pullout_model->get_pullout();  
+        $packet['pullout'] = $pullout_list;
+        
+        $data['sessions'] = $this->session_name();
+
+        $this->load->view('admin-header', $data);
+        $this->load->view('admin-report-pullout-reject', $packet);
         $this->load->view('footer');
     }
 
@@ -321,6 +367,14 @@ class Admin extends CI_Controller{
         $pullout = $this->Pullout_model->archive_pullout($pullout_id);
 
         redirect('admin/view_approved_pullout');
+    }
+
+    public function archive_rejected_pullout(){
+        $pullout_id = $this->uri->segment(3);
+        $this->load->model('Pullout_model');
+        $pullout = $this->Pullout_model->archive_rejected_pullout($pullout_id);
+
+        redirect('admin/view_rejected_pullout');
     }
 
     public function deduct_inv_stock($item_code, $item_quantity){
@@ -409,6 +463,14 @@ class Admin extends CI_Controller{
         $pullout = $this->Delivery_model->archive_delivery($dt_id);
 
         redirect('admin/view_approved_delivery');
+    }
+
+    public function archive_rejected_delivery(){
+        $dt_id = $this->uri->segment(3);
+        $this->load->model('Delivery_model');
+        $pullout = $this->Delivery_model->archive_rejected_delivery($dt_id);
+
+        redirect('admin/view_rejected_delivery');
     }
 
     public function view_dt_details(){

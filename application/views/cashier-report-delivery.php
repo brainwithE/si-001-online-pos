@@ -10,6 +10,8 @@
 
 <a id="showLeftPush" class="action-buttons action-button-3 delivery-action" href="report-approved-delivery">APPROVED DELIVERY</a>
 
+<a id="showLeftPush" class="action-buttons action-button-4 delivery-action" href="report-rejected-delivery">REJECTED DELIVERY</a>
+
 				<div class="container">
 
 					<!--The overwatch Main element Container or MEC-->

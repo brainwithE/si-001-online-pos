@@ -107,12 +107,19 @@ class Pullout_model extends CI_model{
 		$query = $this->db->query($sql);
 		return $query;
 	}
+
+	function archive_rejected_pullout($pullout_id){
+		$sql = "UPDATE pos_pullout SET pullout_status='4' WHERE pullout_id='".$pullout_id."'" ;
+		$query = $this->db->query($sql);
+		return $query;
+	}
 }
 
 /**
 NOTE: Pullout status:
 1 - Approved Pullout
 2 - Rejected Pullout
-3 - Archived Pullout
+3 - Archived Approved Pullout
+4 - Archived Rejected Pullout
 **/
 ?>

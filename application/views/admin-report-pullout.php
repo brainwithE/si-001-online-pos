@@ -10,6 +10,8 @@
 
 <a id="showLeftPush" class="action-buttons action-button-2 delivery-action" href="report-approved-pullout">APPROVED PULLOUT</a>
 
+<a id="showLeftPush" class="action-buttons action-button-3 delivery-action" href="report-rejected-pullout">REJECTED PULLOUT</a>
+
 				<div class="container">
 				<!--The overwatch Main element Container or MEC-->					
 					

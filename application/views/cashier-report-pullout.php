@@ -10,6 +10,8 @@
 
 <a id="showLeftPush" class="action-buttons action-button-3 delivery-action" href="report-approved-pullout">APPROVED PULLOUT</a>
 
+<a id="showLeftPush" class="action-buttons action-button-4 delivery-action" href="report-rejected-pullout">REJECTED PULLOUT</a>
+
 				<div class="container">
 				<!--The overwatch Main element Container or MEC-->					
 					
@@ -62,10 +64,10 @@
 							
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-2 alter-xs-2"><?php echo $letter_code."-".$pullout_code;?></div>
+									<div class="col-xs-2 alter-xs-2"><?php echo $pullout_code;?></div>
 									<div class="col-xs-2 wrap-word"><?php echo $pullout_supplier;?></div>
 									<div class="col-xs-1 alter-xs-1"><?php echo $pullout_quantity;?></div>									
-									<div class="col-xs-4 alter-xs-4"><?php echo $item_code." "; echo $pullout_item;?></div>
+									<div class="col-xs-4 alter-xs-4"><?php echo $letter_code."-".$item_code." "; echo $pullout_item;?></div>
 									<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($pullout_date)); ?></div>										
 									<div class="col-xs-2 alter-xs-2">
 

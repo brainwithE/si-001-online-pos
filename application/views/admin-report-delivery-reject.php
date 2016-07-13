@@ -37,7 +37,7 @@
 
 						<div class="head-contain">
 							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>
-							APPROVED DELIVERY REQUEST</h4>
+							REJECTED DELIVERY REQUEST</h4>
 						</div>
 
 						<div class="col-xs-12" id="ajax-content-container">
@@ -60,7 +60,7 @@
 								$dt_date_approved = $row['dt_approve_date'];
 								$letter_code = $row['letter_code'];
 
-								if($dt_status == 1){
+								if($dt_status == 2){
 							?>
 								
 								<div class="row table-entries table-entries-income">
@@ -73,7 +73,7 @@
 										<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($dt_date_approved)); ?></div>
 										
 										<div class="col-xs-3 alter-xs-3 tright">
-											<a href='<?php echo base_url() ?>admin/archive_delivery/<?php echo $dt_code; ?>'><i class="fa fa-archive" alt="archive" aria-hidden="true"></i></a>
+											<a href='<?php echo base_url() ?>admin/archive_rejected_delivery/<?php echo $dt_code; ?>'><i class="fa fa-archive" alt="archive" aria-hidden="true"></i></a>
 										</div> 
 									</a>
 								</div>
@@ -97,7 +97,7 @@
 		$('#delivery-filter-box').on('input', function() {
 			var username = $('#delivery-filter-box').val();
 			$.ajax({
-				url: "filter-approved-delivery-transaction",
+				url: "filter-rejected-delivery-transaction",
 				async: false,
 				type: "POST",
 				data: "type="+username,

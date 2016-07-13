@@ -84,8 +84,10 @@ $route['remove-delivery-item'] = 'admin/remove_delivery_item';
 $route['edit-delivery-item'] = 'admin/edit_delivery_item';
 $route['admin/report-delivery'] = 'admin/view_delivery';
 $route['admin/report-approved-delivery'] = 'admin/view_approved_delivery';
+$route['admin/report-rejected-delivery'] = 'admin/view_rejected_delivery';
 $route['admin/report-pullout'] = 'admin/view_pullout';
 $route['admin/report-approved-pullout'] = 'admin/view_approved_pullout';
+$route['admin/report-rejected-pullout'] = 'admin/view_rejected_pullout';
 $route['admin/delivery-notification'] = 'admin/delivery_notification';
 $route['admin/view-dt-details/(:any)'] = 'admin/view-dt-details/$1';
 $route['admin/create-account'] = 'authenticate/create_account'; //view
@@ -129,9 +131,11 @@ $route['add-sales-transaction'] = 'cashier/add_sales_transaction';
 $route['cashier/report-sales'] = 'cashier/view_sales_report_all';
 $route['cashier/report-delivery'] = 'cashier/view_delivery';
 $route['cashier/report-approved-delivery'] = 'cashier/view_approved_delivery';
+$route['cashier/report-rejected-delivery'] = 'cashier/view_rejected_delivery';
 $route['cashier/view-dt-details/(:any)'] = 'cashier/view-dt-details/$1';
 $route['cashier/report-pullout'] = 'cashier/view_pullout';
 $route['cashier/report-approved-pullout'] = 'cashier/view_approved_pullout';
+$route['cashier/report-rejected-pullout'] = 'cashier/view_rejected_pullout';
 $route['cashier/edit-user-info'] = 'authenticate/edit_user_info';
 $route['cashier/user-update'] = 'authenticate/update_user';
 $route['cashier/void_sales'] = 'cashier/void_sales';
@@ -151,17 +155,21 @@ $route['admin/filter-inventory-item'] = 'admin/filter_inventory_item';
 
 $route['admin/filter-pending-delivery-transaction'] = 'admin/filter_pending_delivery_transaction';
 $route['admin/filter-approved-delivery-transaction'] = 'admin/filter_approved_delivery_transaction';
+$route['admin/filter-rejected-delivery-transaction'] = 'admin/filter_rejected_delivery_transaction';
 
 $route['cashier/filter-pending-delivery-transaction'] = 'cashier/filter_pending_delivery_transaction';
 $route['cashier/filter-approved-delivery-transaction'] = 'cashier/filter_approved_delivery_transaction';
+$route['cashier/filter-rejected-delivery-transaction'] = 'cashier/filter_rejected_delivery_transaction';
 
 
 $route['admin/filter-pending-pullout-transaction'] = 'admin/filter_pending_pullout_transaction';
 $route['admin/filter-approved-pullout-transaction'] = 'admin/filter_approved_pullout_transaction';
+$route['admin/filter-rejected-pullout-transaction'] = 'admin/filter_rejected_pullout_transaction';
+
 
 $route['cashier/filter-pending-pullout-transaction'] = 'cashier/filter_pending_pullout_transaction';
 $route['cashier/filter-approved-pullout-transaction'] = 'cashier/filter_approved_pullout_transaction';
-
+$route['cashier/filter-rejected-pullout-transaction'] = 'cashier/filter_rejected_pullout_transaction';
 
 $route['pullout-item'] = 'pullout/input_pullout_item';
 $route['delivery-transaction'] = 'tenant/add_delivery_transaction';

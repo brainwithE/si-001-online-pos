@@ -6,11 +6,11 @@
 	}
 </script>
 
-<a id="showLeftPush" class="action-buttons action-button-1 delivery-action" href="report-pullout">PENDING PULLOUT</a>
+<a id="showLeftPush" class="action-buttons action-button-2 delivery-action" href="report-pullout">PENDING PULLOUT</a>
 
-<a id="showLeftPush" class="action-buttons action-button-2 delivery-action" href="report-approved-pullout">APPROVED PULLOUT</a>
+<a id="showLeftPush" class="action-buttons action-button-3 delivery-action" href="report-approved-pullout">APPROVED PULLOUT</a>
 
-<a id="showLeftPush" class="action-buttons action-button-3 delivery-action" href="report-rejected-pullout">REJECTED PULLOUT</a>
+<a id="showLeftPush" class="action-buttons action-button-4 delivery-action" href="report-rejected-pullout">REJECTED PULLOUT</a>
 
 				<div class="container">
 				<!--The overwatch Main element Container or MEC-->					
@@ -34,7 +34,7 @@
 						</div>
 
 						<div class="head-contain">
-							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>APPROVED PULLOUT REQUEST</h4>
+							<h4><i class="fa fa-sticky-note-o" aria-hidden="true"></i></i>REJECTED PULLOUT REQUEST</h4>
 						</div>
 						<div id="ajax-content-container" class="col-xs-12">							
 							<div class="row table-title table-title-general table-title-income">
@@ -43,7 +43,7 @@
 								<div class="col-xs-1 alter-xs-1">Qty</div>								
 								<div class="col-xs-4 alter-xs-4">Item Name</div>
 								<div class="col-xs-2 alter-xs-2">Request Pullout Date</div>
-								<div class="col-xs-2 alter-xs-2">Approved Pullout Date</div>
+								<div class="col-xs-2 alter-xs-2">Rejected Pullout Date</div>
 								<div class="col-xs-1">Remarks</div>
 							</div>
 							<?php
@@ -59,7 +59,7 @@
 									$pullout_approved_date = $row['pullout_approved_date'];
 									$letter_code = $row['letter_code'];
 
-									if($pullout_status == 1 ){
+									if($pullout_status == 2 ){
 							?>
 							
 							
@@ -72,7 +72,7 @@
 									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_date)); ?></div>
 									<div class="col-xs-2 alter-xs-2"><?php echo date("M j, Y <\b\\r> g:i A", strtotime($pullout_approved_date)); ?></div>
 									<div class="col-xs-1"><input class="col-xs-12 remarks" id="" value="" /></div>	
-									<a href='<?php echo base_url() ?>admin/archive_pullout/<?php echo $pullout_code; ?>'><i class="fa fa-archive" alt="archive" aria-hidden="true"></i></a>						
+														
 									
 								</div>
 
@@ -101,7 +101,7 @@
 		$('#pullout-filter-box').on('input', function() {
 			var username = $('#pullout-filter-box').val();
 			$.ajax({
-				url: "filter-approved-pullout-transaction",
+				url: "filter-rejected-pullout-transaction",
 				async: false,
 				type: "POST",
 				data: "type="+username,

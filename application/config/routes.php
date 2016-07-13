@@ -96,6 +96,7 @@ $route['admin/report-user'] = 'authenticate/view_user_list'; //action
 $route['admin/user-update'] = 'authenticate/update_user'; //action
 $route['admin/report-item-category'] = 'admin/view_item_category_list';
 $route['admin/add-category'] = 'admin/add_item_category';
+$route['admin/edit-item'] = 'admin/edit_item';
 
 $route['admin/void_sales'] = 'admin/void_sales';
 //$route['admin/pullout-item'] = 'admin/input_pullout_item';

@@ -11,8 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="footer"><h6>Online POS is a product of <a target="_blank" class="lnk" href="http://potatocodes.com">Potatocodes Inc.</a> Copyright 2016</h6></div>
 
     <!-- add all script below this fold -->
-    <script type="javascript" src="<?php echo base_url(); ?>js/script.js">
-    </script>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -50,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $('#datepickerstart').datepicker({ format: 'yyyy-mm-dd' });
     $('#datepickerend').datepicker({ format: 'yyyy-mm-dd' });
     </script>
-    <script src="js/cbpHorizontalMenu.min.js"></script>
+    <script src="<?php echo base_url();?>js/cbpHorizontalMenu.min.js"></script>
     <script>
         $(function() {
           cbpHorizontalMenu.init();

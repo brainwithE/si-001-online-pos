@@ -99,7 +99,6 @@ class Admin extends CI_Controller{
         $date_start = $this->input->post('filter_start_date');
         $date_end = $this->input->post('filter_end_date');
 
-        echo "Normal: ". date("M j, Y", strtotime($date_start));
         $sale_report = $this->Sales_model->get_sales_certmonth($date_start,$date_end);      
 
         $packet['sales'] = $sale_report;
@@ -139,11 +138,14 @@ class Admin extends CI_Controller{
                     }
                 } 
                 $data['item'] = $inventory_details;
+                $data['category_list'] = $this->Items_model->get_item_category();
                 
             } else{
                 $data['item'] = null;
                 
             }
+
+
             
 
             $this->load->view('admin-report-item-ajax',$data);
@@ -441,10 +443,33 @@ class Admin extends CI_Controller{
         
         );
 
-        $this->load->model('Items_model');
-        $this->Items_model->edit_item($data);  
+        $this->load->model('Items_model');        
+        
+        $this->form_validation->set_rules('item_name', 'Item Name', 'required');
+        $this->form_validation->set_rules('item_price', 'Item Name', 'required|numeric');
+        $this->form_validation->set_rules('item_category', 'Item Category', 'required');
+        
+
+        if ($this->form_validation->run() == FALSE)
+        {
+            echo "<script type='text/javascript'>".
+                "alert('Please fill up required fields.');".
+                "</script>";
+
+            $this->view_inventory();
+
+
+        } else {
+            $this->Items_model->edit_item($data);
+
+            echo "<script type='text/javascript'>".
+                "alert('Item has been updated.');".
+                "</script>";
+
+            $this->view_inventory();
+        }
  
-        redirect('admin/report-inventory');
+        
     }
 
     public function approved_delivery(){

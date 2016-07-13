@@ -1,5 +1,20 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+<script type="text/javascript">
+		$(document).ready(function(){	
+		    $('.btn-edit').click(function(){
+		        $('.edit-item').show();
+		        $('.item-details').hide();		        
+		    });
 
+		    $('.btn-back').click(function(){
+		        $('.edit-item').hide();
+		        $('.item-details').show();
+		    });
+
+		});
+
+
+	</script>
 	
 	<?php
 		
@@ -55,7 +70,7 @@
                           	<div class="col-xs-6"><a href="print-barcode/<?php echo $item_code; ?>">PRINT BARCODE</a></div>
                           </div>
 
-                          <!-- <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div> -->
+                          <div class="btn btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</div>
                         </div>
                     </div>
 
@@ -72,10 +87,32 @@
 	                        	<label>Item Price: </label>
 	                        	<input type="field" name="item_price" value="<?php echo $item_price?>">
 	                        	<label>Item Category: </label>
-	                        	<input type="field" name="item_category" value="<?php echo $item_category?>">
 
-	                        	<a class="btn btn-back">Back</a>
-	                        	<input type="submit" class="btn submit-button" value="Submit" />
+	                        	<select name="item_category">
+	                        	<?php
+		                        	foreach ($category_list ->result_array() as $row) {
+							            $category_id = $row['category_id'];
+							            $category_name = $row['category_name'];
+							            $category_status = $row['category_status'];
+
+							        if($category_status != 0){
+							        	if($item_category == $category_name ){
+							        		echo "<option value='".$category_name."' selected>".$category_name."</option>";	
+							        	} else {
+							        		echo "<option value='".$category_name."'>".$category_name."</option>";	
+							        	}
+
+							        }
+							    ?>
+							    <?php
+							        }
+	                        	?>
+	                        	</select>
+
+	                        	<div class="col-xs-12" style="padding: 20px 0 10px;">
+		                        	<a class="btn btn-back">Back</a>
+		                        	<input type="submit" class="btn submit-button" value="Submit" />
+	                        	</div>
 
 	                      <?php echo form_close();?>
                         </div>
@@ -86,3 +123,4 @@
     </div>
 
 	<?php } ?>
+

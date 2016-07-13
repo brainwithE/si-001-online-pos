@@ -21,6 +21,8 @@
 			<div class="col-md-12 total-label total-label-bank">TOTAL SALES -- 
 				<span id="total-amount" class="total-amount"><?php echo number_format($total, 2, '.',','); ?></span>
 			</div>
+			<div class="col-md-12 total-label total-label-bank">TOTAL QUANTITY SOLD -- <span id="total-amount" class="total-amount"><?php echo $qty_sold;?></span>
+			</div>
 		</div>
 		<div class="col-xs-5">
 			<p style="text-align: left;">These are all of the sales report. Today is: <?php echo $today = date('F j, Y');?></p>
@@ -33,9 +35,9 @@
 		<div class="col-xs-2">Item Name</div>
 		<div class="col-xs-1">Date</div>
 		<div class="col-xs-1">Type</div>
-		<div class="col-xs-2 alter-xs-2">Supplier</div>
-		<div class="col-xs-1">Discount</div>
+		<div class="col-xs-2 alter-xs-2">Supplier</div>		
 		<div class="col-xs-1 alter-xs-1">Amount</div>
+		<div class="col-xs-1">Discount</div>
 		<div class="col-xs-1">Deduction</div>
 		<div class="col-xs-1 net-col alter-xs-1">Net</div>	
 		<div class="col-xs-1 alter-xs-1"></div>	
@@ -73,9 +75,9 @@
 					<div class="col-xs-2"><?php echo $sales_item_name;?></div>
 					<div class="col-xs-1"><?php echo date("M j, Y g:i A", strtotime($sales_date)); ?></div>
 					<div class="col-xs-1"><?php echo $sales_category; ?></div>
-					<div class="col-xs-2 wrap-word alter-xs-2"><?php echo $sales_supplier; ?></div>
-					<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
+					<div class="col-xs-2 wrap-word alter-xs-2"><?php echo $sales_supplier; ?></div>					
 					<div class="col-xs-1 alter-xs-1"><?php echo number_format($sales_amount,2,'.',','); ?></div>
+					<div class="col-xs-1"><?php echo number_format($sales_discount,2,'.',','); ?></div>
 					<div class="col-xs-1"><?php echo "- ". number_format($sales_deduction,2,'.',',');?></div>
 					<div class="col-xs-1 net-col alter-xs-1"><?php echo number_format($sales_net, 2, '.',','); ?></div>	
 					<div class="col-xs-1 alter-xs-1 tright">
@@ -89,8 +91,8 @@
 
 	<div class="table-title table-end table-end-general table-end-income">
 		<div class="col-xs-7 total-label">TOTAL 					</div>
-		<div class="col-xs-1 total-label"><?php echo number_format($total_discount, 2, '.',','); ?></div>
 		<div class="col-xs-1 total-label"><?php echo number_format($total_price, 2, '.',','); ?></div>
+		<div class="col-xs-1 total-label"><?php echo number_format($total_discount, 2, '.',','); ?></div>
 		<div class="col-xs-1 total-label"><?php echo number_format($total_deduction, 2, '.',','); ?></div>
 		<div class="col-xs-1 total-label"><span class="total-amount"><?php echo number_format($total_earnings, 2, '.',','); ?></span></div>
 		<div class="col-xs-1 total-label"></div>

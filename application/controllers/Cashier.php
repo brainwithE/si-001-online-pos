@@ -30,6 +30,7 @@ class Cashier extends CI_Controller{
                 
         $sale_report = $this->Sales_model->get_daily_sales();  
         $packet['sales'] = $sale_report;        
+        $packet['qty_sold'] = $sale_report->num_rows();
 
         $data['sessions'] = $this->session_name();
     
@@ -43,6 +44,7 @@ class Cashier extends CI_Controller{
 
         $sale_report = $this->Sales_model->get_all_sales();  
         $packet['sales'] = $sale_report;        
+        $packet['qty_sold'] = $sale_report->num_rows();
 
         $data['sessions'] = $this->session_name();
     
@@ -55,8 +57,9 @@ class Cashier extends CI_Controller{
         if (isset($_POST['type'])) {
           $this->load->model('Sales_model');
           $data['ajax_req'] = TRUE;
-          $data['sales'] = $this->Sales_model->get_sales_by_tenant_daily($_POST['type']);
-
+          $sale_report = $this->Sales_model->get_sales_by_tenant_daily($_POST['type']);
+          $data['sales'] = $sale_report;
+          $data['qty_sold'] = $sale_report->num_rows();
           $this->load->view('cashier-report-sales-ajax',$data);
         }
     }
@@ -65,9 +68,11 @@ class Cashier extends CI_Controller{
         if (isset($_POST['type'])) {
           $this->load->model('Sales_model');
           $data['ajax_req'] = TRUE;
-          $data['sales'] = $this->Sales_model->get_sales_by_tenant($_POST['type']);
+          $sale_report = $this->Sales_model->get_sales_by_tenant($_POST['type']);
+          $data['sales'] = $sale_report;
+          $data['qty_sold'] = $sale_report->num_rows();
 
-          $this->load->view('admin-report-all-sales-ajax',$data);
+          $this->load->view('cashier-report-all-sales-ajax',$data);
         }
     }
 
@@ -160,10 +165,12 @@ class Cashier extends CI_Controller{
             $date_start = $this->input->post('filter_start_date');
             $date_end = $this->input->post('filter_end_date');
 
-            $income = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
-            $packet['sales'] = $income;
+            $sale_report = $this->Sales_model->get_sales_certmonth($date_start,$date_end);         
+            $packet['sales'] = $sale_report;
             $packet['fro'] = $date_start;
             $packet['to'] = $date_end;
+
+            $packet['qty_sold'] = $sale_report->num_rows();
 
             $data['sessions'] = $this->session_name();
             

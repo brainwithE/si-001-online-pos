@@ -33,6 +33,7 @@ class Tenant extends CI_Controller{
                 
         $sale_report = $this->Sales_model->get_supplier_sales($supplier_id);  
         $packet['sales'] = $sale_report;   
+        $packet['qty_sold'] = $sale_report->num_rows();
         $data['category_list'] = $this->get_item_category();
 
         $data['sessions'] = $this->session_name();
@@ -49,10 +50,11 @@ class Tenant extends CI_Controller{
             $date_start = $this->input->post('filter_start_date');
             $date_end = $this->input->post('filter_end_date');
 
-            $income = $this->Sales_model->get_sales_supplier_certmonth($date_start,$date_end,$supplier_id);         
-            $packet['sales'] = $income;
+            $sale_report = $this->Sales_model->get_sales_supplier_certmonth($date_start,$date_end,$supplier_id);         
+            $packet['sales'] = $sale_report;
             $packet['fro'] = $date_start;
             $packet['to'] = $date_end;
+            $packet['qty_sold'] = $sale_report->num_rows();
 
             $data['category_list'] = $this->get_item_category();
             $data['sessions'] = $this->session_name();

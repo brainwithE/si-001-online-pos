@@ -19,8 +19,9 @@
 
 					if($sales_status == 0) { 
 						$amt = $row['sales_total'];
+						$dsc = $row['sales_discount'];
 						$ddct = $amt*0.03;
-						$net = $amt-$ddct;
+						$net = $amt-$ddct-$dsc;
 						$total = $total + $net;
 					}
 				}
@@ -78,7 +79,7 @@
 						$sales_status = $row['sales_status'];
 						$sales_discount = $row['sales_discount'];
 						$sales_deduction = $sales_amount*0.03;
-						$sales_net = $sales_amount-$sales_deduction;
+						$sales_net = $sales_amount-$sales_deduction-$sales_discount;
 
 						///if($sales_status == 0) {
 

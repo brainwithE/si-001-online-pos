@@ -24,7 +24,7 @@
 							</div>
 
 							<div class="col-xs-7 table-filter">
-								<?php echo form_open(); ?>
+								
 								<div class="col-xs-12">
 									<label>Filter By Date: </label>
 									<input type="text" id="datepickerstart" class="datetimepicker" placeholder="From" name="filter_start_date">
@@ -36,9 +36,7 @@
 									<input id="pullout-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
 								</div>
 								
-								<?php
-									echo form_close();
-								?>
+								
 								
 							</div>
 						</div>
@@ -105,6 +103,25 @@
 	});
 
 	function ajax_suggest(){
+
+		$('#date-filter').click(function() {
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();	
+			
+			$.ajax({
+				url: "filter-pending-pullout-transaction",
+				async: false,
+				type: "POST",
+				//data: "type="+username,
+				data: {type:null,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').html(data);
+				}
+			})
+
+		});
+
 		$('#pullout-filter-box').on('input', function() {
 			var username = $('#pullout-filter-box').val();
 

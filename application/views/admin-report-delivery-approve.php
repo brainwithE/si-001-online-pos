@@ -32,7 +32,7 @@
 									<input type="submit" name="date-filter" value="FILTER" class="call-links" id="date-filter">
 								</div>
 								<div class="col-xs-12">
-									<label>Filter Pullout Transaction:</label>
+									<label>Filter Delivery Transaction:</label>
 									<input id="delivery-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
 								</div>
 							</div>

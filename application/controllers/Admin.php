@@ -210,14 +210,6 @@ class Admin extends CI_Controller{
     }
 
     public function filter_rejected_delivery_transaction(){
-        /*if (isset($_POST['type'])) {
-          $this->load->model('Delivery_model');
-          $data['ajax_req'] = TRUE;
-          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
-
-          $this->load->view('admin-report-delivery-reject-ajax',$data);
-        }*/
-
         $start_date = $_POST['sdate'];
     	$end_date = $_POST['edate'];
     	$filter_item = $_POST['type'];

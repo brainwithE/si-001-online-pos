@@ -18,18 +18,22 @@
 					<div class="overwatch-mec mec-income">
 
 						<div class="table-bank-row">
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<p style="text-align: left;">These are all your delivery records. Today is: <?php echo $today = date('F j, Y');?></p>
 								<div id="print" onClick="printPage();" class="call-links">PRINT DELIVERY RECORDS</div>
 							</div>
 
-							<div class="col-xs-6 table-filter">
-								<?php echo form_open(); ?>
-								<label>Filter Delivery Transaction:</label>
-								<input id="delivery-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
-								<?php
-									echo form_close();
-								?>
+							<div class="col-xs-7 table-filter">
+								<div class="col-xs-12">
+									<label>Filter By Date: </label>
+									<input type="text" id="datepickerstart" class="datetimepicker" placeholder="From" name="filter_start_date">
+									<input type="text" id="datepickerend" class="datetimepicker" placeholder="To" name="filter_end_date">
+									<input type="submit" name="date-filter" value="FILTER" class="call-links" id="date-filter">
+								</div>
+								<div class="col-xs-12">
+									<label>Filter Delivery Transaction:</label>
+									<input id="delivery-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
+								</div>
 							</div>
 						</div>
 						<div class="head-contain">
@@ -88,18 +92,38 @@
 	});
 
 	function ajax_suggest(){
-		$('#delivery-filter-box').on('input', function() {
-			var username = $('#delivery-filter-box').val();
+		$('#date-filter').click(function() {
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();	
+			
 			$.ajax({
 				url: "filter-approved-delivery-transaction",
 				async: false,
-				type: "POST",
-				data: "type="+username,
+				type: "POST",				
+				data: {type:null,sdate:start_date,edate:end_date},
 				dataType: "html",
 				success: function(data) {
 					$('#ajax-content-container').html(data);
 				}
 			})
 		});
-	}  
+
+		$('#delivery-filter-box').on('input', function() {
+			var username = $('#delivery-filter-box').val();
+
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();
+
+			$.ajax({
+				url: "filter-approved-delivery-transaction",
+				async: false,
+				type: "POST",				
+				data: {type:username,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').html(data);
+				}
+			})
+		});
+	} 
 	</script>

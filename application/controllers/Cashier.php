@@ -180,33 +180,94 @@ class Cashier extends CI_Controller{
     }
 
     public function filter_pending_delivery_transaction(){
-        if (isset($_POST['type'])) {
-          $this->load->model('Delivery_model');
-          $data['ajax_req'] = TRUE;
-          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
+        $start_date = $_POST['sdate'];
+        $end_date = $_POST['edate'];
+        $filter_item = $_POST['type'];
 
-          $this->load->view('cashier-report-delivery-pending-ajax',$data);
+        $this->load->model('Delivery_model');
+
+        if(empty($start_date) && empty($end_date) && isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($filter_item);
+
+            $this->load->view('cashier-report-delivery-pending-ajax',$data);
+        } elseif(empty($start_date) || empty($end_date)){
+            echo "<script type='text/javascript'>".
+                "alert('Please fill up both date fields.');".
+                "</script>";
+
+        } elseif(isset($start_date) && isset($end_date) && !isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction_with_date($start_date, $end_date);
+
+            $this->load->view('cashier-report-delivery-pending-ajax',$data);
+        } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction_with_item_date($filter_item,$start_date, $end_date);
+
+            $this->load->view('cashier-report-delivery-pending-ajax',$data);
         }
     }
 
     public function filter_approved_delivery_transaction(){
-        if (isset($_POST['type'])) {
-          $this->load->model('Delivery_model');
-          $data['ajax_req'] = TRUE;
-          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
+        $start_date = $_POST['sdate'];
+        $end_date = $_POST['edate'];
+        $filter_item = $_POST['type'];
 
-          $this->load->view('admin-report-delivery-approve-ajax',$data);
+        $this->load->model('Delivery_model');
+
+        if(empty($start_date) && empty($end_date) && isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($filter_item);
+
+            $this->load->view('cashier-report-delivery-approve-ajax',$data);
+        } elseif(empty($start_date) || empty($end_date)){
+            echo "<script type='text/javascript'>".
+                "alert('Please fill up both date fields.');".
+                "</script>";
+
+        } elseif(isset($start_date) && isset($end_date) && !isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_ar_delivery_transaction_with_date($start_date, $end_date);
+
+            $this->load->view('cashier-report-delivery-approve-ajax',$data);
+        } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_ar_delivery_transaction_with_item_date($filter_item,$start_date, $end_date);
+
+            $this->load->view('cashier-report-delivery-approve-ajax',$data);
         }
     }
 
     public function filter_rejected_delivery_transaction(){
-        if (isset($_POST['type'])) {
-          $this->load->model('Delivery_model');
-          $data['ajax_req'] = TRUE;
-          $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($_POST['type']);
+        $start_date = $_POST['sdate'];
+        $end_date = $_POST['edate'];
+        $filter_item = $_POST['type'];
 
-          $this->load->view('cashier-report-delivery-reject-ajax',$data);
+        $this->load->model('Delivery_model');
+
+        if(empty($start_date) && empty($end_date) && isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_delivery_transaction($filter_item);
+
+            $this->load->view('cashier-report-delivery-reject-ajax',$data);
+        } elseif(empty($start_date) || empty($end_date)){
+            echo "<script type='text/javascript'>".
+                "alert('Please fill up both date fields.');".
+                "</script>";
+
+        } elseif(isset($start_date) && isset($end_date) && !isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_ar_delivery_transaction_with_date($start_date, $end_date);
+
+            $this->load->view('cashier-report-delivery-reject-ajax',$data);
+        } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){
+            $data['ajax_req'] = TRUE;
+            $data['delivery_transaction'] = $this->Delivery_model->filter_ar_delivery_transaction_with_item_date($filter_item,$start_date, $end_date);
+
+            $this->load->view('cashier-report-delivery-reject-ajax',$data);
         }
+
     }
 
     public function filter_pending_pullout_transaction(){

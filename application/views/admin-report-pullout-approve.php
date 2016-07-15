@@ -18,18 +18,22 @@
 					<div class="overwatch-mec mec-income">
 
 						<div class="table-bank-row">
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<p style="text-align: left;">These are all your pullout history. Today is: <?php echo $today = date('F j, Y');?></p>
 								<div id="print" onClick="printPage();" class="call-links">PRINT PULLOUT RECORDS</div>
 							</div>
 
-							<div class="col-xs-6 table-filter">
-								<?php echo form_open(); ?>
-								<label>Filter Pullout Transaction:</label>
-								<input id="pullout-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
-								<?php
-									echo form_close();
-								?>
+							<div class="col-xs-7 table-filter">
+								<div class="col-xs-12">
+									<label>Filter By Date: </label>
+									<input type="text" id="datepickerstart" class="datetimepicker" placeholder="From" name="filter_start_date">
+									<input type="text" id="datepickerend" class="datetimepicker" placeholder="To" name="filter_end_date">
+									<input type="submit" name="date-filter" value="FILTER" class="call-links" id="date-filter">
+								</div>
+								<div class="col-xs-12">
+									<label>Filter Pullout Transaction:</label>
+									<input id="pullout-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
+								</div>
 							</div>
 						</div>
 
@@ -97,7 +101,7 @@
 		ajax_suggest_code();
 	});
 
-	function ajax_suggest(){
+	/*function ajax_suggest(){
 		$('#pullout-filter-box').on('input', function() {
 			var username = $('#pullout-filter-box').val();
 			$.ajax({
@@ -105,6 +109,48 @@
 				async: false,
 				type: "POST",
 				data: "type="+username,
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').html(data);
+				}
+			})
+		});
+	} */
+
+	function ajax_suggest(){
+
+		$('#date-filter').click(function() {
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();	
+			
+			$.ajax({
+				url: "filter-approved-pullout-transaction",
+				async: false,
+				type: "POST",
+				//data: "type="+username,
+				data: {type:null,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').html(data);
+				}
+			})
+
+		});
+
+		$('#pullout-filter-box').on('input', function() {
+			var username = $('#pullout-filter-box').val();
+
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();
+
+			
+
+			$.ajax({
+				url: "filter-approved-pullout-transaction",
+				async: false,
+				type: "POST",
+				//data: "type="+username,
+				data: {type:username,sdate:start_date,edate:end_date},
 				dataType: "html",
 				success: function(data) {
 					$('#ajax-content-container').html(data);

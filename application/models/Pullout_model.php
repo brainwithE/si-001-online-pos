@@ -17,7 +17,6 @@ class Pullout_model extends CI_model{
 	}
 
 	function filter_pullout_transaction($input) {
-
 		$this->db->order_by("pullout_id", "desc");
 		$this->db->select('*');
 		$this->db->from('pos_pullout');
@@ -35,6 +34,7 @@ class Pullout_model extends CI_model{
 		return $query;
 	}
 
+	//filter for pending pullout
 	function filter_pullout_transaction_with_date($start_date, $end_date){
 		$sql = "select * from pos_pullout
 				join aauth_users on aauth_users.name = pos_pullout.pullout_supplier
@@ -47,12 +47,44 @@ class Pullout_model extends CI_model{
 		return $query;		
 	}
 
+	//filter for pending pullout
 	function filter_pullout_transaction_with_item_date($input, $start_date, $end_date){
 		$sql = "select * from pos_pullout
 				join aauth_users on aauth_users.name = pos_pullout.pullout_supplier
 				join pos_item on pos_item.item_id = pos_pullout.pullout_item
 				WHERE
 				pullout_date >= '".$start_date." 00:00:00' and pullout_date <= '".$end_date." 23:59:59'
+				and (pullout_id like '%".$input."%' or 
+				 	pullout_supplier like '%".$input."%' or
+				 	aauth_users.name like '%".$input."%' or
+				 	aauth_users.letter_code like '%".$input."%' or
+				 	pos_item.item_name like '%".$input."%' or
+				 	pos_item.item_id like '%".$input."%')";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+	//filter for approve and reject pullout
+	function filter_ar_pullout_transaction_with_date($start_date, $end_date){
+		$sql = "select * from pos_pullout
+				join aauth_users on aauth_users.name = pos_pullout.pullout_supplier
+				join pos_item on pos_item.item_id = pos_pullout.pullout_item
+				WHERE
+				pullout_approved_date >= '".$start_date." 00:00:00' and pullout_approved_date <= '".$end_date." 23:59:59'
+				";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+	//filter for approve and reject pullout
+	function filter_ar_pullout_transaction_with_item_date($input, $start_date, $end_date){
+		$sql = "select * from pos_pullout
+				join aauth_users on aauth_users.name = pos_pullout.pullout_supplier
+				join pos_item on pos_item.item_id = pos_pullout.pullout_item
+				WHERE
+				pullout_approved_date >= '".$start_date." 00:00:00' and pullout_approved_date <= '".$end_date." 23:59:59'
 				and (pullout_id like '%".$input."%' or 
 				 	pullout_supplier like '%".$input."%' or
 				 	aauth_users.name like '%".$input."%' or

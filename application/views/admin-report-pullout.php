@@ -23,8 +23,7 @@
 								<div id="print" onClick="printPage();" class="call-links">PRINT PULLOUT RECORDS</div>
 							</div>
 
-							<div class="col-xs-7 table-filter">
-								
+							<div class="col-xs-7 table-filter">								
 								<div class="col-xs-12">
 									<label>Filter By Date: </label>
 									<input type="text" id="datepickerstart" class="datetimepicker" placeholder="From" name="filter_start_date">
@@ -35,9 +34,6 @@
 									<label>Filter Pullout Transaction:</label>
 									<input id="pullout-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
 								</div>
-								
-								
-								
 							</div>
 						</div>
 

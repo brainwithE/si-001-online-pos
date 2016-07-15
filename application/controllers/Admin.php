@@ -62,7 +62,6 @@ class Admin extends CI_Controller{
     	$this->load->model('Sales_model');
 
     	if(empty($start_date) && empty($end_date) && isset($filter_item)){
-    		echo "alpha";
     		$data['ajax_req'] = TRUE;
 		    $sale_report = $this->Sales_model->get_sales_by_tenant($filter_item);
 			$data['sales'] = $sale_report;
@@ -73,17 +72,14 @@ class Admin extends CI_Controller{
     		echo "<script type='text/javascript'>".
                 "alert('Please fill up both date fields.');".
                 "</script>";
-            echo "beta";
-		} elseif(isset($start_date) && isset($end_date) && empty($filter_item)){
-    		echo "charlie";
+		} elseif(isset($start_date) && isset($end_date) && empty($filter_item)){    		
     		$data['ajax_req'] = TRUE;
 		    $sale_report = $this->Sales_model->filter_sales_with_date($start_date, $end_date);
 		    $data['sales'] = $sale_report;
          	$data['qty_sold'] = $sale_report->num_rows();
 
 		    $this->load->view('admin-report-all-sales-ajax',$data);
-        } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){
-        	echo "delta";
+        } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){        	
     		$data['ajax_req'] = TRUE;
 		    $sale_report = $this->Sales_model->filter_sales_with_item_date($filter_item,$start_date, $end_date);
 		    $data['sales'] = $sale_report;

@@ -12,24 +12,19 @@
 		<div class="overwatch-mec mec-income">
 			<div class="row">
 				<!-- FILTER FUNCTION -->
-				<div class="col-xs-8 table-filter">
-					<?php echo form_open('cashier/filter-sales-month'); ?>
-					<label>Filter By Date: </label>
-					<input type="text" id="datepickerstart" class="datepicker" placeholder="From" name="filter_start_date">
-					<input type="text" id="datepickerend" class="datepicker" placeholder="To" name="filter_end_date">
-					<?php
-						echo form_submit(array('name'=>'submit','value'=>'FILTER','class'=>'call-links'));
-						echo form_close();
-					?>
-				</div>
-
-				<div class="col-xs-4 col-md-4 table-filter">
-					<?php echo form_open(); ?>
-					<label>Filter Records:</label>
-					<input id="tenant-name" type="text" class="datepicker" placeholder="Tenant" name="filter_start_date">
-					<?php
-						echo form_close();
-					?>
+					
+				<div class="col-xs-7 table-filter">
+					
+					<div class="col-xs-12">
+						<label>Filter By Date: </label>
+						<input type="text" id="datepickerstart" class="datetimepicker" placeholder="From" name="filter_start_date">
+						<input type="text" id="datepickerend" class="datetimepicker" placeholder="To" name="filter_end_date">
+						<input type="submit" name="date-filter" value="FILTER" class="call-links" id="date-filter">
+					</div>
+					<div class="col-xs-12">
+						<label>Filter Sales Transaction:</label>
+						<input id="tenant-name" type="text" class="datepicker" placeholder="" name="filter_start_date">
+					</div>
 				</div>
 			</div>
 
@@ -143,24 +138,60 @@
 	</div>
 
 	<script type="text/javascript">
-			$(document).ready(function () {
-				ajax_suggest();
-				ajax_suggest_code();
-			});
+	$(document).ready(function () {
+		ajax_suggest();
+		ajax_suggest_code();
+	});
 
-			function ajax_suggest(){
-				$('#tenant-name').on('input', function() {
-					var username = $('#tenant-name').val();
-					$.ajax({
-						url: "suggest-more-cashier-all-sales-data",
-						async: false,
-						type: "POST",
-						data: "type="+username,
-						dataType: "html",
-						success: function(data) {
-							$('#ajax-content-container').html(data);
-						}
-					})
-				});
-			}  
+	/*function ajax_suggest(){
+		$('#tenant-name').on('input', function() {
+			var username = $('#tenant-name').val();
+			$.ajax({
+				url: "suggest-more-cashier-all-sales-data",
+				async: false,
+				type: "POST",
+				data: "type="+username,
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').html(data);
+				}
+			})
+		});
+	}  */
+
+	function ajax_suggest(){
+		$('#date-filter').click(function() {
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();	
+			
+			$.ajax({
+				url: "suggest-more-cashier-all-sales-data",
+				async: false,
+				type: "POST",				
+				data: {type:null,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').html(data);
+				}
+			})
+		});
+
+		$('#tenant-name').on('input', function() {
+			var username = $('#tenant-name').val();
+
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();
+
+			$.ajax({
+				url: "suggest-more-cashier-all-sales-data",
+				async: false,
+				type: "POST",				
+				data: {type:username,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').html(data);
+				}
+			})
+		});
+	} 
 	</script>

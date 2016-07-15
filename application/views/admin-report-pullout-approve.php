@@ -101,22 +101,6 @@
 		ajax_suggest_code();
 	});
 
-	/*function ajax_suggest(){
-		$('#pullout-filter-box').on('input', function() {
-			var username = $('#pullout-filter-box').val();
-			$.ajax({
-				url: "filter-approved-pullout-transaction",
-				async: false,
-				type: "POST",
-				data: "type="+username,
-				dataType: "html",
-				success: function(data) {
-					$('#ajax-content-container').html(data);
-				}
-			})
-		});
-	} */
-
 	function ajax_suggest(){
 
 		$('#date-filter').click(function() {

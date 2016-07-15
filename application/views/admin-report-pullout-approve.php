@@ -102,7 +102,6 @@
 	});
 
 	function ajax_suggest(){
-
 		$('#date-filter').click(function() {
 			var start_date = $('#datepickerstart').val();
 			var end_date = $('#datepickerend').val();	
@@ -133,7 +132,6 @@
 				url: "filter-approved-pullout-transaction",
 				async: false,
 				type: "POST",
-				//data: "type="+username,
 				data: {type:username,sdate:start_date,edate:end_date},
 				dataType: "html",
 				success: function(data) {

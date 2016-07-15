@@ -107,8 +107,7 @@
 			$.ajax({
 				url: "filter-pending-pullout-transaction",
 				async: false,
-				type: "POST",
-				//data: "type="+username,
+				type: "POST",				
 				data: {type:null,sdate:start_date,edate:end_date},
 				dataType: "html",
 				success: function(data) {

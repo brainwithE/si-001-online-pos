@@ -5,7 +5,7 @@ class Pullout_model extends CI_model{
 
 	//admin
 	function get_pullout(){
-		$this->db->order_by("pullout_id", "desc");
+		$this->db->order_by("pullout_approved_date", "desc");
 		$this->db->select('pullout_id, pullout_item, pullout_quantity,pullout_date, pullout_approved_date, pullout_status, aauth_users.name, pos_item.item_name, pos_item.item_id, letter_code');
 		$this->db->from('pos_pullout');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_pullout.pullout_supplier');
@@ -17,7 +17,7 @@ class Pullout_model extends CI_model{
 	}
 
 	function filter_pullout_transaction($input) {
-		$this->db->order_by("pullout_id", "desc");
+		$this->db->order_by("pullout_date", "desc");
 		$this->db->select('*');
 		$this->db->from('pos_pullout');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_pullout.pullout_supplier');
@@ -41,7 +41,7 @@ class Pullout_model extends CI_model{
 				join pos_item on pos_item.item_id = pos_pullout.pullout_item
 				WHERE
 				pullout_date >= '".$start_date." 00:00:00' and pullout_date <= '".$end_date." 23:59:59'
-				";
+				order by pullout_date desc";
 
 		$query = $this->db->query($sql);
 		return $query;		
@@ -59,7 +59,8 @@ class Pullout_model extends CI_model{
 				 	aauth_users.name like '%".$input."%' or
 				 	aauth_users.letter_code like '%".$input."%' or
 				 	pos_item.item_name like '%".$input."%' or
-				 	pos_item.item_id like '%".$input."%')";
+				 	pos_item.item_id like '%".$input."%')
+				order by pullout_date desc";
 
 		$query = $this->db->query($sql);
 		return $query;		
@@ -72,7 +73,7 @@ class Pullout_model extends CI_model{
 				join pos_item on pos_item.item_id = pos_pullout.pullout_item
 				WHERE
 				pullout_approved_date >= '".$start_date." 00:00:00' and pullout_approved_date <= '".$end_date." 23:59:59'
-				";
+				order by pullout_approved_date desc";
 
 		$query = $this->db->query($sql);
 		return $query;		
@@ -90,7 +91,8 @@ class Pullout_model extends CI_model{
 				 	aauth_users.name like '%".$input."%' or
 				 	aauth_users.letter_code like '%".$input."%' or
 				 	pos_item.item_name like '%".$input."%' or
-				 	pos_item.item_id like '%".$input."%')";
+				 	pos_item.item_id like '%".$input."%')
+				order by pullout_approved_date desc";
 
 		$query = $this->db->query($sql);
 		return $query;		

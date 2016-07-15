@@ -35,6 +35,37 @@ class Pullout_model extends CI_model{
 		return $query;
 	}
 
+	function filter_pullout_transaction_with_date($start_date, $end_date){
+		$sql = "select * from pos_pullout
+				join aauth_users on aauth_users.name = pos_pullout.pullout_supplier
+				join pos_item on pos_item.item_id = pos_pullout.pullout_item
+				WHERE
+				pullout_date >= '".$start_date." 00:00:00' and pullout_date <= '".$end_date." 23:59:59'
+				";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+	function filter_pullout_transaction_with_item_date($input, $start_date, $end_date){
+		$sql = "select * from pos_pullout
+				join aauth_users on aauth_users.name = pos_pullout.pullout_supplier
+				join pos_item on pos_item.item_id = pos_pullout.pullout_item
+				WHERE
+				pullout_date >= '".$start_date." 00:00:00' and pullout_date <= '".$end_date." 23:59:59'
+				and (pullout_id like '%".$input."%' or 
+				 	pullout_supplier like '%".$input."%' or
+				 	aauth_users.name like '%".$input."%' or
+				 	aauth_users.letter_code like '%".$input."%' or
+				 	pos_item.item_name like '%".$input."%' or
+				 	pos_item.item_id like '%".$input."%')";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+
+
 	//tenant
 	function get_pullout_supplier($supplier_id){
 		$this->db->order_by("pullout_approved_date", "desc");

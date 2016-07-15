@@ -183,12 +183,34 @@ class Admin extends CI_Controller{
     }
 
     public function filter_pending_pullout_transaction(){
-        if (isset($_POST['type'])) {
-          $this->load->model('Pullout_model');
-          $data['ajax_req'] = TRUE;
-          $data['pullout'] = $this->Pullout_model->filter_pullout_transaction($_POST['type']);
+    	$start_date = $_POST['sdate'];
+    	$end_date = $_POST['edate'];
+    	$filter_item = $_POST['type'];
 
-          $this->load->view('admin-report-pullout-pending-ajax',$data);
+    	echo $start_date." ".$end_date;
+
+    	$this->load->model('Pullout_model');
+
+    	if(empty($start_date) || empty($end_date)){
+    		echo "<script type='text/javascript'>".
+                "alert('Please fill up both date fields.');".
+                "</script>";
+
+    	} elseif(empty($start_date) && empty($end_date) && isset($filter_item)){
+    		$data['ajax_req'] = TRUE;
+		    $data['pullout'] = $this->Pullout_model->filter_pullout_transaction($filter_item);
+
+		    $this->load->view('admin-report-pullout-pending-ajax',$data);
+        } elseif(isset($start_date) && isset($end_date) && !empty($filter_item)){
+    		$data['ajax_req'] = TRUE;
+		    $data['pullout'] = $this->Pullout_model->filter_pullout_transaction_with_date($start_date, $end_date);
+
+		    $this->load->view('admin-report-pullout-pending-ajax',$data);
+        } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){
+    		$data['ajax_req'] = TRUE;
+		    $data['pullout'] = $this->Pullout_model->filter_pullout_transaction_with_item_date($filter_item,$start_date, $end_date);
+
+		    $this->load->view('admin-report-pullout-pending-ajax',$data);
         }
     }
 

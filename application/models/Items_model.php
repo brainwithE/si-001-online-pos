@@ -23,10 +23,20 @@ class Items_model extends CI_model{
 		$this->db->or_like('aauth_users.name',$input,'=');
 		$this->db->or_like('aauth_users.letter_code',$input,'=');
 
-
 		$query = $this->db->get();
-
 		return $query;
+	}
+
+	function filter_inventory_with_date($start_date, $end_date){
+		$sql = "select * from pos_item
+				join aauth_users on aauth_users.name = pos_pullout.pullout_supplier
+				join pos_item on pos_item.item_id = pos_pullout.pullout_item
+				WHERE
+				pullout_date >= '".$start_date." 00:00:00' and pullout_date <= '".$end_date." 23:59:59'
+				order by item_id desc";
+
+		$query = $this->db->query($sql);
+		return $query;		
 	}
 
 	function get_specific_item($item_id){		

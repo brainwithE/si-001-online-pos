@@ -62,18 +62,22 @@ function printPage(){
 					
 
 						<div class="table-bank-row">
-							<div class="col-xs-6">
+							<div class="col-xs-5">
 								<p style="text-align: left;">These are all your inventory. Today is: <?php echo $today = date('F j, Y');?></p>
 								<div id="print" onClick="printPage();" class="call-links">PRINT INVENTORY RECORDS</div>
 							</div>
 
-							<div class="col-xs-6 table-filter">
-								<?php echo form_open(); ?>
-								<label>Filter Inventory:</label>
-								<input id="inventory-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
-								<?php
-									echo form_close();
-								?>
+							<div class="col-xs-7 table-filter">
+								<div class="col-xs-12">
+									<label>Filter By Date: </label>
+									<input type="text" id="datepickerstart" class="datetimepicker" placeholder="From" name="filter_start_date">
+									<input type="text" id="datepickerend" class="datetimepicker" placeholder="To" name="filter_end_date">
+									<input type="submit" name="date-filter" value="FILTER" class="call-links" id="date-filter">
+								</div>
+								<div class="col-xs-12">
+									<label>Filter Inventory:</label>
+									<input id="inventory-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="">
+								</div>
 							</div>
 						</div>
 					
@@ -112,7 +116,7 @@ function printPage(){
 		ajax_suggest_code();
 	});
 
-	function ajax_suggest(){
+	/*function ajax_suggest(){
 
 		$('#inventory-filter-box').keydown(function(e) {
 	        var code = (e.keyCode ? e.keyCode : e.which);
@@ -136,5 +140,47 @@ function printPage(){
 	        }
 		});
 
-	}  
+	}  */
+
+	function ajax_suggest(){
+		$('#date-filter').click(function() {
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();	
+			
+			$.ajax({
+				url: "filter-inventory-item",
+				async: false,
+				type: "POST",				
+				data: {type:null,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').html(data);
+				}
+			})
+		});
+
+		$('#inventory-filter-box').keydown(function(e) {
+	        var code = (e.keyCode ? e.keyCode : e.which);
+	        var username = $('#inventory-filter-box').val();
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();
+
+			if(code==13) {// Enter key hit
+
+			$.ajax({
+				url: "filter-inventory-item",
+				async: false,
+				type: "POST",				
+				data: {type:username,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').empty();
+					$('#ajax-content-container').prepend(data);
+				}
+			})
+			
+			return false;	
+	        }
+		});
+	} 
 	</script>

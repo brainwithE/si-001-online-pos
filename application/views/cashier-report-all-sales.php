@@ -143,22 +143,6 @@
 		ajax_suggest_code();
 	});
 
-	/*function ajax_suggest(){
-		$('#tenant-name').on('input', function() {
-			var username = $('#tenant-name').val();
-			$.ajax({
-				url: "suggest-more-cashier-all-sales-data",
-				async: false,
-				type: "POST",
-				data: "type="+username,
-				dataType: "html",
-				success: function(data) {
-					$('#ajax-content-container').html(data);
-				}
-			})
-		});
-	}  */
-
 	function ajax_suggest(){
 		$('#date-filter').click(function() {
 			var start_date = $('#datepickerstart').val();

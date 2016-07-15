@@ -27,10 +27,6 @@
 							<input id="tenant-name" type="text" class="datepicker" placeholder="" name="filter_start_date">
 						</div>
 					</div>
-					
-						
-					
-					
 				</div>
 
 			<div id="ajax-content-container">

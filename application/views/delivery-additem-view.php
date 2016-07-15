@@ -199,6 +199,7 @@
 				$("#submit").click(function (){
 					$.post('add-delivery-transaction',{data:ItemArray,qty:totalQuantity},function(html){
 						alert('requested delivery successful!');
+
 					});
 
 					window.location.href = "<?php echo site_url('tenant/report-delivery'); ?>";
@@ -209,24 +210,24 @@
 		<a id="submit" href="#" class="call-links">COMPLETE DELIVERY REQUEST</a>
 	</div>
 
-							<div class="modal fade" id="myModal" role="dialog">
-					                <div class="modal-dialog">
-					                    <!-- Modal content-->
-					                    <div class="modal-content item-modal">					                    
-					                    	<div class="edit-item">
-												<div class="head-contain">
-													<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</h4>
-												</div>
-												<div class="modal-body modal-project">
-													EDIT QTY FOR ITEM: <span id="item-check"></span>
-													<input type="text" name="name" id="qty" placeholder="Enter Qty" />
+	<div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content item-modal">					                    
+                	<div class="edit-item">
+						<div class="head-contain">
+							<h4><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Edit Item</h4>
+						</div>
+						<div class="modal-body modal-project">
+							EDIT QTY FOR ITEM: <span id="item-check"></span>
+							<input type="text" name="name" id="qty" placeholder="Enter Qty" />
 
-													<input type="submit" class="btn submit-button" onClick="confirmQty();" value="Confirm" />
-												</div>
-											</div>
-						                </div>
-					                </div>
-					        </div>
+							<input type="submit" class="btn submit-button" onClick="confirmQty();" value="Confirm" />
+						</div>
+					</div>
+                </div>
+            </div>
+    </div>
 
 
 </div>

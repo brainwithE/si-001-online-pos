@@ -163,7 +163,7 @@ class Tenant extends CI_Controller{
         $supplier = $this->session_name(); 
 
         $items = $this->input->post('data');
-        $quant = $this->input->post('qty');
+         $quant = $this->input->post('qty');
 
         $this->load->model('Delivery_model');
         $last_id = $this->Delivery_model->add_delivery_transaction($supplier, $quant); 
@@ -178,7 +178,7 @@ class Tenant extends CI_Controller{
             $data[$key]['delivery_dt'] = $last_id;
         }
 
-        /*$this->Delivery_model->add_delivery_transaction($data);  */
+        //$this->Delivery_model->add_delivery_transaction($data);  
         $this->Delivery_model->add_delivery_items($data);
         redirect('report-delivery');
     }
@@ -302,9 +302,11 @@ class Tenant extends CI_Controller{
     }
 
     function deliver_more_data() {
+        $tenant_code = $this->session_code();
+
         if (isset($_POST['type'])) {
           $this->load->model('nodes_m');
-          $data['node_exists'] = $this->nodes_m->get_node_exists($_POST['type']);
+          $data['node_exists'] = $this->nodes_m->get_node_exists_tenant($_POST['type'],$tenant_code);
           
             if($data['node_exists']){
                 $data['ajax_req'] = TRUE;

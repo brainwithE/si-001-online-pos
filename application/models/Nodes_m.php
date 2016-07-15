@@ -42,6 +42,8 @@ class Nodes_m extends CI_Model {
     $this->db->select('letter_code, item_id,item_name,item_category,item_price,item_supplier');
     $this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
     $this->db->where('item_id',$id,'=');
+    
+
     $this->db->order_by('item_id','DESC');
     $query = $this->db->get($this->table);
     
@@ -49,10 +51,28 @@ class Nodes_m extends CI_Model {
   }
 
   // numeric code
+
   function get_node_exists($id){
     $this->db->select('item_id');
     $this->db->where('item_id =',$id);
     $this->db->order_by('item_id','DESC');
+    
+    $query = $this->db->get($this->table);
+    
+    if($query->num_rows() == 1) {
+      return $query->row();
+    } else {
+        return false;
+    }
+  }
+
+  function get_node_exists_tenant($id,$tenant_code){
+    $this->db->select('item_id');
+    $this->db->where('item_id =',$id);
+    $this->db->where('letter_code',$tenant_code,'=');
+    $this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
+    $this->db->order_by('item_id','DESC');
+
     $query = $this->db->get($this->table);
     
     if($query->num_rows() == 1) {

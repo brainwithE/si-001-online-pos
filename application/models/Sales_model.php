@@ -5,6 +5,7 @@ class Sales_model extends CI_model{
 		$this->db->order_by("sales_id", "desc");
 		$this->db->select('*');
 		$this->db->from('pos_sales');
+		$this->db->where('sales_status =', 0); // to remove archived sales items
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 
@@ -21,6 +22,8 @@ class Sales_model extends CI_model{
 		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status,letter_code');
 		$this->db->from('pos_sales');
 		$this->db->where('sales_date >=', $today);
+		$this->db->where('sales_status =', 0); // to remove archived sales items
+
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 
@@ -33,6 +36,7 @@ class Sales_model extends CI_model{
 	    $this->db->order_by("sales_id", "desc");
 		$this->db->select('sales_id,pos_item.item_id, pos_item.item_name, pos_item.item_supplier, pos_item.item_category, sales_quantity,sales_total, sales_status, sales_discount, sales_date, sales_supplier, sales_st, sales_status, letter_code');
 		$this->db->from('pos_sales');
+		$this->db->where('sales_status =', 0); // to remove archived sales items
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
 		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
 

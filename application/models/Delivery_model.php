@@ -115,6 +115,33 @@ class Delivery_model extends CI_model{
 		return $query;		
 	}
 
+	//filter for approve and reject delivery
+	function filter_ar_delivery_transaction_with_date($start_date, $end_date){
+		$sql = "select * from pos_delivery_transaction
+				join aauth_users on aauth_users.name = pos_delivery_transaction.dt_supplier
+				WHERE
+				dt_approve_date >= '".$start_date." 00:00:00' and dt_approve_date <= '".$end_date." 23:59:59'
+				order by dt_approve_date desc";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+	//filter for approve and reject delivery
+	function filter_ar_delivery_transaction_with_item_date($input, $start_date, $end_date){
+		$sql = "select * from pos_delivery_transaction
+				join aauth_users on aauth_users.name = pos_delivery_transaction.dt_supplier
+				WHERE
+				dt_approve_date >= '".$start_date." 00:00:00' and dt_approve_date <= '".$end_date." 23:59:59'
+				and (dt_id like '%".$input."%' or 				 	
+				 	aauth_users.name like '%".$input."%' or
+				 	aauth_users.letter_code like '%".$input."%')
+				order by dt_approve_date desc";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
 
 	function remove_delivery_item($delivery){
 		$sql = "DELETE FROM pos_delivery WHERE delivery_id ='".$delivery."'";

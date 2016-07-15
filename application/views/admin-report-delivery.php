@@ -32,7 +32,7 @@
 									<input type="submit" name="date-filter" value="FILTER" class="call-links" id="date-filter">
 								</div>
 								<div class="col-xs-12">
-									<label>Filter Pullout Transaction:</label>
+									<label>Filter Delivery Transaction:</label>
 									<input id="delivery-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="filter_start_date">
 								</div>
 							</div>
@@ -95,24 +95,8 @@
 		ajax_suggest_code();
 	});
 
-	/*function ajax_suggest(){
-		$('#delivery-filter-box').on('input', function() {
-			var username = $('#delivery-filter-box').val();
-			$.ajax({
-				url: "filter-pending-delivery-transaction",
-				async: false,
-				type: "POST",
-				data: "type="+username,
-				dataType: "html",
-				success: function(data) {
-					$('#ajax-content-container').html(data);
-				}
-			})
-		});
-	}  */
 
 	function ajax_suggest(){
-
 		$('#date-filter').click(function() {
 			var start_date = $('#datepickerstart').val();
 			var end_date = $('#datepickerend').val();	
@@ -127,7 +111,6 @@
 					$('#ajax-content-container').html(data);
 				}
 			})
-
 		});
 
 		$('#delivery-filter-box').on('input', function() {

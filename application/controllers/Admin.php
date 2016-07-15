@@ -55,13 +55,41 @@ class Admin extends CI_Controller{
     }
 
     public function suggest_more_admin_all_sales_data(){
-        if (isset($_POST['type'])) {
-          $this->load->model('Sales_model');
-          $data['ajax_req'] = TRUE;
-          $sale_report = $this->Sales_model->get_sales_by_tenant($_POST['type']);
-          $data['sales'] = $sale_report;
-          $data['qty_sold'] = $sale_report->num_rows();
-          $this->load->view('admin-report-all-sales-ajax',$data);
+        $start_date = $_POST['sdate'];
+    	$end_date = $_POST['edate'];
+    	$filter_item = $_POST['type'];
+
+    	$this->load->model('Sales_model');
+
+    	if(empty($start_date) && empty($end_date) && isset($filter_item)){
+    		echo "alpha";
+    		$data['ajax_req'] = TRUE;
+		    $sale_report = $this->Sales_model->get_sales_by_tenant($filter_item);
+			$data['sales'] = $sale_report;
+         	$data['qty_sold'] = $sale_report->num_rows();
+
+		    $this->load->view('admin-report-all-sales-ajax',$data);
+        } elseif(empty($start_date) || empty($end_date)){
+    		echo "<script type='text/javascript'>".
+                "alert('Please fill up both date fields.');".
+                "</script>";
+            echo "beta";
+		} elseif(isset($start_date) && isset($end_date) && empty($filter_item)){
+    		echo "charlie";
+    		$data['ajax_req'] = TRUE;
+		    $sale_report = $this->Sales_model->filter_sales_with_date($start_date, $end_date);
+		    $data['sales'] = $sale_report;
+         	$data['qty_sold'] = $sale_report->num_rows();
+
+		    $this->load->view('admin-report-all-sales-ajax',$data);
+        } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){
+        	echo "delta";
+    		$data['ajax_req'] = TRUE;
+		    $sale_report = $this->Sales_model->filter_sales_with_item_date($filter_item,$start_date, $end_date);
+		    $data['sales'] = $sale_report;
+         	$data['qty_sold'] = $sale_report->num_rows();
+
+		    $this->load->view('admin-report-all-sales-ajax',$data);
         }
     }
 

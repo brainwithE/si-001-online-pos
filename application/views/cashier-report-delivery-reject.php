@@ -92,22 +92,6 @@
 		ajax_suggest_code();
 	});
 
-	/*function ajax_suggest(){
-		$('#delivery-filter-box').on('input', function() {
-			var username = $('#delivery-filter-box').val();
-			$.ajax({
-				url: "filter-rejected-delivery-transaction",
-				async: false,
-				type: "POST",
-				data: "type="+username,
-				dataType: "html",
-				success: function(data) {
-					$('#ajax-content-container').html(data);
-				}
-			})
-		});
-	}  */
-
 	function ajax_suggest(){
 		$('#date-filter').click(function() {
 			var start_date = $('#datepickerstart').val();

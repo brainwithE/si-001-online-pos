@@ -72,6 +72,7 @@ class Sales_model extends CI_model{
 		$this->db->from('pos_sales');
 		$this->db->like('pos_item.item_supplier',$input,'=');
 		$this->db->or_like('pos_item.item_id', $input, '=');
+		$this->db->or_like('pos_item.item_category', $input, '=');
 		$this->db->or_like('letter_code', $input, '=');
 		$this->db->or_like('pos_item.item_name', $input, '=');
 		$this->db->join('pos_item', 'pos_item.item_id = pos_sales.sales_item');
@@ -81,6 +82,37 @@ class Sales_model extends CI_model{
 
 		return $query;
 	}
+	
+	function filter_sales_with_date($start_date, $end_date){
+		$sql = "select * from pos_sales
+				join pos_item on pos_item.item_id = pos_sales.sales_item
+				left join aauth_users on aauth_users.name = pos_item.item_supplier
+				WHERE
+				sales_date >= '".$start_date." 00:00:00' and sales_date <= '".$end_date." 23:59:59'
+				order by sales_id desc";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+	function filter_sales_with_item_date($input, $start_date, $end_date){
+		$sql = "select * from pos_sales
+				join pos_item on pos_item.item_id = pos_sales.sales_item
+				left join aauth_users on aauth_users.name = pos_item.item_supplier
+				WHERE
+				sales_date >= '".$start_date." 00:00:00' and sales_date <= '".$end_date." 23:59:59'
+				and (pos_item.item_supplier like '%".$input."%' or
+				 	aauth_users.letter_code like '%".$input."%' or
+				 	pos_item.item_name like '%".$input."%' or
+				 	pos_item.item_category like '%".$input."%' or 
+				 	pos_item.item_id like '%".$input."%')
+				order by sales_id desc";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+
 
 	function get_sales_by_fdate_tenant($input,$date_start,$date_end){	
 		date_default_timezone_set('Asia/Manila');

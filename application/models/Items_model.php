@@ -12,20 +12,6 @@ class Items_model extends CI_model{
 		return $query;
 	}
 
-	/*function filter_inventory($input) {
-		$this->db->order_by("item_id", "desc");
-		$this->db->select('*');
-		$this->db->from('pos_item');
-		$this->db->join('aauth_users', 'aauth_users.name = pos_item.item_supplier', 'left');
-		$this->db->like('item_id',$input,'=');
-		$this->db->or_like('item_category',$input,'=');
-		$this->db->or_like('aauth_users.name',$input,'=');
-		$this->db->or_like('aauth_users.letter_code',$input,'=');
-
-		$query = $this->db->get();
-		return $query;
-	}*/
-
 	function filter_inventory($input) {
 		$sql = "SELECT i.item_id, i.item_name, i.item_stock, i.item_price, i.item_category, i.item_supplier, u.letter_code, p.pullout_count, s.sales_count, d.delivery_count
 				FROM POS_ITEM i 
@@ -55,6 +41,82 @@ class Items_model extends CI_model{
 			letter_code like '%".$input."%' or
 			u.name like '%".$input."%'
 			ORDER BY item_id desc";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+	function filter_inventory_with_date($start_date, $end_date) {
+		$sql = "SELECT distinct i.item_id, i.item_name, i.item_stock, i.item_price, i.item_category, i.item_supplier, u.letter_code, p.pullout_count, s.sales_count, d.delivery_count
+				FROM POS_ITEM i 
+				LEFT JOIN (
+					SELECT pullout_item, sum(pullout_quantity) as pullout_count
+					FROM pos_pullout
+					WHERE pullout_status=1
+					GROUP BY pullout_item 
+				) p ON p.pullout_item = i.item_id
+				LEFT JOIN (
+					SELECT sales_item, count(sales_id) as sales_count
+					FROM pos_sales
+					GROUP BY sales_item
+				) s ON s.sales_item = i.item_id
+				LEFT JOIN(
+					SELECT delivery_item, sum(delivery_quantity) as delivery_count
+					FROM pos_delivery
+					LEFT JOIN pos_delivery_transaction on pos_delivery_transaction.dt_id = pos_delivery.delivery_dt
+					where dt_status=1
+					GROUP BY delivery_item
+				) d	ON d.delivery_item = i.item_id
+
+			LEFT JOIN aauth_users u ON u.name = i.item_supplier
+			LEFT JOIN pos_pullout p2 on p2.pullout_item = i.item_id
+			LEFT JOIN pos_sales s2 on s2.sales_item = i.item_id
+			LEFT JOIN pos_delivery d2 on d2.delivery_item=i.item_id
+			LEFT JOIN pos_delivery_transaction dt2 on dt2.dt_id = d2.delivery_dt
+
+			WHERE
+			(pullout_approved_date between '".$start_date." 00:00:00' and '".$end_date." 23:59:59') or
+			(sales_Date between '".$start_date." 00:00:00' and '".$end_date." 23:59:59') or
+			(dt_approve_date between '".$start_date." 00:00:00' and '".$end_date." 23:59:59')     
+			ORDER BY item_id desc";
+
+		$query = $this->db->query($sql);
+		return $query;		
+	}
+
+	function filter_inventory_with_item_date($input, $start_date, $end_date) {
+		$sql = "SELECT distinct i.item_id, i.item_name, i.item_stock, i.item_price, i.item_category, i.item_supplier, u.letter_code, p.pullout_count, s.sales_count, d.delivery_count
+		FROM POS_ITEM i 
+		LEFT JOIN (SELECT pullout_item, sum(pullout_quantity) as pullout_count FROM pos_pullout
+		WHERE pullout_status='1'
+		GROUP BY pullout_item     	
+		) p ON p.pullout_item =  i.item_id
+		LEFT JOIN (SELECT sales_item, count(sales_id) as sales_count FROM pos_sales
+		 GROUP BY sales_item
+		) s ON s.sales_item = i.item_id
+		LEFT JOIN(SELECT delivery_item, sum(delivery_quantity) as delivery_count FROM pos_delivery
+		LEFT JOIN pos_delivery_transaction on pos_delivery_transaction.dt_id = pos_delivery.delivery_dt
+		 where dt_status=1
+		 GROUP BY delivery_item
+		) d ON d.delivery_item = i.item_id
+
+		LEFT JOIN aauth_users u ON u.name = i.item_supplier
+		LEFT JOIN pos_pullout p2 on p2.pullout_item = i.item_id
+		LEFT JOIN pos_sales s2 on s2.sales_item = i.item_id
+		LEFT JOIN pos_delivery d2 on d2.delivery_item=i.item_id
+		LEFT JOIN pos_delivery_transaction dt2 on dt2.dt_id = d2.delivery_dt
+
+		WHERE (p2.pullout_approved_date between '".$start_date." 00:00:00' and '".$end_date." 23:59:59' or
+		s2.sales_Date between '".$start_date." 00:00:00' and '".$end_date." 23:59:59' or
+		dt2.dt_approve_date between '".$start_date." 00:00:00' and '".$end_date." 23:59:59') AND 
+
+		(item_id like '%".$input."%' or
+		item_name like '%".$input."%' or
+		item_category like '%".$input."%' or
+		letter_code like '%".$input."%' or
+		item_category like '%".$input."%' )
+
+		order by item_id desc";
 
 		$query = $this->db->query($sql);
 		return $query;		

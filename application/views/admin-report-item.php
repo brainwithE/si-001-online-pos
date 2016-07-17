@@ -143,7 +143,7 @@ function printPage(){
 	}  */
 
 	function ajax_suggest(){
-		/*$('#date-filter').click(function() {
+		$('#date-filter').click(function() {
 			var start_date = $('#datepickerstart').val();
 			var end_date = $('#datepickerend').val();	
 			
@@ -157,7 +157,7 @@ function printPage(){
 					$('#ajax-content-container').html(data);
 				}
 			})
-		});*/
+		});
 
 		$('#inventory-filter-box').keydown(function(e) {
 	        var code = (e.keyCode ? e.keyCode : e.which);

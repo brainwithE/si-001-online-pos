@@ -138,39 +138,7 @@ class Admin extends CI_Controller{
         $this->load->view('footer');
     }
 
-    /*public function filter_inventory_item(){
-    	$start_date = $_POST['sdate'];
-    	$end_date = $_POST['edate'];
-    	$filter_item = $_POST['type'];
-
-    	$this->load->model('Items_model');        
-    	$data['category_list'] = $this->Items_model->get_item_category();   
-
-
-    	if(empty($start_date) && empty($end_date) && isset($filter_item)){
-    		echo "alpha";
-
-    		$data['ajax_req'] = TRUE;
-    		$item_list = $this->Items_model->filter_inventory($filter_item);
-    		$data['item'] = $this->get_inventory_count($item_list);
-
-			$this->load->view('admin-report-item-ajax',$data);
-
-    	} elseif(empty($start_date) || empty($end_date)){
-    		echo "beta";
-    		echo "<script type='text/javascript'>".
-                "alert('Please fill up both date fields.');".
-                "</script>";
-    	} elseif(isset($start_date) && isset($end_date) && empty($filter_item)){
-    		echo "charlie";
-    		$data['ajax_req'] = TRUE;
-		    $item_list = $this->Items_model->filter_inventory($filter_item);
-		    
-			$data['item'] = $this->get_inventory_count_with_date($item_list, $start_date, $end_date);
-    		
-			$this->load->view('admin-report-item-ajax',$data);
-        }
-    }*/
+    
 
     public function filter_inventory_item(){
     	$start_date = $_POST['sdate'];
@@ -180,83 +148,29 @@ class Admin extends CI_Controller{
     	$this->load->model('Items_model');        
     	$data['category_list'] = $this->Items_model->get_item_category();   
 
-
     	if(empty($start_date) && empty($end_date) && isset($filter_item)){
-    		echo "alpha";
-
     		$data['ajax_req'] = TRUE;
     		$data['item'] = $this->Items_model->filter_inventory($filter_item);    		 
 
 			$this->load->view('admin-report-item-ajax',$data);
-
-    	} /*elseif(empty($start_date) || empty($end_date)){
-    		echo "beta";
+    	} elseif(empty($start_date) || empty($end_date)){
     		echo "<script type='text/javascript'>".
                 "alert('Please fill up both date fields.');".
                 "</script>";
-    	} /*elseif(isset($start_date) && isset($end_date) && empty($filter_item)){
-    		echo "charlie";
+    	} elseif(isset($start_date) && isset($end_date) && empty($filter_item)){
     		$data['ajax_req'] = TRUE;
-		    $item_list = $this->Items_model->filter_inventory($filter_item);
-		    
-			$data['item'] = $this->get_inventory_count_with_date($item_list, $start_date, $end_date);
-    		
+    		$data['item'] = $this->Items_model->filter_inventory_with_date($start_date, $end_date);    		 
+
 			$this->load->view('admin-report-item-ajax',$data);
-        }*/
-    }
+        } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){
+        	$data['ajax_req'] = TRUE;
+    		$data['item'] = $this->Items_model->filter_inventory_with_item_date($filter_item, $start_date, $end_date);    		 
 
-    public function get_inventory_count($item_list){
-    	$this->load->model('Pullout_model');
-        $this->load->model('Sales_model');
-        $this->load->model('Delivery_model');
-
-    	if($item_list->num_rows() > 0){
-            foreach($item_list->result_array() as $row){
-                $inventory_details[] = $row;
-            }
-            if($inventory_details!=null){
-                for($x=0 ; $x < sizeof($inventory_details) ; $x++) {
-                    $id = $inventory_details[$x]['item_id'];
-                    $inventory_details[$x]['pullout_count'] = $this->Pullout_model->pullout_count($id);
-                    $inventory_details[$x]['delivery_count'] = $this->Delivery_model->delivery_count($id);
-                    $inventory_details[$x]['sales_count'] = $this->Sales_model->sold_item_count($id);
-                }
-            } 
-            return $inventory_details;
-        } else{
-            return null;
+			$this->load->view('admin-report-item-ajax',$data);
         }
     }
 
     
-    public function get_inventory_count_with_date($item_list, $start_date, $end_date){
-
-    	$this->load->model('Pullout_model');
-        $this->load->model('Sales_model');
-        $this->load->model('Delivery_model');
-
-    	if($item_list->num_rows() > 0){
-            foreach($item_list->result_array() as $row){
-                $inventory_details[] = $row;
-
-            }
-
-            if($inventory_details!=null){
-                for($x=0 ; $x < sizeof($inventory_details) ; $x++) {
-                    $id = $inventory_details[$x]['item_id'];
-                    $inventory_details[$x]['pullout_count'] = $this->Pullout_model->pullout_count_date($id, $start_date, $end_date);
-                    $inventory_details[$x]['delivery_count'] = $this->Delivery_model->delivery_count_date($id, $start_date, $end_date);
-                    $inventory_details[$x]['sales_count'] = $this->Sales_model->sold_item_count_date($id, $start_date, $end_date);
-                }
-            }
-            return $inventory_details;
-        } else{
-            return null;
-        }
-    }
-
-
-
     public function filter_pending_delivery_transaction(){
         $start_date = $_POST['sdate'];
     	$end_date = $_POST['edate'];

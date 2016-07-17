@@ -61,8 +61,8 @@ function itemBarcode(id,price,supp){
 	
 	<?php
 		
-		for($x=0 ; $x < sizeof($item) ; $x++) {
-			$supplier_code = $item[$x]['letter_code'];
+		/*for($x=0 ; $x < sizeof($item) ; $x++) {
+			/*$supplier_code = $item[$x]['letter_code'];
 			$item_code = $item[$x]['item_id'];
 			$item_supplier = $item[$x]['item_supplier'];
 			$item_name = $item[$x]['item_name'];									
@@ -72,7 +72,29 @@ function itemBarcode(id,price,supp){
 
 			$pullout_count = $item[$x]['pullout_count'];
 			$delivery_count = $item[$x]['delivery_count'];
-			$sales_count = $item[$x]['sales_count'];
+			$sales_count = $item[$x]['sales_count'];*/
+		foreach($item->result_array() as $row){
+			$supplier_code = $row['letter_code'];
+			$item_code = $row['item_id'];
+			$item_supplier = $row['item_supplier'];
+			$item_name = $row['item_name'];									
+			$item_price = number_format($row['item_price'],2,'.',',');
+			$item_stock = $row['item_stock'];
+			$item_category = $row['item_category'];
+
+			$pullout_count = $row['pullout_count'];
+			$delivery_count = $row['delivery_count'];
+			$sales_count = $row['sales_count'];
+
+			if ($delivery_count == null ){
+				$delivery_count = 0;
+			}
+			if($pullout_count == null) {
+				$pullout_count = 0;
+			}
+			if($sales_count == null) {
+				$sales_count = 0;
+			}
 			
 	?>
 		<div class="row table-entries table-entries-income table-entries-income-int padding-alter" onClick="itemBarcode('<?php echo $item_code; ?>','<?php echo $item_price; ?>','<?php echo $supplier_code; ?>');" data-toggle="modal" <?php echo "data-target=#Item".$item_code?> >

@@ -12,8 +12,7 @@ class Items_model extends CI_model{
 		return $query;
 	}
 
-	function filter_inventory($input) {
-
+	/*function filter_inventory($input) {
 		$this->db->order_by("item_id", "desc");
 		$this->db->select('*');
 		$this->db->from('pos_item');
@@ -25,15 +24,37 @@ class Items_model extends CI_model{
 
 		$query = $this->db->get();
 		return $query;
-	}
+	}*/
 
-	function filter_inventory_with_date($start_date, $end_date){
-		$sql = "select * from pos_item
-				join aauth_users on aauth_users.name = pos_pullout.pullout_supplier
-				join pos_item on pos_item.item_id = pos_pullout.pullout_item
-				WHERE
-				pullout_date >= '".$start_date." 00:00:00' and pullout_date <= '".$end_date." 23:59:59'
-				order by item_id desc";
+	function filter_inventory($input) {
+		$sql = "SELECT i.item_id, i.item_name, i.item_stock, i.item_price, i.item_category, i.item_supplier, u.letter_code, p.pullout_count, s.sales_count, d.delivery_count
+				FROM POS_ITEM i 
+				LEFT JOIN (
+					SELECT pullout_item, sum(pullout_quantity) as pullout_count
+					FROM pos_pullout
+					WHERE pullout_status=1
+					GROUP BY pullout_item 
+				) p ON p.pullout_item = i.item_id
+				LEFT JOIN (
+					SELECT sales_item, count(sales_id) as sales_count
+					FROM pos_sales
+					GROUP BY sales_item
+				) s ON s.sales_item = i.item_id
+				LEFT JOIN(
+					SELECT delivery_item, sum(delivery_quantity) as delivery_count
+					FROM pos_delivery
+					LEFT JOIN pos_delivery_transaction on pos_delivery_transaction.dt_id = pos_delivery.delivery_dt
+					where dt_status=1
+					GROUP BY delivery_item
+				) d	ON d.delivery_item = i.item_id
+			LEFT JOIN aauth_users u ON u.name = i.item_supplier
+
+			WHERE 
+			item_id like '%".$input."%' or
+			item_category like '%".$input."%' or
+			letter_code like '%".$input."%' or
+			u.name like '%".$input."%'
+			ORDER BY item_id desc";
 
 		$query = $this->db->query($sql);
 		return $query;		

@@ -119,7 +119,6 @@ class Pullout_model extends CI_model{
 	}
 
 	function pullout_count($item_id){
-
 		$this->db->select_sum('pullout_quantity');		
 		$this->db->from('pos_pullout');
 		$this->db->where('pullout_item =', $item_id);
@@ -131,7 +130,22 @@ class Pullout_model extends CI_model{
 		} else{
 			return $query->row()->pullout_quantity;
 		}
+	}
 
+	function pullout_count_date($item_id,$start_date,$end_date){
+		$sql = "select sum(pullout_quantity) from pos_pullout				
+				WHERE
+				pullout_item ='".$item_id."' and
+				pullout_approved_date >= '".$start_date." 00:00:00' and pullout_approved_date <= '".$end_date." 23:59:59'";
+
+		$query = $this->db->query($sql);		
+		return $query;	
+
+		// if($query->row()->pullout_quantity == null){
+		// 	return 0;
+		// } else{
+		// 	return $query->row()->pullout_quantity;
+		// }
 	}
 
 	/* INSERT ACTIONS */

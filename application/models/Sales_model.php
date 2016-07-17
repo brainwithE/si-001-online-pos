@@ -203,7 +203,13 @@ class Sales_model extends CI_model{
 		$sql = 	"SELECT * FROM pos_sales WHERE sales_item='".$item_id."'";
 		$query = $this->db->query($sql);
 		return $query->num_rows();
+	}
 
+	function sold_item_count_date($item_id, $start_date, $end_date){
+		$sql = 	"SELECT * FROM pos_sales WHERE sales_item='".$item_id."' and
+				sales_date >= '".$start_date." 00:00:00' and sales_date <= '".$end_date." 23:59:59'";
+		$query = $this->db->query($sql);
+		return $query->num_rows();
 	}
 	
 	function add_sales_transaction($supplier,$qty){

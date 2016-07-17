@@ -72,6 +72,25 @@ class Delivery_model extends CI_model{
 		}
 	}
 
+	function delivery_count_date($item_id,$start_date,$end_date){
+
+		$sql = "select sum(delivery_quantity) from pos_delivery
+				JOIN pos_delivery_transaction on pos_delivery_transaction.dt_id = pos_delivery.delivery_dt
+				WHERE delivery_item='".$item_id."' 
+				and dt_status=1 and
+				dt_date >= '".$start_date." 00:00:00' and dt_date <= '".$end_date." 23:59:59'";
+
+		
+		$query = $this->db->query($sql);		
+		// return $query;	
+		// if($query->row()->delivery_quantity == null){
+		// 	return 0;
+		// } else{
+		// 	return $query->row()->delivery_quantity;
+		// }		
+	}
+
+
 	function filter_delivery_transaction($input) {
 
 		$this->db->order_by("dt_id", "desc");

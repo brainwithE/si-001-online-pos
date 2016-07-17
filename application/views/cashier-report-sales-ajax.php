@@ -7,8 +7,8 @@
 			$sales_status = $pre_row['sales_status'];
 
 			if($sales_status == 0) { 
-				$amt = $row['sales_total'];
-				$dsc = $row['sales_discount'];
+				$amt = $pre_row['sales_total'];
+				$dsc = $pre_row['sales_discount'];
 				$ddct = $amt*0.03;
 				$net = $amt-$ddct-$dsc;
 				$total = $total + $net;

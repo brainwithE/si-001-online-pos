@@ -114,6 +114,7 @@ class Items_model extends CI_model{
 		item_name like '%".$input."%' or
 		item_category like '%".$input."%' or
 		letter_code like '%".$input."%' or
+		u.name like '%".$input."%' or
 		item_category like '%".$input."%' )
 
 		order by item_id desc";

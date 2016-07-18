@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 
 	<head>
-		<title>Online POS</title>
+		<title>Eight District</title>
 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>style.css">
 

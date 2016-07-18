@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 	<head>
-		<title>Villalifestyle Boutique</title>
+		<title>Eight District</title>
 
 
 		<!-- FOR ACCORDION CSS -->

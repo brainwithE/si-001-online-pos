@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 	<head>
-		<title>Villalifestyle Boutique</title>
+		<title>A POS System</title>
 
 
 		<!-- FOR ACCORDION CSS -->

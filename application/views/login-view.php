@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="overwatch-mec log-form">
 					<div class="head-contain">
 						<h4><i class="fa fa-sign-in"></i>
-						VILLALIFESTYLE BOUTIQUE LOGIN</h4>
+						POS LOGIN</h4>
 					</div>
 
 					<div class="modal-body modal-project">

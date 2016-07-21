@@ -25,8 +25,19 @@
 			<div class="col-md-12 total-label total-label-bank">TOTAL QUANTITY SOLD -- <span id="total-amount" class="total-amount"><?php echo $qty_sold;?></span>
 			</div>
 		</div>
-		<div class="col-xs-5">
-			<p style="text-align: left;">These are all of the sales report. Today is: <?php echo $today = date('F j, Y');?></p>
+		<div class="col-xs-5">			
+			<p style="text-align: left;">
+			<?php
+				date_default_timezone_set('Asia/Manila');
+				if($ind == 1){
+					echo "These are all of the sales report. Today is: <b>". $today = date('F j, Y')."</b>";
+				} else if ($ind == 3) {
+					echo "These are your sales report from <b>".date("M j, Y", strtotime($filter_start))."</b> to <b>".date("M j, Y", strtotime($filter_end))."</b>" ;
+				} else if ($ind == 4) {
+					echo "These are your sales report from <b>".date("M j, Y", strtotime($filter_start))."</b> to <b>".date("M j, Y", strtotime($filter_end))."</b><br>Filtered by: <u>".$filter_item."</u>" ;
+				}
+			?>		
+			</p>
 			<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 		</div>
 	</div>

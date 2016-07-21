@@ -76,6 +76,7 @@ class Cashier extends CI_Controller{
             $sale_report = $this->Sales_model->get_sales_by_tenant($filter_item);
             $data['sales'] = $sale_report;
             $data['qty_sold'] = $sale_report->num_rows();
+            $data['ind'] = '1';
 
             $this->load->view('cashier-report-all-sales-ajax',$data);
         } elseif(empty($start_date) || empty($end_date)){
@@ -88,12 +89,21 @@ class Cashier extends CI_Controller{
             $data['sales'] = $sale_report;
             $data['qty_sold'] = $sale_report->num_rows();
 
+            $data['ind'] = '3';
+            $data['filter_start'] = $start_date;
+            $data['filter_end'] = $end_date;
+
             $this->load->view('cashier-report-all-sales-ajax',$data);
         } elseif(isset($start_date) && isset($end_date) && isset($filter_item)){            
             $data['ajax_req'] = TRUE;
             $sale_report = $this->Sales_model->filter_sales_with_item_date($filter_item,$start_date, $end_date);
             $data['sales'] = $sale_report;
             $data['qty_sold'] = $sale_report->num_rows();
+
+            $data['ind'] = '4';
+            $data['filter_start'] = $start_date;
+            $data['filter_end'] = $end_date;
+            $data['filter_item'] = $filter_item;
 
             $this->load->view('cashier-report-all-sales-ajax',$data);
         }

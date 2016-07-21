@@ -256,7 +256,7 @@
 													<input type="field" name="item_price" value="<?php echo $item_price?>">
 													<label>Item Category: </label>
 													<input type="field" name="item_category" value="<?php echo $item_category?>"> -->
-													<input type="text" name="name" id="discount" placeholder="Enter Discount" />
+													<input type="number" name="name" id="discount" placeholder="Enter Discount" />
 
 													<input type="submit" class="btn submit-button" onClick="confirmDiscount();" value="Confirm" />
 												</div>

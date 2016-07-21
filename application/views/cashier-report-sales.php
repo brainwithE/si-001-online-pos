@@ -13,13 +13,10 @@
 
 			<div class="row">
 				<!-- FILTER FUNCTION -->
-				<div class="col-xs-12 col-md-4 table-filter">
-					<?php echo form_open(); ?>
+				<div class="col-xs-12 col-md-5 table-filter">
 					<label>Filter Records:</label>
 					<input id="tenant-name" type="text" class="datepicker" placeholder="Tenant" name="filter_start_date">
-					<?php
-						echo form_close();
-					?>
+					<input type="submit" name="input-filter" value="SUBMIT" class="call-links" id="input-filter">	
 				</div>
 			</div>
 			<div id="ajax-content-container">
@@ -46,7 +43,10 @@
 							</div>
 					</div>
 					<div class="col-xs-4">
-						<p style="text-align: left;">This is a <b>daily</b> report. Today is: <?php echo $today = date('F j, Y');?></p>
+						<p style="text-align: left;"><?php
+								date_default_timezone_set('Asia/Manila');								
+								echo "These is a daily sales report. Today is: <b>". $today = date('F j, Y')."</b>";
+							?></p>
 						<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 					</div>
 				</div>
@@ -133,12 +133,36 @@
 			});
 
 			function ajax_suggest(){
-				$('#tenant-name').on('input', function() {
-					var username = $('#tenant-name').val();
+
+				$('#tenant-name').keydown(function(e) {
+			        var code = (e.keyCode ? e.keyCode : e.which);
+			        var username = $('#tenant-name').val();
+
+					if(code==13) {// Enter key hit
+
 					$.ajax({
 						url: "cashier/suggest-more-cashier-sales-data",
 						async: false,
-						type: "POST",
+						type: "POST",				
+						data: "type="+username,
+						dataType: "html",
+						success: function(data) {
+							$('#ajax-content-container').html(data);
+						}
+
+					})
+					
+					return false;	
+			        }
+				});
+
+				$('#input-filter').click(function() {
+					var username = $('#tenant-name').val();
+					
+					$.ajax({
+						url: "cashier/suggest-more-cashier-sales-data",
+						async: false,
+						type: "POST",				
 						data: "type="+username,
 						dataType: "html",
 						success: function(data) {

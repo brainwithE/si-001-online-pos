@@ -56,7 +56,12 @@
 							</div>
 					</div>
 					<div class="col-xs-5">
-						<p style="text-align: left;">These are all of the sales report. Today is: <?php echo $today = date('F j, Y  h:i:s');?></p>
+						<p style="text-align: left;">
+							<?php
+								date_default_timezone_set('Asia/Manila');
+								echo "These are all of the sales report. Today is: <b>". $today = date('F j, Y')."</b>";
+							?>	
+						</p>
 						<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 					</div>
 				</div>
@@ -156,24 +161,6 @@
 				}
 			})
 		});
-
-		/*$('#tenant-name').on('input', function() {
-			var username = $('#tenant-name').val();
-
-			var start_date = $('#datepickerstart').val();
-			var end_date = $('#datepickerend').val();
-
-			$.ajax({
-				url: "suggest-more-admin-all-sales-data",
-				async: false,
-				type: "POST",				
-				data: {type:username,sdate:start_date,edate:end_date},
-				dataType: "html",
-				success: function(data) {
-					$('#ajax-content-container').html(data);
-				}
-			})
-		});*/
 
 		$('#tenant-name').keydown(function(e) {
 	        var code = (e.keyCode ? e.keyCode : e.which);

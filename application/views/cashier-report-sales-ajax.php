@@ -26,7 +26,10 @@
 			</div>
 		</div>
 		<div class="col-xs-5">
-			<p style="text-align: left;">This is a <b>daily</b> report. Today is: <?php echo $today = date('F j, Y');?></p>
+			<p style="text-align: left;"><?php
+								date_default_timezone_set('Asia/Manila');								
+								echo "These is a daily sales report. Today is: <b>". $today = date('F j, Y')."</b>";
+							?></p>
 			<div id="print" onClick="printPage();" class="call-links">PRINT SALES RECORDS</div>
 		</div>
 	</div>

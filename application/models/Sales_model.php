@@ -56,6 +56,7 @@ class Sales_model extends CI_model{
 		and 
 			(pos_item.item_name like '%". $input ."%' or
 			sales_item like '%". $input ."%' or
+			item_category like '%". $input ."%' or
 			letter_code like '%". $input ."%' or
 			sales_supplier like '%". $input ."%'
 			) order by sales_date desc";

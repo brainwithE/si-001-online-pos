@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
      </div> <!-- end of #content -->
     </div> <!-- end of #wrapper -->
-
+    <div class='iconload'></div>
     <div class="footer"><h6>Online POS is a product of <a target="_blank" class="lnk" href="http://potatocodes.com">Potatocodes Inc.</a> Copyright 2016</h6></div>
 
     <!-- add all script below this fold -->
@@ -28,6 +28,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- SNIPPET PCT006-003 : script -->
     <script>
+        $body = $("body");
+/*
+        $(document).on({
+            ajaxStart: function() { $body.addClass("loading");    },
+             ajaxComplete: function() { $body.removeClass("loading"); }    
+        });*/
+
+       /* $(document).ajaxStart(function(){
+            $( ".iconload" ).show();
+        });*/
+        
         $(window).scroll(function(){
             if ($(this).scrollTop() < 200) {
                 $('#smoothup') .fadeOut();
@@ -40,6 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             return false;
         });
     </script>
+
+    
 
     <script>
     $('#datepickerincome').datepicker({ format: 'yyyy-mm-dd' });

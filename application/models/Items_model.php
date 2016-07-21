@@ -37,6 +37,7 @@ class Items_model extends CI_model{
 
 			WHERE 
 			item_id like '%".$input."%' or
+			item_name like '%".$input."%' or
 			item_category like '%".$input."%' or
 			letter_code like '%".$input."%' or
 			u.name like '%".$input."%'

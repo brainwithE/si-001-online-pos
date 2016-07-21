@@ -1042,6 +1042,9 @@ button{
 .btn-reject{
 	color: red;
 }
+.btn-approve{
+	color: green;
+}
 .error{ 
 	color: red; 
 	float: left;
@@ -1052,6 +1055,22 @@ button{
 	display: inline-block;
 	float: none;
 }
+
+.iconload {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    overflow: hidden;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://sampsonresume.com/labs/pIkfp.gif') 
+                50% 50% 
+                no-repeat;
+}
+
 
 /* MOBILE FRIENDLINESS */
 

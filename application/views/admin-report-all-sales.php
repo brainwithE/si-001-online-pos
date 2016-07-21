@@ -25,6 +25,7 @@
 						<div class="col-xs-12">
 							<label>Filter Sales Transaction:</label>
 							<input id="tenant-name" type="text" class="datepicker" placeholder="" name="filter_start_date">
+							<input type="submit" name="input-filter" value="SUBMIT" class="call-links" id="input-filter">
 						</div>
 					</div>
 				</div>
@@ -156,7 +157,7 @@
 			})
 		});
 
-		$('#tenant-name').on('input', function() {
+		/*$('#tenant-name').on('input', function() {
 			var username = $('#tenant-name').val();
 
 			var start_date = $('#datepickerstart').val();
@@ -170,6 +171,50 @@
 				dataType: "html",
 				success: function(data) {
 					$('#ajax-content-container').html(data);
+				}
+			})
+		});*/
+
+		$('#tenant-name').keydown(function(e) {
+	        var code = (e.keyCode ? e.keyCode : e.which);
+	        var username = $('#tenant-name').val();
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();
+			
+
+			if(code==13) {// Enter key hit
+
+			$.ajax({
+				url: "suggest-more-admin-all-sales-data",
+				async: false,
+				type: "POST",				
+				data: {type:username,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').empty();
+					$('#ajax-content-container').prepend(data);
+				}
+
+			})
+			
+			return false;	
+	        }
+		});
+
+		$('#input-filter').click(function() {
+			var username = $('#tenant-name').val();
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();
+			
+			$.ajax({
+				url: "suggest-more-admin-all-sales-data",
+				async: false,
+				type: "POST",				
+				data: {type:username,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').empty();
+					$('#ajax-content-container').prepend(data);
 				}
 			})
 		});

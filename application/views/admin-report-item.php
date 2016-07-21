@@ -77,6 +77,7 @@ function printPage(){
 								<div class="col-xs-12">
 									<label>Filter Inventory:</label>
 									<input id="inventory-filter-box" type="text" class="datepicker" placeholder="Enter item here.." name="">
+									<input type="submit" name="input-filter" value="SUBMIT" class="call-links" id="input-filter">
 								</div>
 							</div>
 						</div>
@@ -109,6 +110,7 @@ function printPage(){
 
 					</div>
 	</div>
+	
 
 	<script type="text/javascript">
 	$(document).ready(function () {
@@ -116,37 +118,13 @@ function printPage(){
 		ajax_suggest_code();
 	});
 
-	/*function ajax_suggest(){
-
-		$('#inventory-filter-box').keydown(function(e) {
-	        var code = (e.keyCode ? e.keyCode : e.which);
-	        var username = $('#inventory-filter-box').val();
-	        if(code==13) {// Enter key hit
-	        
-			$.ajax({
-				url: "filter-inventory-item",
-				async: false,
-				type: "POST",
-				data: "type="+username,
-				dataType: "html",
-				success: function(data) {
-					$('#ajax-content-container').empty();
-					$('#ajax-content-container').prepend(data);
-				}
-
-			})
-
-			return false;	
-	        }
-		});
-
-	}  */
-
 	function ajax_suggest(){
-		$('#date-filter').click(function() {
+
+		$('#date-filter').click(function() {			
 			var start_date = $('#datepickerstart').val();
 			var end_date = $('#datepickerend').val();	
 			
+
 			$.ajax({
 				url: "filter-inventory-item",
 				async: false,
@@ -155,7 +133,7 @@ function printPage(){
 				dataType: "html",
 				success: function(data) {
 					$('#ajax-content-container').html(data);
-				}
+				}			      
 			})
 		});
 
@@ -164,6 +142,7 @@ function printPage(){
 	        var username = $('#inventory-filter-box').val();
 			var start_date = $('#datepickerstart').val();
 			var end_date = $('#datepickerend').val();
+			
 
 			if(code==13) {// Enter key hit
 
@@ -177,10 +156,30 @@ function printPage(){
 					$('#ajax-content-container').empty();
 					$('#ajax-content-container').prepend(data);
 				}
+
 			})
 			
 			return false;	
 	        }
+		});
+
+		$('#input-filter').click(function() {
+			var start_date = $('#datepickerstart').val();
+			var end_date = $('#datepickerend').val();	
+			 var username = $('#inventory-filter-box').val();
+			
+
+			$.ajax({
+				url: "filter-inventory-item",
+				async: false,
+				type: "POST",				
+				data: {type:username,sdate:start_date,edate:end_date},
+				dataType: "html",
+				success: function(data) {
+					$('#ajax-content-container').empty();
+					$('#ajax-content-container').prepend(data);
+				}			      
+			})
 		});
 	} 
 	</script>

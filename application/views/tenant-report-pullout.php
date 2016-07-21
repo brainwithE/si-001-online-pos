@@ -24,12 +24,19 @@
 						<div class="col-xs-12">
 
 							<div class="row table-title table-title-general table-title-income">
-								<div class="col-xs-2">Pullout Code</div>
+								<!-- <div class="col-xs-2">Pullout Code</div>
 								<div class="col-xs-4">Item Name</div>
 								<div class="col-xs-2">Date Requested</div>
 								<div class="col-xs-1">Qty</div>
 								<div class="col-xs-1">Status</div>
-								<div class="col-xs-2">Date Approved</div>	
+								<div class="col-xs-2">Date Approved</div> -->	
+								<div class="col-xs-2">Pullout Code</div>
+								<div class="col-xs-4">Item Name</div>
+								<div class="col-xs-1">Qty</div>
+								<div class="col-xs-2">Request Date</div>
+								<div class="col-xs-2">Date Approved</div>
+								<div class="col-xs-1">Status</div>
+								
 							</div>
 							<?php
 								foreach($pullout->result_array() as $row){ 
@@ -43,16 +50,30 @@
 									$pullout_date_approved = $row['pullout_date'];
 
 									$dt_status_word = '';
-									if($pullout_status == 1){$pullout_status_word = 'APPROVED';} else if($pullout_status == 2){$pullout_status_word = 'REJECTED';} else if($pullout_status == 0){$pullout_status_word = 'PENDING';}
+									if($pullout_status == 1 || $pullout_status == 3){$pullout_status_word = 'APPROVED';} else if($pullout_status == 2 || $pullout_status == 4){$pullout_status_word = 'REJECTED';} else if($pullout_status == 0){$pullout_status_word = 'PENDING';}
 							?>
 								
 								<div class="row table-entries table-entries-income">
-									<div class="col-xs-2"><?php echo $item_code;?></div>
-									<div class="col-xs-4"><?php echo $pullout_item;?></div>
-									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date)); ?></div>
-									<div class="col-xs-1"><?php echo $pullout_quantity; ?></div>
-									<div class="col-xs-1"><?php echo $pullout_status_word ?></div>
-									<div class="col-xs-2"><?php echo date("M j, Y", strtotime($pullout_date_approved)); ?></div>	
+									
+
+
+									<div class="col-xs-2"><?php echo $pullout_code;?></div>
+									<div class="col-xs-4"><?php echo $item_code."-"; echo $pullout_item;?></div>
+									<div class="col-xs-1"><?php echo $pullout_quantity;?></div>
+									<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($pullout_date)); ?></div>	
+									<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($pullout_date_approved)); ?></div>
+									<div class="col-xs-1
+									<?php
+										if ($pullout_status_word == 'APPROVED'){
+											echo "btn-approve";
+										} else if ($pullout_status_word == 'REJECTED'){
+											echo "btn-reject";
+										}
+									?>
+									"><?php echo $pullout_status_word ?></div>
+									
+											
+									
 								</div>
 
 							<?php } ?>

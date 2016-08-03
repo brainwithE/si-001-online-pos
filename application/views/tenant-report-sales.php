@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
+
 <script type="text/javascript">
 	function printPage(){
 		window.print();
@@ -10,7 +11,6 @@
 
 		<!--The overwatch Main element Container or MEC-->
 		<div class="overwatch-mec mec-income">
-		
 			<?php 
 				$total = 0;
 
@@ -81,7 +81,7 @@
 						$sales_deduction = $sales_amount*0.03;
 						$sales_net = $sales_amount-$sales_deduction-$sales_discount;
 
-						///if($sales_status == 0) {
+						if($sales_status == 0) {
 
 					if($sales_status == 0){
 					$total_discount = $total_discount + $sales_discount;

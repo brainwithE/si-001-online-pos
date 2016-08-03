@@ -34,6 +34,7 @@ class Tenant extends CI_Controller{
         $sale_report = $this->Sales_model->get_supplier_sales($supplier_id);  
         $packet['sales'] = $sale_report;   
         $packet['qty_sold'] = $sale_report->num_rows();
+        $packet['thisname'] = $supplier_id;
         $data['category_list'] = $this->get_item_category();
 
         $data['sessions'] = $this->session_name();

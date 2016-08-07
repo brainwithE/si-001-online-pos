@@ -151,7 +151,8 @@ class Cashier extends CI_Controller{
             $data[$key]['sales_id'] = '';
             $data[$key]['sales_item'] = $icode;
             $data[$key]['sales_quantity'] = $iqty;
-            $data[$key]['sales_total'] = $totalprice;
+            /*$data[$key]['sales_total'] = $totalprice;*/
+            $data[$key]['sales_total'] = $assprice;
             $data[$key]['sales_discount'] = $idisc;
             $data[$key]['sales_date'] = $current_date;
             $data[$key]['sales_supplier'] = $supplier->item_supplier;

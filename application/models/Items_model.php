@@ -14,7 +14,7 @@ class Items_model extends CI_model{
 
 	function filter_inventory($input) {
 		$sql = "SELECT i.item_id, i.item_name, i.item_stock, i.item_price, i.item_category, i.item_supplier, u.letter_code, p.pullout_count, s.sales_count, d.delivery_count
-				FROM POS_ITEM i 
+				FROM pos_item i 
 				LEFT JOIN (
 					SELECT pullout_item, sum(pullout_quantity) as pullout_count
 					FROM pos_pullout

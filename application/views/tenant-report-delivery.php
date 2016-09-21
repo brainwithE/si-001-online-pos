@@ -49,10 +49,10 @@
 										<div class="col-xs-2"><?php echo $dt_code;?></div>
 										<div class="col-xs-3"><?php echo $dt_supplier;?></div>
 										<div class="col-xs-1"><?php echo $dt_quantity;?></div>
-										<div class="col-xs-2"><?php echo date("M j, Y", strtotime($dt_date)); ?></div>
+										<div class="col-xs-2"><?php echo date("M j, Y g:i A", strtotime($dt_date)); ?></div>
 										<div class="col-xs-2"><?php echo $dt_status_word; ?></div>
 										<div class="col-xs-2">
-											<?php if($dt_date_approved!='0000-00-00'){echo date("M j, Y", strtotime($dt_date_approved));}else{echo '--';} ?>
+											<?php if($dt_date_approved!='0000-00-00 00:00:00'){echo date("M j, Y g:i A", strtotime($dt_date_approved));}else{echo '--';} ?>
 										</div>
 									</a>
 								</div>
